@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="">
+
+    <title>Nicolas A. Botello Jr</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Custom styles for this template -->
+    <link href="css/carousel.css" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand active" href="Home.html">Nicolas A. Botello Jr</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="" onclick="showHTML('Pages/main/about_me.html')"><a href="#">About Me</a></li>
+                <li onclick="showHTML('Pages/main/work.html')"><a href="#workExperience">Work Experience</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Me<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li onclick="showHTML('Pages/main/contact_info.html')"><a href="#">Contact info</a></li>
+                    <li><a href="http://www.linkedin.com/pub/nicolas-botello/72/98/114/">LinkedIn</a></li>
+                    <li><a href="https://github.com/bote795">GitHub</a></li>
+					<li><a href="https://www.dropbox.com/s/azjm5v1zwmgqapn/RESUME.doc">Resume</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://university-notes.com/">University Notes</a></li>
+                    <li><a href="./Tutorials/Phaser/Game/">Infinite Zombie Experience</a></li>
+                    <li><a href="http://bestwindows8apps.net/fairy-tail-characters/">Fairy Tail Characters windows 8 app</a></li>
+					<li onclick="showHTML('Pages/projects/iNationGaming.html')"><a href="#">iNationGaming</a></li>
+                      
+                      <li onclick="showHTML('Pages/projects/QuickBracket.html')"><a href="#">QuickBracket</a></li>
+                  
+                      <li><a href="./Tutorials/Unity/Space_Shooterv1/Builds.html">Shooter Unity Example</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Chrome Extensions</li>
+                        <li onclick="showHTML('Pages/projects/ATS.html')"><a href="#">AnimeTrackerStorage</a></li>
+                        <li onclick="showHTML('Pages/projects/OntaRashid.html')"><a href="#">Onta Rashid?</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="images/entrepreneur.png" height="600" width="355" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Entrepreneur</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/prog.png" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Programmer</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/Future.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Developer</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+
+
+<div id="mainContainer">
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+           <img class="img-circle" src="../../images/Fixed.png" height="140" width="140" alt="Generic placeholder image">
+              <h2>iNationGaming</h2>
+         <p>Mission – To become a well established brand/company with a huge fan base where we can host events for them. Not only can the fans interact with one another at events but they can also enjoy video content which includes Youtube and Twitch.</p>
+              <p><a class="btn btn-default" onclick="showHTML('Pages/projects/iNationGaming.html')" href="#" role="button">View details &raquo;</a></p>
+            </div>
+        <div class="col-lg-4">
+          <img class="img-circle" src="images/128.png" alt="Generic placeholder image">
+          <h2>Anime Tracker Storage</h2>
+          <p><b>Tired of forgeting what episode you are in?</b><br>AnimeTrackerS.(ATS) is a chrome extension that will let you have a list of the animes you are currently watching. But as you watch new episodes or the next episode, it will be updating what episode you are in and let you know when a new one is up. <br><b>It is now on the chrome app store! Still ongoing further updates!</b></p>
+          <p><a class="btn btn-default" onclick="showHTML('Pages/projects/ATS.html')" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="images/TXDOT-Logo.jpg" height="140" width="140" alt="Generic placeholder image">
+          <h2>Texas Department of Transportation</h2>
+          <p>Worked as an Intern for two summers and during my high school senior year. I worked in various departments and learned Visual Basic to help them develop macros to speed up efficiency. While working in teams to draw up road way plans with the use of microstation.</p>
+          <p><a class="btn btn-default" onclick="showHTML('Pages/main/work.html')" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2014 Nicolas Botello, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+    </div><!-- /.container -->
+    </div><!-- maincontainer -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script src="js/navigation.js"></script>
+  </body>
+</html>
