@@ -1,3 +1,4 @@
+//stores the data that will be used to inject into the fields
 function PrePopulatedData()
 {
     var imagePath = ["../../images/Fixed.png","images/128.png", "images/TXDOT-Logo.jpg"];
@@ -11,7 +12,7 @@ function PrePopulatedData()
     return results;
     
 }
-
+//creates html for the different columns
 function ColContainer(imagePath, title, body, pathToWebpage)
 {
     var templateString = "<div class='col-lg-4'>";
@@ -27,7 +28,7 @@ function ColContainer(imagePath, title, body, pathToWebpage)
     templateString += "</div>";
     return templateString;
 }
-
+//injects html to container
 function populateDetails()
 {
     var MainData=PrePopulatedData();
