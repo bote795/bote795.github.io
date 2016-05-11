@@ -18,5 +18,5 @@ Go to directory outside of template
 ```
 
 ###Change 
-change in line 14 with different template name : 'projects'
+change in line 14 with different template name : 'projects'  
 Open index.html and it will create a file with the html
