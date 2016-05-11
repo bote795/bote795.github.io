@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="handlebars.js"></script>
+	<script src="templates/project-template.js"></script>
+	<script src="projects.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+
+	$( document ).ready(function() {
+    	var html = Handlebars.templates['projects'](context)
+    	uriContent = "data:application/octet-stream," + encodeURIComponent( html );
+   		window.open(uriContent, 'myDocument');
+	});
+
+	</script>
+</body>
+</html>
