@@ -63,11 +63,8 @@ var context = {"projects": [
 	"Detail": "Tired of forgeting what episode you are in? AnimeTrackerS.(ATS) is a chrome extension that will let you have a list of the animes you are currently watching. But as you watch new episodes or the next episode, it will be updating what episode you are in and let you know when a new one is up. It is now on the chrome app store! Still ongoing further updates!",
 	"url": "https://chrome.google.com/webstore/detail/animetracker/lfcigpnofdmejegfdelmkajmidedihbk" ,
 	"github": "https://github.com/bote795/AnimeTrackerStorageAngularRevamp",
-}
-]}*/
-
-var context = {"projects": [
- {
+},
+{
 	"num": 9,
 	"title": "Magic Conch Shell Bot",
 	"type": "Facebook Messenger Bot",
@@ -97,4 +94,17 @@ var context = {"projects": [
 	"url": "https://goo.gl/photos/GDUJU4ZtCvh5nso16" ,
 	"github": "https://github.com/bote795/RFIDPoker",
 }
+]}*/
+
+var context = {"projects": [
+  {
+	"num": 9,
+	"title": "",
+	"type": "",
+	"thumbnail": "", //pic : 400x289
+	"pic": "",
+	"Detail": "",
+	"url": "" ,
+	"github": "",
+} 
 ]};
