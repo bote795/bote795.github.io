@@ -1,19 +1,4 @@
-{{#each projects}}
-<div class="col-md-4 col-sm-6 portfolio-item">
-    <a href="#portfolioModal{{num}}" class="portfolio-link" data-toggle="modal">
-        <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-                <i class="fa fa-info-circle fa-3x"></i>
-            </div>
-        </div>
-        <img src="img/portfolio/{{thumbnail}}" class="img-responsive" alt="">
-    </a>
-    <div class="portfolio-caption">
-        <h4>{{title}}</h4>
-        <p class="text-muted">{{type}}</p>
-    </div>
-</div>
-
+{{#each projects}}   
     <!-- Portfolio Modal {{num}} -->
     <div class="portfolio-modal modal fade" id="portfolioModal{{num}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
@@ -53,4 +38,5 @@
             </div>
         </div>
     </div>
+
 {{/each}}
