@@ -1,3 +1,16 @@
+/*
+
+ {
+	"num": 9,
+	"title": "",
+	"type": "",
+	"thumbnail": "", //pic : 400x289
+	"pic": "",
+	"Detail": "",
+	"url": "" ,
+	"github": "",
+}    
+
 var context = {"projects": [
 {
 	"num": 4,
@@ -51,4 +64,37 @@ var context = {"projects": [
 	"url": "https://chrome.google.com/webstore/detail/animetracker/lfcigpnofdmejegfdelmkajmidedihbk" ,
 	"github": "https://github.com/bote795/AnimeTrackerStorageAngularRevamp",
 }
-]}
+]}*/
+
+var context = {"projects": [
+ {
+	"num": 9,
+	"title": "Magic Conch Shell Bot",
+	"type": "Facebook Messenger Bot",
+	"thumbnail": "magicalconch-preview.png",
+	"pic": "magicalconch.png",
+	"Detail": "The Magic Conch Shell Bot is a project that was built to learn how to create a facebook bot. It is a simple bot that uses SpongeBob Magic Conch Shell concept and replies to all questions using the same phrases from the show. It is essentially a magic eight ball. It was built using Javascript and the Node.js framework and deployed to heroku.",
+	"url": null ,
+	"github": "https://github.com/bote795/magicconchshellBot",
+},
+{
+	"num": 10,
+	"title": "WeeklyAnimeCal",
+	"type": "Web Application",
+	"thumbnail": "weeklyAnimeCalendar-preview.png",
+	"pic": "weeklyAnimeCalendar.png",
+	"Detail": "The WeeklyAnimeCal is a project that was built to show a weekly glance of when your anime comes out. It is a small project that uses animenewsnetowrks upcoming anime and lets the user select his anime while its displayed in a week view on when it will come out. It then allows the user to export it to an .ics calendar that can be imported to your calendar to keep track of when your anime will come out. It was created using Bootstrap and Javascript.",
+	"url": "http://bote795.github.io/WeeklyAnimeCal" ,
+	"github": "https://github.com/bote795/WeeklyAnimeCal",
+},
+ {
+	"num": 11,
+	"title": "Electronic Texas Hold’em Player",
+	"type": "Hardware/Code Device",
+	"thumbnail": "ETHP-preview.png",
+	"pic": "ETHP.png",
+	"Detail": "This project was build for our CSCE 462 Microcomputer Systems class. The device we decided on creating was an AI agent that would play Texas Hold'em with players via RFID Cards. It was built using an Arduin, RFID scanner, RFID Cards, Number pad, LED screen, and a 3D printed prototype board. I mainly worked on getting the arduino to take in all the inputs and the 3D prototype board and with setting up wiring.",
+	"url": "https://goo.gl/photos/GDUJU4ZtCvh5nso16" ,
+	"github": "https://github.com/bote795/RFIDPoker",
+}
+]};
