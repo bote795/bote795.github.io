@@ -233,6 +233,7 @@ header {
 header .intro-text {
   padding-top: 100px;
   padding-bottom: 50px;
+  text-shadow: 5px .5px 14px #222;
 }
 header .intro-text .intro-lead-in {
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
