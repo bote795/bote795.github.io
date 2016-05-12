@@ -296,6 +296,9 @@ section h3.section-subheading {
   margin: 15px 0;
   text-transform: none;
 }
+.icon-cplusplus {
+  margin-top: 6px;
+}
 #portfolio .portfolio-item,
 #workExperience .portfolio-item {
   margin: 0 0 15px;
