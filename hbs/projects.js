@@ -1,5 +1,5 @@
 /*
-
+//projects
  {
 	"num": 9,
 	"title": "",
@@ -10,7 +10,25 @@
 	"url": "" ,
 	"github": "",
 }    
-
+//work
+    {
+      "num": 1,
+      "company": "",
+      "position": "",
+      "type":"",
+      "website": "",
+      "city": "",
+      "countryCode": "",
+      "region": "TX",
+      "startDate": "",
+      "endDate": "",
+      "summary": "",
+      "highlights": [
+      ],
+    "thumbnail": "", //pic : 400x289
+	"pic": ""
+    }
+    
 var context = {"projects": [
 {
 	"num": 4,
@@ -94,7 +112,7 @@ var context = {"projects": [
 	"url": "https://goo.gl/photos/GDUJU4ZtCvh5nso16" ,
 	"github": "https://github.com/bote795/RFIDPoker",
 }
-]}*/
+]}
 
 var context = {"projects": [
   {
@@ -108,3 +126,108 @@ var context = {"projects": [
 	"github": "",
 } 
 ]};
+*/
+
+var context = {
+      "work": [
+    {
+      "num": 1,
+      "company": "Verizon",
+      "position": "Networking and Technology IT Internship",
+      "type": "Internship",
+      "website": null,
+      "startDate": "Summer Seasonal, June 2014",
+      "endDate": "August 2015",
+      "city": "Temple Terrace",
+      "countryCode": "US",
+      "region": "FL",
+      "summary": null,
+      "highlights": [
+        "Implemented shell scripts to store server information into a SQL  Database to allow offshore users to access data in a PHP  Web App that serves 190k users",
+        "Analyzed User Experience (UX) logs of a product with ElasticSearch, Logstash, and Kibana and presented a business proposal to optimize code to save 10k a year in user experience"
+      ],
+      "thumbnail": "verizon-preview.png", //pic : 400x289
+      "pic": null
+    },
+    {
+      "num": 2,
+      "company": "Texas Department of Transportation",
+      "position": "Engineering Intern",
+      "type": "Internship",
+      "website": null,
+      "startDate": "January 2011",
+      "endDate": "August 2013",
+      "city": "Laredo",
+      "countryCode": "US",
+      "region": "TX",
+      "summary": null,
+      "highlights": [
+        "Constructed a database for inventory of bed road line patterns and bed road sizes for the Maintenance Department",
+        "Devised macros in Visual Basic for Microsoft Excel for the Design Department to decrease work time by 99.96%"
+      ],
+      "thumbnail": "txdot-preview.jpg", //pic : 400x289
+      "pic": null
+    },
+
+    {
+      "num": 3,
+      "company": "iNationGaming",
+      "type": "Startup",
+      "position": "Co Founder",
+      "website": "http://inationgaming.weebly.com/",
+      "city": "Laredo",
+      "countryCode": "US",
+      "region": "TX",
+      "startDate": "August 2012",
+      "endDate": "May 2014",
+      "summary": "iNation is small startup my friends and I were working on. We started working on in August 2012. We slowly made progress on attracting bigger crowds and finding ways to make revenue. We want to bring a whole new level of gaming to our city in Laredo,Tx to grow the gaming competitive scene. We had big plans, but as the majority of our members are in college it was hard to host events consistenly. We tried to raise 40,000 to invest on an actual business location. But we were not able to meet the requirement. Shortly after we decided that continuing this wasn't a smart decision, so May 2014 was when operations stopped. In iNationGaming I was in charge of a team of 8 people. I would help plan the different events from College Station, Tx even though the events where in Laredo, Tx and help promoting, organizing the business side of things, and running the gaming tournaments.",
+      "highlights": [
+          "Mission – To become a well established brand/company with a huge fan base where we can host events for them. Not only can the fans interact with one another at events but they can also enjoy video content which includes Youtube and Twitch.",
+          "Is a small startup that began roughly in 2012. It is a startup that revolves around hosting video gaming touraments. We have had about 10 tournaments and the biggest gaming tournament in Laredo's(Tx) history. People from all over Texas including: Houston, Brownsville, San Antonio, but it didn't stop there players from Mexico, Monterry came to compete too.",
+          "Lead a team of 8 individuals in organizing, promoting, and running gaming tournaments"
+      ],
+      "thumbnail": "iNG-preview.png", //pic : 400x289
+      "pic": null
+    },
+    {
+      "num": 4,
+      "company": "Interface ecology lab",
+      "position": "Undergrad Research Intern",
+      "type": "Undergrad Research",
+      "website": "http://ecologylab.net/index.html",
+      "city": "College Station",
+      "countryCode": "US",
+      "region": "TX",
+      "startDate": "August 2015",
+      "endDate": "Present",
+      "summary": null,
+      "highlights": [
+          "Collaborated in porting IdeaMache a web app used in the ecologylab from Django and SQL to Mongo, Express, Handlebars, Nodejs, and Socketio to be able to allow multiple user interaction at once.",
+          "In order to allow old API calls, backend was created with compatibility to old API to allow older applications to keep working.",
+          "In order to retrieve data from various social media websites wrote wrappers using xml/path using BigSemantics to extract salient metadata from them."
+      ],
+      "thumbnail": "interfaceEcologyLab-preview.png", //pic : 400x289
+      "pic": null
+    },
+    {
+      "num": 5,
+      "company": "AggiE_Challenge",
+      "position": "Undergrad Research",
+      "type": "Undergrad Research",
+      "website": "https://engineering.tamu.edu/easa/areas/enrichment/aggie-challenge",
+      "city": "College Station",
+      "countryCode": "US",
+      "region": "TX",
+      "startDate": "August 2015",
+      "endDate": "May 2016",
+      "summary": null,
+      "highlights": [
+          "In order to create a modular device to perform industrial energy audits worked with a multidisciplinary team of twelve people where we developed a prototype device.",
+          "Lead a team of four on the creation of a device/package to create a 2-D map of the environment using a LIDAR Sensor.",
+          "Leveraged Robot Operating Software (ROS) hector slam package to create 2-D map and used system to develop packages to communicate with a lighting package developed by a another team"
+      ],
+      "thumbnail": "robotDemo-preview.JPG", //pic : 400x289
+	  "pic": "rviz.png"
+    }
+  ]
+}

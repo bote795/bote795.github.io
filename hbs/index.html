@@ -5,15 +5,29 @@
 	<script src="jquery.min.js"></script>
 	<script src="handlebars.js"></script>
 	<script src="templates/projectItem.js"></script>
+	<script src="templates/workItem.js"></script>
 	<script src="templates/projectModal.js"></script>
+	<script src="templates/workModal.js"></script>
 	<script src="projects.js"></script>
 </head>
 <body>
 	<script type="text/javascript">
 
 	$( document ).ready(function() {
-    	var items = Handlebars.templates['projectItems'](context);
-    	var modals = Handlebars.templates['projectModal'](context);
+        var projects = false;
+        var items;
+        var modals;
+        if (projects)
+        {
+            items = Handlebars.templates['projectItems'](context);
+    	    modals = Handlebars.templates['projectModal'](context);
+        }
+        else
+        {
+            items = Handlebars.templates['workItem'](context);
+    	    modals = Handlebars.templates['workModal'](context);
+        }
+    	
         var html = items + modals;
     	uriContent = "data:application/octet-stream," + encodeURIComponent( html );
    		window.open(uriContent, 'template');
