@@ -23,7 +23,7 @@ templates['workModal'] = template({"1":function(container,depth0,helpers,partial
     + alias4(((helper = (helper = helpers.region || (depth0 != null ? depth0.region : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"region","hash":{},"data":data}) : helper)))
     + " , "
     + alias4(((helper = (helper = helpers.countryCode || (depth0 != null ? depth0.countryCode : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"countryCode","hash":{},"data":data}) : helper)))
-    + "</p>\r\n                            <ul>\r\n"
+    + "</p>\r\n                            <ul  class=\"align-left\">\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.highlights : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "                            </ul>\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.summary : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

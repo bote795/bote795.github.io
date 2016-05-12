@@ -686,6 +686,9 @@ ul.social-buttons li a:active {
   margin-bottom: 30px;
   margin-top: 0;
 }
+.portfolio-modal .modal-content ul.align-left {
+  text-align: left !important;
+}
 .portfolio-modal .modal-content img {
   margin-bottom: 30px;
 }
