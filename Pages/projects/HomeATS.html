@@ -1,107 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="">
-
-    <title>Nicolas A. Botello Jr</title>
-
-    <!-- Bootstrap core CSS -->
+      <title>ATS</title>
+          <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    <!-- Custom styles for this template -->
+  <script>
+  document.getElementById("mainContainer").scrollIntoView()
+  </script>  
   </head>
-<!-- NAVBAR
-================================================== -->
-
   <body>
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand active" href="../../Home.html">Nicolas A. Botello Jr</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="" onclick="showHTML('../../Pages/main/about_me.html')"><a href="#">About Me</a></li>
-                <li onclick="showHTML('../../Pages/main/work.html')"><a href="#workExperience">Work Experience</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Me<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li onclick="showHTML('../../Pages/main/contact_info.html')"><a href="#">Contact info</a></li>
-                    <li><a href="http://www.linkedin.com/pub/nicolas-botello/72/98/114/">LinkedIn</a></li>
-                    <li><a href="https://github.com/bote795">GitHub</a></li>
-					<li><a href="https://www.dropbox.com/s/azjm5v1zwmgqapn/RESUME.doc">Resume</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="http://university-notes.com/">University Notes</a></li>
-                    <li><a href="../.././Tutorials/Phaser/Game/">Infinite Zombie Experience</a></li>
-                    <li><a href="http://bestwindows8apps.net/fairy-tail-characters/">Fairy Tail Characters windows 8 app</a></li>
-					<li onclick="showHTML('../../Pages/projects/iNationGaming.html')"><a href="#">iNationGaming</a></li>
-                      <li onclick="showHTML('../../Pages/projects/ATS.html')"><a href="#">AnimeTrackerStorage Chrome Extension</a></li>
-                      <li onclick="showHTML('../../Pages/projects/QuickBracket.html')"><a href="#">QuickBracket</a></li>
-                      <li><a href="../.././Tutorials/Unity/Space_Shooterv1/Builds.html">Shooter Unity Example</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Examples</li>
-                    <li><a href="../.././Tutorials/Phaser/level/index.html">Character Selection</a></li>
-                    <li><a href="../.././Tutorials/Phaser/index.html">Phaser</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
- 
-
-<div id="mainContainer">
- 
-
-
-   
-    </div><!-- maincontainer -->
-
-    <!-- Bootstrap core JavaScript
+    <!-- Marketing messaging and featurettes
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/docs.min.js"></script>
-    <script src="../../js/navigation.js"></script>
-    <script src="../../js/google-analytics.js"></script>
-     <script>
-       $( document ).ready(function() {
-	showHTML('ATS.html');
-  });
-       
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+<div id="mainContainer">
+        <div class="container marketing">
+           
+             <center> <img class="img-circle" src="../../img/ats/128.png" height="140" width="140" alt="Generic placeholder image">
+              <h2 >Anime Tracker Storage Chrome Extension</h2></center>
+            <div class="panel panel-default">
+          <div class="panel-heading"><p></p><b>Tired of forgeting what episode you are in?</b><br>AnimeTrackerS.(ATS) is a chrome extension that will let you have a list of the animes you are currently watching. But as you watch new episodes or the next episode, it will be updating what episode you are in. <br><b>It is on the <a href="https://chrome.google.com/webstore/detail/animetracker/lfcigpnofdmejegfdelmkajmidedihbk" target="_blank">chrome app store!</a> </b></p>
+              <p><a class="btn btn-default" href="https://github.com/bote795/AnimeTrackerChromeExtension" role="button">View details &raquo;</a></p></div>
+          <div class="panel-body">
+            <p>ATS is a small project I started on a weekend and slowly been patching some bugs and adding some features. It is an ongoing project and theres many other things I want to add, but since I'm a college student I will slowly be working on this. </p>
+              <h3>features:</h3>
+              <ul>
+            <li>shift + click --- Saves the text of the link that you are clicking on</li>
+            <li>Ways of episode to update:</li>
+            <ul>
+            <li>ctrl + click</li>
+            <li>alt + click</li>
+            <li>middle mouse button</li>
+            <li>left click</li>
+            <li>being able to tell you when the next episode of an anime  you are watching is up and which website</li>
+            </ul>
+            </ul>   
+              <h3>Coming Soon:</h3>
+              <ul>
+            <li>right click + new tab to register for episode to update</li>
+            <li>Will tell you the time its suppose to be up by</li>
+            <li>Option to send sms or email when new episode is up</li>
+            </ul>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+<h4>FeedBack is appreciated <a href="https://www.surveymonkey.com/s/CVFYDPJ">Survey</a></h4>
+    <div class="jumbotron">
+		  <div class="container" style="text-align:center">
+			<h1>Contact info</h1>
+			<p>If you would like to contact me, you can do so in the following manner:</p>
+				<address>
+				  
+				   <span class="glyphicon glyphicon-envelope"></span>
+                    <a href="mailto:#">nicolasbotellodev@gmail.com</a><br>
+              </address>
+		  </div>
+		</div>
+                 <hr class="featurette-divider">
+  <h2 class="featurette-heading">How it works, <span class="text-muted">behind the scenes!</span></h2>
+          <p class="lead"> This app is based on URL's. So what this application ends up doing is that it compares the urls that you click to your anime list, however; if there is a match and its on the correct episode, then it will update the episode you are in. So this application <b>doesn't work if you watch your anime in places like youtube</b> since the URL doesn't have anything to do with the anime name or episode. Most anime dedicated websites have something like this example If you are watching anime at crunchyroll for this example its One Piece :"http://www.crunchyroll.com/one-piece/episode-645-destruction-cannon-blasts-lucy-in-trouble-653831" it contains the name one piece in the name of the url and the episode number, so it will work. So the <b>way that you put the name of the anime name in the list is important</b>. For most animes the way they are name is the convention the website will follow, but if the anime has special characters such as ":" they might change the convention. For more clarity please read the examples below.</p>
+                <h3>Examples:</h3>
+            <ul>
+                <li>if Anime Name is: "M3: Sono Kuroki Hagane" </li>
+                <ul>
+                    <li>example url:"http://www.animeseason.com/m3-sono-kuroki-hagane-episode-1/"</li>
+                    <li>correct name of anime for app: "M3 Sono Kuroki Hagane"</li>
+                </ul>
+                <li>if Anime Name is: "Love Live! School Idol Project 2" </li>
+                <ul>
+                    <li>example url:"http://www.animeseason.com/love-live-school-idol-project-2-episode-1/"</li>
+                    <li>correct name of anime for app: "Love Live School Idol Project 2"</li>
+                </ul>
+                 <li>But like most animes are like the following if Anime Name is: "Black Bullet" </li>
+                <ul>
+                    <li>example url:"http://www.animeseason.com/black-bullet-episode-1/"</li>
+                    <li>correct name is the name of the anime: "Black Bullet"</li>
+                </ul>
+            </ul>
+     <hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Add Updates Url Tab</span></h2>
+          <p class="lead">Add a url from which a list of different animes that just came out is showing. Specify if the url you entered is an rss or just a normal html page. While if you understand xpath you can select yes in custom Xpath and a input field will show up. For you to specify. Other wise it will just grab all the urls from the specified website. </p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/addURL1.PNG" alt="AnimeTracker">
+        </div>
+      </div>
+     <hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Testing Updates Inputed Url</span></h2>
+          <p class="lead">Before the Url is accepted it has to pass the test that is preformed when submited. It will send the url for confirmation to the API reply with success (green looking box) or Error (Red). It will then submit itself automatically as well. If an error comes out the website you entered will not be able to be used for checking for new episodes or you need to specify the start of the url. Since sometimes the API replys with broken urls and we need the half that is missing.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/addURL2.PNG" alt="AnimeTracker">
+        </div>
+      </div>
+     <hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Settings Tab</span></h2>
+          <p class="lead">The settings tab shows the websites that are being used to check for updates. You can drag the websites up and down to sort them from which you want the api to check first for updates to last. You can also remove the websites from your list. If you mess up you can press "Reset" to give you the default starting urls.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/sortURLs.PNG" alt="AnimeTracker">
+        </div>
+      </div> 
+<hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">LINK Button</span></h2>
+          <p class="lead">Don't press Link button till it finishes loading or will get stuck. Click link and type in url for specific anime. It will then add the link on the name of the anime. For you to go to at anytime.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/sortURLs2.PNG" alt="AnimeTracker">
+        </div>
+      </div> 
+    <hr class="featurette-divider">
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Adding Anime Menu. <span class="text-muted">Example of Add Anime and looks.</span></h2>
+          <p class="lead">You can type the name of your anime and what episode you are in and it will be added to your list of animes. <b>The way the anime name is typed is very important!</b> If for any reason it isn't working correctly you can add it manually or send me an email and I will take a look. The "X" button will remove it from your list.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/AnimeTracker.png" alt="AnimeTracker">
+        </div>
+      </div>
+     <hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">New Mutiple additions button.</span></h2>
+          <p class="lead">The mutiple additions button, helps ease the process of adding a lot of animes to your list specially when you are starting. If you don't have mutiple additions checked then everytime you type in the name of an anime it will close the box for you.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/Capture.PNG" alt="AnimeTracker">
+        </div>
+      </div>     
+            <hr class="featurette-divider">
+         <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Checks for Updates!</span></h2>
+          <p class="lead">It is now able to check for updates! It uses four anime websites which include: animeseason.com, animefreak.tv, lovemyanime.net, and gogoanime.com to see if from your list of animes if there is a new episode. If there is it notifys you and adds a little new next to the "+" button in the row of that anime. When the "new" is clicked it takes you to the episode of the anime.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/AnimeTrackerNEW.PNG" alt="NewExample">
+        </div>
+      </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Checks for Updates Notification!</span></h2>
+          <p class="lead">A notification is displayed at the bottom right of your screen when a new episode is up. It shows up as google chrome notification on the bottom right of your screen with the extensions basic picture. If you click on it, it takes you to the next episode. If the notification isn't working you should go to the following  link: <a href="https://support.google.com/chrome/answer/3220216?hl=en" target="_blank">link</a></p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/notification.png" alt="Notification Sample">
+        </div>
+      </div>  
+        <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> <span class="text-muted">Missed Notification?!</span></h2>
+          <p class="lead">If you miss the notification then it gets saved inside the chrome notifications center. When you receive a notification, you'll see a message appear in the lower right corner of your computer screen and an icon <img src="../../img/ats/bell.jpg"> appear in the notification area (also called the system tray) on Windows and the menu bar on Mac. Click on the icon to open the Chrome Notification Center to see older notifications that you have not dismissed. But if you click on the notification it will not take you to the newest episode you will have to open up the chrome extension menu and click on the "new" next to the anime, so that you will go to where the new episode.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="../../img/ats/6c9d7ebad049eebece8177b9a0bb4a9e.png" alt="Chrome Notifications Center">
+        </div>
+      </div> 
+          </div>
+            </div><!-- /.row -->
+        </div><!-- marketing-->
+</div><!--mainContainer -->
+        <!--google analytics-->
+    <script src="js/ga.js"></script>
+    <script>
+       ga('send', 'pageview', "/homeATS.html");
     </script>
   </body>
+  
 </html>
