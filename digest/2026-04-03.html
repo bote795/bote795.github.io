@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 3, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 3, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-03.html" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				overflow-y: auto;
+			}
+
+			.digest-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 3em 2em 4em;
+			}
+
+			.digest-header {
+				text-align: center;
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.15);
+			}
+
+			.digest-header h1 {
+				font-size: 1.8em;
+				margin-bottom: 0.3em;
+				color: #313f47;
+			}
+
+			.digest-meta {
+				font-size: 0.9em;
+				color: #717f87;
+				letter-spacing: 0.05em;
+			}
+
+			.digest-nav {
+				text-align: center;
+				margin-bottom: 2em;
+			}
+
+			.digest-nav a {
+				color: #717f87;
+				font-size: 0.85em;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-nav a:hover {
+				color: #313f47;
+			}
+
+			.digest-content {
+				line-height: 1.75;
+				font-size: 1.05em;
+				color: #414f57;
+			}
+
+			.digest-content h2 {
+				font-size: 1.4em;
+				color: #313f47;
+				margin-top: 2em;
+				margin-bottom: 0.75em;
+				padding-bottom: 0.4em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+			}
+
+			.digest-content h3 {
+				font-size: 1.15em;
+				color: #313f47;
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+			}
+
+			.digest-content p {
+				margin-bottom: 1em;
+			}
+
+			.digest-content a {
+				color: #313f47;
+				font-weight: 400;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.3);
+				text-decoration: none;
+			}
+
+			.digest-content a:hover {
+				color: #ff7496;
+				border-bottom-color: #ff7496;
+			}
+
+			.digest-content strong {
+				font-weight: 400;
+				color: #313f47;
+			}
+
+			.digest-content ul, .digest-content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+				list-style: disc;
+			}
+
+			.digest-content ol {
+				list-style: decimal;
+			}
+
+			.digest-content li {
+				margin-bottom: 0.5em;
+				line-height: 1.6;
+			}
+
+			.digest-content hr {
+				border: none;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				margin: 2em 0;
+			}
+
+			.digest-content blockquote {
+				border-left: 3px solid rgba(65, 79, 87, 0.2);
+				padding-left: 1.2em;
+				margin: 1em 0;
+				color: #717f87;
+				font-style: italic;
+			}
+
+			.digest-content table {
+				width: 100%;
+				margin-bottom: 1.5em;
+				border-collapse: collapse;
+			}
+
+			.digest-content th, .digest-content td {
+				text-align: left;
+				padding: 0.6em 0.8em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+				font-size: 0.95em;
+			}
+
+			.digest-content th {
+				font-weight: 400;
+				color: #313f47;
+				border-bottom: 2px solid rgba(65, 79, 87, 0.2);
+			}
+
+			.digest-content code {
+				background: rgba(65, 79, 87, 0.06);
+				padding: 0.15em 0.4em;
+				border-radius: 3px;
+				font-size: 0.9em;
+			}
+
+			.digest-footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				text-align: center;
+				font-size: 0.85em;
+				color: #717f87;
+			}
+
+			.digest-footer a {
+				color: #717f87;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-footer a:hover {
+				color: #313f47;
+			}
+
+			/* Card background on gradient */
+			.digest-card {
+				background: rgba(255, 255, 255, 0.92);
+				border-radius: 8px;
+				padding: 2.5em 2em;
+				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			@media screen and (max-width: 480px) {
+				.digest-wrapper {
+					padding: 1.5em 1em;
+				}
+
+				.digest-card {
+					padding: 1.5em 1.2em;
+				}
+
+				.digest-header h1 {
+					font-size: 1.4em;
+				}
+
+				.digest-content {
+					font-size: 1em;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<div class="digest-wrapper">
+			<div class="digest-card">
+				<nav class="digest-nav">
+					<a href="index.html">&larr; All Digests</a>
+				</nav>
+
+				<header class="digest-header">
+					<h1>AI Builder Digest</h1>
+					<div class="digest-meta">April 3, 2026 &middot; 6 min read</div>
+				</header>
+
+				<article class="digest-content">
+					<h1>AI Builder Digest – April 3, 2026</h1>
+<p>Anthropic accidentally shipped 512,000 lines of Claude Code's production source in a single <code>.map</code> file this week, and the community reverse-engineered a better agent architecture guide than any official tutorial in under 48 hours. While that fallout dominated the week, Google dropped Gemma 4 and Cursor shipped version 3 on the same day – making this the most consequential 72 hours for AI coding infrastructure in months.</p>
+<hr />
+<h2>The Big Stories</h2>
+<h3>Claude Code's Source Leak Is Now a Production Architecture Textbook</h3>
+<p>A missing <code>.npmignore</code> exclusion shipped a 59.8 MB source map exposing 1,902 files across 29 subsystems of a product running an estimated $2.5B in annualized revenue. The community response was immediate: 32.6K stars on the mirror repo, a TypeScript-to-Python port within hours, and a r/ClaudeAI user who traced the root cause of Claude Code's notorious token drain to the <code>autoCompact</code> mechanism, which retries indefinitely on failure. One Anthropic session failed 3,272 consecutive autocompact retries with no ceiling. The fix: 3 lines of code, adding <code>MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3</code>. Anthropic engineer Lydia Hallie publicly confirmed users were hitting rate limits far faster than expected.</p>
+<p>The deeper signal for builders: the LLM call is roughly 20% of what makes Claude Code work. The other 80% is plumbing – session persistence, permission pipelines, pre-turn budget checks, idempotency keys, tool registries. Claude Code's shell execution tool alone runs through an 18-module security stack before a single bash command fires. Developers porting the harness to Python and Rust independently converged on the same 12 infrastructure primitives, confirming these patterns are structural requirements of any production agent, not Anthropic-specific. Anthropic's DMCA response overreached, catching legitimate forks of their own open-source repo – Boris Cherny acknowledged the error publicly and said they were working with GitHub to correct it.</p>
+<p>Sources: <a href="https://www.latent.space/p/ainews-the-claude-code-source-leak">Latent Space</a> | <a href="https://www.reddit.com/r/ClaudeAI/comments/1s8zxt4/">r/ClaudeAI</a></p>
+<hr />
+<h3>Gemma 4: Best Open Model Per Dollar, Available Now</h3>
+<p>Google DeepMind released four Apache 2.0-licensed reasoning models: 2B, 4B, 31B dense, and a 26B-A4B Mixture-of-Experts. Simon Willison's verdict: &quot;byte for byte, the most capable open models.&quot; The 26B MoE activates only 3.8B parameters at runtime – it runs on a T4 16GB GPU with expert offloading. Built-in agentic workflow support, 256K context, and multimodal handling across images, audio, video, and charts ship out of the box.</p>
+<p>The integration speed tells you everything about community appetite for capable open models. Within hours of release, <a href="https://x.com/jphorism/status/2039963858354290831">@jphorism</a> shipped a 2,400-line open-source knowledge base agent connecting Gemma 4 E4B to Karpathy's knowledge workflow, running locally via GGUF as a single <code>npx</code> command. Simon Willison also shipped <code>llm-gemini 0.30</code> with Gemma 4 support the same day. Gemma 4 is in production tooling before most models finish their launch blog posts.</p>
+<p>Sources: <a href="https://simonwillison.net/2026/Apr/2/gemma-4/">Simon Willison</a> | <a href="https://x.com/ApollonVisual/status/2040004639047762328">@ApollonVisual</a></p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>Cursor 3 launches with an agent-first interface.</strong> The new multi-workspace design moves users to a higher level of abstraction – agents handle coding tasks end-to-end, not just autocomplete. Cursor is now a direct competitor to Claude Code and Codex in the agentic IDE space, not a smarter editor. <a href="https://cursor.com/blog/cursor-3">cursor.com/blog/cursor-3</a></p>
+<p><strong>Extended thinking redaction correlates with quality regression.</strong> A 19-minute analysis by <a href="https://gist.github.com/benvanik/e6c610997e4b06b82385622048079818">@benvanik</a> shows the rollout of thinking content redaction &quot;correlates precisely with measured quality regression in complex, long-session engineering workflows.&quot; Extended thinking tokens are load-bearing for senior engineering use cases – when they're redacted, the model's output degrades on exactly the tasks where you need it most.</p>
+<p><strong>Google's internal coding agent writes 25-30% of production code.</strong> The agent, called Agent Smith internally, got popular enough that Google had to restrict access. It codes autonomously overnight. That number isn't a benchmark. It's a run-rate. <a href="https://www.reddit.com/r/google/comments/1s7vlnp/">r/google</a></p>
+<p><strong>AI coding agents are now a documented attack surface.</strong> @straikerai shows agents can be manipulated into escaping their environment, establishing persistence, and opening remote access from a single malicious repo. Separately, an HN thread flags agents introducing vulnerable dependencies at scale. Permission hygiene is no longer optional as agent adoption grows.</p>
+<p><strong>One founder built a $1.8B telehealth company with $20K in AI-written code.</strong> Matthew Gallagher used AI tools to write all the code for Medvi (GLP-1 weight-loss telehealth) in two months. The company's now valued at $1.8B. The story isn't the valuation – it's the ceiling on what a two-person founding team can ship. <a href="https://www.nytimes.com/2026/04/02/technology/ai-billion-dollar-company-medvi.html">NYT</a></p>
+<p><strong>Simon Willison on Lenny's Podcast: &quot;We've passed the inflection point.&quot;</strong> Willison argues AI coding assistance is no longer optional for competitive engineering teams. The episode covers agentic engineering, dark factories, and automation timelines – 18 minutes, worth the full read. <a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">simonwillison.net</a></p>
+<hr />
+<h2>Quick Hits</h2>
+<p><strong>Qwen 3.6-Plus</strong> beats Opus 4.5 and Gemini 3 on several benchmarks per WorldofAI testing. Alibaba shipped 3 proprietary models in 3 days with zero open weights – a visible shift from the company that built the largest open-source AI base (290K developers, 700M downloads). <a href="https://x.com/ChinaAIDispatch/status/2040055608750268923">@ChinaAIDispatch</a></p>
+<p><strong>Trinity-Large-Thinking (Arcee AI)</strong> is a frontier open reasoning model for long-horizon agents and multi-turn tool calling. Arcee calls it &quot;likely the strongest open model yet to be released outside of China.&quot; <a href="https://www.arcee.ai/blog/trinity-large-thinking">arcee.ai</a></p>
+<p><strong>Liquid AI LFM2.5-350M</strong> runs agentic loops at 350M parameters – proving agent workflows don't require large models. <a href="https://www.reddit.com/r/LocalLLaMA/comments/1s8u1c1/">r/LocalLLaMA</a></p>
+<p><strong>Mistral released an open-source TTS model</strong> claiming to beat ElevenLabs. Kitten TTS (561 HN points) dropped the same week. Open-source speech generation is moving fast. <a href="https://news.ycombinator.com/item?id=47530929">HN</a></p>
+<p><strong>MolmoWeb (Allen AI)</strong> is a 4B/8B open agent that outperforms OpenAI CUA on 3 of 4 web browsing benchmarks, operating via screenshots with no API required and a fully open dataset. <a href="https://x.com/hakke_studio/status/2040056002754777146">@hakke_studio</a></p>
+<p><strong>Cognichip raised $60M</strong> to build a deep learning model for chip design – one of the most complex and expensive engineering processes, where timelines routinely outlast market cycles. <a href="https://techcrunch.com/2026/04/01/cognichip-wants-ai-to-design-the-chips-that-power-ai-and-just-raised-60m-to-try/">TechCrunch</a></p>
+<p><strong>Fujitsu OneCompression</strong> is a new open-source Python library for post-training quantization implementing GPTQ and state-of-the-art compression algorithms. <a href="https://fujitsuresearch.github.io/OneCompression/">fujitsuresearch.github.io</a></p>
+<p><strong>CODEC</strong> is a local-first AI agent framework with 36 skills including screen reading, voice calls, and multi-agent research – runs entirely on your machine. <a href="https://www.reddit.com/r/LocalLLM/comments/1s6h4g5/">r/LocalLLM</a></p>
+<p><strong>GPL4 movement is gaining momentum.</strong> An r/opensource thread (180pts, 73 comments) argues it's time for a license that explicitly protects open-source code from AI training. <a href="https://www.reddit.com/r/opensource/comments/1sa8qb0/">r/opensource</a></p>
+<p><strong>Next.js ships official View Transitions support.</strong> Cross-navigation animations, page slides, native Next.js integration – the most-engaged dev tweet of the day (1,867 likes, 145K views). <a href="https://x.com/nextjs/status/2039740163979698413">@nextjs</a></p>
+<p><strong>OpenAI acquired TBPN</strong>, a tech talk show averaging 70,000 viewers per episode. <a href="https://www.wsj.com/cmo-today/openai-buys-tech-industry-talk-show-tbpn-484c01c5">WSJ</a></p>
+<p><strong>Greg Isenberg published &quot;23 AI Trends Keeping Me Up at Night&quot;</strong> — covers the one-hour company stack, ambient businesses, outcome-based pricing (83% of AI-native SaaS has already switched), and what he calls a 12-24 month window before early moats close. <a href="https://www.youtube.com/watch?v=lyqk7zxbCKs">YouTube</a></p>
+<hr />
+<h2>Worth Your Time</h2>
+<p><strong><a href="https://gist.github.com/benvanik/e6c610997e4b06b82385622048079818">Extended Thinking Is Load-Bearing for Senior Engineering Workflows</a></strong> — 19 minutes. If you're doing complex, long-session work with Claude and something feels off since last month, this analysis explains why. Specific, measured, actionable.</p>
+<p><strong><a href="https://cursor.com/blog/cursor-3">Meet the New Cursor</a></strong> — 10 minutes. Not a feature announcement – a thesis about where the agentic IDE is headed and how the Cursor team is thinking about the abstraction layer above code.</p>
+<p><strong><a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">Highlights from My Conversation About Agentic Engineering on Lenny's Podcast</a></strong> — 18 minutes. Simon Willison is the most grounded voice in this space. His take on the inflection point is worth reading in full, not just the summary.</p>
+				</article>
+
+				<footer class="digest-footer">
+					<p><a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a></p>
+				</footer>
+			</div>
+		</div>
+
+		<script>
+			if ('addEventListener' in window) {
+				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+			}
+		</script>
+
+	</body>
+</html>
