@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 4, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 4, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-04.html" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				overflow-y: auto;
+			}
+
+			.digest-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 3em 2em 4em;
+			}
+
+			.digest-header {
+				text-align: center;
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.15);
+			}
+
+			.digest-header h1 {
+				font-size: 1.8em;
+				margin-bottom: 0.3em;
+				color: #313f47;
+			}
+
+			.digest-meta {
+				font-size: 0.9em;
+				color: #717f87;
+				letter-spacing: 0.05em;
+			}
+
+			.digest-nav {
+				text-align: center;
+				margin-bottom: 2em;
+			}
+
+			.digest-nav a {
+				color: #717f87;
+				font-size: 0.85em;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-nav a:hover {
+				color: #313f47;
+			}
+
+			.digest-content {
+				line-height: 1.75;
+				font-size: 1.05em;
+				color: #414f57;
+			}
+
+			.digest-content h2 {
+				font-size: 1.4em;
+				color: #313f47;
+				margin-top: 2em;
+				margin-bottom: 0.75em;
+				padding-bottom: 0.4em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+			}
+
+			.digest-content h3 {
+				font-size: 1.15em;
+				color: #313f47;
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+			}
+
+			.digest-content p {
+				margin-bottom: 1em;
+			}
+
+			.digest-content a {
+				color: #313f47;
+				font-weight: 400;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.3);
+				text-decoration: none;
+			}
+
+			.digest-content a:hover {
+				color: #ff7496;
+				border-bottom-color: #ff7496;
+			}
+
+			.digest-content strong {
+				font-weight: 400;
+				color: #313f47;
+			}
+
+			.digest-content ul, .digest-content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+				list-style: disc;
+			}
+
+			.digest-content ol {
+				list-style: decimal;
+			}
+
+			.digest-content li {
+				margin-bottom: 0.5em;
+				line-height: 1.6;
+			}
+
+			.digest-content hr {
+				border: none;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				margin: 2em 0;
+			}
+
+			.digest-content blockquote {
+				border-left: 3px solid rgba(65, 79, 87, 0.2);
+				padding-left: 1.2em;
+				margin: 1em 0;
+				color: #717f87;
+				font-style: italic;
+			}
+
+			.digest-content table {
+				width: 100%;
+				margin-bottom: 1.5em;
+				border-collapse: collapse;
+			}
+
+			.digest-content th, .digest-content td {
+				text-align: left;
+				padding: 0.6em 0.8em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+				font-size: 0.95em;
+			}
+
+			.digest-content th {
+				font-weight: 400;
+				color: #313f47;
+				border-bottom: 2px solid rgba(65, 79, 87, 0.2);
+			}
+
+			.digest-content code {
+				background: rgba(65, 79, 87, 0.06);
+				padding: 0.15em 0.4em;
+				border-radius: 3px;
+				font-size: 0.9em;
+			}
+
+			.digest-footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				text-align: center;
+				font-size: 0.85em;
+				color: #717f87;
+			}
+
+			.digest-footer a {
+				color: #717f87;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-footer a:hover {
+				color: #313f47;
+			}
+
+			/* Card background on gradient */
+			.digest-card {
+				background: rgba(255, 255, 255, 0.92);
+				border-radius: 8px;
+				padding: 2.5em 2em;
+				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			@media screen and (max-width: 480px) {
+				.digest-wrapper {
+					padding: 1.5em 1em;
+				}
+
+				.digest-card {
+					padding: 1.5em 1.2em;
+				}
+
+				.digest-header h1 {
+					font-size: 1.4em;
+				}
+
+				.digest-content {
+					font-size: 1em;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<div class="digest-wrapper">
+			<div class="digest-card">
+				<nav class="digest-nav">
+					<a href="index.html">&larr; All Digests</a>
+				</nav>
+
+				<header class="digest-header">
+					<h1>AI Builder Digest</h1>
+					<div class="digest-meta">April 4, 2026 &middot; 5 min read</div>
+				</header>
+
+				<article class="digest-content">
+					<h1>AI Builder Digest — April 4, 2026</h1>
+<p>Frontier models just crossed a qualitative threshold in vulnerability research — Linux kernel security reports jumped from 2-3/week to 10/week, and maintainers say the slop is gone. Meanwhile, Anthropic accidentally shipped 512,000 lines of Claude Code's source code in an npm <code>.map</code> file, giving every builder the most detailed public blueprint of production agentic infrastructure that has ever existed.</p>
+<hr />
+<h2>The Big Stories</h2>
+<p><strong>AI vulnerability research broke this week — this is a security emergency for open-source maintainers.</strong>
+Thomas Ptacek's warning is unambiguous: frontier models are now producing vulnerability reports that are &quot;genuinely concerning,&quot; not funny slop. Linux kernel reports hit 10/week, up from 2-3. Daniel Stenberg (curl) confirms the quality shift: &quot;less slop but lots of reports. Many of them really good.&quot; Greg Kroah-Hartman: what used to be &quot;kind of funny&quot; now worries him. The attack surface for every major open-source project just expanded dramatically — and the maintainers absorbing the volume are the same people who were already stretched thin. If you maintain open-source software, your triage queue is about to grow. (<a href="https://simonwillison.net/2026/Apr/3/vulnerability-research-is-cooked/">Simon Willison</a>)</p>
+<p><strong>Claude Code's full source leaked — 512,000 lines across 29 subsystems — and it proved that agents are 80% plumbing.</strong>
+Someone forgot to exclude a 59.8 MB source map from an npm publish. The resulting blueprint shows that the LLM call is maybe 20% of a production coding agent. The other 80%: session persistence, a permission pipeline with 18 separate safety modules for shell execution alone, token budget checks that fire <em>before</em> the API call, transcript compaction, system event logging, and a 7-stage staged boot sequence. The specific bug developers identified: Claude Code's <code>autoCompact</code> retry loop had no ceiling — one session hit 3,272 consecutive failures silently burning tokens. The fix was 3 lines and a constant (<code>MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3</code>). Within hours, developers ported the full harness to Python and then Rust, independently converging on the same architecture — confirming these 12 primitives are structural requirements, not Anthropic quirks.</p>
+<p>The 12 primitives in priority order:</p>
+<ul>
+<li><strong>Day one:</strong> Tool registry with metadata-first design, permission system with trust tiers, session persistence as a recoverable state object, workflow state with idempotency keys, token budget tracking with pre-call checks, structured streaming events, system event logging, basic verification harness</li>
+<li><strong>Week one:</strong> Tool pool assembly per-session, transcript compaction, permission audit trail, <code>/doctor</code> health check pattern, staged boot sequence, stop reason taxonomy, provenance-aware context assembly</li>
+<li><strong>Month one:</strong> Agent type system with role constraints, multi-tier memory subsystem, skills/extensibility layer, hooks architecture, multi-agent coordination</li>
+</ul>
+<hr />
+<h2>Quick Hits</h2>
+<p><strong>GitHub on pace for 14 billion commits in 2026.</strong> Up from 1 billion total in 2025. AI-assisted coding is compressing a decade of platform growth into a single year. (<a href="https://simonwillison.net/2026/Apr/4/kyle-daigle/">Simon Willison</a>)</p>
+<p><strong>Outcome agents: the verification problem is structural.</strong> Code agents worked first because code has tests. Knowledge work agents stall because they don't. Cowork, Lindy, Sauna, and Opal tested — best scored 1.25/3 on memory, artifacts, and compounding context. If you're building, own your persistence layer (Postgres + MCP + embeddings). Vendor-owned memory means vendor-owned compounding.</p>
+<p><strong>Open models crossed a threshold for agent tasks.</strong> GLM-5 and MiniMax M2.7 now score comparably to frontier on tool use and instruction following. Cost-sensitive agent pipelines just got a new option. (<a href="https://blog.langchain.com/open-models-have-crossed-a-threshold/">LangChain</a>)</p>
+<p><strong>Gemma 4 31B runs on a Mac Mini</strong> after NVIDIA's NVFP4 quantization — 4x smaller, 99.7% accuracy, 256K context, 140 languages.</p>
+<p><strong>Karpathy's LLM knowledge wiki pattern beats RAG at ~100 articles.</strong> Feed raw sources to an LLM; LLM writes and maintains all wiki pages in markdown; view in Obsidian. At ~400K words, a simple auto-maintained index beats vector search. &quot;A large fraction of my recent token throughput is going less into manipulating code, and more into manipulating knowledge.&quot; (<a href="https://x.com/karpathy/status/2039805659525644595">Karpathy</a>)</p>
+<p><strong>Cursor 3 ships multi-repo, multi-agent workspace.</strong> Agent-driven development with coordination between local and cloud agents.</p>
+<p><strong>3-agent team pattern (Architect + Builder + Reviewer) going viral.</strong> 437 upvotes on r/ClaudeAI calling it &quot;stupidly effective and token-efficient.&quot;</p>
+<p><strong>ClawKeeper: real-time security for autonomous agents.</strong> Instruction-level safeguards + runtime enforcement. (<a href="https://github.com/SafeAI-Lab-X/ClawKeeper">GitHub</a>)</p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>Cloudflare rethinking cache</strong> — AI bot traffic breaks policies designed for humans. (<a href="https://blog.cloudflare.com/rethinking-cache-ai-humans/">Cloudflare</a>)</li>
+<li><strong>ProofShot</strong> — gives coding agents screenshot-based visual verification of UI</li>
+<li><strong>Voicebox</strong> — local-first voice cloning, 14.5K stars, free ElevenLabs alternative</li>
+<li><strong>Axios supply chain postmortem</strong> — individually targeted social engineering, not spray attack. (<a href="https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/">Willison</a>)</li>
+<li><strong>Karpathy: always steelman via LLM before publishing.</strong> Draft → strengthen → argue opposite → revise.</li>
+<li><strong>Anthropic blocked Claude Max from third-party agents</strong> — community migrating to GPT 5.4 / local Gemma 4</li>
+<li><strong>Microsoft shipped MAI-Transcribe-1, MAI-Voice-1, MAI-Image-1</strong> — SOTA on Multilingual MTEB v2</li>
+<li><strong>litellm + axios both compromised</strong> — supply chain attacks in rapid succession</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ol>
+<li>
+<p><strong><a href="https://simonwillison.net/2026/Apr/3/vulnerability-research-is-cooked/">Vulnerability Research Is Cooked</a></strong> — The sharpest signal this week on where frontier models are making real-world impact right now.</p>
+</li>
+<li>
+<p><strong><a href="https://blog.langchain.com/open-models-have-crossed-a-threshold/">Open Models Have Crossed a Threshold</a></strong> — If you're building cost-sensitive agent pipelines, this changes your model selection.</p>
+</li>
+<li>
+<p><strong><a href="https://blog.cloudflare.com/rethinking-cache-ai-humans/">Rethinking Cache for the AI Era</a></strong> — Infrastructure problem about to bite more builders.</p>
+</li>
+</ol>
+				</article>
+
+				<footer class="digest-footer">
+					<p><a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a></p>
+				</footer>
+			</div>
+		</div>
+
+		<script>
+			if ('addEventListener' in window) {
+				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+			}
+		</script>
+
+	</body>
+</html>

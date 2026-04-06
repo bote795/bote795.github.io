@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 5, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 5, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-05.html" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			body {
+				overflow-y: auto;
+			}
+
+			.digest-wrapper {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 3em 2em 4em;
+			}
+
+			.digest-header {
+				text-align: center;
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.15);
+			}
+
+			.digest-header h1 {
+				font-size: 1.8em;
+				margin-bottom: 0.3em;
+				color: #313f47;
+			}
+
+			.digest-meta {
+				font-size: 0.9em;
+				color: #717f87;
+				letter-spacing: 0.05em;
+			}
+
+			.digest-nav {
+				text-align: center;
+				margin-bottom: 2em;
+			}
+
+			.digest-nav a {
+				color: #717f87;
+				font-size: 0.85em;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-nav a:hover {
+				color: #313f47;
+			}
+
+			.digest-content {
+				line-height: 1.75;
+				font-size: 1.05em;
+				color: #414f57;
+			}
+
+			.digest-content h2 {
+				font-size: 1.4em;
+				color: #313f47;
+				margin-top: 2em;
+				margin-bottom: 0.75em;
+				padding-bottom: 0.4em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+			}
+
+			.digest-content h3 {
+				font-size: 1.15em;
+				color: #313f47;
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+			}
+
+			.digest-content p {
+				margin-bottom: 1em;
+			}
+
+			.digest-content a {
+				color: #313f47;
+				font-weight: 400;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.3);
+				text-decoration: none;
+			}
+
+			.digest-content a:hover {
+				color: #ff7496;
+				border-bottom-color: #ff7496;
+			}
+
+			.digest-content strong {
+				font-weight: 400;
+				color: #313f47;
+			}
+
+			.digest-content ul, .digest-content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+				list-style: disc;
+			}
+
+			.digest-content ol {
+				list-style: decimal;
+			}
+
+			.digest-content li {
+				margin-bottom: 0.5em;
+				line-height: 1.6;
+			}
+
+			.digest-content hr {
+				border: none;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				margin: 2em 0;
+			}
+
+			.digest-content blockquote {
+				border-left: 3px solid rgba(65, 79, 87, 0.2);
+				padding-left: 1.2em;
+				margin: 1em 0;
+				color: #717f87;
+				font-style: italic;
+			}
+
+			.digest-content table {
+				width: 100%;
+				margin-bottom: 1.5em;
+				border-collapse: collapse;
+			}
+
+			.digest-content th, .digest-content td {
+				text-align: left;
+				padding: 0.6em 0.8em;
+				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+				font-size: 0.95em;
+			}
+
+			.digest-content th {
+				font-weight: 400;
+				color: #313f47;
+				border-bottom: 2px solid rgba(65, 79, 87, 0.2);
+			}
+
+			.digest-content code {
+				background: rgba(65, 79, 87, 0.06);
+				padding: 0.15em 0.4em;
+				border-radius: 3px;
+				font-size: 0.9em;
+			}
+
+			.digest-footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid rgba(65, 79, 87, 0.15);
+				text-align: center;
+				font-size: 0.85em;
+				color: #717f87;
+			}
+
+			.digest-footer a {
+				color: #717f87;
+				text-decoration: none;
+				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+			}
+
+			.digest-footer a:hover {
+				color: #313f47;
+			}
+
+			/* Card background on gradient */
+			.digest-card {
+				background: rgba(255, 255, 255, 0.92);
+				border-radius: 8px;
+				padding: 2.5em 2em;
+				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			@media screen and (max-width: 480px) {
+				.digest-wrapper {
+					padding: 1.5em 1em;
+				}
+
+				.digest-card {
+					padding: 1.5em 1.2em;
+				}
+
+				.digest-header h1 {
+					font-size: 1.4em;
+				}
+
+				.digest-content {
+					font-size: 1em;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<div class="digest-wrapper">
+			<div class="digest-card">
+				<nav class="digest-nav">
+					<a href="index.html">&larr; All Digests</a>
+				</nav>
+
+				<header class="digest-header">
+					<h1>AI Builder Digest</h1>
+					<div class="digest-meta">April 5, 2026 &middot; 6 min read</div>
+				</header>
+
+				<article class="digest-content">
+					<h1>AI Builder Digest  April 5, 2026</h1>
+<p>GPT-5.4 became the first general model to beat humans on desktop task benchmarks, DeepSeek V4 dropped a 1T-parameter open-weight model trained for $5.2M, and Anthropic quietly killed subscription-based harness use  forcing every serious Claude Code power user onto API billing at $100-200/day. The gap between &quot;AI tools are cheap experiments&quot; and &quot;AI workflows cost real money&quot; closed fast today.</p>
+<hr />
+<h2>Deep Cuts</h2>
+<h3>The real cost of running serious AI agents just surfaced</h3>
+<p>Anthropic is now actively blocking third-party harness tools from using Claude subscriptions  <code>claude -p --append-system-prompt</code> is getting blocked. The practical consequence: anyone running OpenClaw or equivalent agent harnesses on Opus 4.6 is now on API billing. Ryan Carson puts the floor at $100-200/day. Claire Vo confirmed she's spending $100+/day as a &quot;mid-high&quot; user. This isn't a bug  it's a pricing signal. Anthropic is separating casual users from organizations that extract serious business value, and charging accordingly. If you're building production agent workflows on Claude, budget this in now or architect around it with model routing.</p>
+<h3>OpenAI's Codex team runs on 10-bullet docs and no medium-term plans</h3>
+<p>In a 43-minute interview, Codex PM lead Alex and DevX lead Roman detailed exactly how they build internally. The key rules: specs cap at ~10 bullets (the threshold is &quot;does this fit in one person's brain?&quot;), near-term planning goes 8 weeks max, and medium-term roadmaps are explicitly banned because model capabilities shift too fast for 3-6 month plans. Designers on the team now write more code than engineers wrote six months ago. For small changes during launch crunch, Alex sends a tested PR directly rather than filing a ticket  &quot;it's faster to send a PR than communicate to someone who has 10,000 other things to do.&quot; The Codex Spark model at ~1,200 tokens/sec handles rapid iteration; GPT-5.4 handles complex multi-file work. Red flag for small teams: Alex considers it a mistake to hire a PM when a startup has fewer than 20 engineers. Stripe reached 250 employees with zero PMs  the PM role is coordination overhead, not a leadership track.</p>
+<p><a href="https://www.youtube.com/watch?v=9qXc-THAvc0">How OpenAI's Codex Team Builds with Codex  Peter Yang</a></p>
+<hr />
+<h2>Worth Knowing</h2>
+<p><strong>GPT-5.4 scores 75.0% on OSWorld-Verified, surpassing the human baseline on desktop tasks.</strong> This is the first general-purpose model to cross that threshold. Fully autonomous agent workflows across files, browsers, and terminals are now a real benchmark claim, not a demo.</p>
+<p><strong>DeepSeek V4 ships 1 trillion parameters, open weights, Apache 2.0, trained for $5.2M.</strong> Performance is competitive with US frontier models. The cost-efficiency argument for open-weight models just got a new data point that's hard to ignore.</p>
+<p><strong>Karpathy's refinement on his viral LLM knowledge base post: at ~100 articles and ~400K words, simple auto-maintained index files outperform RAG.</strong> Three folders (raw/, wiki/, outputs/) plus one CLAUDE.md schema file is the 80/20. The LLM writes and maintains all wiki data  he rarely touches it directly. Garry Tan's version hit 2.3GB. Farza built &quot;Farzapedia&quot; following the same pattern. This is becoming a real workflow, not a tweet.</p>
+<p><strong>Deploying OpenClaw agents in your org without auditing first creates three layers of compounding risk.</strong> Dirty data propagates immediately. Unmapped processes calcify into default agent behavior within weeks. Org bottleneck debt takes 90+ days to surface but is expensive to reverse. A mechanical engineer rebuilt a CRM in 12 days using this pattern  the speed is real, but nobody audited the data model before the agent started executing on it at machine speed.</p>
+<p><strong>Six major labs now ship competitive open-weight models with Apache 2.0 or MIT licensing.</strong> Google (Gemma 4), Alibaba (Qwen 3.6 Plus), Meta (Llama 4), Mistral (Small 4), OpenAI (gpt-oss-120b), and Zhipu AI (GLM-5) all benchmark competitively against proprietary alternatives. Permissive licensing is now the default expectation, not a differentiator.</p>
+<p><strong>Cursor 3 replaces manual file editing with a multi-agent chatbot interface.</strong> Natural language  multiple agents carry out the work. This isn't &quot;AI-assisted&quot; development, it's &quot;AI-driven.&quot;</p>
+<hr />
+<h2>Quick Hits</h2>
+<p><strong>Anthropic's Claude Mythos 5 (10T parameters) is rolling out in stages</strong>  cybersecurity partners get access first so defenders can prepare before offensive capabilities reach wider availability.</p>
+<p><strong>Google Gemma 4 released under Apache 2.0</strong> in four sizes (E2B, E4B, 26B MoE, 31B Dense), built for reasoning and agentic workflows. First Gemma with an OSI-approved license. The abliterated (jailbroken) version is already running locally on Mac hardware.</p>
+<p><strong>Strip formality from Claude Code prompts for 60% token savings.</strong> No markdown headers, no bullet lists in instructions, no please/thank you. Practical cost optimization for heavy agent users confirmed by @nithin_k_anil.</p>
+<p><strong>Design systems from Apple, Spotify, and Airbnb  plus 30+ others  have been packaged into single files optimized for AI coding tools.</strong> This is the context engineering pattern in action: pre-digest complex reference material into formats LLMs can actually use.</p>
+<p><strong>Simon Willison shipped scan-for-secrets 0.2</strong>  a CLI tool that scans codebases for leaked API keys before you publish Claude Code transcripts. Streams results in real-time. If you publish AI coding sessions, run this. (<a href="https://simonwillison.net/2026/Apr/5/scan-for-secrets/">simonwillison.net</a>)</p>
+<p><strong>An AI job search agent built in Claude Code automated 700+ applications and landed its builder an actual job.</strong> The system is open source. Agent-driven personal automation is past the proof-of-concept stage.</p>
+<p><strong>Netflix open-sourced VOID</strong>, a video editing model that can delete objects from footage and reconstruct physics-consistent results. Remove what a car crashes into  the car no longer crashes.</p>
+<p><strong>Liquid AI's LFM2.5-350M demonstrates useful agentic behavior at 350M parameters</strong>, trained on 28T tokens with scaled reinforcement learning. Agentic capability is not a large-model-only problem.</p>
+<p><strong>Four Chinese labs  MiniMax, Zhipu, Alibaba, and Mimo  paused open-source releases simultaneously.</strong> Possible coordination, possible regulatory pressure. Worth watching.</p>
+<p><strong>A backlash against &quot;harness engineering&quot; is forming.</strong> @ashpreetbedi argues elaborate CLAUDE.md setups and agent orchestration add complexity without improving output. Counter-signal to the Karpathy/Carson wave of published agent configs.</p>
+<p><strong>AMD released Lemonade</strong>, an open-source local LLM server with native NPU support. Relevant for edge deployment and on-device inference.</p>
+<p><strong>@clairevo's attempt to migrate her agent from Opus to GPT-5.4 was a disaster.</strong> Anecdotal, but directionally useful: model switching in production agent workflows is not plug-and-play.</p>
+<hr />
+<h2>Worth Your Time</h2>
+<ol>
+<li>
+<p><strong>Karpathy's follow-up on LLM knowledge bases</strong>  the specific implementation details (folder structure, CLAUDE.md schema, when simple indexing beats RAG) are more useful than the original post. <a href="https://x.com/karpathy/status/2040470801506541998">x.com/karpathy/status/2040470801506541998</a></p>
+</li>
+<li>
+<p><strong>OpenAI Codex team interview</strong>  43 minutes of specific internal workflows: 10-bullet specs, Spark vs. GPT-5.4 task routing, the PM-less startup argument. Dense with actionable ops. <a href="https://www.youtube.com/watch?v=9qXc-THAvc0">youtube.com/watch?v=9qXc-THAvc0</a></p>
+</li>
+<li>
+<p><strong>scan-for-secrets by Simon Willison</strong>  one CLI tool every Claude Code user who publishes sessions should install before they don't. <a href="https://simonwillison.net/2026/Apr/5/scan-for-secrets/">simonwillison.net/2026/Apr/5/scan-for-secrets</a></p>
+</li>
+</ol>
+				</article>
+
+				<footer class="digest-footer">
+					<p><a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a></p>
+				</footer>
+			</div>
+		</div>
+
+		<script>
+			if ('addEventListener' in window) {
+				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+			}
+		</script>
+
+	</body>
+</html>
