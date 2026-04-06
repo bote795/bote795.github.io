@@ -3,218 +3,205 @@
 	<head>
 		<title>AI Builder Digest — April 3, 2026</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
 		<meta property="og:title" content="AI Builder Digest — April 3, 2026" />
 		<meta property="og:type" content="article" />
 		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-03.html" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 			body {
-				overflow-y: auto;
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
 			}
 
-			.digest-wrapper {
-				max-width: 720px;
+			.wrapper {
+				max-width: 680px;
 				margin: 0 auto;
-				padding: 3em 2em 4em;
+				padding: 2.5em 1.5em 4em;
 			}
 
-			.digest-header {
-				text-align: center;
-				margin-bottom: 2.5em;
-				padding-bottom: 1.5em;
-				border-bottom: 1px solid rgba(65, 79, 87, 0.15);
-			}
-
-			.digest-header h1 {
-				font-size: 1.8em;
-				margin-bottom: 0.3em;
-				color: #313f47;
-			}
-
-			.digest-meta {
-				font-size: 0.9em;
-				color: #717f87;
-				letter-spacing: 0.05em;
-			}
-
-			.digest-nav {
-				text-align: center;
+			/* Navigation */
+			.nav {
 				margin-bottom: 2em;
 			}
 
-			.digest-nav a {
-				color: #717f87;
+			.nav a {
+				color: #6b7280;
 				font-size: 0.85em;
 				text-decoration: none;
-				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
+				letter-spacing: 0.02em;
 			}
 
-			.digest-nav a:hover {
-				color: #313f47;
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
 			}
 
-			.digest-content {
-				line-height: 1.75;
-				font-size: 1.05em;
-				color: #414f57;
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
 			}
 
-			.digest-content h2 {
-				font-size: 1.4em;
-				color: #313f47;
-				margin-top: 2em;
-				margin-bottom: 0.75em;
-				padding-bottom: 0.4em;
-				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
 			}
 
-			.digest-content h3 {
-				font-size: 1.15em;
-				color: #313f47;
-				margin-top: 1.5em;
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
 				margin-bottom: 0.5em;
 			}
 
-			.digest-content p {
+			.content p {
 				margin-bottom: 1em;
 			}
 
-			.digest-content a {
-				color: #313f47;
-				font-weight: 400;
-				border-bottom: 1px solid rgba(65, 79, 87, 0.3);
-				text-decoration: none;
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
 			}
 
-			.digest-content a:hover {
-				color: #ff7496;
-				border-bottom-color: #ff7496;
+			.content a:hover {
+				text-decoration-color: #2563eb;
 			}
 
-			.digest-content strong {
-				font-weight: 400;
-				color: #313f47;
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
 			}
 
-			.digest-content ul, .digest-content ol {
-				margin-bottom: 1em;
-				padding-left: 1.5em;
-				list-style: disc;
-			}
-
-			.digest-content ol {
-				list-style: decimal;
-			}
-
-			.digest-content li {
-				margin-bottom: 0.5em;
-				line-height: 1.6;
-			}
-
-			.digest-content hr {
-				border: none;
-				border-top: 1px solid rgba(65, 79, 87, 0.15);
-				margin: 2em 0;
-			}
-
-			.digest-content blockquote {
-				border-left: 3px solid rgba(65, 79, 87, 0.2);
-				padding-left: 1.2em;
-				margin: 1em 0;
-				color: #717f87;
+			.content em {
 				font-style: italic;
 			}
 
-			.digest-content table {
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
 				width: 100%;
-				margin-bottom: 1.5em;
+				margin: 1.5em 0;
 				border-collapse: collapse;
-			}
-
-			.digest-content th, .digest-content td {
-				text-align: left;
-				padding: 0.6em 0.8em;
-				border-bottom: 1px solid rgba(65, 79, 87, 0.1);
-				font-size: 0.95em;
-			}
-
-			.digest-content th {
-				font-weight: 400;
-				color: #313f47;
-				border-bottom: 2px solid rgba(65, 79, 87, 0.2);
-			}
-
-			.digest-content code {
-				background: rgba(65, 79, 87, 0.06);
-				padding: 0.15em 0.4em;
-				border-radius: 3px;
 				font-size: 0.9em;
 			}
 
-			.digest-footer {
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
 				margin-top: 3em;
 				padding-top: 1.5em;
-				border-top: 1px solid rgba(65, 79, 87, 0.15);
-				text-align: center;
+				border-top: 1px solid #e5e7eb;
 				font-size: 0.85em;
-				color: #717f87;
+				color: #9ca3af;
 			}
 
-			.digest-footer a {
-				color: #717f87;
+			.footer a {
+				color: #9ca3af;
 				text-decoration: none;
-				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
 			}
 
-			.digest-footer a:hover {
-				color: #313f47;
-			}
+			.footer a:hover { color: #6b7280; }
 
-			/* Card background on gradient */
-			.digest-card {
-				background: rgba(255, 255, 255, 0.92);
-				border-radius: 8px;
-				padding: 2.5em 2em;
-				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-			}
-
-			@media screen and (max-width: 480px) {
-				.digest-wrapper {
-					padding: 1.5em 1em;
-				}
-
-				.digest-card {
-					padding: 1.5em 1.2em;
-				}
-
-				.digest-header h1 {
-					font-size: 1.4em;
-				}
-
-				.digest-content {
-					font-size: 1em;
-				}
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
 			}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body>
 
-		<div class="digest-wrapper">
-			<div class="digest-card">
-				<nav class="digest-nav">
-					<a href="index.html">&larr; All Digests</a>
-				</nav>
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
 
-				<header class="digest-header">
-					<h1>AI Builder Digest</h1>
-					<div class="digest-meta">April 3, 2026 &middot; 6 min read</div>
-				</header>
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 3, 2026 &middot; 6 min read</div>
+			</header>
 
-				<article class="digest-content">
-					<h1>AI Builder Digest – April 3, 2026</h1>
+			<article class="content">
+				<h1>AI Builder Digest – April 3, 2026</h1>
 <p>Anthropic accidentally shipped 512,000 lines of Claude Code's production source in a single <code>.map</code> file this week, and the community reverse-engineered a better agent architecture guide than any official tutorial in under 48 hours. While that fallout dominated the week, Google dropped Gemma 4 and Cursor shipped version 3 on the same day – making this the most consequential 72 hours for AI coding infrastructure in months.</p>
 <hr />
 <h2>The Big Stories</h2>
@@ -254,19 +241,12 @@
 <p><strong><a href="https://gist.github.com/benvanik/e6c610997e4b06b82385622048079818">Extended Thinking Is Load-Bearing for Senior Engineering Workflows</a></strong> — 19 minutes. If you're doing complex, long-session work with Claude and something feels off since last month, this analysis explains why. Specific, measured, actionable.</p>
 <p><strong><a href="https://cursor.com/blog/cursor-3">Meet the New Cursor</a></strong> — 10 minutes. Not a feature announcement – a thesis about where the agentic IDE is headed and how the Cursor team is thinking about the abstraction layer above code.</p>
 <p><strong><a href="https://simonwillison.net/2026/Apr/2/lennys-podcast/">Highlights from My Conversation About Agentic Engineering on Lenny's Podcast</a></strong> — 18 minutes. Simon Willison is the most grounded voice in this space. His take on the inflection point is worth reading in full, not just the summary.</p>
-				</article>
+			</article>
 
-				<footer class="digest-footer">
-					<p><a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a></p>
-				</footer>
-			</div>
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
 		</div>
-
-		<script>
-			if ('addEventListener' in window) {
-				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
-			}
-		</script>
 
 	</body>
 </html>

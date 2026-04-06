@@ -3,54 +3,65 @@
 	<head>
 		<title>AI Builder Digest — Nicolas Botello</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 			body {
-				overflow-y: auto;
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
 			}
 
-			.digest-wrapper {
-				max-width: 720px;
+			.wrapper {
+				max-width: 680px;
 				margin: 0 auto;
-				padding: 3em 2em 4em;
+				padding: 2.5em 1.5em 4em;
 			}
 
-			.digest-card {
-				background: rgba(255, 255, 255, 0.92);
-				border-radius: 8px;
-				padding: 2.5em 2em;
-				box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+			.nav {
+				margin-bottom: 2em;
 			}
 
-			.digest-header {
-				text-align: center;
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			.header {
 				margin-bottom: 2em;
 				padding-bottom: 1.5em;
-				border-bottom: 1px solid rgba(65, 79, 87, 0.15);
+				border-bottom: 1px solid #e5e7eb;
 			}
 
-			.digest-header h1 {
-				font-size: 1.8em;
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
 				margin-bottom: 0.3em;
-				color: #313f47;
 			}
 
-			.digest-header p {
+			.header p {
 				font-size: 0.95em;
-				color: #717f87;
-				line-height: 1.6;
+				color: #6b7280;
+				line-height: 1.5;
 			}
 
 			.digest-list {
 				list-style: none;
-				padding: 0;
 			}
 
 			.digest-list li {
-				border-bottom: 1px solid rgba(65, 79, 87, 0.08);
+				border-bottom: 1px solid #f3f4f6;
 			}
 
 			.digest-list li:last-child {
@@ -58,109 +69,74 @@
 			}
 
 			.digest-list a {
-				display: block;
-				padding: 1em 0.5em;
-				color: #414f57;
+				display: flex;
+				align-items: baseline;
+				gap: 1em;
+				padding: 0.9em 0.5em;
+				color: #374151;
 				text-decoration: none;
-				transition: background 0.15s ease;
-				border-radius: 4px;
+				border-radius: 6px;
+				transition: background 0.1s ease;
 			}
 
 			.digest-list a:hover {
-				background: rgba(65, 79, 87, 0.04);
-				color: #313f47;
+				background: #f3f4f6;
 			}
 
-			.digest-list .digest-date {
+			.digest-date {
 				font-size: 0.85em;
-				color: #717f87;
+				color: #9ca3af;
+				flex-shrink: 0;
 				min-width: 120px;
-				display: inline-block;
 			}
 
-			.digest-list .digest-title {
+			.digest-title {
 				font-weight: 400;
-				color: #313f47;
+				color: #1a1a2e;
 			}
 
-			.digest-nav {
-				text-align: center;
-				margin-bottom: 2em;
-			}
-
-			.digest-nav a {
-				color: #717f87;
-				font-size: 0.85em;
-				text-decoration: none;
-				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
-			}
-
-			.digest-nav a:hover {
-				color: #313f47;
-			}
-
-			.digest-footer {
-				margin-top: 2em;
+			.footer {
+				margin-top: 2.5em;
 				padding-top: 1.5em;
-				border-top: 1px solid rgba(65, 79, 87, 0.15);
-				text-align: center;
+				border-top: 1px solid #e5e7eb;
 				font-size: 0.85em;
-				color: #717f87;
+				color: #9ca3af;
 			}
 
-			.digest-footer a {
-				color: #717f87;
+			.footer a {
+				color: #9ca3af;
 				text-decoration: none;
-				border-bottom: 1px dotted rgba(65, 79, 87, 0.3);
 			}
 
-			.digest-footer a:hover {
-				color: #313f47;
-			}
+			.footer a:hover { color: #6b7280; }
 
-			@media screen and (max-width: 480px) {
-				.digest-wrapper {
-					padding: 1.5em 1em;
-				}
-
-				.digest-card {
-					padding: 1.5em 1.2em;
-				}
-
-				.digest-header h1 {
-					font-size: 1.4em;
-				}
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				.digest-list a { flex-direction: column; gap: 0.2em; }
 			}
 		</style>
 	</head>
-	<body class="is-preload">
+	<body>
 
-		<div class="digest-wrapper">
-			<div class="digest-card">
-				<nav class="digest-nav">
-					<a href="https://nicolasbotello.com">&larr; nicolasbotello.com</a>
-				</nav>
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="https://nicolasbotello.com">&larr; nicolasbotello.com</a>
+			</nav>
 
-				<header class="digest-header">
-					<h1>AI Builder Digest</h1>
-					<p>Daily signal for developers shipping with AI tools.<br/>What actually shipped, what patterns work, what to watch.</p>
-				</header>
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<p>Daily signal for developers shipping with AI tools.<br/>What actually shipped, what patterns work, what to watch.</p>
+			</header>
 
-				<ul class="digest-list">
-					<li><a href="2026-04-06.html"><span class="digest-date">April 6, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-05.html"><span class="digest-date">April 5, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-04.html"><span class="digest-date">April 4, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-03.html"><span class="digest-date">April 3, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li>
-				</ul>
+			<ul class="digest-list">
+				<li><a href="2026-04-06.html"><span class="digest-date">April 6, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-05.html"><span class="digest-date">April 5, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-04.html"><span class="digest-date">April 4, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li><li><a href="2026-04-03.html"><span class="digest-date">April 3, 2026</span> <span class="digest-title">AI Builder Digest</span></a></li>
+			</ul>
 
-				<footer class="digest-footer">
-					<p><a href="https://nicolasbotello.com">nicolasbotello.com</a></p>
-				</footer>
-			</div>
+			<footer class="footer">
+				<a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
 		</div>
-
-		<script>
-			if ('addEventListener' in window) {
-				window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
-			}
-		</script>
 
 	</body>
 </html>
