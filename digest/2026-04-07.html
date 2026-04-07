@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 7, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 7, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-07.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 7, 2026 &middot; 11 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest  April 7, 2026</h1>
+<p>Anthropic tripled its ARR from $9B to $30B in four months while simultaneously banning OpenClaw from subscription plans and acquiring a biotech for $400M  all in the same week. Meanwhile, Karpathy publicly admitted an autonomous overnight research loop beat his 20 years of ML tuning experience. The message is the same from every direction: the agents are no longer a demo.</p>
+<hr />
+<h2>The Two Stories That Matter Most</h2>
+<p><strong>Vercel: 58% of PRs merge without human review  and they have receipts.</strong></p>
+<p>Vercel's oldest Next.js monorepo runs 400+ PRs/week. More than half now merge via AI-driven automated review with no human in the loop. This isn't a benchmark  it's a production system. What makes it credible: Vercel isn't an AI startup making an AI claim. They're shipping product at scale and reporting what happened. The number to watch isn't 58%. It's that the number exists at all. Six months ago nobody had a number. <a href="https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Read it </a></p>
+<p><strong>Claude Code regressions are real  and the fix is one flag.</strong></p>
+<p>@theo's &quot;Claude Code is basically unusable&quot; post went viral, and @PawelHuryn traced it to a thinking budget change: the default &quot;medium&quot; effort setting is too low for complex multi-file work. Three fixes: (1) run <code>/effort high</code> or <code>/effort max</code> on Opus for hard problems, (2) be explicit in prompts about what you want, (3) add project-specific instructions to your <code>CLAUDE.md</code>. @kieranklaassen burned 91% of his Claude subscription by Monday before figuring this out. Check your effort setting before blaming the model.</p>
+<hr />
+<h2>Worth Reading Closely</h2>
+<p><strong>CLI beats MCP by 4-32x on token cost  but MCP wins on distribution.</strong></p>
+<p>New analysis from benchmarking against Claude Sonnet 4: CLI costs ~$3.20/month for 75 operations vs MCP's ~$55.20/month for the same work. GitHub's MCP server loaded 93 tools and consumed ~55K context tokens before doing anything. The fix isn't to abandon MCP  it's to stop building fat shims. Garry Tan: &quot;engineered, purpose-built servers succeed; shitty shims over existing REST APIs poison context windows.&quot; Curated 5-8 tool servers work. 93-tool dumps don't. MCP's actual advantage is distribution and scoped access (on-call bot gets read ops, CI gets triggers, analysts get read-only). CLI is superior for terminal-equipped agents doing high-frequency operations. The important finding: Claude Code and Cursor now defer tool schemas, and Cursor reported a 46.9% token reduction from this alone. <a href="https://kaxil.substack.com/p/mcp-vs-cli-vs-rest">Read the full breakdown </a></p>
+<p><strong>The &quot;rotation&quot; framework for understanding AI's effect on your career.</strong></p>
+<p>A Polymarket bot turned $313 into $438K in 30 days with a 98% win rate across 6,615 trades. It didn't predict anything  it just closed a pricing gap faster than humans could. The key finding: 92.4% of wallets on the same platform using the same tools lost money. The difference wasn't access to AI. It was systems architecture. The framework that follows from this: five categories of inefficiency are compressing simultaneously  speed gaps, reasoning gaps, fragmentation gaps, discipline gaps, and knowledge asymmetry gaps. The rotation insight is that each gap that closes immediately opens a new one upstream (closer to judgment, taste, and system-level thinking). Average arbitrage windows on Polymarket shrank from 12.3 seconds in 2024 to 2.7 seconds in early 2026. The builder takeaway: don't chase the last window. Position for the next one  ask what a new model makes <em>newly possible</em>, not what the current one makes cheaper.</p>
+<p><strong>LLM decision-making is happening before reasoning tokens generate.</strong></p>
+<p>A new paper (<a href="https://arxiv.org/abs/2604.01202">arXiv</a>) shows linear probes can decode model decisions from pre-generation activations with high accuracy. LLMs often &quot;decide&quot; actions before producing the chain-of-thought meant to justify them. The practical implication for builders: chain-of-thought may be more post-hoc rationalization than actual reasoning trace. This affects how you evaluate agent reliability and how much you should trust &quot;reasoning&quot; outputs as genuine explanations of behavior.</p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>Anthropic's ARR hits $30B.</strong> Up from $9B at end of 2025  $6B added in just the last three months. Fewer than 135 S&amp;P 500 companies book $30B in annual sales. Claude is growing itself at this point. (<a href="https://sherwood.news/markets/anthropic-revenue-run-rate-30-billion-google-broadcom-partnership/">Source</a>)</p>
+<p><strong>DeepSeek V4: 1 trillion parameters, Apache 2.0, estimated $5.2M training cost.</strong> Frontier-competitive performance at a fraction of what US labs spend. Open weights, commercially usable. If you're choosing a base model for fine-tuning, this changes your options.</p>
+<p><strong>Meta is going closed-source.</strong> Under Alexandr Wang, Meta is now prioritizing proprietary models, with open-weight releases coming later as secondary. This is a direct reversal from Meta's open-first positioning. Six major labs still ship competitive open-weight models, but one of the biggest just blinked.</p>
+<p><strong>Anthropic acquires Coefficient Bio for $400M.</strong> The Genentech spinoff applies AI to healthcare and life sciences. Anthropic's first major acquisition. The signal: they're betting on domain-specific applications, not just general capability. (<a href="https://techcrunch.com/2026/04/03/anthropic-buys-biotech-startup-coefficient-bio-in-400m-deal-reports/">Source</a>)</p>
+<p><strong>Karpathy's LLM Wiki spawned a production wave in under a week.</strong> After Karpathy shared the concept, Nous Research shipped it as a Hermes-Agent skill, @janwilmake built &quot;Grok Thyself&quot; to sync X bookmarks to a private GitHub knowledge base, and @yuanhao built a self-growing version with zero human code. Karpathy's take: in the LLM agent era, share idea files, not repos. Agents can implement from specification. <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Original gist </a></p>
+<p><strong>Zapier SDK opens to all developers.</strong> Coding agents can now connect directly to Zapier's automation layer. Zapier CEO @wadefoster: &quot;totally changed how I do my job&quot; after 2 months of internal use. If you're building agents that need to touch SaaS tools, this is now the fastest path.</p>
+<p><strong>X released an official MCP server.</strong> AI agents can now interact with X programmatically via MCP protocol at <a href="https://github.com/xdevplatform/x">github.com/xdevplatform/x</a>. Garry Tan called it &quot;a huge move.&quot;</p>
+<p><strong>Anthropic MCP crosses 97 million installs.</strong> March 2026 saw the biggest adoption acceleration since launch. MCP is now the default mechanism for agent-to-tool connectivity  the installed base makes it hard to dislodge regardless of CLI's token efficiency advantage.</p>
+<p><strong>Meta's tribal knowledge engine.</strong> Meta built a pre-compute engine to map institutional knowledge in large-scale data pipelines, because their AI agents weren't making useful edits fast enough. The engineering writeup is worth reading for teams running agents over complex internal codebases. (<a href="https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/">Source</a>)</p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>Continual learning for AI agents</strong>  LangChain distinguishes model-layer, harness-layer, and context-layer learning. Framework for building agents that improve over time rather than just execute. (<a href="https://blog.langchain.com/continual-learning-for-ai-agents/">Read </a>)</li>
+<li><strong>MCP vs Skills</strong>  David Coffee argues MCP is architecturally superior to Skills for giving LLMs capabilities; the counter-argument from the Substack analysis above is that Skills is the most powerful layer for domain logic, and these are actually complementary. (<a href="https://david.coffee/i-still-prefer-mcp-over-skills/">Read </a>)</li>
+<li><strong>OpenCode hits 1,274 HN points</strong>  Top open-source Claude Code alternative, gaining fast. If Claude Code subscription costs are biting, worth evaluating.</li>
+<li><strong>Coding agents running daily E2E smoke tests</strong>  @dabit3 and @ryancarson both confirmed: agents sign up, go through onboarding, test features, and post Slack reports every morning. Not &quot;AI writes code.&quot; AI operates your product overnight.</li>
+<li><strong>Anthropic PM hiring is accelerating despite AI productivity gains in engineering</strong>  @clairevo: standard 1:5 PM-to-eng ratio now feels like 1:20. The bottleneck is shifting from &quot;can we build it&quot; to &quot;should we build it.&quot;</li>
+<li><strong>GEN-1 robotics model hits 99% task success rate</strong>  Generalist's physical AI system crosses production-level reliability across a broad range of physical skills, with 3x speedup over prior models. (<a href="https://arstechnica.com/ai/2026/04/generalists-new-physical-robotics-ai-brings-production-level-success-rates/">Source</a>)</li>
+<li><strong>Claude Code skill that generates app onboarding in 5 minutes</strong>  @adamlyttleapps: point it at your codebase, get a complete onboarding flow including questionnaires, pain point identification, and conversion-optimized screens. Practical workflow: codebase analysis  user journey mapping  screen generation.</li>
+<li><strong>Qwen 3.6 Plus benchmark claims</strong>  WorldofAI tested Alibaba's latest open-source model and called it competitive with Opus 4.5 and Gemini 3. At this point there are six labs shipping competitive open-weight models.</li>
+<li><strong>OpenAI leadership split on IPO timing</strong>  CFO Sarah Friar reportedly skeptical about 2026 readiness; Altman pushing for Q4. (<a href="https://sherwood.news/markets/openai-altman-friar-reportedly-disagree-ipo-timing-and-ai-compute-spend-the-information/">Source</a>)</li>
+<li><strong>Self-distillation improves code generation</strong>  Fine-tuning models on their own outputs with standard supervised fine-tuning (Simple Self-Distillation) offers a complementary post-training direction worth watching. (<a href="https://arxiv.org/abs/2604.01193">arXiv </a>)</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>No Priors: Andrej Karpathy on Code Agents, AutoResearch, and the Loopy Era of AI</h3>
+<p><strong>Channel:</strong> No Priors | <a href="https://www.youtube.com/watch?v=kwSVtQ7dziU">Watch </a></p>
+<p>Karpathy hasn't typed a line of code since December. He describes a state of &quot;AI psychosis&quot; as his coding ratio flipped from 80/20 manual to 20/80 delegated. The interview covers three things worth your time: AutoResearch (an autonomous ML experiment loop that found hyperparameter improvements he missed after 20 years of experience), his &quot;Dobby the House Elf&quot; home automation agent that replaced 6 apps with a single WhatsApp interface in 3 prompts, and his framework for the &quot;loopy era&quot;  running multiple agents in parallel to maximize token throughput instead of typing speed.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>AutoResearch beat a 20-year ML veteran overnight.</strong> Karpathy's NanoCHAT project, which he considered &quot;fairly well tuned,&quot; was improved by an autonomous agent that found weight decay on value embeddings, insufficiently tuned Adam betas, and joint hyperparameter interactions he had missed. The overnight loop is now a practical tool, not a demo.</li>
+<li><strong>&quot;It's all skill issue.&quot;</strong> Karpathy's core thesis on agent failures: the capability is there. When agents fail, you haven't structured your instructions, memory tools, or agents.md file correctly. The human operator is the bottleneck.</li>
+<li><strong>Token throughput is the new GPU utilization.</strong> &quot;I feel nervous when I have subscription left over  that means I haven't maximized my token throughput.&quot; If you're not running parallel agent sessions, you're leaving capability idle.</li>
+<li><strong>Apps shouldn't exist.</strong> The customer is no longer the human  it's agents acting on behalf of humans. Every consumer app is an intermediary that agents will route around. Everything should be exposed as API endpoints.</li>
+<li><strong>Open source is ~6-8 months behind frontier, closing.</strong> The gap started at &quot;nothing exists,&quot; went to 18 months, and now sits at roughly 6-8 months. Model &quot;jaggedness&quot; (simultaneously PhD-level and 10-year-old) is the core frontier problem  things outside the RL/verification loop don't improve.</li>
+</ul>
+<hr />
+<h3>AI with Amit: I Used Claude Code to Build My Family's Finance App From Scratch</h3>
+<p><strong>Channel:</strong> AI with Amit | <a href="https://www.youtube.com/watch?v=gBd8U8hHtmc">Watch </a></p>
+<p>A self-described non-coder builds a full household finance tracker  credit cards, subscriptions, retirement projections, trip savings goals, CSV import  in 30 minutes using Claude Code's web UI at claude.ai/code, deployed via Vercel. The demo uses 31% of a $100/month plan. It's a practical walkthrough of the complete no-code builder workflow, useful mainly for the toolchain details and the <code>claude.md</code> trick.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The GitHub + Vercel pipeline is fully automatic.</strong> Every Claude Code change auto-pushes to GitHub, which auto-deploys to Vercel. No manual deployment. Both services run on free tier. This is now the default zero-ops deploy stack for solo builders.</li>
+<li><strong><code>claude.md</code> as a job description file.</strong> Write a full-stack engineer job description and save it as <code>claude.md</code> in your project root. Claude references it and writes markedly better code. This is the fastest free way to improve output quality without changing your prompting.</li>
+<li><strong>Web UI vs. IDE tradeoff is real.</strong> The claude.ai/code web UI lacks plan mode, plugin support, and file structure visibility. Start there for prototypes, move to the IDE for anything you're iterating on seriously.</li>
+<li><strong>One-shot apps need iterative refinement.</strong> Claude wrote 5,714 lines in the first prompt but didn't ask clarifying questions. The real work was 27 iterative commits removing unnecessary fields and adding missing functionality. Plan for the iteration, not just the first build.</li>
+<li><strong>CSV import is one prompt.</strong> Adding drag-and-drop CSV import with column mapping took one prompt and worked on 40 rows first try. If you're building apps that need to bootstrap from existing data, add this early.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ol>
+<li>
+<p><strong><a href="https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Vercel: 58% of PRs merge without human review</a></strong>  The most concrete production benchmark on AI code review in a real monorepo. Read it to understand what &quot;AI-assisted development at scale&quot; looks like in practice.</p>
+</li>
+<li>
+<p><strong><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy's LLM Wiki gist</a></strong>  The idea file that launched a week of production tools. Copy the pattern and implement it in your own stack. The meta-insight (share idea files, not code) is as important as the implementation.</p>
+</li>
+<li>
+<p><strong><a href="https://kaxil.substack.com/p/mcp-vs-cli-vs-rest">MCP vs. CLI vs. REST: when each wins</a></strong>  Concrete benchmarks ($3.20 vs $55.20/month), security findings (deny rule bypass at 50+ subcommands), and a decision framework. The clearest technical breakdown of the MCP debate published this week.</p>
+</li>
+</ol>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
