@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">April 7, 2026 &middot; 11 min read</div>
+				<div class="meta">April 7, 2026 &middot; 16 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -248,13 +248,11 @@
 			<article class="content">
 				<h1>AI Builder Digest  April 7, 2026</h1>
 <p>Anthropic tripled its ARR from $9B to $30B in four months while simultaneously banning OpenClaw from subscription plans and acquiring a biotech for $400M  all in the same week. Meanwhile, Karpathy publicly admitted an autonomous overnight research loop beat his 20 years of ML tuning experience. The message is the same from every direction: the agents are no longer a demo.</p>
-<hr />
 <h2>The Two Stories That Matter Most</h2>
 <p><strong>Vercel: 58% of PRs merge without human review  and they have receipts.</strong></p>
-<p>Vercel's oldest Next.js monorepo runs 400+ PRs/week. More than half now merge via AI-driven automated review with no human in the loop. This isn't a benchmark  it's a production system. What makes it credible: Vercel isn't an AI startup making an AI claim. They're shipping product at scale and reporting what happened. The number to watch isn't 58%. It's that the number exists at all. Six months ago nobody had a number. <a href="https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Read it </a></p>
+<p>Vercel's oldest Next.js monorepo runs 400+ PRs/week. More than half now merge via AI-driven automated review with no human in the loop. This isn't a benchmark  it's a production system. What makes it credible: Vercel isn't an AI startup making an AI claim. They're shipping product at scale and reporting what happened. The number to watch isn't 58%. It's that the number exists at all. Six months ago nobody had a number. (<a href="https://web.archive.org/web/20260407063656/https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Source: Vercel blog</a>)</p>
 <p><strong>Claude Code regressions are real  and the fix is one flag.</strong></p>
 <p>@theo's &quot;Claude Code is basically unusable&quot; post went viral, and @PawelHuryn traced it to a thinking budget change: the default &quot;medium&quot; effort setting is too low for complex multi-file work. Three fixes: (1) run <code>/effort high</code> or <code>/effort max</code> on Opus for hard problems, (2) be explicit in prompts about what you want, (3) add project-specific instructions to your <code>CLAUDE.md</code>. @kieranklaassen burned 91% of his Claude subscription by Monday before figuring this out. Check your effort setting before blaming the model.</p>
-<hr />
 <h2>Worth Reading Closely</h2>
 <p><strong>CLI beats MCP by 4-32x on token cost  but MCP wins on distribution.</strong></p>
 <p>New analysis from benchmarking against Claude Sonnet 4: CLI costs ~$3.20/month for 75 operations vs MCP's ~$55.20/month for the same work. GitHub's MCP server loaded 93 tools and consumed ~55K context tokens before doing anything. The fix isn't to abandon MCP  it's to stop building fat shims. Garry Tan: &quot;engineered, purpose-built servers succeed; shitty shims over existing REST APIs poison context windows.&quot; Curated 5-8 tool servers work. 93-tool dumps don't. MCP's actual advantage is distribution and scoped access (on-call bot gets read ops, CI gets triggers, analysts get read-only). CLI is superior for terminal-equipped agents doing high-frequency operations. The important finding: Claude Code and Cursor now defer tool schemas, and Cursor reported a 46.9% token reduction from this alone. <a href="https://kaxil.substack.com/p/mcp-vs-cli-vs-rest">Read the full breakdown </a></p>
@@ -262,7 +260,6 @@
 <p>A Polymarket bot turned $313 into $438K in 30 days with a 98% win rate across 6,615 trades. It didn't predict anything  it just closed a pricing gap faster than humans could. The key finding: 92.4% of wallets on the same platform using the same tools lost money. The difference wasn't access to AI. It was systems architecture. The framework that follows from this: five categories of inefficiency are compressing simultaneously  speed gaps, reasoning gaps, fragmentation gaps, discipline gaps, and knowledge asymmetry gaps. The rotation insight is that each gap that closes immediately opens a new one upstream (closer to judgment, taste, and system-level thinking). Average arbitrage windows on Polymarket shrank from 12.3 seconds in 2024 to 2.7 seconds in early 2026. The builder takeaway: don't chase the last window. Position for the next one  ask what a new model makes <em>newly possible</em>, not what the current one makes cheaper.</p>
 <p><strong>LLM decision-making is happening before reasoning tokens generate.</strong></p>
 <p>A new paper (<a href="https://arxiv.org/abs/2604.01202">arXiv</a>) shows linear probes can decode model decisions from pre-generation activations with high accuracy. LLMs often &quot;decide&quot; actions before producing the chain-of-thought meant to justify them. The practical implication for builders: chain-of-thought may be more post-hoc rationalization than actual reasoning trace. This affects how you evaluate agent reliability and how much you should trust &quot;reasoning&quot; outputs as genuine explanations of behavior.</p>
-<hr />
 <h2>Short Takes</h2>
 <p><strong>Anthropic's ARR hits $30B.</strong> Up from $9B at end of 2025  $6B added in just the last three months. Fewer than 135 S&amp;P 500 companies book $30B in annual sales. Claude is growing itself at this point. (<a href="https://sherwood.news/markets/anthropic-revenue-run-rate-30-billion-google-broadcom-partnership/">Source</a>)</p>
 <p><strong>DeepSeek V4: 1 trillion parameters, Apache 2.0, estimated $5.2M training cost.</strong> Frontier-competitive performance at a fraction of what US labs spend. Open weights, commercially usable. If you're choosing a base model for fine-tuning, this changes your options.</p>
@@ -270,10 +267,9 @@
 <p><strong>Anthropic acquires Coefficient Bio for $400M.</strong> The Genentech spinoff applies AI to healthcare and life sciences. Anthropic's first major acquisition. The signal: they're betting on domain-specific applications, not just general capability. (<a href="https://techcrunch.com/2026/04/03/anthropic-buys-biotech-startup-coefficient-bio-in-400m-deal-reports/">Source</a>)</p>
 <p><strong>Karpathy's LLM Wiki spawned a production wave in under a week.</strong> After Karpathy shared the concept, Nous Research shipped it as a Hermes-Agent skill, @janwilmake built &quot;Grok Thyself&quot; to sync X bookmarks to a private GitHub knowledge base, and @yuanhao built a self-growing version with zero human code. Karpathy's take: in the LLM agent era, share idea files, not repos. Agents can implement from specification. <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Original gist </a></p>
 <p><strong>Zapier SDK opens to all developers.</strong> Coding agents can now connect directly to Zapier's automation layer. Zapier CEO @wadefoster: &quot;totally changed how I do my job&quot; after 2 months of internal use. If you're building agents that need to touch SaaS tools, this is now the fastest path.</p>
-<p><strong>X released an official MCP server.</strong> AI agents can now interact with X programmatically via MCP protocol at <a href="https://github.com/xdevplatform/x">github.com/xdevplatform/x</a>. Garry Tan called it &quot;a huge move.&quot;</p>
+<p><strong>X released an official MCP server.</strong> AI agents can now interact with X programmatically via MCP protocol at <a href="https://github.com/xdevplatform">github.com/xdevplatform/x</a>. Garry Tan called it &quot;a huge move.&quot;</p>
 <p><strong>Anthropic MCP crosses 97 million installs.</strong> March 2026 saw the biggest adoption acceleration since launch. MCP is now the default mechanism for agent-to-tool connectivity  the installed base makes it hard to dislodge regardless of CLI's token efficiency advantage.</p>
 <p><strong>Meta's tribal knowledge engine.</strong> Meta built a pre-compute engine to map institutional knowledge in large-scale data pipelines, because their AI agents weren't making useful edits fast enough. The engineering writeup is worth reading for teams running agents over complex internal codebases. (<a href="https://engineering.fb.com/2026/04/06/developer-tools/how-meta-used-ai-to-map-tribal-knowledge-in-large-scale-data-pipelines/">Source</a>)</p>
-<hr />
 <h2>One-Liners</h2>
 <ul>
 <li><strong>Continual learning for AI agents</strong>  LangChain distinguishes model-layer, harness-layer, and context-layer learning. Framework for building agents that improve over time rather than just execute. (<a href="https://blog.langchain.com/continual-learning-for-ai-agents/">Read </a>)</li>
@@ -287,7 +283,6 @@
 <li><strong>OpenAI leadership split on IPO timing</strong>  CFO Sarah Friar reportedly skeptical about 2026 readiness; Altman pushing for Q4. (<a href="https://sherwood.news/markets/openai-altman-friar-reportedly-disagree-ipo-timing-and-ai-compute-spend-the-information/">Source</a>)</li>
 <li><strong>Self-distillation improves code generation</strong>  Fine-tuning models on their own outputs with standard supervised fine-tuning (Simple Self-Distillation) offers a complementary post-training direction worth watching. (<a href="https://arxiv.org/abs/2604.01193">arXiv </a>)</li>
 </ul>
-<hr />
 <h2>Videos</h2>
 <h3>No Priors: Andrej Karpathy on Code Agents, AutoResearch, and the Loopy Era of AI</h3>
 <p><strong>Channel:</strong> No Priors | <a href="https://www.youtube.com/watch?v=kwSVtQ7dziU">Watch </a></p>
@@ -300,7 +295,6 @@
 <li><strong>Apps shouldn't exist.</strong> The customer is no longer the human  it's agents acting on behalf of humans. Every consumer app is an intermediary that agents will route around. Everything should be exposed as API endpoints.</li>
 <li><strong>Open source is ~6-8 months behind frontier, closing.</strong> The gap started at &quot;nothing exists,&quot; went to 18 months, and now sits at roughly 6-8 months. Model &quot;jaggedness&quot; (simultaneously PhD-level and 10-year-old) is the core frontier problem  things outside the RL/verification loop don't improve.</li>
 </ul>
-<hr />
 <h3>AI with Amit: I Used Claude Code to Build My Family's Finance App From Scratch</h3>
 <p><strong>Channel:</strong> AI with Amit | <a href="https://www.youtube.com/watch?v=gBd8U8hHtmc">Watch </a></p>
 <p>A self-described non-coder builds a full household finance tracker  credit cards, subscriptions, retirement projections, trip savings goals, CSV import  in 30 minutes using Claude Code's web UI at claude.ai/code, deployed via Vercel. The demo uses 31% of a $100/month plan. It's a practical walkthrough of the complete no-code builder workflow, useful mainly for the toolchain details and the <code>claude.md</code> trick.</p>
@@ -312,11 +306,54 @@
 <li><strong>One-shot apps need iterative refinement.</strong> Claude wrote 5,714 lines in the first prompt but didn't ask clarifying questions. The real work was 27 iterative commits removing unnecessary fields and adding missing functionality. Plan for the iteration, not just the first build.</li>
 <li><strong>CSV import is one prompt.</strong> Adding drag-and-drop CSV import with column mapping took one prompt and worked on 40 rows first try. If you're building apps that need to bootstrap from existing data, add this early.</li>
 </ul>
-<hr />
+<h3>Lenny's Podcast: Head of Claude Code — What happens after coding is solved</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <a href="https://www.youtube.com/watch?v=We7BZVKbCVw">Watch </a></p>
+<p>Boris Churnney, head of Claude Code at Anthropic, hasn't hand-edited a single line of code since November. He ships 10-30 PRs daily and says &quot;coding is largely solved.&quot; The conversation covers what comes after coding (AI suggesting what to build), the principle of latent demand, why underfunding teams makes them more productive with AI, and his prediction that &quot;software engineer&quot; will be replaced by &quot;builder.&quot;</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Coding is largely solved — the next frontier is AI suggesting what to build.</strong> Claude is already scanning feedback channels, bug reports, and telemetry to suggest fixes and features. This is happening now at Anthropic, not in the future.</li>
+<li><strong>Underfunding teams forces AI adoption and increases output.</strong> Put one engineer on a project instead of three. Intrinsic motivation plus Claude Code means they ship faster than a larger team. Don't optimize token costs early — throw unlimited tokens at engineers and optimize later.</li>
+<li><strong>200% productivity increase per engineer at Anthropic.</strong> Despite roughly 4x-ing the engineering team. At Meta, years of work with hundreds of engineers yielded single-digit percentage point improvements.</li>
+<li><strong>New engineers use AI more effectively than veterans.</strong> A newer engineer had Claude Code take a heap snapshot, write a just-in-time analysis tool, find a memory leak, and submit a PR faster than Boris could do it manually. Old-school debugging instincts are now a liability.</li>
+<li><strong>Claude Code writes 4% of all GitHub commits.</strong> Projected 20% by year-end. Some engineers spend hundreds of thousands per month on tokens.</li>
+</ul>
+<h3>Lenny's Podcast: Head of Growth (Anthropic) — &quot;Claude is growing itself at this point&quot;</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <a href="https://www.youtube.com/watch?v=k-H4nsOTuxU">Watch </a></p>
+<p>Amole Avisari, Anthropic's Head of Growth, gives an unprecedented look inside the fastest-growing company in history ($1B to $19B ARR in 14 months). He covers how 70% of his time is spent on &quot;success disasters&quot; (things breaking from scaling too fast), why Anthropic's growth team takes bigger bets than traditional growth teams, and how they're automating growth experimentation via an internal initiative called CASH.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>&quot;Success disasters&quot; consume 70% of growth time.</strong> At Anthropic's scale, the main challenge isn't finding growth — it's that growth breaks everything else. Acquisition, activation, monetization all have cascading failures from scaling too fast.</li>
+<li><strong>CASH: Claude Accelerated Sustainable Hypergrowth.</strong> Anthropic's growth platform team uses Claude to identify opportunities, build features, test quality/brand compliance, and analyze results. Win rate is currently at &quot;junior PM level&quot; but improving rapidly.</li>
+<li><strong>Adding more onboarding friction consistently increases conversion.</strong> Counter to &quot;reduce time to value&quot; orthodoxy. At Anthropic, Mercury, Masterclass, and Calm, asking users more questions during signup drove higher completion and retention.</li>
+<li><strong>PRDs are mostly dead at Anthropic.</strong> 60-80% of what they ship has no PRD. Small changes are just Slack conversations. Engineers own PM duties for projects under 2 weeks.</li>
+<li><strong>AI coaching with manager modeling.</strong> Amole has Claude model his manager based on her public writing and Slack activity, then asks &quot;what feedback would she give me this week?&quot; He runs this weekly.</li>
+</ul>
+<h3>Greg Isenberg: How I use iMessage and AI to run my life</h3>
+<p><strong>Channel:</strong> Greg Isenberg | <a href="https://www.youtube.com/watch?v=dNASCxGFoHg">Watch </a></p>
+<p>Greg Isenberg interviews Flo, CEO of Lindy AI, about their AI executive assistant that lives on iMessage — connecting to email, calendar, Slack, CRM, and proactively managing your day. Positioned as the &quot;iPhone vs Android/Linux&quot; of AI assistants: less powerful than OpenClaw or Claude but dramatically easier to set up (2 minutes) and opinionated out of the box.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Opinionated beats general-purpose for adoption.</strong> Lindy deliberately limits scope to executive assistant tasks. Constrain the surface area, polish the experience, and non-technical users flock to it.</li>
+<li><strong>iMessage as the killer distribution channel.</strong> Always-on presence, voice memo integration via Siri/car, Apple Watch access, and group chat capabilities — no new app install needed.</li>
+<li><strong>Proactive &gt; reactive is the differentiator.</strong> Lindy doesn't wait to be asked. It triages 63 emails overnight, drafts replies, preps meeting briefs 15 minutes before calls, and suggests follow-ups after meetings.</li>
+<li><strong>Whale users will break your pricing model.</strong> Top 1% of users consume &gt;50% of token spend. One finance user has Lindy check restaurant reservations every 15 minutes. Build usage-based pricing tiers early.</li>
+<li><strong>AI tone engineering is brutally hard.</strong> Getting LLMs to adopt a casual, human tone is &quot;so hard&quot; because the default voice is &quot;burnt into the weights.&quot; They've spent enormous effort fighting m-dashes and corporate-speak.</li>
+</ul>
+<h3>This Week in AI: How One Person Built a Billion-Dollar Company Using AI</h3>
+<p><strong>Channel:</strong> This Week in AI | <a href="https://www.youtube.com/watch?v=z219d9fbW5M">Watch </a></p>
+<p>Matthew Gallagher built Med-V, a telehealth company selling GLP-1 weight loss drugs, from his home in LA with $20,000 and zero employees. Using AI for everything — code, customer service, marketing, analytics, even voice cloning — he hit $401M revenue in year one and is projecting $1.8B for 2026. His only hire is his brother.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The technology layer is the entire business.</strong> Med-V doesn't employ doctors, manufacture drugs, or handle fulfillment. Gallagher built only the software connecting patients to partners. The business IS the code.</li>
+<li><strong>60 employees was the wrong move.</strong> From his first company (Watch Gang, $11M year one), he learned that scaling headcount increased costs and slowed decisions. This directly informed his solo AI approach.</li>
+<li><strong>A solo founder can out-compete a 2,000-person company.</strong> Med-V is doing comparable revenue to Hims &amp; Hers ($1.8B vs $2.35B) with 1/1000th the headcount.</li>
+<li><strong>AI for everything, humans for liability.</strong> He used AI accounting and AI legal initially, but moved to real firms. Automate everything except where errors have legal/financial consequences.</li>
+<li><strong>$20K build cost, $401M year-one revenue.</strong> Two months to build the initial platform, 300 customers month one, $100M ARR in 6 months. Entirely bootstrapped.</li>
+</ul>
 <h2>Worth Your Time</h2>
 <ol>
 <li>
-<p><strong><a href="https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Vercel: 58% of PRs merge without human review</a></strong>  The most concrete production benchmark on AI code review in a real monorepo. Read it to understand what &quot;AI-assisted development at scale&quot; looks like in practice.</p>
+<p><strong><a href="https://web.archive.org/web/20260407063656/https://vercel.com/blog/58-percent-of-prs-in-our-largest-monorepo-merge-without-human-review">Vercel: AI-powered PR review</a></strong>  Vercel reports 58% of PRs in their largest monorepo now merge without human review. The most concrete production benchmark on AI code review at scale.</p>
 </li>
 <li>
 <p><strong><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f">Karpathy's LLM Wiki gist</a></strong>  The idea file that launched a week of production tools. Copy the pattern and implement it in your own stack. The meta-insight (share idea files, not code) is as important as the implementation.</p>
