@@ -267,7 +267,7 @@
 <p>The platform strategy it reveals: Claude Code Channels (neutralize OpenClaw's &quot;message your agent anywhere&quot; feature), Claude Cowork (enterprise non-technical users), Claude Marketplace (distribution lock-in through billing), the $100M Partner Network (Accenture, Deloitte, Infosys SI lock-in), and the OpenClaw ban (enforcement). Five separate product decisions, one direction: build inside Anthropic's walls, run through Anthropic's billing.</p>
 <p>The lock-in angle that's genuinely new: Conway doesn't hold your files. It holds the accumulated model of <em>how you work</em>  which emails you respond to in 5 minutes, which Slack threads you ignore, what your VP's messages mean. That model has no export path. No portability standard exists. No legal framework applies yet. Switch agents after six months and you get a brilliant stranger, not a trained assistant.</p>
 <p>The <code>.cnw.zip</code> question is the tell: MCP is open (Anthropic published it, OpenAI and Google adopted it), but Conway's extension format is proprietary. It's the Google Play Services pattern  open foundation, proprietary value layer on top. Developers will face the 2009 choice: build portable MCP tools with no distribution, or build <code>.cnw.zip</code> extensions with app store discovery. History says the app store wins the economics.</p>
-<p><strong>What to do now:</strong> if you're deploying agents for a team, demand behavioral context portability clauses in your contracts before Conway ships publicly, not after. Three ready-to-use prompts for mapping your agent platform dependencies, generating contract language, and choosing a memory architecture are available at <a href="https://promptkit.natebjones.com/20260405_zxa_promptkit_1">promptkit.natebjones.com</a>.</p>
+<p><strong>What to do now:</strong> if you're deploying agents for a team, demand behavioral context portability clauses in your contracts before Conway ships publicly, not after.</p>
 <hr />
 <h2>Worth Knowing</h2>
 <p><strong>GLM 5.1 is the new local model benchmark.</strong> Z.ai (Chinese lab) dropped a 754B parameter, 1.51TB, MIT-licensed model on Hugging Face. Multiple builders report it outperforms Qwen and Gemma 4 for local use. One switched their Hermes agent to it same day. If you're running capable models locally without API dependency, test this first. <a href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything">Simon Willison's notes</a></p>
@@ -346,12 +346,6 @@
 <hr />
 <h2>Worth Your Time</h2>
 <ol>
-<li>
-<p><strong>Simon Willison's deep dive on GLM 5.1 and Project Glasswing</strong>  Two sharp takes from the most reliable AI signal source on the internet. <a href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything">simonwillison.net/2026/Apr/7/glm-51</a></p>
-</li>
-<li>
-<p><strong>S3 Files and the changing face of S3</strong>  Werner Vogels on why mounting S3 as a filesystem changes the multi-agent pipeline architecture. If you're building agent workflows with shared state, read this. <a href="https://www.allthingsdistributed.com/2026/04/s3-files-and-the-changing-face-of-s3.html">allthingsdistributed.com</a></p>
-</li>
 <li>
 <p><strong>The Building Block Economy</strong>  Mitchell Hashimoto's argument that the current best way to build software is creating building blocks that enable quantity over quality at scale. Short, reads like a model update. <a href="https://mitchellh.com/writing/building-block-economy">mitchellh.com</a></p>
 </li>
