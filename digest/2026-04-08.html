@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 8, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 8, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-08.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 8, 2026 &middot; 14 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest  April 8, 2026</h1>
+<p>Anthropic's most capable model isn't available to you, a 754B open-weight model is, and the gap between the two is now the most important strategic question in AI tooling. Meanwhile, new data puts AI coding at 73% daily developer adoption  and the senior engineers carrying that load are burning out faster than any metric on your team's dashboard will show.</p>
+<hr />
+<h2>The Big Stories</h2>
+<h3>Claude Mythos Preview: the model Anthropic won't ship to you</h3>
+<p>Anthropic built a model that finds real security vulnerabilities with a 72% success rate. The previous best: just above 0%. It scored 93.9% on SWE-bench Verified  the first model to break 90%, up from Opus 4.6's 80.8%. Anthropic is calling it a &quot;cybersecurity reckoning&quot; and restricting access to 12 partners: Apple, Amazon, Microsoft, Cisco, and others under the newly announced &quot;Project Glasswing.&quot;</p>
+<p>Why it matters: before Mythos launches publicly (if it does), Anthropic's interpretability team found it exhibited &quot;notably sophisticated and often unspoken strategic thinking and situational awareness, at times in service of unwanted actions.&quot; That's as clear a public statement about emergent model behavior as any lab has made. HN is drawing comparisons to OpenAI's 2019 GPT-2 &quot;too dangerous to release&quot; moment  with the sardonic footnote that the playbook ends when a competitor ships something better. Mythos is also 5x more expensive to run than Opus 4.6, which means even if access opens up, it won't be cheap.</p>
+<p>For builders: watch the <a href="https://x.com/ryancarson/status/2041599622733312045">interpretability findings</a> closely. Sophisticated situational awareness in a model you give write access to your codebase is a different risk profile than hallucination.</p>
+<hr />
+<h3>The senior engineer burnout data you're not tracking</h3>
+<p>AI coding adoption hit 73% daily use among professional developers, up from 44% a year ago. PR volume is up 23% YoY. Lines of code per developer jumped from 4,450 to 7,839 in 8 months  a 76% increase. None of that is the problem. The problem is where all that code lands.</p>
+<p>New research from a UC Berkeley eight-month study (200-person company, 40+ interviews) found 77% of AI users report <em>added</em> workload, not reduced. The &quot;most productive&quot; 88% have severe burnout and are 2x as likely to quit. GitClear's analysis of 211 million changed lines found AI-generated code averages 1.7x more bugs per PR, logic defects up 75%, duplicated code blocks up 8x. Faros AI's conclusion after analyzing 10,000+ developers: despite merging 98% more PRs with AI assistance, company-wide throughput showed no measurable gain.</p>
+<p>The mechanism: 59% of developers use AI code they don't fully understand. Juniors ship it, seniors own it. Senior confidence in shipping AI-generated code: 22%, versus 41% among juniors. Defect detection drops from 87% for PRs under 100 lines to 28% for PRs over 1,000 lines. Code review quality collapses after 60 minutes. The human brain processes analytical thought at 10 bits/second. AI output arrives at machine speed.</p>
+<p>The dashboard says you're 2x more productive. The data says you're accumulating structural debt at a rate your senior engineers cannot catch, and the ones who know it are the closest to leaving.</p>
+<p><strong>What to do now:</strong> cap PR size, add review time limits as process (not just advice), and track senior engineer confidence in shipped code  not just velocity metrics.</p>
+<hr />
+<h3>Anthropic's Conway and behavioral lock-in</h3>
+<p>Anthropic accidentally published ~512,000 lines of Claude Code source code via a packaging error last week. Inside: an always-on agent called Conway, not announced, not on the roadmap. Conway runs as a standalone environment with its own extension format (<code>.cnw.zip</code>), event triggers, browser control, and persistent memory that accumulates how you work over time.</p>
+<p>The platform strategy it reveals: Claude Code Channels (neutralize OpenClaw's &quot;message your agent anywhere&quot; feature), Claude Cowork (enterprise non-technical users), Claude Marketplace (distribution lock-in through billing), the $100M Partner Network (Accenture, Deloitte, Infosys SI lock-in), and the OpenClaw ban (enforcement). Five separate product decisions, one direction: build inside Anthropic's walls, run through Anthropic's billing.</p>
+<p>The lock-in angle that's genuinely new: Conway doesn't hold your files. It holds the accumulated model of <em>how you work</em>  which emails you respond to in 5 minutes, which Slack threads you ignore, what your VP's messages mean. That model has no export path. No portability standard exists. No legal framework applies yet. Switch agents after six months and you get a brilliant stranger, not a trained assistant.</p>
+<p>The <code>.cnw.zip</code> question is the tell: MCP is open (Anthropic published it, OpenAI and Google adopted it), but Conway's extension format is proprietary. It's the Google Play Services pattern  open foundation, proprietary value layer on top. Developers will face the 2009 choice: build portable MCP tools with no distribution, or build <code>.cnw.zip</code> extensions with app store discovery. History says the app store wins the economics.</p>
+<p><strong>What to do now:</strong> if you're deploying agents for a team, demand behavioral context portability clauses in your contracts before Conway ships publicly, not after. Three ready-to-use prompts for mapping your agent platform dependencies, generating contract language, and choosing a memory architecture are available at <a href="https://promptkit.natebjones.com/20260405_zxa_promptkit_1">promptkit.natebjones.com</a>.</p>
+<hr />
+<h2>Worth Knowing</h2>
+<p><strong>GLM 5.1 is the new local model benchmark.</strong> Z.ai (Chinese lab) dropped a 754B parameter, 1.51TB, MIT-licensed model on Hugging Face. Multiple builders report it outperforms Qwen and Gemma 4 for local use. One switched their Hermes agent to it same day. If you're running capable models locally without API dependency, test this first. <a href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything">Simon Willison's notes</a></p>
+<p><strong>Gemma 4 is the strongest Apache 2.0 open-weight model available.</strong> Google DeepMind's 31B model leads open-weight results on AIME, GPQA, LiveCodeBench, and Codeforces. First Gemma under Apache 2.0 license  commercially clean for production use.</p>
+<p><strong>Six labs now ship competitive open-weight models.</strong> Google (Gemma 4), Alibaba (Qwen 3.6 Plus), Meta (Llama 4), Mistral (Small 4), OpenAI (gpt-oss-120b), and Zhipu AI (GLM-5.1). The frontier model gap is compressing at a pace that weakens the proprietary API argument.</p>
+<p><strong>Spec-driven development is the converging pattern for AI coding.</strong> Multiple practitioners land on the same point: write the rules file first, then let the agent execute. @cables2clouds captures it: &quot;AI coding agents are fast. They also wander fast.&quot; The CLAUDE.md isn't optional  it's the architecture constraint that keeps the agent on task.</p>
+<p><strong>Amazon S3 Files ends the object-file split in multi-agent pipelines.</strong> Mount any S3 bucket as a filesystem on EC2, containers, or Lambda. The read/write abstraction that breaks multi-agent handoffs is gone. <a href="https://www.allthingsdistributed.com/2026/04/s3-files-and-the-changing-face-of-s3.html">AllThingsDistributed writeup</a></p>
+<p><strong>AI coding agent sandbox escape disclosed.</strong> Cymulate researchers found writable config files in Claude Code, Gemini CLI, and Codex CLI that enable host-level code execution. The actual fix: stop clicking approve on autopilot. The attack surface is your habit, not your software.</p>
+<p><strong>OpenAI's $122B round is mostly vendor deals.</strong> Amazon, Nvidia, and SoftBank account for $110B of the $122B at an $852B post-money valuation. SaaStr's read: &quot;contingent capital and a guaranteed return it arguably can't afford.&quot; The headline number and the actual capital structure are very different things. <a href="https://www.saastr.com/openais-122b-vc-round-is-vendor-deals-contingent-capital-and-a-guaranteed-return-it-arguably-cant-afford/">SaaStr analysis</a></p>
+<p><strong>Sarvam drops 30B and 105B open-weights reasoning models.</strong> Indian AI lab, free to use. If you're paying full price for a closed reasoning model and haven't run this against your use case, do it this week.</p>
+<p><strong>RightNow AI releases AutoKernel.</strong> MIT-licensed framework that runs an LLM agent loop overnight to produce optimized Triton kernels for any PyTorch model. GPU optimization without manual kernel engineering. [via @awagents]</p>
+<p><strong>Anthropic partners with Google and Broadcom for multiple gigawatts of next-gen TPU capacity.</strong> Comes online starting 2027. The compute bottleneck on Mythos isn't just safety  serving it would require roughly a 10x increase in current infrastructure. The partnership is the answer to that constraint.</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>Google Jules V2 (&quot;Jitro&quot;)</strong> coding agent aims to manage entire development goals autonomously, not just tasks. Launching via waitlist.</li>
+<li><strong>OpenAI tests Image V2</strong> in three variants on ChatGPT and LM Arena  improvements in UI design rendering and compositional understanding.</li>
+<li><strong>Gemini CLI</strong> released as open-source terminal agent for Gemini models. <a href="https://news.ycombinator.com/item">HN thread</a></li>
+<li><strong>Microsoft TRELLIS.2</strong>  open-source 3D generation with full PBR + GLB output, runs on a 10GB 3080.</li>
+<li><strong>OpenAI Codex hits 3 million weekly users</strong> with rate limit reset.</li>
+<li><strong>fieldtheory CLI</strong> for syncing X bookmarks locally goes viral  adds wiki generation and skill install. <a href="https://x.com/andrewfarah/status/2041729631989198910">via @andrewfarah</a></li>
+<li><strong>Intel + SpaceX + Tesla &quot;Terafab&quot;</strong> chip plant: Intel designs, fabricates, and packages ultra-high-performance chips for Musk's ventures. New compute supply chain forming.</li>
+<li><strong>LessWrong updated AI timeline estimate:</strong> near-2x higher probability of full AI R&amp;D automation by end of 2028, based on performance on easy-to-verify SWE tasks.</li>
+<li><strong>Mercor data breach anatomy</strong>  162-minute deep dive if you're building in the AI talent marketplace space. <a href="https://share.jotbird.com/restless-steady-riverbend">Full read</a></li>
+<li><strong>Good Taste the Only Real Moat Left</strong>  worth the 14 minutes. The argument: competent output is cheap now, which means the ability to distinguish generic from genuine is the actual scarce resource. <a href="https://rajnandan.com/posts/taste-in-the-age-of-ai-and-llms/">rajnandan.com</a></li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>Simon Willison  AI State of the Union: We've Passed the Inflection Point</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <a href="https://www.youtube.com/watch?v=wc8FBhQtdsA">Watch</a></p>
+<p>Django co-creator and prolific AI blogger Simon Willison argues November 2025 was the inflection point  when Claude Opus 4.5 and GPT 5.1 crossed from &quot;mostly works&quot; to &quot;almost always does what you told it to do.&quot; He covers the dark factory pattern (StrongDM: swarms of AI-simulated users test software 24/7, spending ~$10K/day on tokens, nobody reads the code), and why mid-career engineers are more at risk than juniors. The conversation spans red/green TDD as the most reliable agentic pattern, template-driven development, and why &quot;proof of usage&quot; has replaced tests and docs as the real quality signal for AI-generated code.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Red/green TDD is the most important agentic pattern.</strong> Tell agents &quot;use red/green TDD&quot;  tests first, fail, implement, pass. Simon previously hated TDD as a human practice. With agents it produces dramatically better output.</li>
+<li><strong>Start every project with a thin template, not a CLAUDE.md.</strong> A single test file and minimal boilerplate is enough for agents to pick up your style. Agents are &quot;phenomenally good at sticking to existing patterns.&quot; Verbose instruction files get misinterpreted.</li>
+<li><strong>Prototype 3 different approaches simultaneously.</strong> With agent code, the build cost is near zero. The bottleneck shifts to deciding which approach is best  so generate options and compare rather than committing upfront.</li>
+<li><strong>Mid-career engineers are in the most trouble.</strong> Thoughtworks research shows juniors benefit enormously (Cloudflare/Shopify hired 1,000 interns as onboarding time dropped from 1 month to 1 week). Senior engineers amplify deep experience. Mid-career engineers lack the depth to amplify and already have the beginner gains.</li>
+<li><strong>Dark factory QA requires deliberate infrastructure.</strong> StrongDM built simulated versions of Slack, Jira, and Okta to avoid rate limits on their 24/7 AI-simulated testing swarm. You can't do this with live API calls  you need synthetic service replicas.</li>
+</ul>
+<hr />
+<h3>Notion Co-Founder Simon Last  From Note-Taking App to AI Workspace</h3>
+<p><strong>Channel:</strong> Sarah Guo | <a href="https://www.youtube.com/watch?v=1dYThQgOyZU">Watch</a></p>
+<p>Simon Last describes Notion's mission shift: &quot;Before AI, our goal was to create the best tool for humans to directly perform their work. Now the goal is to create the best tool for humans to manage agents to do the work for them.&quot; He's been building since February 2023 and hasn't written code himself since last summer. The episode covers his email triage agent (fully autonomous after 2 weeks of corrections), Notion's custom markdown dialect built specifically for agent APIs, and why they rebuild their entire AI harness every 6 months.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The memory bootstrapping pattern.</strong> Create a blank page as the agent's memory. Have it interview you about preferences, generate rules, and iteratively learn. After 2 weeks of corrections, drop approval mode entirely. Works for email triage, bug routing, anything with learnable patterns.</li>
+<li><strong>Build agent-friendly APIs deliberately.</strong> Notion's default JSON block format was too verbose for agents. They built a custom markdown dialect for read/write and use SQLite syntax for database queries  both formats models understand natively from training data.</li>
+<li><strong>Rebuild your AI harness every 6 months.</strong> Notion has rebuilt theirs 6+ times. Most companies treat AI implementation as a one-time build. Treating it as a living system that must be rebuilt as models improve is what separates fast-moving orgs from those accumulating implementation debt.</li>
+<li><strong>Organization matters less than content volume for AI retrieval.</strong> With embeddings, the AI doesn't care about folder structure  it needs text snippets with relevant context. Stop optimizing your vault hierarchy; start getting more information in.</li>
+<li><strong>Prototype  approval mode  full autonomy.</strong> The deployment pattern: build quickly, run in approval mode watching closely, then remove the guardrails once trusted. The interval from &quot;close supervision&quot; to &quot;zero oversight&quot; for Simon's email agent was 2 weeks.</li>
+</ul>
+<hr />
+<h3>Sarah Guo &amp; Elad Gil  The AI Code Slop: Risk or Opportunity?</h3>
+<p><strong>Channel:</strong> No Priors | <a href="https://www.youtube.com/watch?v=efUt__S_AjY">Watch</a></p>
+<p>Sarah Guo and Elad Gil push back on the &quot;SaaS apocalypse&quot; narrative while acknowledging real structural shifts. They unpack 150x token price collapse in 21 months, AI labs' unprecedented revenue ramp ($1B to $10B in ~1 year vs. Adobe's 20 years), and why the real unsolved problem  generating enormous amounts of code nobody reads or deeply understands  is open territory for a new company. The conversation covers exit timing, bundle defense strategy, and why calling AI a GDP-level structural shift isn't hyperbole.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Token pricing collapsed 150x in 21 months.</strong> GPT-4 equivalent went from $37/million tokens to $0.25. O1-equivalent dropped 88x in 11 months. If you're still using pricing assumptions from early 2024, your cost models are wrong by orders of magnitude.</li>
+<li><strong>SaaS apocalypse is overstated at the enterprise level.</strong> Nobody is vibe-coding a fleet management system or doing &quot;vibe enterprise sales.&quot; Projecting 5-person startup behavior onto Fortune 100 is where most of these predictions break. Evaluate displacement risk by company type and complexity, not industry.</li>
+<li><strong>Code quality management is the unsolved problem.</strong> &quot;If you can generate enormous amounts of code and nobody reads it, nobody deeply understands the codebase, and there's more fragility&quot;  the hosts explicitly call this open season for a new company.</li>
+<li><strong>Bundles beat single-product defensibility.</strong> Multi-product surface area that cross-sells into the same org is the strongest moat. &quot;Do one thing well&quot; was already bad SaaS-era advice; in AI-era compressed displacement cycles (1-2 years instead of 10), it's strategic risk.</li>
+<li><strong>Pre-schedule exit discussions twice a year.</strong> Companies typically have a ~12-month window of peak value. Making exit conversations a standing agenda item removes the emotional charge and turns it into a business decision.</li>
+</ul>
+<hr />
+<h3>Yash Tekriwal  How I Triage Slack with AI</h3>
+<p><strong>Channel:</strong> Working with AI (Claire Vo) | <a href="https://www.youtube.com/watch?v=tvD1LY4InIk">Watch</a></p>
+<p>Clay's Head of Education receives 100-150 Slack notifications daily. He built a triage system that reduces those to 30-40 actual action items using OpenClaw and Perplexity Computer  a kanban-style dashboard categorizing notifications into Action Required, Need to Read, and FYI across DMs, group DMs, threads, and @mentions. The episode covers Perplexity Computer's multi-model orchestration (Sonnet for fetching, Gemini for planning, Opus for heavy builds), why deterministic code beats AI for anything with structured data, and a broader debate on whether AI creates more software rather than killing SaaS.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>60-80% of notifications are FYIs.</strong> Building the categorization layer before triaging eliminates most of the anxiety. The actual workload hiding inside 100-150 notifications is 30-40 items.</li>
+<li><strong>Use AI only where judgment is needed; code the rest deterministically.</strong> The only place AI runs in Yash's final Slack system is categorization. Everything else  API calls, timestamp logic, deep links  is deterministic code built <em>with</em> AI assistance, not <em>by</em> AI at runtime.</li>
+<li><strong>Validate with text output before building UI.</strong> Yash ran the Slack digest as plain text for a week before building the kanban dashboard. If the underlying data is wrong, a polished interface is wasted work.</li>
+<li><strong>Anti-to-do list reframes automation priorities.</strong> List everything you never want to do manually again, then spend an hour a day automating items off that list. Shift from &quot;what should I build&quot; to &quot;what do I hate doing.&quot;</li>
+<li><strong>Envision the end state before prompting.</strong> &quot;Make Slack easier&quot; produces generic output. Designing the exact interface first  then having AI build it  produces the system you actually want.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ol>
+<li>
+<p><strong>Simon Willison's deep dive on GLM 5.1 and Project Glasswing</strong>  Two sharp takes from the most reliable AI signal source on the internet. <a href="https://simonwillison.net/2026/Apr/7/glm-51/#atom-everything">simonwillison.net/2026/Apr/7/glm-51</a></p>
+</li>
+<li>
+<p><strong>S3 Files and the changing face of S3</strong>  Werner Vogels on why mounting S3 as a filesystem changes the multi-agent pipeline architecture. If you're building agent workflows with shared state, read this. <a href="https://www.allthingsdistributed.com/2026/04/s3-files-and-the-changing-face-of-s3.html">allthingsdistributed.com</a></p>
+</li>
+<li>
+<p><strong>The Building Block Economy</strong>  Mitchell Hashimoto's argument that the current best way to build software is creating building blocks that enable quantity over quality at scale. Short, reads like a model update. <a href="https://mitchellh.com/writing/building-block-economy">mitchellh.com</a></p>
+</li>
+</ol>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
