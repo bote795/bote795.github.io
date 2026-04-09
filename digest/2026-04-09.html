@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 9, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 9, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-09.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 9, 2026 &middot; 13 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest April 9, 2026</h1>
+<p>The agent infrastructure layer just got three competing entrants in a single day: Cursor 3 ships an agent-first interface, JetBrains launches Central as a neutral orchestration platform, and Anthropic opens Claude Managed Agents to public beta all while a supply-chain breach via one open-source LLM router just exposed why none of it is production-safe yet. The infrastructure is outrunning the security.</p>
+<hr />
+<h2>The Big Stories</h2>
+<p><strong>Cursor 3 rewires the developer interface around agents, not files</strong></p>
+<p>Cursor 3 lets you run multiple coding agents across local and cloud environments at the same time. The interface redesign is the signal: it's no longer a file browser with AI attached agents are the primary object you manage. If you've been treating Cursor as &quot;VS Code with autocomplete,&quot; the mental model is now wrong. Cursor also published &quot;warp decode,&quot; a kernel redesign that reorganizes MoE inference around output neurons instead of experts, hitting ~1.8x throughput on Blackwell. That directly reduces their inference costs, which means lower prices or higher margins watch which lever they pull.</p>
+<p><strong>Mercor breached via LiteLLM supply-chain compromise 5 lawsuits in a week</strong></p>
+<p>SSNs, addresses, and AI interview videos leaked after attackers compromised LiteLLM, a popular open-source LLM router used across the stack. This isn't a Mercor-specific failure: LiteLLM is plumbed into dozens of agent frameworks. If you're running any agent infrastructure that routes through LiteLLM, audit your version and dependency chain today. One compromised library is your entire agent's telemetry. Worth noting: Anthropic granted the Apache Software Foundation $1.5M to fund OSS security maintenance on the same day timing that looks less coincidental given this news.</p>
+<hr />
+<h2>Worth Real Analysis</h2>
+<p><strong>JetBrains Central neutral orchestration for Claude Code, Codex, Gemini CLI, and custom agents</strong></p>
+<p>Works across agents without locking you to one provider. Provides cloud runtimes, governance, and shared context across repos. For teams running mixed-agent workflows, this is the management plane that's been missing. The &quot;neutral&quot; positioning is doing a lot of work here it's a direct bet that no single agent wins the coding tool wars, and teams will want to manage a portfolio.</p>
+<p><strong>n8n ships agent nodes 500K+ builders get agent primitives without writing a line of Python</strong></p>
+<p>The distribution argument is real. n8n's existing builder base can now ship agents through workflows they already know. No new framework, no Python, no agent SDK. If you've been watching agent adoption stay narrow because the entry cost is high, this is the path-of-least-resistance unlock. Distribution is the moat; n8n just proved it.</p>
+<p><strong>Claude Managed Agents Anthropic's answer to AWS Bedrock Agents and Vertex AI Agents</strong></p>
+<p>Composable APIs for building and deploying cloud-hosted agents at scale, now in public beta. This is Anthropic's entry into the managed-agent hosting market, directly competing with AWS and Google's agent management layers. Enterprise teams who want Claude without managing infrastructure now have a native option.</p>
+<p><strong>OpenCode hits 1,274 points on HN self-hosted Claude Code alternative</strong></p>
+<p>The comment thread is the signal: developers are actively seeking exits from proprietary agent hosts, and &quot;blacklisted from Anthropic AI&quot; is showing up as a feature, not a bug. The appetite for self-hosted coding agents is real and growing faster than the tooling.</p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>Meta Muse Spark</strong> First model from the rebuilt Superintelligence Lab. Proprietary, private API preview. Pulls from Meta platform content. Gaps in long-horizon agents and coding vs. the frontier. Other Muse family models will be open source.</p>
+<p><strong>Meta signals next-gen open-source model release</strong> Beyond Muse Spark, Meta is planning to open-source its next generation of core models to pressure OpenAI and Anthropic. Watch for timing relative to the IPO window.</p>
+<p><strong>GLM-5.1 (Z.ai)</strong> Built for long-horizon agentic tasks, claims state-of-the-art on SWE-Bench Pro. If you're evaluating coding agents for complex multi-step workflows, add it to your benchmark list. <a href="https://z.ai/blog/glm-5.1">Read</a></p>
+<p><strong>TriAttention (open source)</strong> KV cache compression in pre-RoPE space. Keeps long-context reasoning quality while cutting memory use. Relevant if you're running long-context agent sessions and hitting memory walls. <a href="https://github.com/WeianMao/triattention">GitHub</a></p>
+<p><strong>Stability AI new image gen model</strong> Claimed to rival leading proprietary models. Part of a visible Stability resurgence worth watching if you're shipping image generation features.</p>
+<p><strong>Tether (yes, the stablecoin company) releases QVAC SDK</strong> Open-source cross-platform SDK for AI development. Unusual entry from crypto-native players into AI tooling; no clear signal on adoption yet.</p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>SwiftUI open-source agent</strong> catches deprecated modifiers, accessibility gaps, and performance pitfalls automatically one install. (<a href="https://twitter.com/twostraws">@twostraws</a>)</li>
+<li><strong>Alibaba quietly released a new video generation model</strong> no announcement, just quietly shipping. Chinese lab pattern continues.</li>
+<li><strong>PreToolUse hooks (ThumbGate pattern)</strong> blocks bad tool calls before execution via pre-action gates. Converges with spec-driven development. If your agents are making destructive tool calls, this is the pattern to implement. (<a href="https://twitter.com/IgorGanapolsky">@IgorGanapolsky</a>)</li>
+<li><strong>Greg Isenberg's context engineering thesis</strong>: &quot;The models are genuinely really good. The variable is almost always the context you give them.&quot; AGENTS.md files are mostly ritual the leverage is in curating what the agent sees before it acts. <a href="https://x.com/gregisenberg/status/2042010418454184325">Thread</a></li>
+<li><strong>Headless Mac mini as agent runtime</strong> Matt Ronge decouples agent execution from his dev machine, supervises from iPad. Crashes don't kill the environment; supervision becomes couch-friendly. <a href="https://x.com/mronge/status/2041973730063348067">Thread</a></li>
+<li><strong>Devin + Linear integration</strong> Tag @DevinAI on a ticket, a fresh VM boots from a saved org snapshot (Node, Python, Rust, Docker pre-loaded). The &quot;magical first experience&quot; is environment determinism, not model magic. Ship the snapshot, not the setup script. <a href="https://x.com/dabit3/status/2041986493129150629">Thread</a></li>
+<li><strong>Claude Mythos withheld from public release</strong> Ryan Carson flags publicly that one company gating frontier intelligence &quot;doesn't feel good as an entrepreneur.&quot; Gated access to frontier models is a new builder friction point worth tracking. <a href="https://x.com/ryancarson/status/2041909718189535374">Tweet</a></li>
+<li><strong>Ryan Greenblatt (Redwood Research) on the current state of AI capability and alignment</strong> Chief scientist's best guesses, no hype, worth reading if you're making roadmap bets. <a href="https://www.greaterwrong.com/posts/WjaGAA4xCAXeFpyWm/my-picture-of-the-present-in-ai">Read</a></li>
+<li><strong>AI can't read an investor deck</strong> GPT-5.4, Gemini 3.1 Pro, and Claude Opus 4.6 all fail on complex financial documents with embedded visual data. Don't rely on any current model for visual data extraction from PDFs. <a href="https://www.mercor.com/blog/Finance-tasks-ai-failures-modes/">Read</a></li>
+<li><strong>Five git commands before reading any codebase</strong> Commit history gives you who built it, how it evolved, where the bodies are buried. <a href="https://piechowski.io/post/git-commands-before-reading-code/">Read</a></li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>How AI Agents &amp; Claude Skills Work (Clearly Explained)</h3>
+<p><strong>Channel:</strong> Greg Isenberg | <strong>Guest:</strong> Ross Mike
+<strong><a href="https://www.youtube.com/watch?v=S_oN3vlzpMw">Watch </a></strong></p>
+<p>Ross Mike's core argument: the models are already good enough. The variable is what you put in the context window. He walks through why most AGENTS.md/CLAUDE.md files are token waste, how skills use progressive disclosure (944-token config file 53 tokens as a skill), and a recursive methodology for building skills that actually work.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Delete your AGENTS.md file</strong> (probably). The codebase is already context. Only keep it for proprietary information Claude can't see from the code itself.</li>
+<li><strong>Skills vs. AGENTS.md</strong>: Skills load only title + description (~50 tokens) until the agent decides it needs the full body. A 944-token AGENTS.md config becomes 53 tokens as a skill loaded only when relevant.</li>
+<li><strong>The recursive skill-building loop</strong>: Do the workflow manually with the agent first have a successful run tell the agent to create a skill from what it just did when the skill fails, ask &quot;what error did you get?&quot; feed it back update the skill. Five iterations gets you flawless execution.</li>
+<li><strong>Context window degrades past 70-80%</strong>: Keep usage between fresh and ~70%. Past 80-90%, you're running a dumber model. Same reason cramming before exams doesn't work.</li>
+<li><strong>Don't download marketplace skills</strong> they're an attack vector, and they lack the context of a successful run in your specific workflow.</li>
+</ul>
+<hr />
+<h3>The Design Process Is Dead. Here's What's Replacing It.</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <strong>Guest:</strong> Jenny Wen (Design Lead, Claude Co-work at Anthropic)
+<strong><a href="https://www.youtube.com/watch?v=eh8bcBIAAFo">Watch </a></strong></p>
+<p>Jenny Wen argues that engineers spinning up parallel Claude instances have made the classic research diverge converge mock iterate loop obsolete. Features ship faster than designers can mock them. The job has split into two modes: last-mile execution support (pair with engineers, implement in code) and short-horizon vision-setting (3-6 month prototypes, not 2-5 year decks).</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Old time split</strong>: 60-70% mocking, 20% jamming, 10% coordination. <strong>New split</strong>: 30-40% mocking, 30-40% pairing with engineers, plus direct implementation in code.</li>
+<li><strong>Vision horizons collapsed</strong>: 2-5 year design visions are obsolete. 3-6 month functional prototypes pointing people in one direction is the new standard.</li>
+<li><strong>Figma is still essential for divergence</strong>: Claude Code is linear you iterate down one path. Figma lets you explore 8-10 parallel directions simultaneously. Use each for what it's good at.</li>
+<li><strong>Designers should learn to code</strong>: Jenny uses Claude Code in VS Code to tweak CSS directly rather than writing instructions to engineers. IDEs are becoming designer tools as engineers move to agents and CLI.</li>
+<li><strong>&quot;Let them cook&quot;</strong>: Don't block engineers shipping fast. Design's job shifts to ensuring everything that ships coheres. Claude Co-work's actual use cases were discovered by users, not designed upfront.</li>
+</ul>
+<hr />
+<h3>The Art of Influence: The Single Most Important Skill Left That AI Can't Replace</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <strong>Guest:</strong> Jessica Feain (VP Product, Webflow)
+<strong><a href="https://www.youtube.com/watch?v=RP4vJeIb7WU">Watch </a></strong></p>
+<p>Jessica Feain (ex-chief of staff to Slack's CPO) breaks down why most product leaders fail when pitching executives they center themselves instead of their exec's world. She draws a hard line between influence (increasing the survival odds of good ideas) and politics (manipulating outcomes for personal gain), then gives specific language and frameworks.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Executive calendars are a strobe light</strong>: By 8am they have 10 urgent fires since you last talked. Spend 30-60 seconds re-anchoring at the start of every meeting or you're pitching to someone who has mentally moved on.</li>
+<li><strong>&quot;That's so interesting. What led you to believe that?&quot;</strong> When an exec says something that seems wrong, get curious instead of arguing. You'll find board pressure or meeting context you didn't know about.</li>
+<li><strong>Never ask &quot;what's top of mind&quot;</strong> Generic question gets generic answers. Ask: &quot;What's the board pushing you on?&quot; or &quot;What are you most scared about messing up right now?&quot;</li>
+<li><strong>&quot;Stuart plus two more&quot; framework (from Slack)</strong>: After getting the CEO's opinion, come back with his version plus two alternatives to enable real debate. Never present a single option to a review.</li>
+<li><strong>Simulate the exec with AI</strong>: Train a GPT on past product review transcripts. Run your PRD through it before the real meeting to predict pushback. Feain's team at Webflow does this now.</li>
+</ul>
+<hr />
+<h3>The Tactical Playbook for Getting 20-40% More Comp (Without Sounding Greedy)</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <strong>Guest:</strong> Jacob Warwick (professional negotiator, $1B+ in client comp increases)
+<strong><a href="https://www.youtube.com/watch?v=pEis2CBomVA">Watch </a></strong></p>
+<p>Jacob Warwick negotiates behind the scenes for senior tech execs, athletes, and celebrities. He shares the specific phrases and channel rules that consistently yield 20-40% increases and why product leaders are chronically worse at this than marketers.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The magic opener</strong>: &quot;What's the chance there could be a little more here?&quot; This single non-aggressive ask yields ~20% increases across the board, from $100K to $1M+ offers.</li>
+<li><strong>Never negotiate over email</strong> You can't control the mood the recipient is in when they read it. Video at minimum, in-person ideally. Same principle: never go through recruiters, go to whoever controls the P&amp;L.</li>
+<li><strong>Don't anchor with a number when senior</strong> Anchoring creates a ceiling. Let them anchor, then push off that number.</li>
+<li><strong>Performance milestones beat base raises</strong>: &quot;If company hits $100M ARR, extra stock tranche&quot; is harder to say no to than &quot;I want more base.&quot; Applies Tom Brady's Tampa Bay contract logic to tech.</li>
+<li><strong>What you say on LinkedIn becomes your ceiling</strong>: Recruiters log it. If you said $225K five years ago, they'll start there today. Say less.</li>
+</ul>
+<hr />
+<h3>A Behind-the-Scenes Interview with Lenny Rachitsky on Building His Newsletter and Podcast</h3>
+<p><strong>Channel:</strong> Lenny's Podcast | <strong>Host:</strong> Michelle Rial (Lenny's wife)
+<strong><a href="https://www.youtube.com/watch?v=HEqrvF7ztBE">Watch </a></strong></p>
+<p>Michelle Rial interviews Lenny about the origin of his 1.2M-subscriber newsletter, the inflection points that led him to go all-in, and his practices around mental health and happiness. More personal memoir than practitioner playbook.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The Lindy Effect for creative work</strong>: At 9 months of weekly writing, Lenny realized &quot;I can probably do this 9 more months.&quot; That recognition was what made him add a paywall.</li>
+<li><strong>The Venn diagram test</strong>: (1) You're good at it, (2) people like it, (3) you enjoy it. Miss any of the three and don't pursue it professionally.</li>
+<li><strong>Exercise doesn't make you happy it brings you out of the negative</strong>: &quot;Negative-1 without exercise; exercise brings you to zero.&quot; The goal is escaping the dip, not achieving peak happiness.</li>
+<li><strong>Indiana Jones boulder metaphor</strong>: Post ships, immediately onto the next one. The treadmill is the job.</li>
+<li><strong>Practitioners make the best content</strong>: Most of Lenny's best posts are guest posts from practitioners sharing the single best thing they've learned not his own observations.</li>
+</ul>
+<hr />
+<h2>The Bigger Picture</h2>
+<p><strong>The SpaceX/OpenAI/Anthropic IPO Mechanics Are Engineered Against Your 401(k)</strong></p>
+<p>Three companies collectively valued at $3T+ are planning to sell 3-5% floats while new Nasdaq fast-track rules (effective May 1) force all index funds to buy within 15 trading days of IPO before insiders can sell their 97%. If you have index funds in a retirement account, you don't get a vote on this.</p>
+<p>The structural trap: Nasdaq's new rules use total market cap to determine index eligibility, but cap the weight at 5x the float percentage. SpaceX's 3.3% float gets weighted as ~16.5% still a mandatory buying event for every fund tracking the Nasdaq-100. Bloomberg Intelligence estimates $24-48B in forced buying within days of listing; professional money managers are measured against these benchmarks, so the total wave absorbs the majority of available shares in a single week.</p>
+<p>The lockup math: Venture firms invested in SpaceX at $46B valuation are 38x in the money at $1.75T. Lockups expire 3-6 months post-IPO. They sell into the mandatory demand your index fund created. You bought at peak scarcity; they sell into peak volume.</p>
+<p>The accounting flag: Anthropic books cloud computing credits from Amazon and Google as revenue. Bank of America estimates these credits reach $1.9B in 2026 and $6.4B by 2027. If regulators require a different treatment before listing, Anthropic's revenue story shrinks significantly. This is underreported in current coverage.</p>
+<p>If you hold startup equity at a company not named SpaceX, OpenAI, or Anthropic: three IPOs this size will consume Wall Street's capital and attention for 18 months. Fewer paths to IPO, fewer acquirers bidding, tighter rounds for everyone else on the cap table.</p>
+<hr />
+<h2>Worth Your Time</h2>
+<ol>
+<li>
+<p><strong><a href="https://cursor.com/blog/warp-decode">Faster MoE Inference with Warp Decode</a></strong> Cursor's kernel redesign paper. Read this if you care about how inference costs actually get reduced at the model-serving layer. The ~1.8x throughput gain is real engineering, not marketing.</p>
+</li>
+<li>
+<p><strong><a href="https://arxiv.org/abs/2604.04872">Meta SandMLE: Scaling RL for ML Engineering Agents</a></strong> If you're thinking about RL-trained agents for ML engineering tasks, this is the paper showing how to make training cost-viable. 13x cost reduction via environment design, not bigger models.</p>
+</li>
+<li>
+<p><strong><a href="https://martinfowler.com/articles/reduce-friction-ai/feedback-flywheel.html">Feedback Flywheel Martin Fowler</a></strong> The foundational framing for how AI-era dev loops should work: every interaction is a signal, signals compound into collective improvement. Worth reading before you build any AI feature without a feedback mechanism.</p>
+</li>
+</ol>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
