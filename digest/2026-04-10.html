@@ -1,0 +1,466 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 10, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 10, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-10.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 10, 2026 &middot; 14 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest April 10, 2026</h1>
+<p>Anthropic published an engineering post arguing that Claude's harness should be treated as infrastructure, not a prompt wrapper and on the same day, a 17K-view YouTube video, multiple X threads, and a Substack with 5-layer framework all converged on the same claim: the harness is the product now. If you're still wiring tool loops and treating the model as the variable, you're optimizing the wrong layer.</p>
+<hr />
+<h2>Deep Dives</h2>
+<h3>The harness is the product Anthropic makes it official</h3>
+<p>Anthropic's engineering post on <a href="https://www.anthropic.com/engineering/managed-agents">Managed Agents</a> isn't documentation it's a design manifesto. The core claim: harnesses encode assumptions about what Claude <em>can't</em> do alone, and those assumptions must be questioned constantly as models improve. Their explicit architectural stance is &quot;programs as infrastructure&quot; the model is the control plane, not the tool loop around it.</p>
+<p>The direct quote builders should internalize: <em>&quot;Harnesses encode assumptions about what Claude can't do on its own. These assumptions need to be frequently questioned as models improve.&quot;</em> That sentence invalidates a lot of code written in the last 12 months. If your agent architecture is a set of rigid tool-calling loops built for a weaker model, the loops are now the bottleneck not the model.</p>
+<p>This landed the same day Cole Medin's <a href="https://www.youtube.com/watch?v=placeholder">17K-view video</a> made a parallel argument from the practitioner side: the next leap in AI coding isn't smarter models, it's smarter harnesses. Converging consensus across Anthropic's own engineers and the builder community in a single news cycle is the kind of signal worth acting on.</p>
+<p><strong>Builder action:</strong> Audit your agent scaffolding. Any assumption baked in for &quot;what the model can't do&quot; from 6+ months ago is a candidate for deletion. The harness should be thin and opinionated, not thick and protective.</p>
+<hr />
+<h3>Five layers that survive a better model a framework worth keeping</h3>
+<p>From a Substack deep dive that cuts through the noise: if you're not Anthropic, OpenAI, or Google, you have one problem. A better model will make your product redundant unless you own something structural. The framework identifies five layers that hold value regardless of model improvements:</p>
+<ol>
+<li>
+<p><strong>Trust</strong> Verification infrastructure agents can route through. &quot;Powered by Stripe&quot; isn't a feature, it's a signal that tells an autonomous agent it can safely transact. When anyone can generate a pixel-perfect checkout page in 30 seconds, trust becomes the new SEO. Agents can't use unverified services.</p>
+</li>
+<li>
+<p><strong>Context</strong> Your customers' data, org history, and institutional knowledge trapped inside your platform. The model gets 10x better? Your context layer is still irreplaceable. An agent without context is a chatbot. Notion's bet: the model picker is a commodity feature; 100M users' accumulated knowledge graph is not.</p>
+</li>
+<li>
+<p><strong>Distribution</strong> When supply is infinite, curation is the scarce resource. Google, Apple, TikTok get <em>more</em> powerful when anyone can build anything. The underdeveloped problem: agent <em>discovery</em> how agents find, evaluate, and transact with other services on your behalf. Nobody has solved this yet.</p>
+</li>
+<li>
+<p><strong>Taste</strong> Knowing which app to build, for whom, and why. In the agentic economy this surfaces as orchestration quality: the human who tuned the prompts, designed the workflows, and made a thousand editorial decisions about how the agent behaves. The model provides capability. Taste provides direction.</p>
+</li>
+<li>
+<p><strong>Liability</strong> Someone has to be on the hook. Regulated industries (healthcare, finance, legal) won't automate away the human in the loop they'll increase their value. The counterintuitive dynamic: the better AI gets at generating confident-sounding wrong output, the <em>more</em> valuable human accountability becomes.</p>
+</li>
+</ol>
+<p><strong>Positioning audit:</strong> Ask yourself what do you own that still matters when the model gets 10x better for free? If a better model makes your product redundant, you're in the middleware trap. If it makes your product more valuable (more to trust, more to contextualize, more to distribute), you're on the right side of the transition.</p>
+<p>The essay names a specific casualty class: thin wrappers on commodity models Lovable ($6.6B, $400M+ ARR), Bolt, Shipper with a &quot;moat about a week deep.&quot; The survivors (Vercel, Replit, Stripe, Shopify) all own something structural the model providers can't replicate.</p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>Vendor lock-in is the silent business risk of AI-native apps.</strong> Aron Prins (Paperclip AI) has a concrete six-figure cautionary tale: his Facebook Group Auto Poster did $8-10K/month on the Graph API until Facebook shut it down overnight, wiping $100K+/year in revenue. His argument: building directly on Claude or OpenAI's APIs today is the same trap. The fix is an orchestration layer (he uses Paperclip) where the model is a swappable adapter your business logic owns the agent, not the vendor. He's currently spending $400/month across two Anthropic Max 20x accounts and still considers the dependency a liability. Full video in the Videos section below.</p>
+<p><strong>Claude Code can now run CI inside GitHub in 5 minutes.</strong> The <code>/install-github-app</code> command inside Claude Code wires Claude into your GitHub repo: it stores the API key as a secret, commits a workflow YAML to <code>.github/workflows/</code>, and starts listening for <code>@claude</code> mentions in any issue or PR comment. The real leverage is in the YAML specifically the <code>mcp_servers</code> block. Add Playwright MCP and Claude can open your live app, interact with the UI, take screenshots, and attach them to the PR it opens. The workflow: paste a screenshot of a broken UI into a GitHub issue, tag <code>@claude</code>, get back a PR with a screenshot of the fix. Your <code>CLAUDE.md</code> at the repo root is the cheat code better file, better output every run.</p>
+<p><strong>Karpathy: AI skeptics are benchmarking against a model you've already abandoned.</strong> His diagnosis: most skeptics tried the free tier of ChatGPT at some point and let that experience set their ceiling. They're arguing about a model two generations behind what practitioners use daily. The builder implication: when someone says &quot;AI can't do X,&quot; ask which model, which tier, and how recently. The &quot;AI is overhyped&quot; position is usually anchored to a tool the speaker last touched 12 months ago. <a href="https://x.com/karpathy/status/2042334451611693415">View</a></p>
+<p><strong>Greg Isenberg: engineers should spend their next learning cycle on marketing, not tooling.</strong> The framing: LLMs remove the engineering scarcity premium, so the scarce skill flips to distribution. His explicit advice <em>&quot;The best thing ANY engineer/programmer can do right now is learn how to become a top 1% marketer.&quot;</em> If building is 10x cheaper, the constraint moves to attention, and the premium moves with it. Time on copywriting and launch strategy returns more than time on another framework. <a href="https://x.com/gregisenberg/status/2042267314494595542">View</a></p>
+<p><strong>Team OS in Claude Code is the next unit of leverage past personal dotfiles.</strong> Aakash Gupta's framework from a Claude Code talk: individual workflow prompts and dotfiles are the floor the ceiling is a <em>shared, versioned</em> Claude Code workspace per team. Structure: shared skills + commands + team automations + a &quot;learning flywheel&quot; where one teammate's win becomes everyone's default by the next morning. The bet: Confluence and Notion wikis failed because nobody read them. A Team OS works because the agent reads it for you. <a href="https://x.com/aakashgupta/status/2042506000000000000">View</a></p>
+<p><strong>Ramp built an internal AI productivity suite after hitting 99% adoption.</strong> 99% of Ramp employees use AI daily but most were stuck at beginner setups with no path forward. Rather than train them, Ramp built a custom internal suite that gives every employee a configured AI coworker. The takeaway for orgs: company-wide AI adoption plateaus without custom tooling; training alone doesn't get people past the default configuration.</p>
+<hr />
+<h2>One-Liners</h2>
+<p><strong>OpenAI projects 30GW of compute by 2030</strong> in a shareholder memo that directly names Anthropic as its primary rival Anthropic is projected at ~7-8 GW by end of 2027. First time OpenAI has formally acknowledged the gap is closing. <a href="https://www.cnbc.com/2026/04/09/openai-slams-anthropic-in-memo-to-shareholders-as-rival-gains-momentum.html">Source</a></p>
+<p><strong>Meta burned ~60 trillion tokens in 30 days</strong> estimated to exceed the total word count of every book ever published. Frames just how cheap inference has become inside frontier labs. <a href="https://www.thealgorithmicbridge.com/p/inside-the-ai-industrys-most-expensive">Source</a></p>
+<p><strong>Claude Code now navigates iOS apps autonomously</strong> via the accessibility tree + screenshots taps buttons, explores UI, reports back. Removes coordinate-based brittleness from mobile UI testing. <a href="https://x.com/om_patel5/status/2042420365461168635">View</a></p>
+<p><strong>Cursor now auto-attaches demo screenshots to agent-opened PRs</strong> so human reviewers see the outcome alongside the diff closes a real gap for teams letting agents land code. <a href="https://x.com/danshipper/status/2042409377554907410">View</a></p>
+<p><strong>Auto-fix agents on every PR are table stakes.</strong> Walden Yan on the Devin + Greptile integration: <em>&quot;If you don't have an agent auto-fixing each of your PRs, what are you doing?&quot;</em> The pattern linter flags agent proposes fix human approves is becoming the default PR workflow. <a href="https://x.com/walden_yan/status/2041959914046996692">View</a></p>
+<p><strong>PyTorch Monarch</strong> makes the full GPU cluster programmable through a simple Python API removes a major barrier for indie researchers and labs running distributed training. <a href="https://pytorch.org/blog/monarch-an-api-to-your-supercomputer/">Source</a></p>
+<p><strong>Claw-Eval</strong> is an open benchmark with 139 real-world Docker tasks and human-verified grading for LLM agents finally a production-grade alternative to toy benchmarks. <a href="https://github.com/claw-eval/claw-eval">GitHub</a></p>
+<p><strong>0DIN open-sourced an AI security scanner</strong> (Apache 2.0) 179 probes across 35 vulnerability families including prompt injection, data exfil, and jailbreaks. First serious open-source tool for AI-specific CVEs. <a href="https://fossforce.com">Source</a></p>
+<p><strong>Garry Tan open-sourced &quot;GBrain&quot;</strong> (MIT) personal search over 13K markdown files using Postgres + pgvector, installable by pasting a single block into Claude Code. Architecture worth copying: flat markdown as source of truth, pgvector as the index, agent as the query layer. <a href="https://x.com/kiwicopple/status/2042205000000000000">View</a></p>
+<p><strong>Ramp AI Spend Intelligence</strong> tracks AI costs down to the token level across providers. Geoff Charles: <em>&quot;Tokenmaxxing requires tokentracking.&quot;</em> The finance layer for AI-native companies is its own product category now. <a href="https://x.com/geoffintech/status/2042127000000000000">View</a></p>
+<p><strong>Stripe has a beta FX Quotes API</strong> discovered by Pieter Levels when OpenExchangeRates started rate-limiting him. Viable fallback for any multi-currency build. <a href="https://x.com/levelsio/status/2042556081600176199">View</a></p>
+<p><strong>SSE + gzip is still a production landmine.</strong> Simon Willison hit it deploying a Datasette feature traced to asgi-gzip interfering with SSE. Patched in asgi-gzip 0.3. <a href="https://simonwillison.net/2026/Apr/9/asgi-gzip/">Source</a></p>
+<p><strong>AI coding tools are still bad at architecture, even when they get the code right.</strong> From developer discussions: AI raises the floor on tactical coding but raises the bar on module boundaries sloppy architecture gets exposed faster because you can't tell an agent to &quot;just fix it&quot; if there are no clear interfaces. Useful reframe.</p>
+<hr />
+<h2>Videos</h2>
+<h3>AI with Amit <em>OpenClaw 4.7 Mega Update: Everything You Need to Know</em></h3>
+<p><a href="https://www.youtube.com/watch?v=mMecY3HZrJ4">Watch</a></p>
+<p>OpenClaw 4.7/4.8 is a self-hostable AI agent gateway, and this walkthrough covers 10 genuinely useful architectural patterns buried in what looks like a product changelog. The most transferable ideas:</p>
+<p><strong>Specific takeaways:</strong></p>
+<ul>
+<li><strong><code>openclaw infer</code> for one-shot tasks</strong> Instead of spinning up a full agent session for a quick image/video/audio job, run a single command analogous to <code>sips</code> instead of opening Photoshop. Saves tokens and overhead.</li>
+<li><strong>Claims + evidence memory model</strong> Instead of storing &quot;user likes dark roast coffee,&quot; it stores <code>claim: prefers dark roast; evidence: &quot;said on April 2&quot;</code> so the agent can justify beliefs and surface contradictions rather than silently overwriting them. Worth implementing in any persistent-agent system.</li>
+<li><strong>Memory staleness ranked like search results</strong> Fresh information outweighs stale. A two-year-old phone number triggers a confirmation before being shared. Directly applicable to any long-running agent with user preferences.</li>
+<li><strong>Reversible compaction via pre-compaction snapshots</strong> Every compaction saves a full checkpoint. You can branch or restore compaction is no longer a one-way door. Challenges the &quot;compact-and-forget&quot; default.</li>
+<li><strong>Pluggable compaction providers</strong> Use GPT-5.4-mini for context compression while keeping Claude Opus 4.6 for actual chat. Can cut token costs significantly without hurting user-facing output quality.</li>
+<li><strong>Webhook ingress turns the agent into an event receiver</strong> External systems (form captures, CRMs) can push data directly into the agent. Mindset shift: agent as passive responder agent as receiver of events.</li>
+</ul>
+<hr />
+<h3>Aron Prins (Paperclip AI) <em>I Lost $100K/Year to Vendor Lock-In It's Happening Again With AI</em></h3>
+<p><a href="https://www.youtube.com/watch?v=ePeSkNbMFxI">Watch</a></p>
+<p>A personal essay with a concrete $100K/year cautionary tale tied to a specific architectural recommendation. Worth watching for the Facebook API story alone then applying the pattern to every AI-dependent build you're sitting on.</p>
+<p><strong>Specific takeaways:</strong></p>
+<ul>
+<li><strong>The Facebook Graph API parallel</strong> Aron's Group Auto Poster did $8-10K/month across 20 domains; when Facebook shut the API, the entire business vanished overnight. Building on Anthropic's or OpenAI's APIs without an abstraction layer is structurally identical.</li>
+<li><strong>Adapter-swappable agents as insurance</strong> He demonstrated switching an SEO agent between Claude, Codex, Gemini, Hermes, OpenCode, and MiniMax 2.7 on the fly inside Paperclip. Your business logic owns the agent; the model is a commodity.</li>
+<li><strong>Premium tiers don't protect you</strong> Aron is a paying Max 20x customer ($400/month) and still argues Anthropic's infrastructure is a liability. Account bans and status incidents hit paying customers. Don't conflate premium access with operational reliability.</li>
+<li><strong>Anthropic Managed Agents vs. open orchestration</strong> On the surface they look similar. The difference: Managed Agents ties you to Claude's harness and uptime. An open orchestration layer lets you point the same agent at any provider.</li>
+<li><strong>His actual business runs on agents</strong> Content, SEO audits, link-building outreach, support ops via Free Scout API, sales all delegated. One SEO agent dropped time-to-first-byte from 2-3s to under 1.5s. This isn't theoretical.</li>
+</ul>
+<hr />
+<h3>No Priors Podcast <em>How AI Agents Will Transform the Financial System</em> (Jeremy Allaire, Circle CEO)</h3>
+<p><a href="https://www.youtube.com/watch?v=eyobeqMdbeI">Watch</a></p>
+<p>Jeremy Allaire lays out the infrastructure thesis for why AI agents transacting with each other at micro-scale requires entirely new financial rails and why Circle's ARC blockchain is purpose-built for that use case. Dense with specific numbers and contrarian takes on decentralization.</p>
+<p><strong>Specific takeaways:</strong></p>
+<ul>
+<li><strong>Stablecoins are now legally codified full-reserve money</strong> The Genius Act (2025) mandates short-duration US Treasuries or overnight treasury collateral averaging ~13 days duration. USDC is a legal form of electronic money in the US, not just a crypto product.</li>
+<li><strong>Traditional banking can't handle agent-to-agent micro-transactions</strong> Billions of agents transacting at 5-50 cents per inference call, globally, 24/7, require sub-cent fees and hundreds-of-milliseconds settlement finality. Legacy rails can't do this. ARC transaction cost: as low as a millionth of a penny.</li>
+<li><strong>ARC is a known-validator blockchain, not a decentralized one</strong> Deliberately uses major financial infrastructure companies as validators to guarantee compliance, reliability, and regulatory clarity. Directly contradicts the crypto-purist position that decentralization is the point.</li>
+<li><strong>USDC as native gas token eliminates the volatile-token UX problem</strong> Companies pay fees in USDC like AWS credits. Treasury and compliance teams can actually use it.</li>
+<li><strong>The most actively traded tokenized stock is Circle's own</strong> Cuts against the &quot;tokenized stocks are a gimmick&quot; narrative. Main demand comes from non-US users accessing US markets.</li>
+<li><strong>Productive proof-of-work via inference compute</strong> Research papers tying proof-of-work to GPU inference: mining energy productive AI compute. Could eventually shift the &quot;energy money&quot; paradigm.</li>
+</ul>
+<hr />
+<h3>This Week in AI Podcast <em>How to Set Up Claude Code GitHub Integration (Complete Guide)</em></h3>
+<p><a href="https://www.youtube.com/watch?v=SJoLSsxJCoY">Watch</a></p>
+<p>A practical walkthrough of wiring Claude Code into GitHub so it acts as an autonomous agent on issues and PRs, with the Playwright MCP extension for screenshot-driven UI work. Most useful if you haven't set this up yet.</p>
+<p><strong>Specific takeaways:</strong></p>
+<ul>
+<li><strong>Setup is one command, ~5 minutes</strong> <code>/install-github-app</code> inside Claude Code handles the repo connection, API key secret storage, and workflow YAML commit to <code>.github/workflows/</code>. No manual configuration.</li>
+<li><strong>The YAML is where power lives</strong> Three blocks: <code>on</code> (triggers), <code>allowed_tools</code> (what Claude can touch in the Ubuntu runner), and <code>mcp_servers</code> (bolt-on capabilities). The default setup is functional; editing the YAML is what makes it useful.</li>
+<li><strong>Playwright MCP unlocks screenshot-to-PR bug fixing</strong> Add Playwright to the <code>mcp_servers</code> block and the workflow becomes: paste broken UI screenshot in GitHub issue tag <code>@claude</code> receive PR with fix + screenshot verification. Claude reads the image, compares to the code, opens the PR.</li>
+<li><strong>CLAUDE.md is the most leveraged file in your repo</strong> A top-level CLAUDE.md with project context (coding style, test commands, important files) is loaded on every Claude run. Better file directly = better agent output.</li>
+<li><strong>Works for feature requests, not just bugs</strong> Describe a feature in the issue; Claude plans a checklist, gathers context, implements it, opens the PR. The <code>@claude</code> trigger is the same regardless of task type.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li>
+<p><strong><a href="https://www.anthropic.com/engineering/managed-agents">Anthropic Managed Agents engineering post</a></strong> The &quot;programs as infrastructure&quot; design philosophy, with the specific quote on harness assumptions. Read before your next agent architecture decision.</p>
+</li>
+<li>
+<p><strong><a href="https://x.com/karpathy/status/2042334451611693415">Karpathy on the capability gap between AI pros and casuals</a></strong> The clearest articulation of why AI skepticism is miscalibrated, and what it means for pitching AI products to non-technical buyers.</p>
+</li>
+<li>
+<p><strong><a href="https://www.cnbc.com/2026/04/09/openai-slams-anthropic-in-memo-to-shareholders-as-rival-gains-momentum.html">CNBC: OpenAI's shareholder memo on Anthropic</a></strong> The compute projection numbers (30GW vs. 7-8GW by 2027) are the most concrete public data on the infrastructure race between the two labs.</p>
+</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
