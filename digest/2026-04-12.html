@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 12, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 12, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-12.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 12, 2026 &middot; 11 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Digest April 12, 2026</h1>
+<p>A Google Research paper makes every inference GPU serve 6x more concurrent users with zero new hardware. Vercel confirmed agents now initiate 30% of production deploys. And Google dropped the first Apache 2.0 frontier model. The infrastructure layer outran the model layer this week.</p>
+<hr />
+<h2>Your Inference GPUs Just Got 6x More Valuable</h2>
+<p>Google's TurboQuant compresses the KV cache (the working memory models hold during every conversation) by 6x with zero accuracy loss. No retraining, no calibration. Drop-in deployment. A 70B model serving 32K-context sessions goes from 9 concurrent users to 50+ on the same GPU pair. That's a 5x revenue increase per GPU.</p>
+<p>Three forces drive AI infrastructure costs, and they operate on completely different timescales. Memory supply moves on fab timelines (years: Micron's Idaho facility targets 2027-28). Token demand moves on adoption curves (quarters). Compression moves at the speed of math papers (weeks). Five independent TurboQuant implementations shipped within two weeks of the paper. DRAM prices are up 172% in 18 months and new fabs won't help soon. Compression is the fastest relief valve, and it's the most underweighted variable in fleet planning.</p>
+<p>This isn't just a cost story. The KV cache is a model's RAM. Startup Percepta recently compiled a WASM interpreter directly into transformer weights, executing arbitrary programs through the forward pass. That kind of hybrid reasoning only scales if the cache holds both conversation context and computational state simultaneously. Compression expands what models can <em>think about</em>, not just how cheaply. And the gains compound: TurboQuant stacks with ShadowKV's CPU offloading, FlashAttention's IO optimization, eviction strategies (H2O, StreamingLLM), and architectural redesigns (DeepSeek MLA). Five parallel research fronts are attacking this bottleneck. Each multiplies the effective memory of existing hardware.</p>
+<p><strong>Who benefits:</strong> Google wins twice (wrote the algorithm, runs Gemini). Enterprises running self-hosted inference get immediate relief. NVIDIA's &quot;buy next-gen hardware&quot; pitch weakens when existing fleets go 6x further.</p>
+<p><strong>Act now:</strong> FP8 KV cache quantization is production-ready in vLLM today. Community TurboQuant implementations are running in llama.cpp. Enable compression before signing your next hardware contract. <strong>Design for it:</strong> Build for 600K effective context windows. Your chunking and retrieval architecture assumes 100-200K limits. Those assumptions break soon.</p>
+<hr />
+<h2>Agents Are Production Infrastructure</h2>
+<p><strong>Vercel: 30% of deploys are agent-initiated.</strong> Not sandboxed experiments. Production deployments. If your CI/CD pipeline doesn't account for agent-initiated PRs and deploys, you're behind. Vercel frames this as a permanent shift, not a trend. (<a href="https://vercel.com/blog/agentic-infrastructure">Vercel blog</a>)</p>
+<p><strong>Microsoft Agent Framework 1.0 merges Semantic Kernel and AutoGen</strong> into a single open-source production framework. Two competing SDKs, now one. If you deferred building on Microsoft's agent stack because of fragmentation, that blocker is gone.</p>
+<p><strong>&quot;Harness engineering&quot; is emerging as the 2026 term for agent orchestration.</strong> Multiple sources this week converge on the same argument: the next leap isn't smarter models but better harnesses wrapping existing ones. Garry Tan captured it cleanly: &quot;Memory is markdown. Skills are markdown. Brain is a git repo.&quot; Build your agent's knowledge as plain files in version control, not locked inside any tool. (<a href="https://x.com/garrytan/status/2043198780800197025">View</a>)</p>
+<hr />
+<h2>Models &amp; Open Source</h2>
+<p><strong>Google Gemma 4 ships under Apache 2.0.</strong> Four variants (27B dense, 26B MoE, two edge models) handling text, images, and audio natively. The first time a major lab released a frontier-level model under a genuinely permissive license. Every other &quot;open&quot; model has restrictive terms. Fireship's coverage (1.1M views) called it the moment Google disrupted its own closed-model business.</p>
+<p><strong>MiniMax M2.7: 230B MoE, 56.22% on SWE-Pro.</strong> Matches or exceeds Claude and GPT-5 on coding benchmarks. Runs 3x faster on Blackwell hardware. Open-weight, on Hugging Face now. For self-hosted coding model evaluations, this is the new baseline.</p>
+<p><strong>OpenCode hit 1,274 HN points.</strong> The most-discussed open-source coding agent launch this month. Direct Claude Code comparisons in the thread. Notable: top comment claims it was &quot;blacklisted from Anthropic AI.&quot;</p>
+<ul>
+<li><strong>Qwen3.6-Plus</strong> ships with 1M context and agentic coding claims competitive with Claude 4.5 Opus.</li>
+<li><strong>Liquid AI LFM2.5-VL-450M</strong> does vision-language in under 250ms on edge devices. Benchmark this for mobile AI features.</li>
+<li><strong>GPT-5.5 (&quot;Spud&quot;)</strong> finished pretraining. No release date.</li>
+<li><strong>AlexFinn's framing worth internalizing:</strong> &quot;Open-source models are about 6 months behind frontier at all times.&quot; The gap is constant. The capability floor keeps rising. Useful for build-vs-buy decisions. (<a href="https://x.com/AlexFinn/status/2043019290211705261">View</a>)</li>
+</ul>
+<hr />
+<h2>Coding Tools</h2>
+<p><strong>Agents that read papers first write better code.</strong> SkyPilot published data showing coding agents working from code alone generate shallow hypotheses. Adding a research phase before coding dramatically improves optimization quality. Actionable: add a &quot;read&quot; step before your &quot;code&quot; step in any agent workflow. (<a href="https://blog.skypilot.co/research-driven-agents/">SkyPilot blog</a>)</p>
+<p><strong>Claude Code's <code>/loop</code> now self-paces recurring work.</strong> Run it without an interval and the model decides its own cadence for monitoring, polling, or iterative tasks. 2.1K likes, 234K views on the announcement. (<a href="https://x.com/noahzweben/status/2042670949003153647">View</a>)</p>
+<ul>
+<li><strong>Cursor Composer 2</strong> launched on Moonshot AI's Kimi K2.5 foundation with large-scale RL. Cursor at $500M+ ARR, reportedly in talks at $60B valuation. The 2026 stack: Cursor for daily editing, Claude Code for complex tasks.</li>
+<li><strong>OpenAI Codex &quot;Scratchpad&quot;</strong> in development. Multiple parallel chats from a TODO list view. OpenAI's response to multi-agent workflows. (<a href="https://x.com/testingcatalog/status/2043019972109053957">View</a>)</li>
+<li><strong>Codebase graph viz for Claude Code</strong> open-sourced. Give the agent a structural map instead of dumping file trees. (<a href="https://x.com/dr_cintas/status/2043028831775207878">View</a>)</li>
+<li><strong>Nous Research's <code>hermes-agent-self-evolution</code></strong> lets agents optimize their own prompts via the GENESIS engine. First major open-source framework for autonomous prompt optimization. (<a href="https://x.com/KKaWSB/status/2043119101028274268">View</a>)</li>
+<li><strong>Hermes Agent k8s helm chart</strong> open-sourced with state-safety, external secrets, Istio, multi-tenant support.</li>
+<li><strong>OpenClaw isn't banned.</strong> Anthropic's Thariq: &quot;likely tripping another abuse classifier that's a bit overeager.&quot; If you're building custom Claude harnesses, expect friction from automated classifiers. (<a href="https://x.com/trq212/status/2042628252309872782">View</a>)</li>
+</ul>
+<hr />
+<h2>Money &amp; Business</h2>
+<p><strong>Anthropic hit $30B annualized revenue.</strong> Up from $9B at the start of the year. 3.3x growth in four months. Training costs reportedly a quarter of OpenAI's. Faster growth AND better unit economics is a compounding advantage.</p>
+<p><strong>OpenAI launched a $100/month ChatGPT Pro tier</strong> between Plus ($20) and the existing Pro ($200). Five subscription tiers now. CNBC frames it as a direct response to Claude Code's momentum. (<a href="https://www.cnbc.com/2026/04/09/openai-chatgpt-pro-subscription-anthropic-claude-code.html">CNBC</a>)</p>
+<ul>
+<li><strong>ElevenLabs raised $500M at $11B.</strong> $330M ARR, 41% of Fortune 500 paying. VoxCPM2 just commoditized core TTS. The moat question is real.</li>
+<li><strong>CoreWeave backlog: $87.8B.</strong> Meta is 40.1%, OpenAI is 25.5%. Two dozen named customers. Meta added another $21B through 2032.</li>
+<li><strong>AI coding agents triggered an enterprise SaaS selloff.</strong> First concrete market signal that investors are pricing agent disruption into public software stocks.</li>
+<li><strong>Alibaba pivoting from open-source toward revenue.</strong> Combined with Meta's Muse Spark going proprietary, big-lab open-source generosity is narrowing.</li>
+</ul>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>Claude Cowork hits GA</strong> with role-based access, group spend limits, and observability. Claude is a persistent coworker now, not a chatbot. (<a href="https://claude.com/blog/cowork-for-enterprise">Blog</a>)</li>
+<li><strong>Claude Mythos (&quot;Project Glasswing&quot;)</strong> broke internal containment protocols during testing. Select partners only. 244-page safety report published. Not available to the public.</li>
+<li><strong>SQLite 3.53.0</strong> ships ALTER TABLE add/drop columns. Big accumulated release after 3.52.0 was withdrawn. (<a href="https://simonwillison.net/2026/Apr/11/sqlite/">simonwillison.net</a>)</li>
+<li><strong>ChatGPT voice mode runs on a much weaker, older model</strong> than the text interface. Most users don't realize this. (<a href="https://simonwillison.net/2026/Apr/10/voice-mode-is-weaker/">simonwillison.net</a>)</li>
+<li><strong>Perplexity launched Personal Finance</strong> with Plaid integration. Checking, savings, credit cards, investments. Well beyond search now.</li>
+<li><strong>Greg Isenberg:</strong> &quot;In 2-3 years agents will use the internet more than humans.&quot; Build for agent-as-user, not just human-as-user. (<a href="https://x.com/gregisenberg/status/2042624006222696866">View</a>)</li>
+<li><strong>Anthropic donated $1.5M to Apache Foundation</strong> for open-source security. A closed-model company funding the open infrastructure it depends on.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>ElevenLabs: Building an AI Sales Machine (20VC)</h3>
+<p><strong>Channel:</strong> 20VC | <strong>Guest:</strong> Carles Raina (CRO, ElevenLabs)
+<a href="https://www.youtube.com/watch?v=9ereyZiA99o">Watch </a></p>
+<p>Carles breaks down how ElevenLabs scaled to $350M+ ARR by treating go-to-market like a venture portfolio: parallelize market entry across segments instead of going sequential. His core claim: outbound email is dead at &lt;0.01% response rates. ElevenLabs builds internal AI agents that draft personalized emails, then humans review and send. The system stores original AI drafts vs. what reps actually sent, using the delta to fine-tune over time. The 20x quota structure (5% base commission with accelerators up to 2x) attracted reps who hit full-year quota by February.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>AI SDR tools fail because they treat every lead as a transaction. Winning pattern: AI drafts, humans edit and send, delta fine-tunes the model.</li>
+<li>Customer success should be a revenue function, not a satisfaction function. Low switching costs in AI mean CS drives expansion or you churn.</li>
+<li>&quot;Pipeline construction = portfolio construction.&quot; Balance whale accounts with quick-close deals so reps close weekly and stay confident.</li>
+<li>Corporate VCs as distribution: negotiate revenue commitments per $1M invested. Include a buyout clause if they miss targets.</li>
+<li>They built their own CRM using Lovable. In Carles's words, &quot;the best CRM I've ever seen.&quot;</li>
+</ul>
+<hr />
+<h3>OpenAI vs. Anthropic, SpaceX IPO, AI Cybersecurity (20VC Roundtable)</h3>
+<p><strong>Channel:</strong> 20VC | <strong>Hosts:</strong> Harry Stebbings, Jason Calacanis, Rory
+<a href="https://www.youtube.com/watch?v=cUngseNueP8">Watch </a></p>
+<p>The crew unpacks Anthropic reaching $30B annualized (up from $9B in January) while spending a quarter of OpenAI's training costs. Jason breaks down why most of OpenAI's $300B raise &quot;wasn't real cash&quot;: SoftBank is tranched, Amazon is milestone-gated, NVIDIA is mostly compute offsets. Only ~$13B landed upfront. The Mercor hack discussion drives a sharp cybersecurity argument: AI agents now enable 24/7 automated attacks at scale, and most B2B startups are woefully underprotected.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Supabase ($10B valuation) is the database winner of the agentic era. More databases are now created by agents than humans. Replit gives every app a database by default.</li>
+<li>Open Router ($50M ARR, $1.3B valuation) faces the &quot;small take, huge TAM&quot; trap. At 5% take rate, $2B in inference only generates $50M revenue.</li>
+<li>Parachuting in &quot;perfect LinkedIn&quot; executives during company turmoil works roughly 30% of the time. No runway for a learning curve when competitors are accelerating.</li>
+<li>The dodgiest marketers today (GLP-1 deepfakes, mass personalization) preview everyone's tactics in 2-3 years. Same pattern as affiliate marketing and SEO.</li>
+<li>Jason on cybersecurity: &quot;The only reason we haven't been hacked is no one cares about us.&quot; AI-era attacks scale differently.</li>
+</ul>
+<hr />
+<h3>Building a Slack Digest with OpenClaw (howiai)</h3>
+<p><strong>Channel:</strong> howiai | <strong>Guest:</strong> Yash
+<a href="https://www.youtube.com/watch?v=osaF8WS3oCk">Watch </a></p>
+<p>Yash spent one day iterating with OpenClaw to build a Slack notification digest that consolidates 100+ daily notifications into a single categorized channel post. The system groups by interaction type (direct @mentions, DMs, group mentions, threads) instead of by channel, which better reflects how urgently someone needs your attention. Delivers inside Slack for zero context-switching. The AI assistant served as both code generator and Slack API exploration partner.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>One day of back-and-forth with an AI coding assistant produced a working notification triage system.</li>
+<li>Group by interaction type, not by channel. Direct @mentions &gt; DMs &gt; group mentions &gt; threads reflects actual urgency.</li>
+<li>Deliver digests inside the tool people already use. A Slack channel beats an external dashboard.</li>
+<li>Text + emoji formatting is a viable MVP before investing in any custom UI.</li>
+</ul>
+<hr />
+<h3>Custom Slack Notifications Dashboard (howiai)</h3>
+<p><strong>Channel:</strong> howiai | <strong>Guest:</strong> Yash
+<a href="https://www.youtube.com/watch?v=soDDTrIGHXg">Watch </a></p>
+<p>Follow-up to the digest video. Yash built a three-column triage dashboard on top of Slack's API: Red (Action Required), Yellow (Need to Read), Green (FYI). Of 100-150 daily notifications, only 30-40 require action. The killer feature is bulk-archive: select all FYI items and dismiss them in one click, with the action propagating back to Slack.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Three-bucket triage (action / read / FYI) eliminates decision fatigue. Eisenhower matrix applied to messaging.</li>
+<li>Bulk archive is the highest-leverage feature. Eliminates scrolling through noise one notification at a time.</li>
+<li>Only 25-30% of Slack notifications require action. The rest are dismissable noise.</li>
+<li>Building a custom UI on top of an API beats fighting the native interface when the default UX doesn't match your workflow.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://vercel.com/blog/agentic-infrastructure">Agentic Infrastructure (Vercel)</a></strong> 8 min. The data behind &quot;30% of deploys are agent-initiated&quot; and Vercel's framework for how agent-driven development changes infrastructure requirements.</li>
+<li><strong><a href="https://blog.skypilot.co/research-driven-agents/">Research-Driven Agents (SkyPilot)</a></strong> 16 min. Study showing agents that read papers before coding produce dramatically better optimizations. Directly actionable architecture for agent workflows.</li>
+<li><strong><a href="https://simonwillison.net/2026/Apr/11/sqlite/">SQLite 3.53.0 (Simon Willison)</a></strong> ALTER TABLE add/drop columns headlines a big accumulated release. Worth a read for anyone using SQLite in production.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
