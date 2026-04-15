@@ -1,0 +1,465 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 15, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 15, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-15.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 15, 2026 &middot; 11 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest April 15, 2026</h1>
+<p>Three frontier labs shipped headless agent execution on the same day. Anthropic's Routines run Claude Code tasks on their servers while your laptop sleeps. Google launched a Desktop Agent in Gemini Enterprise. OpenAI added web browsing to Codex. The race to &quot;agent runs autonomously, human reviews&quot; just went from implied to explicit. The hardest problem is still upstream of all three.</p>
+<hr />
+<h2>Headless Agents Are Now First-Party at Every Lab</h2>
+<p>Claude Code <a href="https://9to5mac.com/2026/04/14/anthropic-adds-repeatable-routines-feature-to-claude-code-heres-how-it-works/">Routines</a> execute on Anthropic's web infrastructure. Your Mac stays off. This is the first scheduled, headless agent primitive from a frontier lab, distinct from yesterday's Coordinator Mode leak. Google's <a href="https://www.testingcatalog.com/google-develops-its-own-desktop-agent-to-compete-with-cowork/">Gemini Enterprise Desktop Agent</a> shipped the same day with a &quot;Require human review&quot; toggle, positioning directly against Claude Cowork. <a href="https://www.testingcatalog.com/openai-tests-web-browsing-feature-on-codex-superapp/">Codex added web browsing</a> plus PR management and real-time task tracking. The default interaction model just flipped: agents run, humans audit. If you're building agent tooling on top of any of these platforms, the layer beneath you moved today.</p>
+<h2>The 40-Hour Wall</h2>
+<p>Across 250K+ OpenClaw installs, adoption breaks at the same point: the human can't describe their own work in enough resolution for the agent to act. One developer spent 40 hours writing delegation specs for a single video transcription project. Not coding. Articulating what &quot;done&quot; means. Still failed.</p>
+<p>The structural cause: expertise compresses from conscious checklists into automatic judgment as you gain seniority. A PM who &quot;just knows&quot; which dashboard to check can't reverse-engineer that instinct into a config file. The more valuable your work, the more invisible it becomes to you. Every successful long-running agent deployment shares the same architecture: SOUL.md (decision framework), HEARTBEAT.md (cron-driven checklist), USER.md (operator profile). Every one required the human to decompose tacit knowledge they'd never articulated before. No agent product sells this prerequisite. They all compete on installation, UI, and model selection while the real bottleneck sits upstream.</p>
+<p>An <a href="https://github.com/NateBJones-Projects/OB1/tree/main/recipes/work-operating-model-activation">open-source elicitation workflow</a> now exists for this. It's an AI interviewer that walks through five layers of how your work runs, then generates the config files in ~45 minutes. The output feeds into any agent platform's config directory.</p>
+<hr />
+<h2>Shipping</h2>
+<p><strong>OpenAI <a href="https://x.com/OpenAIDevs/status/2044466699785920937">Agents SDK</a> got a major update.</strong> Controlled sandboxes, computer-use, skills, memory, and compaction baked in. Open-source and inspectable. OpenAI's play to out-ship Anthropic's Claude Code primitives at the harness layer.</p>
+<p><strong><a href="https://kiro.dev/blog/cli-2-0/">Kiro CLI 2.0</a> ships headless mode, CI/CD pipelines, and Windows support.</strong> Direct Claude Code / Codex alternative for teams that need agents running in CI, not interactive terminals.</p>
+<p><strong><a href="https://simonwillison.net/2026/Apr/15/gemini-31-flash-tts/#atom-everything">Gemini 3.1 Flash TTS</a> lands as promptable text-to-speech over the standard Gemini API.</strong> Same week as Mistral's OSS TTS and Kitten TTS. TTS is the next commodity model race.</p>
+<p><strong>Andrew Ng launched a <a href="https://x.com/AndrewYNg/status/2044449830605582629">Spec-Driven Development course</a> with JetBrains.</strong> The vibe-coding upgrade: write a spec first, hand it to the agent. The workflow builders have been improvising now has curriculum and a name. 738 likes, 71K views on day one.</p>
+<p><strong><a href="https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/">&quot;Defeating Nondeterminism in LLM Inference&quot;</a> explains why LLM APIs aren't deterministic at temperature=0.</strong> 37-minute technical read. Required if you're shipping reproducible evals or building for regulated industries. Reproducibility is quietly the biggest blocker for scientific LLM use.</p>
+<p><strong>Google <a href="https://arstechnica.com/google/2026/04/google-introduces-skills-in-chrome-to-make-gemini-prompts-instantly-reusable/">Skills in Chrome</a> brings one-click reusable Gemini prompts to the browser.</strong> Same &quot;reusable prompt as primitive&quot; pattern as Claude Code skills, now a browser default. Matters if you're shipping anything with a browser integration surface.</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>Anthropic fielding investor offers at $800B.</strong> Frontier-lab valuations still compounding. Price-to-revenue math for Claude API builders gets harder to defend.</li>
+<li><strong>Cal.com founder is closing the source code</strong>, explicitly framing AI agents as making open code a liability. If a founder that OSS-native closes up, the narrative shifted.</li>
+<li><strong>NVIDIA NemoClaw</strong> ships one-command install for sandboxing always-on OpenClaw agents. First-party NVIDIA tooling for agent isolation is a signal: the sandbox layer is where infrastructure is crystallizing.</li>
+<li><strong><a href="https://awesomeagents.ai/news/github-fake-stars-investigation/">GitHub fake-star economy</a>:</strong> 6M fake stars across 18,617 repos. AI/LLM repos dominate the non-malicious category. Stars at $0.03-$0.50 each. If you evaluate tools by star count, your signal is polluted.</li>
+<li><strong>Cognee pitches <a href="https://x.com/akshay_pachaar/status/2043745099792953508">graph-based memory</a> as the missing agent primitive.</strong> Vector search can't answer multi-hop questions. Memory, not model quality, is where agents break.</li>
+<li><strong><a href="https://x.com/hasamba">Crit</a> adds PR-style review loops across Claude Code, Copilot, and Aider.</strong> Treats the review cycle as the primary unit, not the agent itself.</li>
+<li><strong>Greg Isenberg's <a href="https://x.com/gregisenberg/status/2044482226318930411">power-user thesis</a>:</strong> &quot;SaaS never worked. It was 70% product, 30% the person who knew how to make it behave.&quot; Agents replace the power user, not the software.</li>
+<li><strong><a href="https://x.com/kieranklaassen/status/2044467410758258806">Kieran Klaassen's framework</a> for where humans stay in the loop:</strong> Brainstorm (what to build) and Polish (is it good). Automate everything between.</li>
+<li><strong>Shopify publishes <a href="https://x.com/tobi/status/204445935655787337">&quot;Autoresearch&quot;</a> on using agentic research techniques in production apps, not just model training.</strong> Tobi Ltke posted it himself.</li>
+<li><strong>Claude Code's desktop app is <a href="https://x.com/AlexFinn/status/2044442528183971915">now preferred over the CLI</a></strong> for building full apps. If you've been terminal-only, worth revisiting.</li>
+<li><strong>Allen AI's <a href="https://allenai.org/blog/evaluating-scientific-discovery-agents">DiscoveryWorld</a></strong> tests whether agents can run real experiments. Large gap between benchmark scores and actual scientific capability.</li>
+<li><strong>DeepMind's <a href="https://arxiv.org/abs/2604.09168">Elastic Looped Transformers</a>:</strong> weight-shared recurrent blocks for parameter-efficient image and video generation. Architecture research worth tracking, not a product.</li>
+<li><strong>Lovable adds <a href="https://x.com/robiot/status/2043782837971890279">in-chat payments</a>.</strong> Describe item and price, sell it from your AI-built site.</li>
+<li><strong>Lazyagent:</strong> lazygit-style TUI for monitoring multiple AI coding agents in parallel. The &quot;agent observability&quot; category is real.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>20VC: The Early Days of Anthropic &amp; How 21 of 22 VCs Rejected It</h3>
+<p><strong>Channel:</strong> 20VC (Harry Stebbings) | <strong>Guest:</strong> Anjney Midha (Anthropic seed investor, AMP founder)
+<a href="https://www.youtube.com/watch?v=a1ymdW-h33E">Watch </a></p>
+<p>Midha lays out four bottlenecks on AI progress ranked by importance: culture, context feedback loops, compute, and capital. The core argument: unique data access (physical verification labs, sovereign compliance data, enterprise workflows) is the real moat. Not training scale. He frames the current moment as &quot;1885 for compute.&quot; Pre-standardization, with billions in stranded GPU pools that can't be repurposed because H100s, GB200s, and GB300s aren't fungible.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>21 of 22 VCs rejected Anthropic's seed round. Most asked &quot;What's GPT-3?&quot; The most successful AI company was unfundable by smart money four years ago.</li>
+<li>&quot;We're not in an AI bubble. We're in a GPU wastage bubble.&quot; Capabilities are real. Infrastructure is misallocated.</li>
+<li>&quot;Foundation model companies don't exist. They're frontier systems companies.&quot; Anthropic was always going to build Claude Code. The model-only layer is a category error.</li>
+<li>AMP secured 1.3 gigawatts (~$40B cloud spend over 4 years), financed 20% equity / 80% debt. Europe needs 12-15 gigawatts for full compute sovereignty.</li>
+<li>Scaling laws are alive. Only saturated domains like coding show diminishing returns. Material science and physics see super-exponential gains per iteration.</li>
+</ul>
+<h3>OpenClaw AI Companion: The Heartbeat Architecture</h3>
+<p><strong>Channel:</strong> Amit | <strong>Guest:</strong> Abhimanyu (DevOps engineer)
+<a href="https://www.youtube.com/watch?v=LP7TjL2AV5o">Watch </a></p>
+<p>Ignore the &quot;AI girlfriend&quot; framing. The transferable pattern is the heartbeat architecture: a cron job reads a state.json file, advances the agent's internal state (mood, activity, context), and decides whether to initiate contact with the user. This solves the biggest weakness of LLM agents. They're reactive. Abhimanyu built it on a $3-10/month Hetzner VPS in 3 days, not as a developer by training.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>You do NOT need a $700 Mac Mini for OpenClaw. A $3/month VPS works fine.</li>
+<li>state.json as a plain-text inspectable file beats vector DBs for small-scope agent memory. It's auditable and version-controllable.</li>
+<li>Avoid third-party OpenClaw skill libraries. Malicious code risk. Stick to built-ins like messages.TTS.</li>
+<li>Pin your OpenClaw version (he uses 24.3). Latest builds break features without warning.</li>
+<li>The only skill required: clearly articulating scenarios. Not coding.</li>
+</ul>
+<h3>My Claude Code Workflow No One Knows About</h3>
+<p><strong>Channel:</strong> Greg Isenberg | <strong>Guest:</strong> Amir (Humbolytics founder)
+<a href="https://www.youtube.com/watch?v=YiitvyQGbkc">Watch </a></p>
+<p>Amir demonstrates an end-to-end stack: Idea Browser MCP Claude Code Paper (design tool with bidirectional MCP) Humbolytics (analytics + A/B testing) Tail Arc (components). They build a full lead magnet landing page with a live A/B test in ~30 minutes on camera. Core thesis: custom code beats Webflow and Framer when your agent IS your CMS, because agents can't push updates through no-code GUIs.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>&quot;The terminal is the interface for work.&quot; Not Figma, not Cursor. Claude Code's 1M-token context window is the unlock for this workflow.</li>
+<li>Drop reference screenshots into Claude Code, extract design elements into a style guide markdown, reference that file in every component request. Design system from screenshots.</li>
+<li>&quot;Subtle&quot; is the magic word in design prompts. &quot;Improve the design&quot; fails. &quot;Subtle refinements, consistent layouts, cohesive theme&quot; works.</li>
+<li>Autonomous CRO agent pattern: paid media manager + CRO optimizer + funnel report, all connected via cron in Claude Code. One operator replaces a marketing team's weekly cycle.</li>
+<li>Context log in Obsidian tracks every A/B test result and revenue impact. Claude reads it in future sessions for compounding optimization.</li>
+</ul>
+<h3>I Gave Claude Code a Design System and It Built a Pro Website in Minutes</h3>
+<p><strong>Channel:</strong> This Week in AI
+<a href="https://www.youtube.com/watch?v=bY9GCxqTxwU">Watch </a></p>
+<p>Walkthrough of getdesign.md, a site hosting reverse-engineered design systems from Airbnb, Apple, Spotify, Superhuman, Coinbase, and others. Each brand ships as a single .md file you drop into Claude Code. One command generates a site matching the reference brand's visual language. Not perfect, but a strong baseline that kills the default &quot;AI slop&quot; aesthetic.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Design systems as markdown files are a real format. Colors, typography, hover states, border radii packaged as plain English optimized for LLM consumption.</li>
+<li>Available brands include Airbnb, Apple, Clay, Superhuman, Coinbase, Ferrari. Each with 500-2,000 downloads.</li>
+<li>Best used as a jumping-off point, not final output. Expect to iterate on details.</li>
+<li>Clay's design.md produced hover animations the presenter said justified using it alone.</li>
+</ul>
+<h3>This AI Spreadsheet Replaced Years of Excel Training</h3>
+<p><strong>Channel:</strong> This Week in AI | <strong>Guest:</strong> Cole Stark (Quadratic)
+<a href="https://www.youtube.com/watch?v=c2PfvbLTHgk">Watch </a></p>
+<p>Quadratic is an AI-native spreadsheet connecting natural language, Python/SQL, and 12,000+ data sources via Plaid, Mixpanel, Stripe, BigQuery, and Postgres. Built from the ground up, not chat bolted onto Excel. The key insight: the spreadsheet grid is the trust layer. Cells sum deterministically. Users trust AI-generated analysis in cells in a way they don't trust raw chat. Demoed a personal net-worth dashboard and a marketing attribution dashboard tying ads product usage revenue.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Claude Sonnet 4.5 was the inflection point that made spreadsheet AI reliable enough to ship. Now running Opus 4.5/4.6.</li>
+<li>Templates beat blog posts for SEO-driven LTV. Quadratic's own data showed template landing pages drove meaningfully higher retention than blog traffic. They reallocated content effort accordingly.</li>
+<li>Plaid integration auto-syncs daily from 12,000+ financial institutions. All downstream charts update automatically.</li>
+<li>Auto-generated suggested prompts appear when you drop data in. Reduces the agent cold-start problem.</li>
+</ul>
+<h3>The Future of AI: Personal Agents, Taste &amp; Private Data</h3>
+<p><strong>Channel:</strong> This Week in AI (Jason Calacanis) | <strong>Guests:</strong> Lin Qiao (Fireworks AI), Demi Guo (Pika)
+<a href="https://www.youtube.com/watch?v=S5ZiLWtXDGk">Watch </a></p>
+<p>Lin Qiao argues 95% of the world's data is locked inside private apps and enterprises. Foundation models trained on public internet have seen less than 5%. The next frontier is tuning open models on that private data to beat frontier labs on specific tasks. Demi Guo reframes agent adoption: stop treating agents as tools, start treating them like a junior employee you train over time. One-shot prompts fail. Iterative feedback compounds taste.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Open and closed models trading places on leaderboards is a convergence signal. Open source matches frontier for day-to-day tasks. 6-12 months behind only on hard long-horizon reasoning.</li>
+<li>Screen is the universal enterprise integration layer. Healthcare has hundreds of non-standard systems. Computer-use agents sidestep API integration entirely.</li>
+<li>Two agent archetypes emerging: productive (zero personality, throughput-optimized) and personal (taste, identity, emotional connection). Conflating them is why consumer AI feels off.</li>
+<li>Gen Z is cynical about AI, not excited. Lin's in-Silicon-Valley teenager reports AI use is socially penalized at school. Inverts the &quot;AI-native generation&quot; narrative.</li>
+<li>Fireworks serves tens of trillions of tokens per day with ~150 people. Reportedly more than OpenAI's API traffic.</li>
+</ul>
+<h3>freeCodeCamp: OpenAI Codex Essentials</h3>
+<p><strong>Channel:</strong> freeCodeCamp</p>
+<p>4-hour crash course on Codex as a coding agent. 16K+ views on day one. Free onboarding resource if you're ramping a team onto Codex and need structured training material.</p>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/">Defeating Nondeterminism in LLM Inference</a></strong> (37 min read) Deep technical walkthrough of why temperature=0 doesn't give you deterministic results, and what to do about it. Required reading if you're building evals or shipping to regulated industries.</li>
+<li><strong><a href="https://github.com/NateBJones-Projects/OB1/tree/main/recipes/work-operating-model-activation">Work Operating Model Elicitation Workflow</a></strong> Open-source AI interviewer that generates SOUL.md, HEARTBEAT.md, and USER.md configs from a 45-minute structured conversation. Addresses the cold-start problem every agent product skips.</li>
+<li><strong><a href="https://awesomeagents.ai/news/github-fake-stars-investigation/">Inside GitHub's Fake Star Economy</a></strong> (16 min read) 6M fake stars, 18,617 repos, prices from $0.03 to $0.50 per star. AI/LLM repos are the largest non-malicious category. Changes how you evaluate any open-source AI tool.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
