@@ -251,11 +251,11 @@
 <hr />
 <h2>The Real Bottleneck: Your Tool Stack, Not Your Model</h2>
 <p>Jeff Dean said at GTC that making a model infinitely fast yields only 2-3x end-to-end improvement. The remaining 47x vanishes into file I/O, compilation, test frameworks, and authentication flows calibrated for human speed. The METR study quantified it: 16 experienced developers got 19% <em>slower</em> with AI tools. Not because the models failed. The surrounding environment consumed every gain. Context-switching, re-reading output, tool interactions. The developers estimated they were 20% faster. They were wrong.</p>
-<p>Teams that rebuilt their toolchains tell a different story. Google: 30%+ of new code is AI-generated. Claude Code writes ~80% of its own codebase. Jellyfish data: PRs merged per engineer jumped from 1.36 to 2.9 as AI adoption went from 0% to 100%. Same models available to everyone. Radically different environments.</p>
+<p>Teams that rebuilt their toolchains tell a different story. <a href="https://natesnewsletter.substack.com/p/your-ai-is-50x-faster-your-tools">Per Nate Jones's analysis</a>: Google says 30%+ of new code is AI-generated. Boris Cherny (Claude Code creator) says ~80% of Claude Code's own code is written by Claude Code itself. Jellyfish's engineering metrics show PRs merged per engineer jumped from 1.36 to 2.9 as AI adoption went from 0% to 100%. Same models available to everyone. Radically different environments.</p>
 <p><strong>The three-layer rebuild happening now:</strong></p>
 <ul>
 <li>
-<p><strong>Layer 1: Faster existing tools.</strong> Rust/Go rewrites running 10-30x faster. Rolldown replaces Rollup. Oxc benchmarks at 30x Prettier. TypeScript 7 is rewriting in Go at 10x+. Biome v2 ships its own type inference engine. JavaScript accidentally built for the agent era by building for impatient humans. Python, Java, and enterprise middleware haven't started.</p>
+<p><strong>Layer 1: Faster existing tools.</strong> Rust/Go rewrites running 10-30x faster. Rolldown replaces Rollup. <a href="https://oxc.rs/">Oxc benchmarks at 30x Prettier</a>. TypeScript 7 is <a href="https://devblogs.microsoft.com/typescript/typescript-native-port/">rewriting in Go at 10x+</a>. Biome v2 ships its own type inference engine. As Lee Robinson noted: JavaScript accidentally built for the agent era by building for impatient humans. Python, Java, and enterprise middleware haven't started.</p>
 </li>
 <li>
 <p><strong>Layer 2: Agent-native primitives.</strong> Tools designed for consumers without eyes or hands. OpenAI's Hosted Shell: persistent containers where agents install dependencies once and never restart. BranchFS: copy-on-write filesystem branching at sub-350 microsecond latency vs. seconds for Docker/git stash. The Agent Primitives paper: multi-agent coordination through shared KV cache instead of text, 3-4x lower latency.</p>
@@ -312,6 +312,9 @@
 </li>
 <li>
 <p><strong><a href="https://www.macrumors.com/2026/04/15/siri-engineers-ai-coding-bootcamp/">Apple sent ~60 Siri engineers to AI coding bootcamp</a></strong> as part of the Siri overhaul. Even Apple's internal teams are retooling around AI-assisted dev.</p>
+</li>
+<li>
+<p><strong>Opus 4.7 quietly landed on Google Cloud Vertex AI</strong>, timed against renewed GPT-5 speculation. @AlexFinn <a href="https://x.com/AlexFinn/status/2044514817458024603">claims</a> both Opus 4.7 and ChatGPT 5.5 could drop broadly this week (1.5K+ likes, 139K views). Take with salt, but multiple signals point to imminent major model releases.</p>
 </li>
 <li>
 <p><strong>GPT-5.4 Thinking hit 75% on OSWorld.</strong> First model to surpass human performance on the desktop task benchmark for autonomous OS-level computer use.</p>
