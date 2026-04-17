@@ -247,25 +247,7 @@
 
 			<article class="content">
 				<h1>AI Builder's Digest April 16, 2026</h1>
-<p>Cursor used a multi-agent system to optimize 235 CUDA kernels and got 38% average speedups on Blackwell GPUs. Three companies shipped agent security infrastructure on the same day. The clearest evidence yet that model speed stopped being the bottleneck a while ago: your CI pipeline and auth flows are eating the 47x you paid for.</p>
-<hr />
-<h2>The Real Bottleneck: Your Tool Stack, Not Your Model</h2>
-<p>Jeff Dean said at GTC that making a model infinitely fast yields only 2-3x end-to-end improvement. The remaining 47x vanishes into file I/O, compilation, test frameworks, and authentication flows calibrated for human speed. The METR study quantified it: 16 experienced developers got 19% <em>slower</em> with AI tools. Not because the models failed. The surrounding environment consumed every gain. Context-switching, re-reading output, tool interactions. The developers estimated they were 20% faster. They were wrong.</p>
-<p>Teams that rebuilt their toolchains tell a different story. <a href="https://natesnewsletter.substack.com/p/your-ai-is-50x-faster-your-tools">Per Nate Jones's analysis</a>: Google says 30%+ of new code is AI-generated. Boris Cherny (Claude Code creator) says ~80% of Claude Code's own code is written by Claude Code itself. Jellyfish's engineering metrics show PRs merged per engineer jumped from 1.36 to 2.9 as AI adoption went from 0% to 100%. Same models available to everyone. Radically different environments.</p>
-<p><strong>The three-layer rebuild happening now:</strong></p>
-<ul>
-<li>
-<p><strong>Layer 1: Faster existing tools.</strong> Rust/Go rewrites running 10-30x faster. Rolldown replaces Rollup. <a href="https://oxc.rs/">Oxc benchmarks at 30x Prettier</a>. TypeScript 7 is <a href="https://devblogs.microsoft.com/typescript/typescript-native-port/">rewriting in Go at 10x+</a>. Biome v2 ships its own type inference engine. As Lee Robinson noted: JavaScript accidentally built for the agent era by building for impatient humans. Python, Java, and enterprise middleware haven't started.</p>
-</li>
-<li>
-<p><strong>Layer 2: Agent-native primitives.</strong> Tools designed for consumers without eyes or hands. OpenAI's Hosted Shell: persistent containers where agents install dependencies once and never restart. BranchFS: copy-on-write filesystem branching at sub-350 microsecond latency vs. seconds for Docker/git stash. The Agent Primitives paper: multi-agent coordination through shared KV cache instead of text, 3-4x lower latency.</p>
-</li>
-<li>
-<p><strong>Layer 3: Primitives replace scaffolding.</strong> Every faster model makes your scaffolding overhead a <em>larger</em> share of total time. You lose ground by standing still. Aaron Levie's observation: every new model generation &quot;pinches&quot; your old scaffolding, forcing you to strip it down toward simpler, faster primitives.</p>
-</li>
-</ul>
-<p><strong>What to do Monday:</strong> Time your workflow. Measure model thinking vs. tool interaction. Divide 1 by the tool-interaction fraction. That number is your maximum AI speedup regardless of which model you use. Teams doing this discover they've been optimizing prompts while the binding constraint was a 4-minute CI pipeline. MCP-wrapping a slow API makes it agent-accessible, not agent-native. The gap between those two is where your speedup disappears.</p>
-<p><strong>Where this puts humans:</strong> The role shifts from in-the-loop to above-the-loop. Four traits that survive the compression of execution: (1) tool-using generalist who ships fast with agents, (2) infrastructure builder who keeps it running at 3 AM, (3) the relationship closer, because deals still need a human face, (4) the grown-up who says &quot;no&quot; when machine-speed optimization runs off a cliff. One practitioner captured it: &quot;90% of my skills became useless, but the remaining 10% became worth 1000x.&quot;</p>
+<p>Cursor used a multi-agent system to optimize 235 CUDA kernels and got 38% average speedups on Blackwell GPUs. Three companies shipped agent security infrastructure on the same day. Anthropic dropped Opus 4.7. And the JS toolchain's Rust rewrite era is now complete enough to benchmark: 10-30x faster across the board.</p>
 <hr />
 <h2>Coding Agents Go Low-Level</h2>
 <p><a href="https://cursor.com/blog/multi-agent-kernels">Cursor published a technical article</a> on using a multi-agent system to optimize 235 CUDA kernels for NVIDIA Blackwell GPUs. Average speedup: 38%. Some kernels exceeded 2x. The agents coordinated across kernel analysis, optimization strategy, and verification. Six months ago this was firmly &quot;senior systems engineer&quot; territory. It marks a clear shift from &quot;agents write app code&quot; to &quot;agents optimize compute infrastructure.&quot;</p>
@@ -286,6 +268,15 @@
 <hr />
 <h2>Quick Hits</h2>
 <ul>
+<li>
+<p><strong>Jeff Dean at GTC: making a model infinitely fast yields only 2-3x end-to-end improvement.</strong> The rest is consumed by file I/O, compilation, test frameworks, and auth flows calibrated for human speed. The model is rarely the binding constraint — the tool layer almost always is.</p>
+</li>
+<li>
+<p><strong>The METR randomized controlled trial found AI tools made 16 experienced developers 19% slower</strong> — while those developers estimated they were 20% faster. The environment (context-switching, re-reading output, tool interactions) consumed all gains. Not a model problem. An infrastructure problem.</p>
+</li>
+<li>
+<p><strong>JS toolchain Rust rewrites are now benchmarkable.</strong> <a href="https://oxc.rs/">Oxc at 30x Prettier</a>. <a href="https://devblogs.microsoft.com/typescript/typescript-native-port/">TypeScript 7 rewriting in Go at 10x+</a>. Rolldown replaces Rollup at 10-30x. Biome v2 ships its own type inference engine. JavaScript accidentally built for the agent era by building for impatient humans. Python, Java, and enterprise middleware haven't started.</p>
+</li>
 <li>
 <p><strong><a href="https://x.com/pbakaus/status/2044505743144194514">Impeccable 2</a>:</strong> CLI tool that scans your codebase and gives AI coding agents design taste. <code>npx impeccable detect</code> feeds structured design rules into your AI harness instead of fighting the model's bad defaults.</p>
 </li>
