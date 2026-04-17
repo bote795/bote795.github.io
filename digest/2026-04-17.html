@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 17, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 17, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-17.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 17, 2026 &middot; 9 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+<h1>AI Digest April 17, 2026</h1>
+<p>Factory raised $150M for a single coding agent platform while Chorus shipped open-source plugins stitching four competing agents into one workflow. The coding agent market forked into &quot;build one platform&quot; and &quot;compose many agents&quot; on the same day. Cerebras opened on NASDAQ at ~$25B carrying a $10B+ OpenAI compute contract, the largest non-NVIDIA AI infrastructure deal ever.</p>
+<hr />
+<h2>Deep Dives</h2>
+<h3>Factory's $150M proves coding agents are enterprise infrastructure</h3>
+<p>Khosla led at $1.5B valuation with Sequoia, Insight, and Blackstone. Revenue doubled month-over-month for six straight months across hundreds of thousands of daily users at NVIDIA, Adobe, MongoDB, and Palo Alto Networks. Factory's &quot;Droids&quot; swap foundation models underneath, meaning the durable value bet is on orchestration and enterprise integration, not the model. Largest dedicated AI coding agent round to date.</p>
+<h3>Your AI working context is professional capital you don't own</h3>
+<p>Six months of daily AI use builds four compounding layers: domain encoding (your stack, conventions), workflow calibration (how you want code reviewed), behavioral relationship (when your AI pushes back vs. executes), and demonstrated capability (what you've shipped). All four lock into platform accounts that vanish when you switch tools or jobs, which is why many enterprise AI users still run personal accounts alongside work tools: switching costs weeks, not minutes. Quick fix: run an extraction prompt asking your AI to describe how you work, export to Markdown, carry it forward. Thirty minutes eliminates the re-contextualization tax on every conversation after.</p>
+<hr />
+<h2>Coding Agents &amp; Tools</h2>
+<p><strong>Claude Code Routines trending hard (16.7K posts in 3 days).</strong> Anthropic redesigned the Claude Code desktop app and shipped Routines — configure once, run on a schedule, via API, or in response to events. Each routine gets its own API endpoint. Biggest practical shift: Claude Code moves from interactive tool to background infrastructure.</p>
+<p><strong>Chorus ships cross-agent interop.</strong> One install connects Claude Code, OpenCode, Gemini CLI, and Codex. Compose your stack instead of picking sides.</p>
+<p><strong>OpenAI Codex moves from assistant to workspace.</strong> Eleven new capabilities targeting &quot;the kinds of tasks you do on your computer,&quot; not just code. <a href="https://x.com/derrickcchoi/status/2044838476646859171">View</a></p>
+<p><strong>Multi-agent composition gaining ground.</strong> Developers composing multi-agent stacks with MCP v2.1 as glue (per The New Stack). Best agent per task complements single-agent releases for narrow domains.</p>
+<p><strong>Cq: shared knowledge bases for coding agents.</strong> Indexes fixes your team has already shipped so agents stop re-solving the same bugs. Eliminates duplicate work across parallel agent sessions. 225 HN points.</p>
+<p><strong>ProofShot: visual verification for AI-built UIs.</strong> Takes screenshots of agent-built interfaces and compares them against design specs, giving coding agents &quot;eyes&quot; to catch their own visual regressions. 161 HN points.</p>
+<p><strong>Optio: K8s-native ticket-to-PR orchestration.</strong> Routes Jira/Linear tickets directly to coding agents running in Kubernetes pods, handles parallelism and merge conflicts. 88 HN points.</p>
+<hr />
+<h2>Models &amp; Infrastructure</h2>
+<p><strong>Cerebras (CBRS) opens at ~$25B.</strong> WSE-3 claims 21x over NVIDIA DGX B200 at one-third the cost and power. The $10B+ multi-year OpenAI deal is the largest non-NVIDIA AI infrastructure contract ever.</p>
+<p><strong>Anthropic slowed Opus 4.7 release for safety review.</strong> Pip White (Anthropic EMEA head) told Bloomberg the company deliberately delays model releases to prioritize safe development, even at revenue cost. Mythos remains withheld. The safety-first posture is now an explicit business trade-off, not just messaging. (per Bloomberg, @ZettaWire)</p>
+<p><strong>Arcee AI ships Trinity: 400B parameters, Apache 2.0.</strong> Enterprise-grade, fully open. The 400B+ open-weight club now includes Arcee, GLM, and Qwen.</p>
+<p><strong>Grok 4.3 Beta enters Early Access.</strong> xAI's release cadence now outpaces every other lab.</p>
+<p><strong>Qwen 3.6-Plus targets agentic coding with 1M token context.</strong> Distinct from the 3.6-35B-A3B MoE model covered yesterday.</p>
+<p><strong>Netflix released its first public AI model.</strong> Details thin, precedent notable.</p>
+<p><strong>OpenAI ships GPT-Rosalind:</strong> biology-tuned LLM with public database access. First domain-specific model from OpenAI.</p>
+<hr />
+<h2>Enterprise</h2>
+<p><strong>Salesforce goes headless.</strong> Benioff: entire platform (Salesforce, Agentforce, Slack) exposed as APIs, MCP, and CLI. No browser. One VC: &quot;I'm surprised to see Salesforce throwing in the towel on owning the UI this early.&quot; The enterprise UI layer is being ceded to agents. <a href="https://x.com/Hadley/status/2045114613310636223">View</a></p>
+<p><strong>Intercom doubled engineering productivity in 9 months with AI.</strong> CTO documented the full implementation with charts, costs, and specifics. One of the first major SaaS companies publishing hard numbers on AI-driven productivity. <a href="https://x.com/destraynor/status/2044822503189569851">View</a></p>
+<p><strong>Databricks ships Unity AI Gateway.</strong> Governance and observability for agent tool calls, model routing, and policy enforcement.</p>
+<p><strong>Cloudflare Agents Week.</strong> Unified inference layer across 14+ model providers, new agent primitives. <a href="https://www.cloudflare.com/agents-week/updates/">Details</a></p>
+<hr />
+<h2>Open Source</h2>
+<p><strong>Google Gemma 4: Apache 2.0, natively multimodal.</strong> Codeforces ELO from 110 (Gemma 3) to 2150 (Gemma 4). Four variants, 2.3B to 31B, genuinely free for commercial use.</p>
+<p><strong>google/adk-python passes 8,200 stars.</strong> Google's Agent Development Kit becoming the default multi-agent orchestration framework.</p>
+<p><strong>Metabase v60 open-sources all AI features.</strong> Plug in your key, pick your model, pay only for tokens.</p>
+<p><strong>Anthropic donates $1.5M to Apache Foundation.</strong> First frontier lab donation to secure the open-source infrastructure AI runs on.</p>
+<p><strong>Chutes: open-source inference stack.</strong> &quot;How much of your AI provider's stack can you read?&quot;</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>&quot;The software never actually worked.&quot;</strong> Isenberg: SaaS was always 70% product, 30% the power user who made it behave. Agents replace the human patch. <a href="https://x.com/gregisenberg/status/2044749254010888551">View</a></li>
+<li><strong>LLMs are too agreeable.</strong> Isenberg calls it a billion-dollar gap: current AI defaults to validating your idea instead of pressure-testing it. The product opportunity is an AI that tells you your plan has holes before you ship. <a href="https://x.com/gregisenberg/status/2044840893299994640">View</a></li>
+<li><strong>Claude quality complaints gaining traction.</strong> Gergely Orosz (2.1K likes): &quot;Claude just keeps regressing. Now it refuses to do the work I pay for.&quot; Multiple practitioners report increased refusals and shorter outputs on Sonnet 4.6 specifically. <a href="https://x.com/GergelyOrosz/status/2044814640471810346">View</a></li>
+<li><strong>Opus 4.7 generates 500-particle Lottie animations from a single prompt.</strong> After Effects work now runs through Lottie Creator MCP. <a href="https://x.com/reallynattu/status/2044954579377492438">View</a></li>
+<li><strong>Anthropic's &quot;Building Effective Agents&quot; author dropped a 14-minute masterclass.</strong> 2.8K bookmarks. <a href="https://x.com/DataChaz/status/2045041696778440973">View</a></li>
+<li><strong>Jack Dorsey endorses Goose.</strong> &quot;Goose is all you need.&quot; <a href="https://x.com/jack/status/2044883094461698277">View</a></li>
+<li><strong>Anthropic CPO exits Figma's board</strong> after reports of a competing product. Signal: Anthropic entering design tools.</li>
+<li><strong>Karpathy's LLM Knowledge Base pattern</strong> (still circulating, 102K bookmarks): compile raw sources into a maintained Obsidian wiki. Simple index files beat RAG at ~400K words.</li>
+<li><strong>Claire Vo's AI workshop playbook:</strong> custom student portal, AI-powered assessments, agent-drafted slides, Midjourney art. Replicable framework for AI-native courses. <a href="https://x.com/clairevo/status/2044993056655696257">View</a></li>
+<li><strong>Qwen 3.6-35B-A3B on a laptop <a href="https://simonwillison.net/2026/Apr/16/qwen-beats-opus/#atom-everything">beat Opus 4.7 at drawing pelicans</a>.</strong> Small models punching up. (Simon Willison)</li>
+<li><strong>Parcae (Together AI):</strong> first stable looped language model architecture. Transformer quality at half the parameters. <a href="https://www.together.ai/blog/parcae">Read more</a></li>
+<li><strong><a href="https://github.com/heygen-com/hyperframes">Hyperframes</a>:</strong> open-source video rendering from HeyGen with agent-first design.</li>
+<li><strong>PeonPing:</strong> Warcraft-style sound effects for coding agents — &quot;Job's done&quot; when a task completes. Peak dev culture.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>Claude Opus 4.7 is INSANE AI with Amit</h3>
+<p><a href="https://www.youtube.com/watch?v=tOhIPU7dnuI">Watch </a></p>
+<p>Amit covers Opus 4.7's shift from supervised one-to-one coding to one-to-many delegation: spawn multiple autonomous agents in parallel and walk away. Visual capacity jumped from 54.5% to 98.5% (reads dense diagrams and small tooltips from screenshots). Loop resistance went from 58% to 70%, with self-evaluation on failure instead of burning tokens retrying. Rakuten's benchmark showed 3x more tasks closed vs. 4.6. The practical warning: 4.7 follows instructions literally, so prompts tuned for 4.6's &quot;guess what I meant&quot; behavior need reworking.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>One-to-many delegation is the workflow shift. Give tasks, walk away, review results.</li>
+<li>Opus 4.7 at low-effort matches Opus 4.6 at medium-effort in output quality — same token pricing ($15/M in, $75/M out), lower effective cost per result.</li>
+<li>Token budgeting (beta) caps spend per autonomous task. Critical for cost control.</li>
+<li>Sean Ward gave one prompt (&quot;Build me a TTS engine in Rust&quot;) and 4.7 built the neural model, kernels, browser demo, and tests from scratch.</li>
+<li>Project Glasswig ships automated malicious request detection for enterprise deployments.</li>
+</ul>
+<h3>Google Gemma 4 Fireship</h3>
+<p><em>(1.26M views, 43K likes)</em></p>
+<p>Fireship argues Google &quot;casually disrupted the open-source AI narrative&quot; by shipping Gemma 4 under Apache 2.0 with zero restrictions. The headline number: Codeforces ELO from 110 (Gemma 3) to 2150 (Gemma 4), the largest single-generation coding jump in any open model family. Four variants from 2.3B to 31B, all natively multimodal. Google's play: own the open tier while competitors charge.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Apache 2.0 with zero usage restrictions. Genuinely free for commercial use.</li>
+<li>110 2150 Codeforces ELO. 20x coding improvement in one generation.</li>
+<li>Natively multimodal across all four variants.</li>
+<li>2.3B runs on edge devices. 31B handles production workloads.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://github.com/NateBJones-Projects/OB1/tree/main/recipes/bring-your-own-context">Bring Your Own Context</a></strong> Extraction prompts and structured Markdown files that make your AI working context portable across clients via MCP. Run it today.</li>
+<li><strong><a href="https://www.timdavis.com/blog/probabilistic-engineering-and-the-24-7-employee">Probabilistic Engineering and the 24-7 Employee</a></strong> 25-minute read on the shift from deterministic to probabilistic engineering. When AI writes your code, testing and reviewing it looks fundamentally different.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
