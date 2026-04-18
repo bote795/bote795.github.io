@@ -246,14 +246,14 @@
 			</header>
 
 			<article class="content">
-				<h1>AI Daily Digest April 18, 2026</h1>
+<h1>AI Daily Digest April 18, 2026</h1>
 <p>Codex stopped being a coding tool. OpenAI shipped full Mac desktop control, background agents, 90+ plugins, and scheduled multi-day automation turning it into a general-purpose desktop agent competing head-to-head with Perplexity's new $200/month &quot;Personal Computer.&quot; Meanwhile, the self-improving agent pattern graduated from research curiosity to production playbook: one editable file, one metric, $300 in compute, and 900 experiments run overnight while you sleep.</p>
 <hr />
 <h2>Codex Is a Desktop Automation Platform Now</h2>
-<p>Forget &quot;AI coding assistant.&quot; Codex now operates your Mac with its own cursor in the background, runs multiple agents in parallel without touching your workflow, remembers preferences across sessions, and schedules automated work spanning days or weeks. It ships a built-in browser (Atlas), gpt-image-1.5 integration, and 90+ plugins as the new extensibility layer. With 3M+ weekly developers already on the platform, OpenAI just repositioned Codex from &quot;coding copilot&quot; to &quot;desktop operating agent&quot; in direct competition with Anthropic's computer use.</p>
+<p>Forget &quot;AI coding assistant.&quot; Codex now operates your Mac with its own cursor in the background, runs multiple agents in parallel without touching your workflow, remembers preferences across sessions, and schedules automated work spanning days or weeks. It ships a built-in browser (Atlas), gpt-image-1.5 integration, and 90+ plugins as the new extensibility layer. OpenAI just repositioned Codex from &quot;coding copilot&quot; to &quot;desktop operating agent&quot; in direct competition with Anthropic's computer use.</p>
 <p><strong>Perplexity's angle is adjacent but distinct.</strong> Their <a href="https://x.com/AravSrinivas/status/2044803488727830568">Personal Computer</a> is a $200/month always-on agent running 24/7 on a Mac mini. It works across local files, Gmail, Slack, GitHub, iMessage, and Calendar without waiting for prompts. Start tasks from your iPhone while the agent operates on your desktop. Recommended hardware: $599 Mac mini. The pricing signals the audience: power users who'd rather pay than build their own agent infrastructure. The builder question: do you buy this, or build your own with Hermes + Ollama for zero API cost?</p>
 <h2>The Self-Improving Agent Pattern Has a Playbook</h2>
-<p>The Karpathy Loop keeps proving out. The original run: one human, 630 lines of code, 700 experiments in two days, 20 genuine improvements, 11% training speedup. SkyPilot scaled it to 910 experiments on 16 GPUs for under $300. The pattern is deceptively simple: one editable file, one metric, one fixed time budget. The agent proposes an edit, runs a short experiment, checks the metric, commits or reverts. Repeat hundreds of times overnight.</p>
+<p>The Karpathy Loop keeps proving out. The original run: one human, 630 lines of code, 700 experiments in two days, 20 genuine improvements, 11% training speedup. SkyPilot reportedly scaled it to 910 experiments on 16 GPUs for under $300. The pattern is deceptively simple: one editable file, one metric, one fixed time budget. The agent proposes an edit, runs a short experiment, checks the metric, commits or reverts. Repeat hundreds of times overnight.</p>
 <p>The pattern just jumped from optimizing training code to optimizing agent harnesses. A meta-agent now rewrites the task agent's prompts, tools, routing, and orchestration logic. Three findings matter for builders:</p>
 <ul>
 <li><strong>Meta-agent and task-agent must be separate.</strong> A single agent improving itself does not work. Being good at a domain and being good at <em>improving</em> at a domain are different skills. The split lets each specialize.</li>
@@ -297,7 +297,7 @@
 <h2>Videos</h2>
 <h3>Scaling Global Organizations in the Age of AI Sarah Guo Bill McDermott (ServiceNow CEO)</h3>
 <p><strong>Channel:</strong> Sarah Guo | <a href="https://www.youtube.com/watch?v=tNNFJa5pUEg">Watch </a></p>
-<p>McDermott makes the case that the &quot;SaaS apocalypse&quot; narrative misses a core truth: LLMs can advise in milliseconds, but they do not close the case. Enterprise workflows require traversing multiple departments, databases, and compliance checks to actually resolve issues. ServiceNow calculated that replicating one of their apps with an LLM costs 10x more when you factor in rebuilding, human capital opportunity cost, GPU/token costs, and lost accumulated context. Only 11% of companies globally have moved past the AI experimentation phase into mainstream agent deployment.</p>
+<p>McDermott makes the case that the &quot;SaaS apocalypse&quot; narrative misses a core truth: LLMs can advise in milliseconds, but they do not close the case. Enterprise workflows require traversing multiple departments, databases, and compliance checks to actually resolve issues. ServiceNow calculated that replicating one of their apps with an LLM costs 10x more when you factor in rebuilding, human capital opportunity cost, GPU/token costs, and lost accumulated context. McDermott estimates only 11% of companies globally have moved past the AI experimentation phase into mainstream agent deployment.</p>
 <p><strong>Key takeaways:</strong></p>
 <ul>
 <li><strong>&quot;AI thinks, workflow acts.&quot;</strong> LLMs advise. Platforms execute. The distinction determines where agents fit vs. where workflow platforms remain necessary.</li>
@@ -316,110 +316,43 @@
 <li><strong>macOS automation permissions required</strong> (System Settings &gt; Privacy &amp; Security &gt; Automation for terminal to control Messages).</li>
 <li><strong>The real value: async Claude Code usage becomes practical.</strong> Start a 10-minute code review, get texted when it is done instead of watching the terminal.</li>
 </ul>
+<h3>Claude Design — Everything You Can Build in 16 Minutes (5 Real Use Cases)</h3>
+<p><strong>Channel:</strong> Peter Yang | <a href="https://www.youtube.com/watch?v=WMnk1LFBMqA">Watch</a></p>
+<p>Peter Yang walks through five real use cases for Claude Design: animated videos, pitch decks, landing pages, mobile apps, and design systems. His key insight: code is now the universal medium for knowledge work. Videos, slides, websites, and apps are all HTML/CSS/JS under the hood, making everything editable. His pro tip: generate an animated video first, then convert to slides — the results are dramatically more engaging than generating slides directly.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>90/10 rule for AI design.</strong> AI generates the first 90%, but the last 10% still requires manual human tweaks. Good AI design tools must support both generation and manual editing.</li>
+<li><strong>Claude Design has built-in self-correction.</strong> The tool automatically takes screenshots of what it generates and fixes issues without being told.</li>
+<li><strong>Anthropic is going after the full knowledge stack.</strong> Claude Code + Claude Design + Claude Co-Work = direct competition with Figma, Google Workspace, Microsoft Office, Replit, Lovable, and Gamma simultaneously.</li>
+<li><strong>Solo builders are the biggest winners.</strong> AI is now good enough to serve as an entry-level designer and engineer, enabling product-minded people to create whatever they want without a team.</li>
+<li><strong>Design systems are token-expensive.</strong> Creating a full design system used nearly all available tokens and took ~10 minutes. Worth it only with a real need and existing system to reference.</li>
+</ul>
+<h3>Claude Design Is Here (I Tried It First)</h3>
+<p><strong>Channel:</strong> AI with Amit | <a href="https://www.youtube.com/watch?v=Xsa26FdPagw">Watch</a></p>
+<p>Amit does a live unboxing of Claude Design, testing it by redesigning his personal resume website and creating a slide deck from an Anthropic blog post. The results significantly outperformed his existing site and Notebook LM-generated slides on the first attempt with a single prompt.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>One-shot website redesign works.</strong> A single prompt (&quot;use this GitHub repo and rebuild with modern UI&quot;) produced a significantly better site than the original.</li>
+<li><strong>GitHub integration is read-only.</strong> Claude Design can import from repos to understand your codebase, but cannot push changes back — you download and deploy manually.</li>
+<li><strong>Example templates are composable.</strong> Grab interactive effects from the example gallery (iridescent cards, particle effects) and apply them to specific sections of your own project.</li>
+<li><strong>Claude Design beats Notebook LM for slides.</strong> The slide deck from the same blog post content was significantly more polished.</li>
+<li><strong>Pill-format clarifying questions save time.</strong> Claude Design uses pill-based Q&amp;A selection instead of free-text — worth adopting in your own agent workflows.</li>
+</ul>
+<h3>I Tested Seedance 2.0. Wow.</h3>
+<p><strong>Channel:</strong> Greg Isenberg | <a href="https://www.youtube.com/watch?v=Uz1ZSxSYkB8">Watch</a></p>
+<p>Greg Isenberg interviews Serio, founder of Enhancer, about Seedance V2 — the latest AI video generation model. The key differentiator: multi-input generation combining up to 2 images, 2 videos, and audio into a single output. The real power is video editing, not generation — replacing characters, changing outfits, swapping backgrounds, translating languages while preserving original motion.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>It's a video editor, not just a generator.</strong> Replace characters, change outfits, swap backgrounds, translate languages — all while preserving the original motion and composition.</li>
+<li><strong>Ad localization is the killer use case.</strong> Replace characters and translate speech simultaneously — same motion, different language and model. Near-zero marginal cost for A/B testing ads across demographics.</li>
+<li><strong>Claude Opus 4.6 is the recommended prompt optimizer.</strong> Serio specifically recommends Claude over GPT for optimizing video generation prompts.</li>
+<li><strong>No single model rules all use cases.</strong> Seedance 2.0 is the best daily driver, but Kling 3 wins for cinematic feel and fine-tuned models for specific aesthetics.</li>
+<li><strong>Source reference quality is everything.</strong> Output quality is directly tied to input reference image quality — start with a clear vision and match it before generating.</li>
+</ul>
 <hr />
 <h2>Worth Your Time</h2>
 <ul>
-<li><strong><a href="https://www.tensorzero.com/blog/stop-comparing-price-per-million-tokens-the-hidden-llm-api-costs/">Stop comparing price per million tokens</a></strong> TensorZero breaks down why token pricing comparisons are misleading when tokenizers differ this much. Short, data-backed, changes how you evaluate LLM costs.</li>
 <li><strong><a href="https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/#atom-everything">Simon Willison on agentic engineering patterns</a></strong> A deceptively short prompt that got significant work done in a single shot. The craft is in how you frame the task for agents.</li>
 <li><strong><a href="https://developers.openai.com/cookbook/examples/agents_sdk/sandboxed-code-migration/sandboxed_code_migration_agent">Sandboxed agents for codebase migration</a></strong> OpenAI's cookbook on using isolated agents to modernize large codebases. Agents operate on isolated tasks, validate changes, return auditable patches. The orchestration pattern is the real takeaway.</li>
 </ul>
-			</article>
-
-			<footer class="footer">
-				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
-			</footer>
-		</div>
-
-		<script>
-		(function() {
-			if (!('speechSynthesis' in window)) return;
-			document.getElementById('tts-controls').style.display = 'block';
-		})();
-
-		var ttsState = 'stopped'; // stopped, playing, paused
-		var sections = [];
-		var currentSection = 0;
-
-		function getSections() {
-			if (sections.length > 0) return sections;
-			var article = document.querySelector('.content');
-			var children = article.children;
-			var current = '';
-
-			for (var i = 0; i < children.length; i++) {
-				var el = children[i];
-				var tag = el.tagName;
-				// Split on H2/HR — each becomes a new section
-				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
-					sections.push(current.trim());
-					current = '';
-				}
-				if (tag !== 'HR') {
-					current += el.textContent + ' ';
-				}
-			}
-			if (current.trim()) sections.push(current.trim());
-			return sections;
-		}
-
-		function updateUI(state, sectionIdx) {
-			var btn = document.getElementById('tts-btn');
-			var icon = document.getElementById('tts-icon');
-			var label = document.getElementById('tts-label');
-			var progress = document.getElementById('tts-progress');
-
-			if (state === 'playing') {
-				btn.classList.add('playing');
-				icon.innerHTML = '&#10074;&#10074;';
-				label.textContent = 'Pause';
-				progress.style.display = 'block';
-				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
-			} else if (state === 'paused') {
-				btn.classList.add('playing');
-				icon.innerHTML = '&#9654;';
-				label.textContent = 'Resume';
-			} else {
-				btn.classList.remove('playing');
-				icon.innerHTML = '&#9654;';
-				label.textContent = 'Listen';
-				progress.style.display = 'none';
-			}
-			ttsState = state;
-		}
-
-		function speakSection(idx) {
-			var sects = getSections();
-			if (idx >= sects.length) {
-				updateUI('stopped', 0);
-				currentSection = 0;
-				return;
-			}
-			currentSection = idx;
-			var utterance = new SpeechSynthesisUtterance(sects[idx]);
-			utterance.rate = 1.05;
-			utterance.onend = function() {
-				if (ttsState === 'playing') {
-					speakSection(idx + 1);
-				}
-			};
-			utterance.onstart = function() {
-				updateUI('playing', idx);
-			};
-			speechSynthesis.speak(utterance);
-		}
-
-		function toggleTTS() {
-			if (ttsState === 'stopped') {
-				speakSection(currentSection);
-			} else if (ttsState === 'playing') {
-				speechSynthesis.pause();
-				updateUI('paused', currentSection);
-			} else if (ttsState === 'paused') {
-				speechSynthesis.resume();
-				updateUI('playing', currentSection);
-			}
-		}
-		</script>
-
-	</body>
-</html>
+</article></main></body></html>
