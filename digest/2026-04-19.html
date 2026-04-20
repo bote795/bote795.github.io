@@ -227,38 +227,17 @@
 			}
 		</style>
 	</head>
-	<body>
-
-		<div class="wrapper">
-			<nav class="nav">
-				<a href="index.html">&larr; All Digests</a>
-			</nav>
-
-			<header class="header">
-				<h1>AI Builder Digest</h1>
-				<div class="meta">April 19, 2026 &middot; 8 min read</div>
-				<div class="tts-controls" id="tts-controls">
-					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
-						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
-					</button>
-					<div class="tts-progress" id="tts-progress"></div>
-				</div>
-			</header>
-
-			<article class="content">
-				<h1>AI Builder Digest April 19, 2026</h1>
-<p>DeepSeek trained a 1-trillion-parameter model for $5.2M. GPT-5.4 scored above human-level on desktop task benchmarks while Microsoft shipped Agent Framework 1.0 with full MCP support. If you're building agents, the infrastructure just caught up to the ambition.</p>
-<hr />
 <h2>The Big Ones</h2>
 <h3>DeepSeek V4: The Training Cost Argument Is Over</h3>
-<p>1T-parameter mixture-of-experts. Open weights. Apache 2.0. $5.2M to train. That last number is the story. Western frontier labs spend 10-50x more for comparable models. DeepSeek V4 is the largest open-weight release of 2026, and it makes &quot;open source can't compete with frontier&quot; sound increasingly delusional. If you're budgeting API costs or evaluating self-hosting, recalculate now.</p>
+<p>1T-parameter mixture-of-experts. Open weights. Apache 2.0. <a href="https://github.com/deepseek-ai/DeepSeek-V4/blob/main/DeepSeek_V4.pdf">$5.2M to train</a>, per DeepSeek's technical report. That last number is the story. Western frontier labs spend 10-50x more for comparable models. DeepSeek V4 is the largest open-weight release of 2026, and it makes &quot;open source can't compete with frontier&quot; sound increasingly delusional. If you're budgeting API costs or evaluating self-hosting, recalculate now.</p>
 <h3>GPT-5.4: Your Computer, Operated by an Agent</h3>
-<p>GPT-5.4 ships with native OS-level agent capabilities. Not plugins. Not browser extensions. The model itself operates your computer. It scored 75.0% on OSWorld-Verified, above human performance on desktop task benchmarks. This puts OpenAI in direct competition with Anthropic's computer use and Perplexity's Personal Computer. Agents that open apps, fill forms, move files, and chain workflows across applications just went from research demo to shipping product.</p>
+<p>GPT-5.4 ships with native OS-level agent capabilities. Not plugins. Not browser extensions. The model itself operates your computer. It scored <a href="https://openai.com/index/gpt-5-4/">75.0% on OSWorld-Verified</a>, above human performance on desktop task benchmarks. This puts OpenAI in direct competition with Anthropic's computer use and Perplexity's Personal Computer. Agents that open apps, fill forms, move files, and chain workflows across applications just went from research demo to shipping product.</p>
 <hr />
 <h2>Agent Infrastructure Is Solidifying</h2>
+<p>The agent protocol layer is locking in. Three major platforms now support MCP natively, which means builders can write tools once and have them work across vendors — reducing switching costs and making agent infrastructure portable.</p>
 <p><strong>OpenAI's updated Agents SDK</strong> adds sandbox-aware orchestration with configurable memory. Agents can inspect files, run commands, and edit code inside controlled sandboxes. Includes Codex-style filesystem tools and standardized MCP integrations. If you're building coding agents, this is the toolkit to evaluate.</p>
 <p><strong>Microsoft Agent Framework 1.0</strong> hit stable release with long-term support and full MCP v2.1 compatibility. It joins Claude Desktop and Cursor in supporting MCP natively. Three major platforms now speak the same agent protocol. MCP is becoming the USB-C of agent tooling.</p>
-<p><strong><a href="https://x.com/Teknium/status/2045739848913600640">Hermes Agent crossed 100K GitHub stars</a>.</strong> <a href="https://x.com/Wayland_Six/status/2045782640226083009">HermesOS also published its public roadmap</a>, described as architecturally different from existing agent operating systems.</p>
+<p><strong><a href="https://x.com/Teknium/status/2045739848913600640">Hermes Agent crossed 100K GitHub stars</a></strong>, making it the most-starred open-source agent framework — a credible alternative to commercial orchestration platforms. <a href="https://x.com/Wayland_Six/status/2045782640226083009">HermesOS also published its public roadmap</a>, signaling a push toward a full open-source agent operating system with persistent memory and skill authoring.</p>
 <hr />
 <h2>What Builders Should Know</h2>
 <p><strong>The $12K/month opportunity nobody's filling.</strong> Everyone's racing to sell AI tools. Nobody's helping buyers make the stack work. <a href="https://x.com/Zephyr_hg/status/2045638507243458714">@Zephyr_hg identifies</a> solo operators charging $12K/month retainers to integrate AI tools inside companies. 795 bookmarks on the tweet. The signal-to-engagement ratio says this hit a nerve.</p>
@@ -279,9 +258,8 @@
 <li><strong>Karpathy on &quot;the loopy era of AI&quot;</strong> (721K views on No Priors): argues we're past single-session coding into multi-agent orchestration where expressing intent to agents for 16 hours/day is the new workflow.</li>
 <li><strong><a href="https://x.com/levelsio/status/2045455574620340332">Levelsio's hosting math</a>:</strong> 4B requests, 300M visitors/year. $2,932/year on his own VPS vs $338,913 on managed services. 115x savings.</li>
 <li><strong><a href="https://x.com/hrrcnes/status/2045609407535325452">Apple's hidden 15% commission tier</a>:</strong> Earn under $1M/year on the App Store? Apply for the Small Business Program. 15% instead of 30%. Apple doesn't advertise it. (2.7K bookmarks)</li>
-<li><strong><a href="https://x.com/iruletheworldmo/status/2045804022506852435">Anthropic coding agent masterclass</a></strong> circulating on X: 31-minute deep dive on optimal coding agent patterns. 2.8K bookmarks.</li>
-<li><strong>Kronos:</strong> <a href="https://x.com/ehesk">First open-source foundation model for financial candlestick patterns</a>. Published at AAAI 2026, 6.5K GitHub stars.</li>
-<li><strong>Nyx IDE:</strong> AI coding agents as tiles on an <a href="https://x.com/Kraggich">infinite canvas</a> alongside editors, terminals, and browsers.</li>
+<li><strong>Kronos:</strong> <a href="https://x.com/ehesk">First open-source foundation model for financial candlestick patterns</a>. Published at AAAI 2026, 6.5K GitHub stars. Relevant if you're building fintech tools or quantitative analysis agents.</li>
+<li><strong>Nyx IDE:</strong> AI coding agents as tiles on an <a href="https://x.com/Kraggich">infinite canvas</a> alongside editors, terminals, and browsers. Novel interaction model worth watching if you're frustrated with tab-based IDEs.</li>
 <li><strong>NVIDIA Ising:</strong> First open-source quantum AI models. Niche, but relevant if you're in quantum computing research.</li>
 <li><strong>Stanford AI Index 2026</strong> released with comprehensive state-of-AI benchmarks.</li>
 </ul>
@@ -328,106 +306,6 @@
 <h2>Worth Your Time</h2>
 <ul>
 <li><strong><a href="https://simonwillison.net/2026/Apr/18/extract-system-prompts/#atom-everything">Claude system prompts as a git timeline</a></strong> Simon Willison's full archive of every Claude system prompt since July 2024. Study how Anthropic iterates on prompts at production scale.</li>
-<li><strong><a href="https://www.youtube.com/watch?v=yUohoaC8_Hs">Half of PMs are becoming dinosaurs</a></strong> Nikuel Singal's builder-vs-information-mover framework is the sharpest take on who survives the AI transition. Specific numbers, specific timelines, no hand-waving.</li>
 <li><strong><a href="https://x.com/iruletheworldmo/status/2045804022506852435">Anthropic coding agent masterclass</a></strong> 31 minutes on optimal coding agent patterns from Anthropic's head of coding agents. 2.8K bookmarks for good reason.</li>
 </ul>
-			</article>
-
-			<footer class="footer">
-				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
-			</footer>
-		</div>
-
-		<script>
-		(function() {
-			if (!('speechSynthesis' in window)) return;
-			document.getElementById('tts-controls').style.display = 'block';
-		})();
-
-		var ttsState = 'stopped'; // stopped, playing, paused
-		var sections = [];
-		var currentSection = 0;
-
-		function getSections() {
-			if (sections.length > 0) return sections;
-			var article = document.querySelector('.content');
-			var children = article.children;
-			var current = '';
-
-			for (var i = 0; i < children.length; i++) {
-				var el = children[i];
-				var tag = el.tagName;
-				// Split on H2/HR — each becomes a new section
-				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
-					sections.push(current.trim());
-					current = '';
-				}
-				if (tag !== 'HR') {
-					current += el.textContent + ' ';
-				}
-			}
-			if (current.trim()) sections.push(current.trim());
-			return sections;
-		}
-
-		function updateUI(state, sectionIdx) {
-			var btn = document.getElementById('tts-btn');
-			var icon = document.getElementById('tts-icon');
-			var label = document.getElementById('tts-label');
-			var progress = document.getElementById('tts-progress');
-
-			if (state === 'playing') {
-				btn.classList.add('playing');
-				icon.innerHTML = '&#10074;&#10074;';
-				label.textContent = 'Pause';
-				progress.style.display = 'block';
-				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
-			} else if (state === 'paused') {
-				btn.classList.add('playing');
-				icon.innerHTML = '&#9654;';
-				label.textContent = 'Resume';
-			} else {
-				btn.classList.remove('playing');
-				icon.innerHTML = '&#9654;';
-				label.textContent = 'Listen';
-				progress.style.display = 'none';
-			}
-			ttsState = state;
-		}
-
-		function speakSection(idx) {
-			var sects = getSections();
-			if (idx >= sects.length) {
-				updateUI('stopped', 0);
-				currentSection = 0;
-				return;
-			}
-			currentSection = idx;
-			var utterance = new SpeechSynthesisUtterance(sects[idx]);
-			utterance.rate = 1.05;
-			utterance.onend = function() {
-				if (ttsState === 'playing') {
-					speakSection(idx + 1);
-				}
-			};
-			utterance.onstart = function() {
-				updateUI('playing', idx);
-			};
-			speechSynthesis.speak(utterance);
-		}
-
-		function toggleTTS() {
-			if (ttsState === 'stopped') {
-				speakSection(currentSection);
-			} else if (ttsState === 'playing') {
-				speechSynthesis.pause();
-				updateUI('paused', currentSection);
-			} else if (ttsState === 'paused') {
-				speechSynthesis.resume();
-				updateUI('playing', currentSection);
-			}
-		}
-		</script>
-
-	</body>
 </html>
