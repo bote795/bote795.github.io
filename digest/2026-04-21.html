@@ -1,0 +1,57 @@
+<h1>Daily Digest for Builders — April 21, 2026</h1>
+<p>Amazon just wrote a $25 billion check to Anthropic. Cursor is printing $2 billion in ARR. And a researcher just demonstrated a single prompt injection that hijacks Claude Code, Gemini CLI, and GitHub Copilot simultaneously. The money is flowing faster than the security is hardening — and that gap is the story of the week.</p>
+<hr />
+<h2>Deep Dives</h2>
+<h3>Amazon Bets $25B on Anthropic — And $50B on OpenAI</h3>
+<p>Amazon's latest $25 billion investment brings its total Anthropic commitment to $33 billion, at a $380 billion valuation. Anthropic commits to spending $100B+ over the next decade on AWS infrastructure using Trainium chips. Two months ago, Amazon invested up to $50B in OpenAI. The message: the hyperscalers are hedging across both frontier labs, and the compute build-out is accelerating faster than most observers expected. Anthropic cited &quot;inevitable strain&quot; from surging enterprise and consumer demand for Claude.</p>
+<h3>&quot;Comment and Control&quot; — One Prompt Injection, Three Coding Agents Down</h3>
+<p>A security researcher demonstrated a single prompt injection pattern that hijacks Claude Code, Gemini CLI, and GitHub Copilot Agent simultaneously. The attack vector: GitHub comments, PR titles, and issue bodies that agents read in the same runtime holding API keys and tokens. Anthropic classified it CVSS 9.4 Critical ($100 bounty). Google paid $1,337. GitHub awarded $500. The architectural flaw is shared across all three: powerful tools and secrets share a runtime with untrusted user input. If you're running coding agents against public repos, audit what they can read and what credentials they hold.</p>
+<hr />
+<h2>In Brief</h2>
+<p><strong>Cursor raises $2B at $50B valuation.</strong> Revenue hit $2B ARR — up from $100M just 15 months ago. Over 1 million daily active users. Projected to exceed $6B by year-end. Thrive and Andreessen Horowitz leading, Nvidia investing strategically.</p>
+<p><strong>Gemma 4 is Google's strongest open-source play.</strong> Apache 2.0 license, four sizes (2B/4B/26B/31B). The 31B model ranks #3 globally among open models.</p>
+<p><strong>Opus 4.7 is smarter but quietly 35% more expensive.</strong> New tokenizer inflates the same text by 1.29x–1.47x. Adaptive thinking burns output tokens faster. Coding benchmarks jumped (SWE-bench 80.8% → 87.6%) but web research and terminal tasks regressed. Your prompts need rewriting, not lengthening — 4.7 does exactly what you ask with zero free inference.</p>
+<p><strong>Google employees say the company is falling behind on AI coding agents.</strong> Bloomberg: ~20% of engineers are &quot;AI refusers,&quot; 60% use basic chat workflows, only 20% use full agentic tools.</p>
+<p><strong>Anthropic re-enables OpenClaw usage.</strong> Dan Shipper and others celebrate the reversal.</p>
+<p><strong>The West forgot how to make things. Now it's forgetting how to code.</strong> Junior hiring is dropping (62% of CS programs saw enrollment decline), AI made experienced devs 19% slower on real tasks. If the &quot;AI fills the gap&quot; bet fails, you have no senior pipeline.</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li>
+<p><strong>Sam Altman teases announcement at 12 PM PT today.</strong> GPT-5.5 &quot;Spud&quot; and Images-v2 spotted in beta testing.</p>
+</li>
+<li>
+<p><strong>Apple CEO transition: John Ternus succeeds Tim Cook September 1.</strong></p>
+</li>
+<li>
+<p><strong>CrabTrap — LLM-as-a-judge HTTP proxy for production agents.</strong> Pedro Franceschi (Brex): sits between agents and APIs to enforce safety constraints. (<a href="https://x.com/pedroh96/status/2046605307372093932">View</a>)</p>
+</li>
+<li>
+<p><strong>Intercom 3x'd R&amp;D productivity in 16 months.</strong> Originally committed to 2x, hit it with 3 months to spare. Actual dashboards and metrics. (<a href="https://x.com/clairevo/status/2046292426793582913">View</a>)</p>
+</li>
+<li>
+<p><strong>Two organizational architectures for agents.</strong> Dan Shipper: per-person agents vs one super-agent. Specialization vs consistency. (<a href="https://x.com/danshipper/status/2046616336302752163">View</a>)</p>
+</li>
+<li>
+<p><strong>Codex hits 4M active users</strong> — less than 2 weeks after hitting 3M.</p>
+</li>
+<li>
+<p><strong>AI agent costs rising exponentially alongside capabilities.</strong> Toby Ord analysis.</p>
+</li>
+<li>
+<p><strong>Gartner's first AI agent report: 42% plan deployment, 40% expected to fail.</strong></p>
+</li>
+<li>
+<p><strong>Claude does CAD via Onshape MCP.</strong> Built a 4-part monitor arm from a sketch. (<a href="https://x.com/Reshef_/status/2046298277268934852">View</a>)</p>
+</li>
+<li>
+<p><strong>Kami open-sourced</strong> — design system for AI-native docs. (<a href="https://github.com/tw93/kami">GitHub</a>)</p>
+</li>
+<li>
+<p><strong>Levelsio replaced all Chrome extensions in 1.5 hours</strong> for security. (<a href="https://x.com/levelsio/status/2046338881407095290">View</a>)</p>
+</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<p><strong><a href="https://natesnewsletter.substack.com/p/opus-47-is-smarter-more-literal-and">Opus 4.7 is smarter, more literal, and quietly more expensive</a></strong> Nate Jones breaks down the real costs: 35% token inflation, web/terminal regressions, and why your prompts need rewriting. The most practical Opus 4.7 migration guide available.</p>
+<p><strong><a href="https://techtrenches.dev/p/the-west-forgot-how-to-make-things">The West Forgot How to Make Things</a></strong> The defense manufacturing parallel to AI replacing junior developers. Stinger missiles, submarine design, Fogbank nuclear material — knowledge that died with the people who held it.</p>
