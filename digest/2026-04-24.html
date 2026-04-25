@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">April 24, 2026 &middot; 8 min read</div>
+				<div class="meta">April 24, 2026 &middot; 11 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -250,13 +250,13 @@
 <p>DeepSeek V4-Pro (1.6T parameters, open weights) and GPT-5.5 shipped in the same 24-hour window. Anthropic spent the day confirming Claude Code had three real bugs behind a month of quality complaints. Raw model capability is outrunning the tooling that makes it usable.</p>
 <hr />
 <h2>GPT-5.5: The Concrete Receipts</h2>
-<p>Ethan Mollick's evals with early access tell the story. GPT-5.5 Pro completed a 3D harbor simulation in 20 min (GPT-5.4 Pro took 33) and was the only model to simulate actual town evolution rather than swapping static buildings. Four prompts produced a near-PhD paper with real citations and sound statistics. Mollick's critique: the hypothesis wasn't interesting, not that the execution was wrong. One prompt produced a 101-page illustrated RPG with playtested rules. His framework for tracking progress: evaluate <strong>models</strong> (capability), <strong>apps</strong> (ChatGPT, Codex, Claude Code), and <strong>harnesses</strong> (image gen, code execution, web research) as three separate layers. GPT-5.5 advanced all three. (<a href="https://www.oneusefulthing.org/p/sign-of-the-future-gpt-55">Full analysis with interactive model comparison</a>)</p>
+<p>Ethan Mollick's evals with early access tell the story. GPT-5.5 Pro completed a 3D harbor simulation in 20 min (GPT-5.4 Pro took 33) and was the only model to simulate actual town evolution rather than swapping static buildings. Four prompts produced a near-PhD paper with real citations and sound statistics. Mollick's critique: the hypothesis wasn't interesting, not that the execution was wrong. One prompt produced a 101-page illustrated RPG with playtested rules. His framework for tracking progress: evaluate <strong>models</strong> (capability), <strong>apps</strong> (ChatGPT, Codex, Claude Code), and <strong>harnesses</strong> (image gen, code execution, web research) as three separate layers. GPT-5.5 advanced all three.</p>
 <h2>DeepSeek V4 Rewrites Your Inference Budget</h2>
 <p>After a year of silence since V3.2, DeepSeek dropped V4 Flash and V4-Pro with 1M token context, topping open-source coding, math, and long-context benchmarks. Simon Willison: &quot;almost on the frontier, a fraction of the price.&quot; Benchmark V4 before your next billing cycle. (<a href="https://simonwillison.net/2026/Apr/24/deepseek-v4/">Willison's analysis</a>)</p>
 <h2>Claude Design: Prototyping Hit Zero. The Org Chart Follows.</h2>
 <p>Claude Design completes Anthropic's intent-to-artifact trilogy (Code Cowork Design). Same pattern across all three: describe what you want, get a working artifact, refine through conversation, hand off to the next tool. Output is HTML/CSS/JSX, not Figma files, because LLMs learned design from code. The prototype IS the production artifact, one Claude Code handoff from shipping.</p>
-<p>The compression is concrete. One team went from 20+ prompts in competing tools to 2. A PM compressed a week of briefs, mockups, and review rounds into a single conversation. A designer at a trading firm builds prototypes directly in the production codebase and uses the running artifact as the proposal. Reviewers react to the experience, not a drawing of it.</p>
-<p>The structural consequence: when prototyping drops from days to minutes, every role built around that cost loses its justification. Engineering leaders at two recent summits confirmed two-pizza teams shrinking to one-pizza teams. One CTO reported teams writing zero code with 2-5x more output.</p>
+<p>The compression is real, with caveats on scope. Anthropic reports teams collapsing 20+ prompts in competing tools down to 2 for similar artifacts, and product managers compressing brief-to-mockup-to-review cycles into a single conversation. These are vendor-supplied anecdotes, not independent benchmarks — treat them as direction-of-travel, not magnitude.</p>
+<p>The structural consequence is what to watch. If prototyping does drop from days to minutes, every role built around that cost loses some justification. Two-pizza teams shrinking to one-pizza teams is the prediction, not yet the receipt.</p>
 <p><strong>What builders should know:</strong></p>
 <ul>
 <li><strong>8 artifact types, one tool.</strong> Pitch decks with live embedded AI, animated explainer videos, 3D configurators, design systems extracted from your repo (20 min), competitor page capture + re-skin, interactive dashboards, internal admin tools, mobile prototypes with real state transitions.</li>
@@ -264,17 +264,17 @@
 <li><strong>Opus 4.7 defaults to cream-and-serif.</strong> Specify hex codes in your opening prompt, point it at your brand site via web capture, or let it extract tokens from your codebase. It follows the steering.</li>
 <li><strong>Pro plan burns limits fast.</strong> Daily use requires Max tier ($100-200/mo).</li>
 <li><strong>Google's Stitch is the opposite bet.</strong> Open DESIGN.md spec (standardization play) vs. Anthropic's integrated codebase extraction (lock-in play). Both agree: code, not Figma files, is the design medium.</li>
-<li><strong>Mike Krieger stepped off Figma's board 3 days before Design shipped.</strong></li>
+<li><strong>Mike Krieger resigned from Figma's board on April 14 — three days before Claude Design shipped.</strong> Anthropic's CPO had been a Figma director; Figma's filing said the exit wasn't over a disagreement, but the timing closes any pretense of neutrality. (<a href="https://techcrunch.com/2026/04/16/anthropic-cpo-leaves-figmas-board-after-reports-he-will-offer-a-competing-product/">TechCrunch</a>)</li>
 </ul>
 <h2>Making Agents Reliable</h2>
-<p><strong>Anthropic confirmed Claude Code actually degraded.</strong> Three separate changes broke Claude Code, the Claude Agent SDK, and Claude.ai over the past month. All rolled back or fixed. Rare transparent postmortem from a frontier lab worth reading for the root causes. (<a href="https://www.anthropic.com/engineering/april-23-postmortem">Postmortem</a>)</p>
-<p><strong>Your AGENTS.md might be making your agent worse.</strong> AugmentCode published a pattern-level breakdown of what helps vs. what hurts in agent context files. Core finding: &quot;a good one is a model upgrade, a bad one is worse than no docs at all.&quot; (<a href="https://www.augmentcode.com/blog/how-to-write-good-agents-dot-md-files">Guide</a>)</p>
+<p><strong>Anthropic confirmed Claude Code actually degraded.</strong> Three separate changes broke Claude Code, the Claude Agent SDK, and Claude.ai over the past month. All rolled back or fixed. Rare transparent postmortem from a frontier lab worth reading for the root causes.</p>
+<p><strong>Your AGENTS.md might be making your agent worse.</strong> AugmentCode published a pattern-level breakdown of what helps vs. what hurts in agent context files. Core finding: &quot;a good one is a model upgrade, a bad one is worse than no docs at all.&quot;</p>
 <p><strong>PR titles are attack vectors for coding agents.</strong> Aonan Guan hijacked Claude Code, Gemini CLI, and Copilot through malicious PR titles. These agents treat PR metadata as instructions, not data. If you use AI for code review, your PR titles and comments are untrusted inputs you're not sanitizing.</p>
 <h2>Enterprise Agent Platforms Land</h2>
-<p>OpenAI and Google both shipped enterprise agent platforms on the same day. OpenAI's <strong>Workspace Agents</strong> creates shared, persistent ChatGPT agents for team workflows, powered by Codex. Google's <strong>Gemini Enterprise Agent Platform</strong> bundles model selection, building, and governance with <strong>Workspace Intelligence</strong>, a semantic layer unifying Gmail, chats, files, and projects. Two competing visions for enterprise agent deployment, both live now. (<a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/">OpenAI</a>) (<a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform/">Google</a>)</p>
+<p>OpenAI and Google both shipped enterprise agent platforms on the same day. OpenAI's <strong>Workspace Agents</strong> creates shared, persistent ChatGPT agents for team workflows, powered by Codex — favoring the persistent-team-agent model. Google's <strong>Gemini Enterprise Agent Platform</strong> bundles model selection, building, and governance with <strong>Workspace Intelligence</strong>, a semantic layer unifying Gmail, chats, files, and projects — favoring cross-tool context as the moat. Pick the one your data already lives in. (<a href="https://openai.com/index/introducing-workspace-agents-in-chatgpt/">OpenAI</a>) (<a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform/">Google</a>)</p>
 <h2>Quick Hits</h2>
 <ul>
-<li><strong>OpenAI Codex reached 4M weekly developers.</strong> Research shows AI-generated code leaks secrets (API keys, tokens) at 2x the rate of human-written code. Scale and safety are diverging.</li>
+<li><strong>OpenAI Codex reached 4M weekly developers.</strong> Apiiro's 2026 research found AI-generated code introduces secret-leakage findings at roughly twice the rate of human-written code. Scale and safety are diverging.</li>
 <li><strong>Agentic workloads break old inference benchmarks.</strong> Multi-turn, tool-using traces strain KV cache management in ways standard throughput tests miss. Old numbers mislead if you're choosing an inference stack for agents. (<a href="https://www.appliedcompute.com/research/inference-benchmark">Applied Compute</a>)</li>
 <li><strong>Mistral released open-weight TTS claiming to beat ElevenLabs.</strong> First serious open-source challenger to the dominant commercial provider.</li>
 <li><strong>Local models crossed the usable line for coding agents.</strong> @rsms running Qwen3.6-27B on an M5 MacBook: &quot;past the line of 'cool demo'.&quot; (<a href="https://x.com/rsms/status/2047683469137060190">View</a>)</li>
@@ -295,17 +295,39 @@
 <p><strong>The AI credibility gap is a recency problem.</strong> Karpathy (20K likes): people's understanding of AI correlates with when they last tried it and whether they used free or paid tier. Policy opinions and team skepticism often trace to free ChatGPT circa 2024. Before debating a skeptic, ask when they last used the paid tier on real work. (<a href="https://x.com/karpathy/status/2042334451611693415">View</a>)</p>
 <p><strong>Parallel agent stacks are production-ready.</strong> Ryan Carson runs GPT-5.5 + Opus 4.7 + Codex browser tool on the same feature simultaneously, plus Claude Design for UI. His split: heavy UI and new features go to local multi-agent. Pure backend and refactors go to Devin. (<a href="https://x.com/ryancarson/status/2047650047685251104">View</a>)</p>
 <h2>Videos</h2>
-<h3>Y Combinator &quot;How to Make Claude Code Your AI Engineering Team&quot;</h3>
-<p><strong>Channel:</strong> Y Combinator | <strong>44K views</strong> | <strong>1.8K likes</strong></p>
-<p>YC CEO Gary Tan walks through his practical workflow for using Claude Code as a full engineering team. Tan brings first-decade engineering experience at scale and approaches this as a practitioner sharing his actual setup, not a product pitch. The video targets engineers already using Claude Code who want to tighten their workflow rather than start from scratch.</p>
+<h3>Why I Love GPT-5.5 for Hard Problems (@howiai)</h3>
+<p><a href="https://www.youtube.com/watch?v=kCMgUvnpzsM">Watch</a></p>
+<p>A hands-on review from a product leader with multi-week early access. The thesis: GPT-5.5 Pro's value isn't speed, it's <em>ambition</em>. It cleared problems Claude Opus and GPT-4 couldn't crack — autonomous 6-hour debug loops, reverse-engineering proprietary Bluetooth protocols from raw packet sniffer logs, and a one-shot 2M-row data migration covering 98% of edge cases on the first try. The frame: don't compare $30/$180 per M tokens to cheaper models, compare it to your engineer's time.</p>
 <p><strong>Key takeaways:</strong></p>
 <ul>
-<li>Workflow-focused guide from someone running the top startup accelerator, not a beginner tutorial</li>
-<li>Draws on engineering experience at scale, so the patterns reflect production constraints</li>
-<li>44K views and strong engagement suggest this resonated with the builder audience</li>
-<li>Worth watching if you're refining an existing Claude Code setup. Skip if you need an intro.</li>
+<li>&quot;I trust you to make a call, spawn a sub-agent, test it, repair, get it production-ready&quot; — the prompt pattern that triggered a 5h 57m no-prompt autonomous run inside Codex.</li>
+<li>Batch your tech debt: upload a CSV of security findings to Codex + GPT-5.5, ask it to group thematically, propose, and execute. Validated by a clean follow-up pen test.</li>
+<li>Intelligence overhang is real — most consumer ChatGPT users don't have problems hard enough to feel the difference. The gain is concentrated in genuinely complex agentic dev work.</li>
+<li>Codex <code>/personality</code> lets you change the default &quot;baked potato personality&quot; — small UX detail, surprisingly missing from the docs.</li>
+<li>17-minute thinking time on a simple kids' app in ChatGPT is a UX failure for consumer use, even if the output is fine. Save the heavy reasoning for hard problems.</li>
 </ul>
-<p><em>Search &quot;How to Make Claude Code Your AI Engineering Team&quot; on the Y Combinator YouTube channel.</em></p>
+<h3>GPT Image 2 + Claude Design: Build a Full Brand and Website with AI (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=0oLr2EXe0sg">Watch</a></p>
+<p>A specific 3-step workflow that goes from blank page to a multi-page interactive website prototype: GPT Image 2 generates the brand kit (logo + colors + typography), Claude Design ingests those assets to produce a reusable design system (~5 min), then a single prompt against that system spits out a full site (~7-10 min). The non-obvious unlock is a single line in the brand kit prompt that prevents a real blocking failure downstream.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>Always add <strong>&quot;use fonts that are on Google Fonts&quot;</strong> to your GPT Image 2 brand kit prompt. Otherwise you get proprietary or invented fonts you can't download or upload into Claude Design.</li>
+<li>Two-step prompt pattern: ask ChatGPT to <em>write</em> the brand kit prompt first, compress it to one paragraph, then generate. Better control than single-shot.</li>
+<li>Low-quality logos coming out of Claude Design? Screenshot the one you want from the brand kit, ask ChatGPT to &quot;make this on a black background&quot; (it upscales), upload the result. Cheap workaround for an expensive limitation.</li>
+<li>Use Claude Design's tweaks panel (bottom-right) for accent colors, glitch, grain, scan lines — no need to re-prompt for visual polish.</li>
+<li>Model selection philosophy: pick whichever image model benchmarks highest right now. GPT Image 2 today, Gemini's next image model in two weeks, etc. Stay fluid.</li>
+</ul>
+<h3>GPT-5.5 and ChatGPT Images 2: Four Real Use Cases (@PeterYangYT)</h3>
+<p><a href="https://www.youtube.com/watch?v=Op1TsX3eCtI">Watch</a></p>
+<p>A head-to-head across health advice, front-end design, retro game generation (Mario + F-Zero), and image gen. Verdict: GPT-5.5 wins for agentic coding via Codex (no compute walls right now), Claude Opus still wins for personality and knowledge work, ChatGPT Images 2 beats Gemini Nano Banana 2 on text-on-image. The argument worth carrying: OpenAI's edge isn't model quality, it's compute headroom — Anthropic is A/B testing pricing while OpenAI keeps resetting Codex limits.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>&quot;Compute is OpenAI's real advantage. Anthropic right now is really compute constrained and it shows.&quot; Track limit policy separately from benchmark numbers.</li>
+<li>Always specify &quot;full stack with a backend&quot; when prompting AI for any registration / form flow. The host shipped a birthday invite that saved nothing — front-end only by default.</li>
+<li>ChatGPT Projects with a stored design system makes image gen consistent across assets. Same idea applies to code style guides for code gen.</li>
+<li>F-Zero with competing bots and boost mechanics is a useful personal benchmark for complex multi-entity game-logic generation. GPT-5.5 was the first to land it in his testing.</li>
+<li>Cursor was &quot;semi acquired&quot; by xAI. The coding-agent vendor map is consolidating: OpenAI (Codex), Anthropic (Claude Code), Google (Gemini), xAI (Cursor).</li>
+</ul>
 <h2>Worth Your Time</h2>
 <ul>
 <li><strong><a href="https://www.oneusefulthing.org/p/sign-of-the-future-gpt-55">Mollick's GPT-5.5 deep dive</a></strong> Interactive gallery comparing model outputs across generations, the models/apps/harnesses framework, and the academic paper experiment. Best single piece on what actually changed this week.</li>
