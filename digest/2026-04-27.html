@@ -260,9 +260,9 @@
 <h2>Signal</h2>
 <p><strong>Google reportedly backing Anthropic with up to $40B.</strong> The thesis isn't chatbots or benchmarks. It's Claude Code eating enterprise dev work: coding agents with budgets, permissions, and review loops.</p>
 <p><strong>Ryan Carson retracts &quot;build your own code factory.&quot;</strong> His new stack: Devin's Test App screen-records the agent clicking through your feature, surfaces bugs, fixes them, and self-reviews before merge via <code>!land</code>. &quot;<a href="https://x.com/ryancarson/status/2048139603220091222">If you're coding on your local machine instead of in the cloud, you're falling behind.</a>&quot;</p>
-<p><strong>VibeVoice ASR ends transcription pricing as a category.</strong> Microsoft's 7B-param open-source model transcribes 60 minutes with speaker diarization in one pass. Whisper: $0.36/hr. Deepgram: $0.26/hr. <a href="https://x.com/sairahul1/status/2048484621721047492">VibeVoice: $0/hr.</a> Swap it into any audio pipeline.</p>
+<p><strong>Microsoft VibeVoice: open-source 7B ASR with diarization.</strong> <a href="https://x.com/sairahul1/status/2048484621721047492">Open-weights model</a> transcribes 60 minutes with speaker diarization in a single pass. Self-host it and the per-hour transcription bill drops to whatever your GPU costs. Swap it into any audio pipeline currently paying for managed transcription.</p>
 <p><strong>SOUL.md: three-layer agent architecture.</strong> Garry Tan's pattern: don't write one mega-prompt. Three layers, with <code>SOUL.md</code> defining voice, values, and operating principles. &quot;<a href="https://x.com/garrytan/status/2048469760144527786">Not a system prompt. A constitution.</a>&quot;</p>
-<p><strong>Open source is the new wholesale.</strong> Greg Isenberg's playbook: take Postiz (open-source Buffer, 20K+ GitHub stars), self-host in an afternoon, wrap in vertical language (&quot;AI social media for dental practices&quot;), charge $50-$100/seat against freelancers at $2K/mo. <a href="https://x.com/gregisenberg/status/2048105623846350977">The code is free. The customer relationship is the margin.</a></p>
+<p><strong>Open source is the new wholesale.</strong> Greg Isenberg's playbook: take Postiz (open-source Buffer, 20K+ GitHub stars as of April 2026), self-host in an afternoon, wrap in vertical language (&quot;AI social media for dental practices&quot;), charge $50-$100/seat against freelancers at $2K/mo. <a href="https://x.com/gregisenberg/status/2048105623846350977">The code is free. The customer relationship is the margin.</a></p>
 <p><strong>Altman calls for an agent-native protocol.</strong> &quot;There should be a protocol that is equally usable by people and agents.&quot; Sarah Drasner's <a href="https://x.com/sarah_edo/status/2048452113424408831">WebMCP shipped an early preview</a> the same day. The web is being rearchitected for dual-audience: humans and agents.</p>
 <h2>Quick Hits</h2>
 <ul>
@@ -282,7 +282,7 @@
 <p><strong>DeepSeek V4 open-source preview</strong> ships with 1M token context. The open-source context-length frontier just jumped.</p>
 </li>
 <li>
-<p><strong>TDD is back.</strong> A builder who gave up on TDD years ago argues AI agents make test-driven development viable for the first time. The counterpoint to &quot;AI lets us skip tests.&quot;</p>
+<p><strong>TDD is back — agents make the slow part fast.</strong> The historical objection to TDD was that writing tests first slowed humans down. Agents write the tests AND the implementation in parallel and iterate on red-green cycles without fatigue, flipping the cost curve. The counterpoint to &quot;AI lets us skip tests.&quot;</p>
 </li>
 <li>
 <p><strong><a href="https://x.com/levelsio/status/2048703164807868455">llms.txt is dead.</a></strong> Pieter Levels: &quot;It presupposed AI couldn't browse and parse sites itself.&quot; Build accessible HTML. Stop building for llms.txt.</p>
@@ -291,7 +291,7 @@
 <p><strong>Feature flag platforms are PII vectors.</strong> Split.io/LaunchDarkly tokens in production JS bundles <a href="https://x.com/clairevo/status/2048752631297007908">leak targeting rules and API keys</a>. Audit yours today.</p>
 </li>
 <li>
-<p><strong><a href="https://x.com/morganlinton/status/2048394574352298097">Qwen3.6 27B runs on an M1 Mac Studio</a></strong> (32GB RAM) at ~20 tok/s with MLX quants. Local 27B models are usable on 4-year-old Apple Silicon.</p>
+<p><strong><a href="https://x.com/morganlinton/status/2048394574352298097">Qwen3.6 27B runs on an M1 Mac Studio</a></strong> (32GB RAM) at ~20 tok/s with MLX quants — comfortably above the 10-12 tok/s reading-speed threshold. Local 27B models are now usable on 4-year-old Apple Silicon without a cloud bill.</p>
 </li>
 <li>
 <p><strong>Google + Kaggle relaunched the 5-Day AI Agents Course</strong> with a &quot;vibe coding&quot; edition. Free registration open. &quot;Vibe coding&quot; is now formally adopted by Google's training arm.</p>
@@ -328,18 +328,6 @@
 <li><strong>Software is not a moat</strong> — Snap learned this 15 years ago when every feature got cloned. AI is making everyone re-learn it now. The durable moats: ecosystems (creators + developers + community), hardware (vertical integration), and distribution.</li>
 <li><strong>AI is climbing the product funnel from middle outward</strong> — Started with autocomplete → writes code → reviews code → tests itself → soon coming up with ideas and strategy. Distribution sits at one end and is the part AI cannot help you with.</li>
 <li><strong>Innovation = flat team + structured team in dialogue</strong> (Loonshots by Safi Bahcall) — Large orgs need hierarchy and operational rigor, which makes people risk-averse and promotion-focused. Innovation requires a small, flat, fast team where new ideas emerge from anywhere. Successful companies have BOTH and the leader's job is mediating respect between them. Snap operates this way: 9-12 person design team + the rest of the company.</li>
-</ul>
-<h2>Worth Your Time</h2>
-<ul>
-<li>
-<p><a href="https://x.com/gregisenberg/status/2048105623846350977"><strong>Greg Isenberg's open-source-as-wholesale playbook</strong></a> full thread on wrapping any popular OSS tool into a vertical SaaS business, with niche selection logic and pricing math</p>
-</li>
-<li>
-<p><a href="https://x.com/garrytan/status/2048469760144527786"><strong>Garry Tan on SOUL.md agent architecture</strong></a> three-layer pattern for giving agents a real voice, with sample rules and the distinction between a system prompt and a constitution</p>
-</li>
-<li>
-<p><a href="https://x.com/ryancarson/status/2048139603220091222"><strong>Ryan Carson's cloud-agentic workflow</strong></a> Devin Test App + <code>!land</code> walkthrough, with the explicit retraction of his &quot;build your own code factory&quot; advice</p>
-</li>
 </ul>
 			</article>
 
