@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">April 26, 2026 &middot; 9 min read</div>
+				<div class="meta">April 26, 2026 &middot; 10 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -247,11 +247,11 @@
 
 			<article class="content">
 				<h1>AI Digest April 26, 2026</h1>
-<p>Karpathy's most-bookmarked post this year (104K saves) argues the highest-value LLM use isn't code generation. It's maintaining personal knowledge wikis compiled from raw sources. Meanwhile, Apple restructured leadership around hardware engineers because cloud inference loses money on every token, and DeepSeek shipped models running on Huawei silicon. Which model you pick matters less this week than where and how you run it.</p>
+<p>Karpathy's most-bookmarked post this year (104K saves) argues the highest-value LLM use isn't code generation. It's maintaining personal knowledge wikis compiled from raw sources. Meanwhile, Apple restructured leadership around hardware engineers because cloud inference loses money on every token, and DeepSeek shipped models running on Huawei silicon. Models keep ranking each other this week, but the bigger shift is in <em>where</em> and <em>how</em> inference runs — and that's where most builder decisions actually compound.</p>
 <h2>Deep Dives</h2>
 <h3>Karpathy: Your LLM should maintain your knowledge, not just your code</h3>
 <p>Karpathy's workflow: feed ~100 sources (papers, repos, articles, ~400K words) into an LLM that compiles and maintains a markdown wiki. He reads it in Obsidian. He rarely touches the content directly. His finding: simple auto-maintained index files beat RAG at this scale.</p>
-<p>The bigger claim comes in a follow-up (26K likes): in an agent world, you share &quot;idea files,&quot; not code. The spec becomes the unit of distribution. The running implementation is disposable, rebuilt per-user by the agent. If this is directionally right, your README and SPEC files matter more than your repository.</p>
+<p>The bigger claim comes in a follow-up (26K likes): in an agent world, you share &quot;idea files,&quot; not code. The spec becomes the unit of distribution. The running implementation is disposable, rebuilt per-user by the agent. Karpathy's bet: your README and SPEC files matter more than your repository.</p>
 <p>A third post extends this to &quot;explicit memory artifacts.&quot; Personal wikis you can read, edit, audit, and fork. Compare that to the opaque &quot;AI gets better the more you use it&quot; pattern. Explicit memory is portable and debuggable. Opaque memory locks you in. For builders choosing between memory approaches in their own products, this is the clearest articulation of why user-visible artifacts win.</p>
 <p><a href="https://x.com/karpathy/status/2039805659525644595">Thread start</a> | <a href="https://x.com/karpathy/status/2040470801506541998">Idea files</a> | <a href="https://x.com/karpathy/status/2040572272944324650">Explicit memory</a></p>
 <h3>Cloud inference loses money per token. Your deployment architecture needs to price that in.</h3>
@@ -260,8 +260,8 @@
 <p>This mirrors Apple's mainframe-to-PC move 50 years ago. Rather than try harder at cloud AI, the board changed which game the company plays. For builders, inference layer ownership (cloud dependency vs. local control) is becoming as critical as model choice. Cost pressure and compliance will push more workloads on-device faster than most deployment roadmaps assume.</p>
 <h2>Models &amp; Tools</h2>
 <p><strong>GPT-5.5 &quot;Spud&quot; shipped, and Codex is getting its strongest reviews yet.</strong> AlexFinn: &quot;Claude Code has been dethroned.&quot; Dan Shipper after 3 weeks: &quot;step change in coding AND it's easy to talk to.&quot; Claire Vo says it solved both tech debt and a hardware hack when no other model could. If you're all-in on Claude Code, run a head-to-head this week on a hard task. <a href="https://x.com/AlexFinn/status/2048184198016778518">Finn</a> | <a href="https://x.com/danshipper/status/2047375686688473134">Shipper</a></p>
-<p><strong>Qwen 3.6 Max from Alibaba claims to beat Opus 4.5, Gemini 3, and DeepSeek V4.</strong> That's three frontier-class open challengers in a single release cycle (after GLM-5.1 and Gemma 4). The &quot;open = worse&quot; assumption no longer holds at the frontier.</p>
-<p><strong>DeepSeek shipped a model build running on Huawei AI accelerators.</strong> Paired with a new model claiming world-leading efficiency. China is building a complete domestic AI stack: open-source models on non-NVIDIA hardware, a direct response to US export controls.</p>
+<p><strong>Alibaba announced Qwen 3.6 Max.</strong> Pitched as competitive with the current frontier tier, though specific benchmark numbers and head-to-head methodology weren't published with the release. Worth verifying against your own evals before treating it as a Claude/Gemini replacement. Combined with GLM-5.1 and Gemma 4 in the same window, the &quot;open = worse&quot; assumption no longer holds at the frontier.</p>
+<p><strong>DeepSeek shipped a model build adapted to Huawei AI accelerators</strong>, paired with a new release teasing world-leading efficiency. Specific model name, accelerator family, and launch details are still trickling out via X (top thread: 1,096 likes / 150 RTs), so treat the timeline as approximate. The directional signal is clear: China is building a complete domestic AI stack — open-source models on non-NVIDIA silicon — as a direct response to US export controls.</p>
 <p><strong>GPT-Image-2 is production-usable for design work.</strong> AlexFinn's 4-hour workflow: gather 4-5 inspiration images, ask GPT-5.5 what visual qualities define them, feed those qualities back as a design system spec. Ships at 2K resolution, 3:1 aspect ratios, 8 images per prompt. <a href="https://x.com/AlexFinn/status/2047854449943826568">Workflow</a> | <a href="https://x.com/gregisenberg/status/2047016126480040221">Specs</a></p>
 <p><strong>Claude Design is worth the overages.</strong> Claire Vo spent $200 across two accounts and called it worth it. Workflow: set up a design system, then drive it entirely from prompts. <a href="https://x.com/clairevo/status/2046971923058573548">Walkthrough</a></p>
 <p>Model releases now look like software updates. GPT-5.5 dropped six weeks after 5.4. Opus 4.7 close behind. Individual benchmark wins matter less when the next release is weeks away.</p>
@@ -270,14 +270,15 @@
 <p><strong>Serena gives AI agents LSP-level code understanding</strong> via MCP: go-to-definition, hover, diagnostics. If your agent setup lacks structural code awareness, this is the missing layer.</p>
 <p><strong>Runtime guardrails for coding agents</strong> enforce constraints at execution time, not prompt time. Addresses the &quot;12 agents breaking prod at 3am&quot; failure mode.</p>
 <p><strong>npm supply-chain alert:</strong> Karpathy caught a malicious axios import landing through <code>googleworkspace/cli</code>. axios has 300M weekly downloads. If you installed any Gmail/GCal CLI tools recently, audit <code>node_modules/axios</code> now. <a href="https://x.com/karpathy/status/2038849654423798197">Details</a></p>
+<p>Emerging agent tooling worth a closer look — most are early, but the shared insight is that the agent stack is layering up around context, deployment surface, and durable memory:</p>
 <ul>
-<li><strong>Frontman</strong> open-source coding agent in the browser. No install. Different angle from CLI-based tools like Claude Code or Cursor.</li>
-<li><strong>Pruner</strong> distills repo context into a focused one-shot payload before agent handoff. Cheaper runs, better output.</li>
-<li><strong>Onepilot</strong> deploy coding agents to remote servers from your iPhone. Niche, but solves the on-call dispatch problem.</li>
-<li><strong>Persistent procedural memory</strong> new approach to agents retaining learned skills across sessions instead of starting cold every time.</li>
+<li><strong>Frontman</strong> runs an open-source coding agent in the browser with no install — useful when you want to demo or hand a teammate an agent without touching their machine.</li>
+<li><strong>Pruner</strong> distills a repo into a focused one-shot context payload before handing off to an agent, lowering token cost and improving first-shot accuracy on large codebases.</li>
+<li><strong>Onepilot</strong> dispatches coding agents to remote servers from an iPhone — niche, but solves the on-call &quot;I need to run an agent and I'm not at a laptop&quot; problem.</li>
+<li><strong>Persistent procedural memory</strong> explores agents retaining learned skills across sessions instead of cold-starting each run, the missing layer between today's stateless agents and durable assistants.</li>
 </ul>
 <h2>Open Source</h2>
-<p><strong>The &quot;Meta is the open-source champion&quot; narrative is collapsing.</strong> Julia McCoy (20K views) argues Meta quietly backed away from Llama's open-source positioning. Matthew Berman adds that only Google has a real open-source strategy, and even that targets smaller models. Open-source frontier work is now carried by Chinese labs and Google, not US incumbents. <a href="https://x.com/MatthewBerman">Berman</a></p>
+<p><strong>The &quot;Meta is the open-source champion&quot; narrative is collapsing.</strong> Julia McCoy (20K views) argues Meta has shifted Llama's framing away from open-source-first — pointing to the licensing tightening on the largest Llama variants and the lack of a clear next-frontier open release on the roadmap. Matthew Berman adds that only Google has a real open-source strategy, and even that targets smaller models. Open-source frontier work is now carried by Chinese labs and Google, not US incumbents. <a href="https://www.youtube.com/@JuliaMcCoy">McCoy</a> | <a href="https://x.com/MatthewBerman">Berman</a></p>
 <p><strong>OpenCode: $10/mo for Kimi K2.6 and DeepSeek V4.</strong> Cheapest entry point into frontier open-source coding models right now. <a href="https://x.com/amir_mir93">Source</a></p>
 <ul>
 <li><strong>HyperFrames</strong> (HeyGen) agents generate videos by writing HTML/CSS/JS that gets rendered. Web code in, video out.</li>
@@ -305,12 +306,6 @@
 <li><strong>&quot;Product twisting&quot; = the strongest signal</strong> — When users take your product made for one thing and bend it into something else, follow them. Revid existed because users of the original product were stitching 5-second AI clips into longer videos themselves.</li>
 <li><strong>Charge from day one, target $50-$100/mo pricing</strong> — Below ~$20 = constant churn, refund whining, &quot;cheap product&quot; positioning. $50-$100 is the sweet spot: high enough to filter for quality customers, low enough to skip &quot;book a call&quot; friction. Tibo <em>reverse-engineers</em> product scope to fit this price band.</li>
 <li><strong>Churn is the real PMF gate</strong> — Below 20% monthly churn (in AI world) = pivot/iterate territory. Above 40% = max-MRR ceiling will cap you regardless of acquisition spend. Five years ago the bar was &lt;5% churn. Don't waste acquisition fuel on a leaky bucket.</li>
-</ul>
-<h2>Worth Your Time</h2>
-<ul>
-<li><a href="https://x.com/karpathy/status/2039805659525644595">Karpathy's LLM Knowledge Base thread</a> The most actionable AI workflow post this month. Build a personal wiki maintained by an LLM instead of using it as a code generator. 104K bookmarks.</li>
-<li><a href="https://x.com/AlexFinn/status/2048184198016778518">AlexFinn's GPT-5.5 + Codex assessment</a> The strongest case for running a Claude Code vs. Codex head-to-head this week.</li>
-<li><a href="https://x.com/clairevo/status/2046971923058573548">Claire Vo's Claude Design walkthrough</a> Design-system-to-prompt workflow. $200 in overages, called worth it.</li>
 </ul>
 			</article>
 
