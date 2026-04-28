@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 28, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 28, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-28.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 28, 2026 &middot; 7 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest April 28, 2026</h1>
+<p>GPT-5.5 scored 87 on a 23-deliverable executive work package where Opus 4.7 scored 67. The same week, an AI agent wiped a production database and all backups in 9 seconds. Capability is outrunning guardrails. The builders who route models deliberately and scope agent permissions tightly will eat the ones who don't.</p>
+<hr />
+<h2>The Execution Gap Is Measurable</h2>
+<p><em>Source: <a href="https://natesnewsletter.substack.com/p/chatgpt-55-scored-87-where-the-next">Nate B. Jones, &quot;ChatGPT 5.5 scored 87 where the next best model scored 67&quot;</a> — three production-grade tests (Dingo executive package, Splash Bros data migration, Artemis II 3D viz) run head-to-head across GPT-5.5, Opus 4.7, Sonnet 4.7, and Gemini 3.1 Pro.</em></p>
+<p>Real-world testing on three production-grade tasks puts GPT-5.5 at 87.3 vs Opus 4.7 at 67.0, Sonnet 4.7 at 65.0, and Gemini 3.1 Pro at 49.8. The test: a 23-deliverable executive package. Word docs, a 17-slide PowerPoint with 26 embedded media files, spreadsheets with real formulas, an interactive dashboard, and legal research backed by 34 source URLs. Gemini's &quot;Office files&quot; were HTML wearing wrong extensions. The gap comes from pre-training depth, not inference tricks, so it compounds across every task.</p>
+<p>GPT-5.5 is the first frontier model to pass a data-migration canary check. Given 465 messy business files (CSVs in three schemas, corrupted JSON, scanned handwritten receipts), it rejected planted fake records that Opus and GPT-5.4 both absorbed as real data. The fakes: Mickey Mouse, Test Customer, and a $25K bogus payment. It merged all 7 planted duplicate customer pairs and caught all 13 name-typo orders. Backend hygiene (enum normalization, orphan handling, schema constraints) still needs human review before production.</p>
+<p>Visual taste remains Opus territory. A 3D Artemis II visualization showed better lighting, composition, and visual authority from Opus 4.7. GPT-5.5 won on information density. For anything that needs to look beautiful from a blank canvas, start with Claude.</p>
+<p><strong>Model routing cheat sheet:</strong></p>
+<ul>
+<li><strong>Complex multi-step execution</strong> (files, code, tools, data, artifacts) GPT-5.5</li>
+<li><strong>Blank-canvas visual taste</strong> (UI from scratch, 3D, design) Opus 4.7</li>
+<li><strong>UI with a reference mockup</strong> Generate with Images 2, implement with GPT-5.5 in Codex</li>
+<li><strong>Architecture and planning</strong> Opus 4.7, then hand execution to GPT-5.5</li>
+<li><strong>Data migrations</strong> GPT-5.5 for first pass, human for final validation</li>
+<li><strong>Long-form writing</strong> GPT-5.5 holds argument structure better than any prior OpenAI model</li>
+</ul>
+<p><strong>What changes in practice:</strong></p>
+<ol>
+<li>The system matters as much as the weights. Codex computer use + Images 2 + GPT-5.5 form an integrated stack. GPT-5.5 trapped in a chat window is dramatically underused.</li>
+<li>For data work, require source provenance, rejected records, conflict tables, normalized enums, and reconciliation reports in your prompt. Never let the model self-certify production data.</li>
+<li>Define your artifact contract up front. Tell the model what files, formats, and deliverables you expect. &quot;Real usable artifacts&quot; is part of the assignment.</li>
+<li>The frontier advantage is no longer answering hard questions. It's carrying work across deliverables, formats, and constraints without losing coherence.</li>
+</ol>
+<p><a href="https://x.com/AlexFinn/status/2048453255290880450">AlexFinn corroborates from daily use</a>: &quot;Claude Code has been dethroned. Codex w/ ChatGPT 5.5 is the smartest model, best all around AI app.&quot; His underrated observation: Codex auto-writes test scripts and <a href="https://x.com/AlexFinn/status/2048560724033855802">runs them in a built-in browser</a>.</p>
+<hr />
+<h2>Agents Are Faster Than Your Guardrails</h2>
+<p>The PocketOS incident is now the canonical case study for agent permission scoping. An AI agent deleted a production database and all backups in 9 seconds. <a href="https://x.com/TAWCreative/status/2049123391320285270">Root cause</a>: the agent found keys with permissions across multiple environments and used them, believing it was doing the right thing. A <a href="https://x.com/ryancarson/status/2048570517058093430">separate Cursor + Railway incident</a> killed a B2B rental SaaS in 30 hours — Cursor's agent and Railway's API combined to nuke production, and Ryan Carson's takeaway sums it up: &quot;an industry that markets AI safety faster than it ships it.&quot;</p>
+<p>Both incidents share the same root cause: agents granted permissions whose blast radius outran the operator's mental model. The fix isn't a smarter agent — it's tighter scopes (per-environment keys, no production access from a dev session) and verified backups. Carson's response was to schedule a <a href="https://x.com/ryancarson/status/2049097959912898648">Devin cron job that tests backup restores monthly</a>, so a 9-second wipe doesn't become a 30-hour business-killer. If you're shipping agents that touch production data, copy that pattern this week.</p>
+<hr />
+<h2>Videos</h2>
+<h3>Stop using Claude. Start using Codex? — @gregisenberg</h3>
+<p><a href="https://www.youtube.com/results?search_query=greg+isenberg+stop+using+claude+start+using+codex">Watch on YouTube</a> — Greg Isenberg interviews Riley Brown on why he switched from Claude to OpenAI Codex as his daily driver. Riley's pitch: Codex is the &quot;super app&quot; — a single GUI that combines vibe coding, knowledge work (docs/sheets/slides), browser use, computer use, and scheduled automations on GPT-5.5. The kicker: you can still run Claude Code <em>inside</em> Codex via Cmd-J terminal, so switching doesn't mean abandoning Claude — it means hosting both in one surface.</p>
+<p><strong>5 takeaways:</strong></p>
+<ol>
+<li><strong>The &quot;super app&quot; thesis is converging UX, not just a model bet.</strong> Codex, Claude desktop, and Cursor are all settling on the same three-pane layout (project folders/threads left, agent middle, live artifact right). The choice is moving from &quot;pick a model&quot; to &quot;pick an interface that hosts every model.&quot;</li>
+<li><strong>Run Claude Code inside Codex.</strong> Cmd-J opens a terminal, type <code>claude</code>, set <code>--dangerously-skip-permissions</code>. You get Claude's design quality + Codex's GUI + your existing Claude subscription tokens.</li>
+<li><strong>Skills &gt; plugins.</strong> Plugins require OpenAI approval (Slack, Notion, Canva, Remotion, Expo). Skills are just folders with a <code>skill.md</code> instruction file — you describe a repetitive task, the AI scaffolds the skill for you.</li>
+<li><strong>Automations are made <em>after</em> a successful run, not before.</strong> Run the task once, refine the output, then tell the agent &quot;make this happen every Friday at 9am.&quot; Codex creates the recurring job from the working chat.</li>
+<li><strong>Examples beat instructions.</strong> &quot;One good example is amazing, five good examples and it does great every time.&quot; Highest-leverage move for a company today: collect and organize good output examples in a Notion DB the agent can reference.</li>
+</ol>
+<h3>Inside AppLovin's Profit Engine — @20VC</h3>
+<p><a href="https://www.youtube.com/results?search_query=20vc+applovin+adam+foroughi+profit+engine">Watch on YouTube</a> — Harry Stebbings interviews Adam Foroughi (CEO, AppLovin) on rebuilding from the 2022 92% stock collapse to a $150B+ market cap with 84% EBITDA margins and ~400 people in the core business. Most candid CEO interview on running lean at scale this year.</p>
+<p><strong>5 takeaways:</strong></p>
+<ol>
+<li><strong>Token budgets are the new hiring quotas — don't set them.</strong> Setting AI token budgets creates the same dysfunction as headcount targets: people optimize for usage metrics, not outcomes. The right frame: can you attribute token spend to revenue? If yes, invest aggressively. If not, you're creating slop.</li>
+<li><strong>Engineers as product managers.</strong> AppLovin has no product org. Engineers own the KPIs and the product decisions. In the AI-native era, what matters is imagination + ability to audit/review code — not just writing it. Engineers who can't get 10–100x output from AI tools are a liability.</li>
+<li><strong>Cut headcount <em>before</em> the tools are fully mature.</strong> AppLovin cut 40–50% of staff during a year of triple-digit growth, targeting roles headed toward automation. Restructuring early means adoption isn't held hostage by people protecting their jobs.</li>
+<li><strong>You can't get lean by firing 50% — fire 99% and rebuild.</strong> If mediocrity has set in, A players are likely already gone. Buyouts and reorgs leave mediocrity intact. The only real fix is a hard reset.</li>
+<li><strong>Cash flow minus SBC is the only real metric.</strong> $1B in cash with $1B in equity granted = zero real value created. AppLovin grants ~$300M/year in SBC against a $150B market cap — one of the lowest rates in tech.</li>
+</ol>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
