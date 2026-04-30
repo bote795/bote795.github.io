@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — April 29, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — April 29, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-04-29.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">April 29, 2026 &middot; 10 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>Builder's Digest April 29, 2026</h1>
+<p>Anthropic's model now powers three competing enterprise platforms (Copilot Cowork, Perplexity Computer, Salesforce Agentforce) while trust in its own products keeps cracking. OpenAI broke Microsoft exclusivity to land on AWS Bedrock the same week Salesforce quietly exposed its entire platform as MCP tools. The distribution layer is the product now. The model layer is a commodity input.</p>
+<h2>Deep Dives</h2>
+<h3>Opus 4.7's tokenizer raised your costs without changing the price</h3>
+<p>Anthropic changed Claude Opus 4.7's tokenizer to improve comprehension. The price per token stayed the same. The catch: identical text now consumes more tokens. <a href="https://openrouter.ai/announcements/opus-47-tokenizer-analysis">OpenRouter's analysis</a> documents the gap. If you migrated production pipelines to Opus 4.7 using cost projections from 4.6, re-run your spreadsheets. The effective price-per-task increased even though the listed price didn't move.</p>
+<h3>GitHub Actions is a package manager with no lockfile</h3>
+<p>Every major open-source supply chain incident in the past 18 months traces back to GitHub Actions features behaving exactly as documented. <a href="https://nesbitt.io/2026/04/28/github-actions-is-the-weakest-link.html">Andrew Nesbitt's analysis</a>: Actions lets workflows pull arbitrary code at build time without version pinning, hash verification, or isolation. Locking deps in <code>package.json</code> means nothing if the CI pipeline building those deps is itself pulling unpinned code. Audit every <code>.github/workflows/</code> file for pinned SHAs. If you're using <code>@main</code> or <code>@latest</code> in any action reference, you have an unpatched supply chain vulnerability right now.</p>
+<h2>Agents &amp; Infrastructure</h2>
+<p><strong>OpenAI models land on AWS Bedrock.</strong> Microsoft exclusivity is officially dead. OpenAI's models and the Codex agent ship to AWS customers within weeks via Bedrock Managed Agents. The foundation model market is consolidating around hyperscaler-as-distribution, not model-maker direct API. (<a href="https://www.cnbc.com/2026/04/28/openai-brings-models-to-aws-after-ending-exclusivity-with-microsoft.html">CNBC</a>)</p>
+<p><strong>Long-running agents need structural artifacts, not just memory.</strong> <a href="https://addyosmani.com/blog/long-running-agents/">Addy Osmani's analysis</a> argues agents spanning many context windows must leave checkpoints behind to resume work hours later. Not conversation history. Structural artifacts. Combined with fleet observability, this is the production agent architecture for 2026: agents that recover from failure and resume across sessions.</p>
+<p><strong>Salesforce exposed its entire platform as MCP tools.</strong> The Headless 360 announcement at TDX got buried under AI headlines. 60 new MCP tools. Native support for Claude Code, Cursor, Codex, Windsurf. An Experience Layer that lets one agent surface in Slack, Teams, ChatGPT, or Claude from the same logic. If your company runs revenue ops on Salesforce, every coding agent you already use can now do CRM work without logging into Salesforce.</p>
+<p><strong>Agents beat tuned search APIs.</strong> <a href="https://softwaredoug.com/blog/2026/04/28/search-apis-replaced-by-agents.html">softwaredoug argues</a> giving agents basic search tools produces better answers than tuned search endpoints. Agentic exploration compounds the gain. The search-then-generate pattern in your RAG pipeline is looking obsolete.</p>
+<ul>
+<li><strong>MCP crossed 97M installs in March 2026.</strong> The &quot;should I build on MCP?&quot; question is answered.</li>
+<li><strong>Best agent architecture in 2026: specialists, not generalists.</strong> Teams of narrowly-scoped agents with clear roles beat one mega-agent. Just-in-time context delivery beats stuffing the context window. Security guardrails belong in IAM policies, not system prompts.</li>
+<li><strong>Superpowers framework</strong> ships composable skills methodology for coding agents, turning modular skill composition into a cross-platform default.</li>
+<li><strong>GAIA</strong> is an open-source agent framework for local hardware. Privacy-first alternative to LangGraph/CrewAI without cloud inference costs.</li>
+</ul>
+<h2>By the Numbers</h2>
+<p><strong>51% of code committed in early 2026 was AI-generated or AI-assisted</strong> (GitHub). Stack Overflow survey: 84% of devs using or planning to use AI tools. Half the codebase already isn't human-written-from-scratch.</p>
+<p><strong>40% of enterprise agent projects will die by 2027.</strong> Gartner predicts 40% of enterprise apps embed task-specific agents by year-end 2026. Also predicts 40% of those projects get cancelled for cost overruns, weak ROI, and governance failures. Narrowly scoped agents with measurable outcomes survive. (<a href="https://x.com/Gartner_inc/status/1960252125524513082">Gartner</a>)</p>
+<ul>
+<li><strong>1,445% surge</strong> in multi-agent system inquiries, Q1 2024 to Q2 2025, per <a href="https://x.com/nunet_global/status/2041954227824824482">NuNet</a>. Demand is outpacing infrastructure — the real opportunity is orchestration and governance tooling, not another wrapper.</li>
+</ul>
+<h2>Models</h2>
+<p><strong>GPT-5.5</strong> (April 23). Highest composite benchmark scorer at 92. Better at agentic tasks: error recovery mid-task, longer context coherence. Supports MCP, computer use, hosted shell. 82.7% on Terminal-Bench 2.0. Moves the leaderboard, doesn't change the category.</p>
+<p><strong>NVIDIA Nemotron 3 Nano Omni</strong> handles documents, audio, and video in one small model. Open weights on Hugging Face. Best-in-class on MMlongbench-Doc and VoiceBench. Replaces stitching three separate models for multimodal ingestion. (<a href="https://huggingface.co/blog/nvidia/nemotron-3-nano-omni-multimodal-intelligence">HuggingFace</a>)</p>
+<p><strong>Poolside Laguna XS.2 + M.1</strong> are agentic coding models built for long-horizon work. XS.2 is optimized to operate inside agent loops, not complete code at the cursor. Different optimization target than Claude or GPT. Worth benchmarking for multi-hour agent sessions. (<a href="https://poolside.ai/blog/laguna-a-deeper-dive">poolside.ai</a>)</p>
+<ul>
+<li><strong>Claude Mythos</strong> scores 93.9 SWE-bench Verified, 94.6 GPQA Diamond. Branded above the Opus line, signaling a new product tier from Anthropic.</li>
+<li><strong>Gemma 4</strong> from Google. Four variants (2.3B31B). Apache 2.0 license. 31B Dense ranks #3 among open models on Arena AI. First fully commercial open weights from Google.</li>
+<li><strong>DeepSeek V3.2</strong> delivers ~90% of GPT-5.4 quality at $0.28/M tokens vs $2.50/$15, per <a href="https://llm-stats.com/">llm-stats</a>. The price collapse is now measurable in production.</li>
+<li><strong>Llama 4 Scout + Maverick</strong> are open-weight MoE with 17B active params and 10M-token context. The context length is the differentiator.</li>
+<li><strong>Kimi K2.6</strong> ships under a Modified MIT license. Per Nate's analysis (linked below): 300 parallel sub-agents coordinating across 4,000 steps (up from 100 sub-agents / 1,500 steps in K2.5), twelve-hour autonomous runs, and Moonshot's own RL team ran a K2.6 agent autonomously for five days on production incident response. Strong for self-hosted deployments; hosted kimi.com raises data residency questions for Western teams.</li>
+<li><strong>Recurrent Transformer</strong> paper proposes layerwise recurrence to fix temporal shallowness. First serious architecture challenger to vanilla decoder-only since Mamba. (<a href="https://www.alphaxiv.org/abs/2604.21215">alphaxiv</a>)</li>
+</ul>
+<h2>Anthropic Under the Microscope</h2>
+<p><strong>A developer who publicly backed Anthropic is retracting.</strong> <a href="https://techtrenches.dev/p/i-was-wrong-about-anthropic">The teardown</a> opens with a session-level dataset: an AMD AI director's analysis of 6,852 Claude Code sessions found median visible thinking collapsed from ~2,200 characters in January to 600 in March (per the techtrenches piece, which links the underlying analysis). The piece also notes Anthropic cut default reasoning effort from high to medium without announcing it, then acknowledged the change on Reddit weeks later. Treat the rest of the post — the Figma board-seat-to-competitor-launch sequence and the framing of &quot;responsible AI company&quot; as market position — as opinion/analysis, not reporting. Read it for the data; bring your own skepticism to the narrative.</p>
+<ul>
+<li><strong>Claude Code postmortem (April 23):</strong> Three engineering mistakes between March 4 and April 16 caused a monthlong performance decline. Reduced reasoning effort, a bug discarding reasoning history mid-session, a 25-word response cap between tool calls. All fixed April 20. (<a href="https://fortune.com/2026/04/24/anthropic-engineering-missteps-claude-code-performance-decline-user-backlash/">Fortune</a>)</li>
+<li><strong>Claude Connectors for Creative Tools</strong> bring Adobe, Blender, Autodesk integration via natural language. Third vertical Anthropic shipped in two weeks (creative, design, office). (<a href="https://www.anthropic.com/news/claude-for-creative-work">Anthropic</a>)</li>
+</ul>
+<h2>Open Source</h2>
+<p><strong>llama.cpp b8779</strong> ships Vulkan flash attention with DP4A shaders for quantized KV cache. Performance upgrade for quantized models on AMD/Intel GPUs, not just NVIDIA. Direct tailwind for local-first agent setups.</p>
+<ul>
+<li><strong>ComfyUI v0.19, Ollama v0.20.6, Transformers v5.5.4</strong> all shipped the same week. Coordinated cadence suggests aligned focus on MoE and multimodal support.</li>
+<li><strong>CrewAI patched undisclosed security vulnerabilities.</strong> Pin your version and review the changelog.</li>
+</ul>
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>ChatGPT now serves ads</strong> with a documented attribution loop: structured ad objects injected mid-response, merchant SDK tracks conversions in-browser. Worth reading if you're building ads-in-AI or evaluating defenses. (<a href="https://www.buchodi.com/how-chatgpt-serves-ads-heres-the-full-attribution-loop/">buchodi.com</a>)</li>
+<li><strong>OpenAI Codex system prompt</strong> leaked. Includes: &quot;Never talk about goblins, gremlins, raccoons, trolls, ogres, pigeons, or other animals or creatures unless absolutely relevant.&quot; (<a href="https://simonwillison.net/2026/Apr/28/openai-codex/#atom-everything">Simon Willison</a>)</li>
+<li><strong>Karpathy on the coding agent inflection:</strong> &quot;Basically didn't work before December [2025].&quot; The tools you build with today are categorically different from 6 months ago. (<a href="https://x.com/karpathy/status/2026731645169185220">View</a>)</li>
+<li><strong>April 2026 is the densest AI release month on record.</strong> Active frontier includes GPT-5.5, Claude Mythos, Gemini 3.1 Pro, Grok 4.3, Gemma 4, and Qwen 3.6-Max.</li>
+</ul>
+<h2>Videos</h2>
+<h3>Kling MCP — Generate Images &amp; Videos Directly in Claude (@AIwithAmit)</h3>
+<p><a href="https://www.youtube.com/watch?v=N94ppCE1BzQ">Watch</a></p>
+<p>Kling (AI video generation platform) launched an MCP server that connects to Claude via the Connectors settings in the Claude desktop app. Once connected, you can generate images and videos directly in Claude without switching apps. The setup works well for image generation; video generation was inconsistent on web but worked on desktop. Key tradeoff: MCP connectors burn both Claude tokens AND platform credits simultaneously.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Kling MCP setup is straightforward</strong>: Settings → Connectors → Add Custom Connector → paste MCP server URL → Connect → authorize. Works in Claude desktop app; had issues on web.</li>
+<li><strong>Double-token cost is the real gotcha</strong>: Using an MCP connector consumes Claude tokens <em>and</em> the platform's credits at the same time. For Kling: ~4 credits per image, 72 credits per video, plus Claude token usage on top. Consider whether the convenience is worth the cost vs. using Kling directly.</li>
+<li><strong>Image generation worked first try, video was inconsistent</strong>: Image gen via Kling MCP worked flawlessly on desktop. Video generation tool sometimes failed to load in the same session — required opening a new chat to get video tools to appear.</li>
+<li><strong>Model selection not exposed</strong>: When Claude invoked Kling video generation, it chose Cling 3 automatically. No way to select model from within the Claude prompt.</li>
+<li><strong>&quot;Always allow&quot; in configure = frictionless but risky</strong>: Setting all Kling connector actions to &quot;always allow&quot; removes the approval step. Convenient for demos, but watch credit burn in production use.</li>
+</ul>
+<h3>5 Underrated Google AI Tools from Google Labs (@PeterYangYT)</h3>
+<p><a href="https://www.youtube.com/watch?v=BQ_mgojj0Mo">Watch</a></p>
+<p>Peter Yang reviews five Google AI Labs products: Pomelo (marketing asset generation), Stitch (UI design), Genie (interactive 3D worlds), Flow (image/video canvas), and NotebookLM. The unifying critique: all tools hit ~90% of the goal but fail on the last 10% because none allow manual edits without re-prompting. Google's core problem is that Labs products are siloed from the main Gemini app.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Pomelo — brand DNA extraction for marketing</strong>: Paste a website URL, Pomelo extracts colors/fonts/images and generates campaigns. Works best for businesses with strong product photography; weak for content/newsletter brands without visual assets.</li>
+<li><strong>Stitch — design-system-first UI generation</strong>: Unlike Claude Artifacts or Vercel v0, Stitch generates a full design system (fonts, colors, components) <em>before</em> producing screens. Uses Nano Banana for placeholder images. Has a predictive click heatmap feature.</li>
+<li><strong>Stitch gap vs Claude Design</strong>: Claude Design asks clarifying questions (focus, vibe, device) before generating. Stitch one-shots from a single prompt. This is a UX regression for non-technical users.</li>
+<li><strong>Genie — interactive 3D world generation</strong>: Real-time frame-by-frame 3D world from text prompt. Impressive tech demo but not a product — missing game loops, progression, and multiplayer.</li>
+<li><strong>Flow — best Google canvas for video</strong>: Powered by Nano Banana + Gemini + Veo together. Key feature: select start and end frames → Flow interpolates the video between them. Fastest speed + best control for generative video.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><a href="https://natesnewsletter.substack.com/p/the-5-question-filter-i-run-every"><strong>The 5-Question Filter I Run Every Agent Launch Through</strong></a> Nate's framework for triaging the flood of agent releases without burning a workweek per evaluation. Stop reading release notes; start asking the five questions.</li>
+<li><a href="https://every.to/"><strong>One App to Rule All Knowledge Work</strong></a> Every's case for a single AI surface that swallows email, docs, and meetings. Useful counter-frame to the &quot;specialist agent&quot; consensus everywhere else in this digest.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
