@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">May 6, 2026 &middot; 9 min read</div>
+				<div class="meta">May 6, 2026 &middot; 8 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -250,7 +250,7 @@
 <p>Five unrelated sources published the same argument today: the bottleneck in AI-assisted development is taste, not token access. Anthropic reinforced it at Code with Claude by shipping org tooling instead of a frontier model drop. The ceiling right now isn't what the agent can reach. It's whether you've written down what &quot;good&quot; looks like.</p>
 <hr />
 <h2>The Taste Bottleneck Has a Name Now</h2>
-<p>Ethan Ding, Eugene Yan, Addy Osmani, and a new academic paper all arrived at the same thesis from different starting points this week. Ding's claim is blunt: at the frontier, spending on tokens produces zero economic value. The bottleneck is &quot;the taste to delete, compress, and refuse.&quot; A new paper on AI-generated code validates this with data. Agent-built repos pass tests, but architectural rot accumulates each week. The codebase gets harder to touch, not easier.</p>
+<p>Ethan Ding, Eugene Yan, Addy Osmani, and a new academic paper all arrived at the same thesis from different starting points this week. Ding's claim is blunt: at the frontier, spending on tokens produces zero economic value. The bottleneck is &quot;the taste to delete, compress, and refuse.&quot; <a href="https://x.com/boyuan_chen/status/2052098374218842913">A new paper</a> from @boyuan_chen on AI-generated code smells validates this with data: agent-built repos pass tests, but architectural rot accumulates each week. The codebase gets harder to touch, not easier.</p>
 <p>Eugene Yan published the <a href="https://eugeneyan.com//writing/working-with-ai/">operational version</a>: a five-step framework where step two is &quot;encode your taste as config.&quot; Provide context, encode taste, make verification easy, delegate bigger tasks, close the loop. Every finished artifact becomes context for the next session, and each correction sharpens the agent's judgment. Osmani names the failure mode <a href="https://addyosmani.com/blog/cognitive-surrender/">cognitive surrender</a>: AI output quietly becomes your output and you stop reviewing the diff. His frontline test is binary. Do you still review the diff?</p>
 <p><strong>Builder action:</strong> Treat agent config (CLAUDE.md, .cursorrules, project wikis) as first-class code. Review agent PRs on architecture, not just test pass/fail. Build cleanup into your shipping cadence as a discrete step, not an afterthought.</p>
 <h2>Anthropic Shipped Tooling, Not a Model</h2>
@@ -259,9 +259,8 @@
 <hr />
 <h2>Short Takes</h2>
 <p><strong>Vision agents cost 45x more than structured APIs.</strong> <a href="https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/">Reflex.dev measured it</a>: browser agents (Claude computer-use, OpenAI Operator) run 45x more expensive than equivalent MCP/REST-tool agents for the same task. Most teams default to vision because building the MCP surface looks like a bigger lift. The 45x multiplier flips that math fast. Build the MCP server first.</p>
-<p><strong>Grok 4.3 ships with 1M-token context and a 40% price cut.</strong> xAI is competing on cost plus context, not capability alone. The price cut undercuts Sonnet 4.6 and GPT-5.5 on long-context workloads. If you're picking the cheapest &quot;good enough&quot; model for non-frontier tasks, Grok 4.3 belongs on the shortlist.</p>
-<p><strong>Apple iOS 27 will let users swap AI models across Apple Intelligence.</strong> Anthropic, OpenAI, and Google will compete inside Apple's funnel, not against it. Any app you ship on iOS can soon assume the user has a model preference. Design for BYOM (bring your own model) where it matters.</p>
-<p><strong>Uber: AI agents write 10%+ of production code.</strong> First hard number from an at-scale enterprise on agent-generated code share. Coinbase is testing <a href="https://x.com/gregisenberg/status/2051683558486392890">&quot;AI-native one-person teams&quot;</a> that merge engineering, design, and product into a single seat while cutting 14% of headcount. The org chart of the AI-native company isn't theoretical anymore.</p>
+<p><strong>Apple iOS 27 will let users swap AI models across Apple Intelligence</strong> (per Bloomberg). Anthropic, OpenAI, and Google will compete inside Apple's funnel, not against it. Any app you ship on iOS can soon assume the user has a model preference. Design for BYOM (bring your own model) where it matters.</p>
+<p><strong>Coinbase is testing &quot;AI-native one-person teams&quot;</strong> that merge engineering, design, and product into a single seat while cutting 14% of headcount, <a href="https://x.com/gregisenberg/status/2051683558486392890">per Greg Isenberg</a>. The org chart of the AI-native company isn't theoretical anymore.</p>
 <p><strong>Subquadratic debuts a 12M-token context window.</strong> Claims to outperform GPT-5.5 on retrieval benchmarks. Attention cost scales quadratically, so doubling context normally 4x's cost. <a href="https://thenewstack.io/subquadratic-12-million-context-window/">Subquadratic's architecture</a> breaks that curve. If the benchmarks hold under independent eval, this is the first real escape from the long-context tax capping agent memory designs.</p>
 <p><strong>Cursor agents now auto-fix CI failures.</strong> <a href="https://x.com/cursor_ai/status/2051739625958584659">Always-on agents</a> monitor GitHub, investigate root causes, and open PRs with fixes. The agent surface expands from &quot;code with me&quot; to &quot;watch my repo and unblock me.&quot;</p>
 <hr />
@@ -328,11 +327,6 @@
 <li>If you're spending heavily on API calls for routine coding tasks, test an open-source model first</li>
 </ul>
 <p><em>Search &quot;Burke Holland Can Open Source Models Beat Opus&quot; on YouTube (~25K views)</em></p>
-<hr />
-<h2>Worth Your Time</h2>
-<p><a href="https://eugeneyan.com//writing/working-with-ai/"><strong>How to Work and Compound with AI</strong></a> Eugene Yan's five-step framework for encoding your taste into agent config. The &quot;every finished artifact becomes context for the next session&quot; framing changes how you think about project documentation.</p>
-<p><a href="https://addyosmani.com/blog/cognitive-surrender/"><strong>Cognitive Surrender</strong></a> Addy Osmani draws the line between delegating to AI (cognitive offloading) and stopping to check (cognitive surrender). The &quot;do I still review the diff?&quot; test is the simplest self-audit you can run today.</p>
-<p><a href="https://blog.cloudflare.com/internal-ai-engineering-stack/"><strong>The AI Engineering Stack We Built Internally</strong></a> Cloudflare's full case study on building internal MCP servers, the access layer, and agent tooling across their engineering org. Blueprint for any team standing up an iMARS-style tiger team.</p>
 			</article>
 
 			<footer class="footer">
