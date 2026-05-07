@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 7, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 7, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-07.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 7, 2026 &middot; 4 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Daily Digest May 7, 2026</h1>
+<p>Two frontier models trained without a single NVIDIA GPU shipped this week: DeepSeek V4 on Chinese silicon, ZAYA1-8B on AMD. Anthropic took the opposite path, locking down 220K NVIDIA GPUs from SpaceX's Colossus cluster and doubling Claude Code limits effective today. &quot;You need NVIDIA to compete&quot; is now wrong on three continents.</p>
+<h2>Anthropic's Compute Bet Ships With Agent Primitives</h2>
+<p>Anthropic gained access to SpaceX's Colossus 1 in Memphis (300+ MW, 220K+ GPUs) and doubled Claude Code and API rate limits today. This is the fifth compute deal, after Amazon, Google, Broadcom, and Microsoft. The compute matters because Anthropic simultaneously shipped three agent primitives: <strong>Dreaming</strong> (agents autonomously review past sessions and surface recurring mistakes), <strong>Outcomes</strong> (+10pp task success via isolated rubric-based grading), and <strong>Multiagent Orchestration</strong> (sub-agents on a shared filesystem, traceable in Console). Dreaming is the bet that autonomous self-reflection beats hand-tuned prompts for long-running workflows.</p>
+<h2>The Access vs. Meaning Split Decides Which Agents Ship</h2>
+<p>Every agent demo this year shows a model reaching something new: a browser, a form, a payment page. Access and understanding look identical in a demo but diverge in production. The agent clicks &quot;refund&quot; without knowing if the customer is entitled or a human should approve. Coding agents arrived first because code exposes meaning natively: tests, diffs, CI failures tell the agent it's on track without constant supervision. The product test for every announcement: does this give the model access, or meaning?</p>
+<h2>In Brief</h2>
+<p><strong>TrustFall: your MCP servers are an attack surface.</strong> Researchers disclosed a supply chain attack weaponizing Claude Code through poisoned MCP servers and packaged skills. The threat model is now unaudited third-party tools, not malicious models. Audit every MCP server and skill file you've enabled.</p>
+<p><strong>NVIDIA's training monopoly cracked twice.</strong> DeepSeek V4 trained end-to-end on Chinese chips (Huawei Ascend, Cambricon, Moore Threads, Hygon) and matches Claude Opus 4.6 Max on benchmarks. Zyphra's ZAYA1-8B trained entirely on AMD with 760M active MoE parameters.</p>
+<p><strong>Advisor pattern: frontier model as coach, cheap model as worker.</strong> An Anthropic customer matched Opus quality at 5x lower cost by routing through Haiku/Sonnet and pulling Opus advice on demand. Endorsed at Code with Claude.</p>
+<p><strong>OpenClaw became a model-agnostic runtime.</strong> Build workflows once, swap models by cost and latency. The lesson: memory must live outside the model layer or you lose everything when switching providers.</p>
+<p><strong>Codex gaining on Claude Code.</strong> Every.to reports GPT-5.5 integration flipped the coding agent leaderboard. One data point, not a trend.</p>
+<p><strong>Anthropic shipped Code Review, CI auto-fix, and Remote Agents.</strong> Code Review runs on every Anthropic team internally. CI auto-fix bets rubrics in CI catch more rot than human review.</p>
+<h2>Quick Hits</h2>
+<ul>
+<li><strong>Moonshot AI raised $2B at $20B valuation.</strong> ARR past $200M. With DeepSeek at $50B, pricing pressure on US closed models is structural.</li>
+<li><strong>Agent-legibility is the new SEO.</strong> Businesses need structured data LLM agents can parse, not just human-readable pages. <a href="https://x.com/natebjones/status/2052099596050931965">View</a></li>
+<li><strong>Devin runs 28-step e2e QA for ~$33/day.</strong> A human contractor costs 10-20x. <a href="https://x.com/ryancarson/status/2052370509371727958">View</a></li>
+<li><strong>Apple denied Replit's update</strong> because AI-generated app previews mean unbounded apps inside one reviewed binary. <a href="https://adaptivesoftware.substack.com/p/the-wrapper-and-the-code">Read more</a></li>
+<li><strong>AI-native opportunity: complex AND repeats.</strong> Simple/recurring is commoditized. Complex/one-off doesn't compound. The moat is where each repetition improves. <a href="https://x.com/gregisenberg/status/2052074455908614473">View</a></li>
+<li><strong>MCP tool search beats loading every tool.</strong> Just-in-time discovery outperforms pre-loading connectors. <a href="https://x.com/boringworkflow/status/2052386661367968237">View</a></li>
+<li><strong>ProgramBench</strong> tests agents on rebuilding software from docs alone. No source code. Closer to real reverse-engineering than SWE-bench.</li>
+<li><strong>Open weights quietly closing up.</strong> Western labs adding restrictions while Chinese labs release more. Check licensing before depending on a provider.</li>
+<li><strong>vLLM V1 fixed inference correctness</strong> in logprob computation and projection precision. <a href="https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections">Update here</a></li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://wil.to/posts/googles-prompt-api/">Google's Prompt API</a></strong> Browser-native AI locked to Google's prohibited-use policy and one model. Read for what this means for web standards.</li>
+<li><strong><a href="https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark">Harvey's Legal Agent Benchmark</a></strong> Open-source eval for AI on legal tasks. Template for domain-specific agent evals.</li>
+<li><strong><a href="https://adaptivesoftware.substack.com/p/the-wrapper-and-the-code">The Wrapper and the Code</a></strong> How Apple treats AI-generated app previews as unbounded binaries. Required reading for app-generation tools on iOS.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
