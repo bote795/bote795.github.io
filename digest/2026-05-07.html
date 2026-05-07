@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">May 7, 2026 &middot; 4 min read</div>
+				<div class="meta">May 7, 2026 &middot; 7 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -249,33 +249,63 @@
 				<h1>AI Daily Digest May 7, 2026</h1>
 <p>Two frontier models trained without a single NVIDIA GPU shipped this week: DeepSeek V4 on Chinese silicon, ZAYA1-8B on AMD. Anthropic took the opposite path, locking down 220K NVIDIA GPUs from SpaceX's Colossus cluster and doubling Claude Code limits effective today. &quot;You need NVIDIA to compete&quot; is now wrong on three continents.</p>
 <h2>Anthropic's Compute Bet Ships With Agent Primitives</h2>
-<p>Anthropic gained access to SpaceX's Colossus 1 in Memphis (300+ MW, 220K+ GPUs) and doubled Claude Code and API rate limits today. This is the fifth compute deal, after Amazon, Google, Broadcom, and Microsoft. The compute matters because Anthropic simultaneously shipped three agent primitives: <strong>Dreaming</strong> (agents autonomously review past sessions and surface recurring mistakes), <strong>Outcomes</strong> (+10pp task success via isolated rubric-based grading), and <strong>Multiagent Orchestration</strong> (sub-agents on a shared filesystem, traceable in Console). Dreaming is the bet that autonomous self-reflection beats hand-tuned prompts for long-running workflows.</p>
+<p>Anthropic gained access to SpaceX's Colossus 1 in Memphis (300+ MW, 220K+ GPUs) and doubled Claude Code and API rate limits today. This is the fifth compute deal, after Amazon, Google, Broadcom, and Microsoft. The compute matters because Anthropic simultaneously shipped three agent primitives: <strong>Dreaming</strong> (agents autonomously review past sessions and surface recurring mistakes), <strong>Outcomes</strong> (rubric-driven self-grading where a separate grader scores agent output in isolated context, looping up to 20 iterations until passing), and <strong>Multiagent Orchestration</strong> (sub-agents on a shared filesystem, traceable in Console). Dreaming is the bet that autonomous self-reflection beats hand-tuned prompts for long-running workflows.</p>
 <h2>The Access vs. Meaning Split Decides Which Agents Ship</h2>
 <p>Every agent demo this year shows a model reaching something new: a browser, a form, a payment page. Access and understanding look identical in a demo but diverge in production. The agent clicks &quot;refund&quot; without knowing if the customer is entitled or a human should approve. Coding agents arrived first because code exposes meaning natively: tests, diffs, CI failures tell the agent it's on track without constant supervision. The product test for every announcement: does this give the model access, or meaning?</p>
 <h2>In Brief</h2>
 <p><strong>TrustFall: your MCP servers are an attack surface.</strong> Researchers disclosed a supply chain attack weaponizing Claude Code through poisoned MCP servers and packaged skills. The threat model is now unaudited third-party tools, not malicious models. Audit every MCP server and skill file you've enabled.</p>
-<p><strong>NVIDIA's training monopoly cracked twice.</strong> DeepSeek V4 trained end-to-end on Chinese chips (Huawei Ascend, Cambricon, Moore Threads, Hygon) and matches Claude Opus 4.6 Max on benchmarks. Zyphra's ZAYA1-8B trained entirely on AMD with 760M active MoE parameters.</p>
+<p><strong>NVIDIA's training monopoly cracked twice.</strong> DeepSeek V4 trained end-to-end on Chinese chips (Huawei Ascend, Cambricon, Moore Threads, Hygon); per The AI Nexus YouTube, it matches Claude Opus 4.6 Max and Gemini 3.1 Pro on benchmarks. Zyphra's <a href="https://huggingface.co/Zyphra/ZAYA1-8B">ZAYA1-8B</a> trained entirely on AMD with 760M active MoE parameters.</p>
 <p><strong>Advisor pattern: frontier model as coach, cheap model as worker.</strong> An Anthropic customer matched Opus quality at 5x lower cost by routing through Haiku/Sonnet and pulling Opus advice on demand. Endorsed at Code with Claude.</p>
 <p><strong>OpenClaw became a model-agnostic runtime.</strong> Build workflows once, swap models by cost and latency. The lesson: memory must live outside the model layer or you lose everything when switching providers.</p>
-<p><strong>Codex gaining on Claude Code.</strong> Every.to reports GPT-5.5 integration flipped the coding agent leaderboard. One data point, not a trend.</p>
 <p><strong>Anthropic shipped Code Review, CI auto-fix, and Remote Agents.</strong> Code Review runs on every Anthropic team internally. CI auto-fix bets rubrics in CI catch more rot than human review.</p>
 <h2>Quick Hits</h2>
 <ul>
-<li><strong>Moonshot AI raised $2B at $20B valuation.</strong> ARR past $200M. With DeepSeek at $50B, pricing pressure on US closed models is structural.</li>
+<li><strong>Moonshot AI raised $2B at $20B valuation,</strong> ARR past $200M <a href="https://x.com/TechCrunch/status/2052304850716889195">per TechCrunch</a>. With DeepSeek targeting $50B (WSJ via TLDR AI), pricing pressure on US closed models is structural.</li>
 <li><strong>Agent-legibility is the new SEO.</strong> Businesses need structured data LLM agents can parse, not just human-readable pages. <a href="https://x.com/natebjones/status/2052099596050931965">View</a></li>
 <li><strong>Devin runs 28-step e2e QA for ~$33/day.</strong> A human contractor costs 10-20x. <a href="https://x.com/ryancarson/status/2052370509371727958">View</a></li>
 <li><strong>Apple denied Replit's update</strong> because AI-generated app previews mean unbounded apps inside one reviewed binary. <a href="https://adaptivesoftware.substack.com/p/the-wrapper-and-the-code">Read more</a></li>
 <li><strong>AI-native opportunity: complex AND repeats.</strong> Simple/recurring is commoditized. Complex/one-off doesn't compound. The moat is where each repetition improves. <a href="https://x.com/gregisenberg/status/2052074455908614473">View</a></li>
 <li><strong>MCP tool search beats loading every tool.</strong> Just-in-time discovery outperforms pre-loading connectors. <a href="https://x.com/boringworkflow/status/2052386661367968237">View</a></li>
-<li><strong>ProgramBench</strong> tests agents on rebuilding software from docs alone. No source code. Closer to real reverse-engineering than SWE-bench.</li>
+<li><strong>ProgramBench</strong> tests agents on rebuilding software from docs alone — no source code. First eval of reverse-engineering without code access; closer to real-world deployment than SWE-bench, where agents fix bugs in code they can already read.</li>
 <li><strong>Open weights quietly closing up.</strong> Western labs adding restrictions while Chinese labs release more. Check licensing before depending on a provider.</li>
 <li><strong>vLLM V1 fixed inference correctness</strong> in logprob computation and projection precision. <a href="https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections">Update here</a></li>
 </ul>
+<h2>Videos</h2>
+<h3>How I AI — &quot;Claude Code Just Got WAY More Powerful&quot;</h3>
+<p>Claire Vo recaps five practical announcements from Anthropic's Code with Claude developer event: <strong>Routines</strong> (cron + HTTP/GitHub-webhook scheduling, runs locally or in cloud), <strong>Outcomes</strong> (rubric-driven self-grading agent loops, up to 20 iterations), <strong>Multi-Agent orchestration</strong> (up to 25 agents in shared container with explicit hierarchy), <strong>Dreams</strong> (on-demand cross-session memory consolidation), and doubled usage limits across Pro/Max/Team. Frames Anthropic's strategy as &quot;platform, not product flash&quot; — shipping primitives rather than mind-blowing features.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li>The unit of work shifts from &quot;prompt&quot; to &quot;evaluation criteria&quot; — write a rubric for what good looks like and let the agent iterate against it</li>
+<li>Multi-agent teams are now an API primitive, not prompt convention — define orchestrator/delegate hierarchy programmatically</li>
+<li>Dreams is &quot;what we do when we dream&quot; reframed as a deliberate primitive (review N past sessions, decide what's worth committing)</li>
+<li>Agent forgetting is the missing primitive — memory accumulates infinitely, nobody is solving the purge/decay side</li>
+<li>No single announcement is mind-blowing; together they signal Anthropic wants to own the agent-builder substrate</li>
+</ul>
+<h3>Greg Isenberg × Mang — &quot;Google's design.md is a design team in a file&quot;</h3>
+<p>Designer Mang demos Google's open-source <code>design.md</code> spec — a markdown blueprint that captures a design system's &quot;soul&quot; (typography, colors, spacing, WebGL/3D animation rules) and travels with prompts across Lovable, V0, Aura, Stitch, Codex, Claude Code. He frames it as the design equivalent of <code>agents.md</code> / <code>skills.md</code>, demonstrates remixing across mediums (web → mobile → motion → slides), and argues taste plus niche specificity are the only durable moats left.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>HTML is the &quot;finished dish,&quot; design.md is the &quot;recipe,&quot; skills are the &quot;ingredients&quot;</strong> — portable design DNA persists across screens, mediums, and platforms</li>
+<li>Don't dump everything into agents.md — it burns tokens and doesn't apply per-workflow. Split: design.md per project, skills per workflow, leave agents.md minimal</li>
+<li>Baseline design quality is now extremely high — &quot;purple gradient&quot; used to be wow, now it's a red flag. Lasers, WebGL, skeuomorphic textures, niche-specific signatures are what make people click</li>
+<li>&quot;You cannot compete with people who are generalized&quot; — taste is the moat; the practice is using every app in your niche, following every maker, building a second brain for design inspiration</li>
+<li>AI makes you work <em>more</em>, not less — Mang admits 1,000-10,000 prompts per product, building four products solo. The &quot;care&quot; Steve Jobs talked about now lives in the prompting workflow</li>
+</ul>
+<h3>This Week in AI ep 12 — &quot;Is Anthropic a Cult? AI Beats ER Doctors &amp; Recursive Self-Improvement&quot;</h3>
+<p>Three-way roundtable (Jason Calacanis + Naveen + Trey Halterman) spanning AI in healthcare, recursive self-improvement, hyperscaler capex, and frontier-lab cult dynamics.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>AI ER diagnosis already beats physicians</strong> — Harvard study: o1 hit 67% correct diagnosis vs 50-55% for two ER docs across 76 real Beth Israel cases; perfect clinical reasoning on 98%. <strong>Liability and insurance complexity, not technology, is the real bottleneck.</strong></li>
+<li>The &quot;context problem&quot; still blocks deployment — getting the <em>right</em> context (body language, patient history, partial info) into the model is the hard part. ER works on incomplete context.</li>
+<li>Open-source EHR is the Epic disruption play — Epic = 80% of records, 40% margin, &quot;duct taped together,&quot; $100-500M to implement. Combine open-source EHR + AI scribes + design data for LLM consumption (recency vs relevancy) instead of human consumption.</li>
+<li>Recursive self-improvement is already partially happening — Dario: &quot;Claude designs the next version of Claude itself, not completely but most of it. Engineers at Anthropic say they don't write any code anymore.&quot; Naveen takes the OVER on Jack Clark's 60% probability for end-of-2028; predicts &quot;really good&quot; recursive self-improvement around 2030.</li>
+<li><strong>Hyperscaler capex going parabolic</strong> — Morgan Stanley raised forecast to $805B in 2026, $1.1T in 2027, carried by only 5 hyperscalers. Naveen: &quot;we're reshaping the economy.&quot;</li>
+</ul>
+<hr />
 <h2>Worth Your Time</h2>
 <ul>
 <li><strong><a href="https://wil.to/posts/googles-prompt-api/">Google's Prompt API</a></strong> Browser-native AI locked to Google's prohibited-use policy and one model. Read for what this means for web standards.</li>
 <li><strong><a href="https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark">Harvey's Legal Agent Benchmark</a></strong> Open-source eval for AI on legal tasks. Template for domain-specific agent evals.</li>
-<li><strong><a href="https://adaptivesoftware.substack.com/p/the-wrapper-and-the-code">The Wrapper and the Code</a></strong> How Apple treats AI-generated app previews as unbounded binaries. Required reading for app-generation tools on iOS.</li>
 </ul>
 			</article>
 
