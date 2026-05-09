@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 9, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 9, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-09.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 9, 2026 &middot; 7 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Digest May 9, 2026</h1>
+<p>Codex turned Chrome into a persistent agent runtime while researchers flagged 5,000+ apps built with AI coding tools shipping exposed API keys. The tooling grows more capable and the security failures more embarrassing at exactly the same rate.</p>
+<h2>Codex becomes an always-on browser agent</h2>
+<p>Two Codex updates landed together. <a href="https://x.com/OpenAI/status/2052480800004956323">Codex runs in Chrome</a> on macOS and Windows, executing across parallel background tabs without taking over your browser. The <code>/goal</code> command persists across terminal restarts, laptop sleep, and 5+ hour pauses. No re-prompting. Close your laptop at midnight, open it at 8 AM, the agent resumes where it stopped. Claude Code has persistent sessions. Codex adds in-browser parallelism on top. First coding agent treating the browser as a durable execution surface.</p>
+<h2>HTML is replacing markdown for agent output</h2>
+<p>Thariq Shihipar from the Claude Code team posted &quot;The Unreasonable Effectiveness of HTML&quot; (218 HN points). He stopped generating markdown for &quot;almost everything.&quot; Browsers render HTML natively. HTML handles comparisons, diagrams, and color-coding that markdown can't. <a href="https://x.com/clairevo/status/2052897737654583334">Claire Vo adopted the pattern the same day</a>. If your agent builds artifacts humans will view, not parse, switch to HTML. Zero rendering step. Higher information density.</p>
+<h2>Short takes</h2>
+<p><strong>GPT-Realtime-2 puts reasoning-tier voice in the API.</strong> OpenAI shipped three realtime audio models: GPT-Realtime-2 (GPT-5-class reasoning for voice), Realtime-Translate (live multilingual translation), and Realtime-Whisper (streaming transcription). First time OpenAI's reasoning tier runs voice-native. Benchmark this against ElevenLabs and Hume if you build anything with speech.</p>
+<p><strong>Claude now lives inside Microsoft 365.</strong> GA in Excel, PowerPoint, and Word. Public beta in Outlook. Every enterprise buyer now sees Claude in the toolbar next to Copilot. Distribution play, not a feature.</p>
+<p><strong>GitHub admits agent costs are a growing concern.</strong> Their <a href="https://github.blog/ai-and-ml/github-copilot">Agentic Workflows blog post</a> publishes detailed cost-control patterns. First time GitHub openly names this problem in their own blog. Reference doc for anyone wiring CI agents into repos.</p>
+<p><strong>Mozilla used Claude Mythos to find bugs fuzzing missed.</strong> Gave Mythos early access to the Firefox codebase. Found and fixed latent security bugs that traditional tooling never caught. Strongest public case for frontier models delivering real security value on production open-source code.</p>
+<p><strong>5,000+ vibe-coded apps caught with exposed secrets.</strong> No auth, leaked API keys, SQL injection across public apps built with AI tools. deploysafe.io launched to scan for these exact failure modes. Auth, key rotation, parameterized queries before you push. The basics don't change because the code wrote itself.</p>
+<p><strong>DeepSeek raising $7.35B.</strong> Largest Chinese AI round ever. Combined with Moonshot's $2B raise, open-weights-at-one-third-cost now has capital approaching OpenAI's level. Watch for a V5 flagship within the quarter.</p>
+<h2>One-liners</h2>
+<ul>
+<li>
+<p><strong><a href="https://x.com/vdp2007">fscars</a> saves agent corrections as persistent hooks.</strong> <code>pip install fscars</code>, Apache 2.0. Stop re-correcting the same mistakes every session.</p>
+</li>
+<li>
+<p><strong>Ephemeral sandboxes for bug investigation.</strong> <a href="https://x.com/steipete/status/2053032450138276274">steipete's workflow</a>: recreate state in a disposable crabbox, verify bug, fix, verify fix. Runs ~10 parallel sessions without polluting local state. (1.2K likes)</p>
+</li>
+<li>
+<p><strong><a href="https://crawshaw.io/blog/agent-principal-agent">The agent principal-agent problem.</a></strong> Slop PRs from agent-assisted contributors are an &quot;unmanageable disaster.&quot; Fix: give reviewers the agents, not agent output.</p>
+</li>
+<li>
+<p><strong><a href="https://www.jefftk.com/p/ai-is-breaking-two-vulnerability-cultures">AI is breaking two vulnerability cultures.</a></strong> 362 HN points. Neither responsible disclosure nor move-fast works when AI generates vulnerabilities faster than humans triage.</p>
+</li>
+<li>
+<p><strong>Claude Mythos Preview shows &gt;2x time horizon over the next-best model</strong> on METR's 80% success-rate benchmark. <a href="https://x.com/natebjones/status/2052961744532939261">Early data shared via Anthropic</a>.</p>
+</li>
+<li>
+<p><strong>LLMs degrade documents given delegate-write authority.</strong> Empirical study (22 HN points). If your agents overwrite files instead of appending, read this before you scale.</p>
+</li>
+<li>
+<p><strong>AI-driven load breaks GitHub but not competitors.</strong> Microsoft's rivals handle the same AI traffic surge without outages. Engineering priorities problem, not a scaling wall.</p>
+</li>
+<li>
+<p><strong><a href="https://www.anthropic.com/research/teaching-claude-why">Teaching Claude Why</a> hit 202 HN points.</strong> Anthropic's research on training models to explain their reasoning. 92 comments.</p>
+</li>
+<li>
+<p><strong><a href="https://www.anthropic.com/research/natural-language-autoencoders">Anthropic Natural Language Autoencoders</a></strong> translate model activations into readable text. Most accessible interpretability work this year.</p>
+</li>
+<li>
+<p><strong><a href="https://lachlan.nz/blog/the-react2shell-story/">React2Shell</a> scored 170 HN points.</strong> Security walkthrough: React app to shell access. High signal, 19 comments.</p>
+</li>
+<li>
+<p><strong>Qwen 3.5 Small ships on-device multimodal.</strong> Alibaba's play in the Apple Intelligence niche. HN commenters report Alibaba moving toward revenue gating. Possibly the last unmetered Qwen drop.</p>
+</li>
+<li>
+<p><strong><a href="https://x.com/MaziyarPanahi">SAM 3.1 + Falcon Perception</a> runs real-time vision on Apple Silicon.</strong> Live HUD over video, pure inference, no 3D engine. Local multimodal-on-Mac is real-time.</p>
+</li>
+<li>
+<p><strong>SQLite ceiling: 281 TB.</strong> levelsio runs PhotoAI on a <a href="https://x.com/levelsio/status/2053089696897479129">162 GB SQLite file</a>. Don't migrate preemptively.</p>
+</li>
+<li>
+<p><strong>Hetzner: <a href="https://x.com/levelsio/status/2052799859703349527">20 TB bandwidth at $4.99/mo</a>.</strong> levelsio's unsolicited endorsement for side-project hosting. (1.3K likes)</p>
+</li>
+<li>
+<p><strong><a href="https://x.com/mvanhorn/status/2052911627562062139">Printing Press</a> generates agent-optimized CLIs.</strong> Most APIs, MCPs, and vendor CLIs waste tokens. This builds lean alternatives. printingpress.dev.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/antirez/ds4">ds4.c</a>: native DeepSeek V4 Flash inference by antirez.</strong> ~1,500 lines of C. Metal-only. One model, polished end to end.</p>
+</li>
+<li>
+<p><strong><a href="https://www.sigops.org/2026/can-llms-model-real-world-systems-in-tla/">Can LLMs model real-world systems in TLA+?</a></strong> SIGOPS study, 100 HN points. Formal verification meets LLMs.</p>
+</li>
+<li>
+<p><strong><a href="https://x.com/kzzzf/status/2052762303183929450">SimCam</a> adds a real camera to the iOS Simulator.</strong> Front, back, or both. Unblocks camera testing without a physical device.</p>
+</li>
+<li>
+<p><strong>Intelligence is commoditizing like bandwidth.</strong> <a href="https://1984.substack.com/p/long-ai-short-agi">Long AI, Short AGI</a> argues the AGI-as-scarce-resource narrative collapses as model costs keep dropping. Build moats on data and distribution, not model access.</p>
+</li>
+<li>
+<p><strong>The good-agent test.</strong> <a href="https://x.com/natebjones/status/2052560615953023143">natebjones</a>: &quot;A system that notices ten things and asks me ten questions hasn't reduced the burden. It moved the burden into a new interface.&quot; Measure agents on questions deflected, not features shipped.</p>
+</li>
+</ul>
+<h2>Videos</h2>
+<h3>The Cowork Setup That Saves Me Hours Every Week (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=NzvnTMLHL6o">Watch</a></p>
+<p>Walkthrough of Claude's &quot;Co-work&quot; mode (inside the Claude desktop app) as an alternative to chatbot-style usage. The host argues Co-work is closer to &quot;hiring a fast assistant&quot; than to a search engine — it can run multi-step tasks, touch real local files, and call connected SaaS tools. He covers the full setup (settings, capabilities, connectors, global instructions) and runs two demos: a Gmail-to-Slack triage for guest booking, and a daily funding-news scraper that ships rows into a Notion CRM via a scheduled task.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Co-work vs. Chat is a different product, not a feature flag</strong>: Chat answers one message at a time, no file access, independent replies. Co-work runs multi-step tasks, accesses real files + connected apps, and accepts new messages mid-run. <strong>Mindset shift:</strong> Treat Claude desktop's Co-work as an employee surface, not a chat surface.</li>
+<li><strong>The folder on the left is your actual computer</strong> — Co-work is not a sandbox or cloud workspace. It reads, writes, and edits real local files. This is the unlock for any &quot;operate on my stuff&quot; workflow.</li>
+<li><strong>Privacy toggle matters</strong>: Turning off &quot;Help improve Claude&quot; prevents your chats from being used to train models. Default is on.</li>
+<li><strong>Token usage has dual limits</strong>: ~5-hour rolling window AND a weekly cap. Cheaper plans hit the weekly cap fast — plan accordingly.</li>
+<li><strong>Connectors are the leverage point</strong>: Connecting Gmail, Calendar, Drive, Notion, Slack etc. is what turns Co-work from &quot;smart chat&quot; into a real assistant. The host considers this the most important setup step.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li>
+<p><strong><a href="https://crawshaw.io/blog/agent-principal-agent">The agent principal-agent problem</a></strong> Agent-submitted slop PRs are overwhelming reviewers. The fix: give reviewers the agents, not agent output. Short, sharp, directly applicable to any team using AI-assisted contributions.</p>
+</li>
+<li>
+<p><strong><a href="https://www.jefftk.com/p/ai-is-breaking-two-vulnerability-cultures">AI is breaking two vulnerability cultures</a></strong> 362 HN points. When AI generates vulnerabilities faster than humans triage, both responsible disclosure and move-fast break down. Required reading if you ship AI-generated code to production.</p>
+</li>
+<li>
+<p><strong><a href="https://www.anthropic.com/research/natural-language-autoencoders">Natural Language Autoencoders</a></strong> Anthropic's method for translating model internals into text humans can read. Most accessible interpretability work published this year.</p>
+</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
