@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 11, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 11, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-11.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 11, 2026 &middot; 9 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Digest May 11, 2026</h1>
+<p>Anthropic and OpenAI poured $5.5B into forward-deployed engineering in the same 48 hours that &quot;I'm going back to writing code by hand&quot; hit 465 points on Hacker News. The money and the backlash point at the same gap: the model works, but the build around it doesn't. Mythos found its second CVE-worthy bug in critical open-source infrastructure. This time, curl.</p>
+<hr />
+<h2>$5.5B Says the Model Isn't the Bottleneck</h2>
+<p>Six enterprise AI deals landed in 48 hours. Anthropic launched a services JV with Blackstone, Hellman &amp; Friedman, and Goldman Sachs (~$1.5B). OpenAI raised $4B+ for a parallel deployment venture backed by TPG, Brookfield, Advent, and Bain. ServiceNow shipped Action Fabric, opening its workflow engine to external agents via MCP with Anthropic as launch partner. Pinecone launched Nexus, a knowledge-engine layer for agents that reframes the cost problem as wasted rediscovery rather than raw token spend.</p>
+<p>Both labs are conceding that forward-deployed engineering, not model quality, is the enterprise value bottleneck. Most enterprise buying sequences run backwards. Teams optimize for model selection upstream, but agents demand implementation thinking first: data access, permissions, workflows, audit boundaries. Token count is a red herring — context bloat and inefficient data reaching are the actual cost drivers.</p>
+<p><strong>Builder takeaway:</strong> The compounding advantage isn't model selection. It's packaging work so agents can inherit it cleanly: prompt → skill → plugin → MCP connector → hook. The models can already sustain multi-tool tasks. The work must be packaged clearly enough for them to pick up.</p>
+<h2>Mythos Is Two-for-Two on Real CVEs</h2>
+<p>Daniel Stenberg <a href="https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/">wrote up a curl vulnerability</a> discovered by Anthropic's Mythos. This follows the Mozilla Firefox hardening disclosure from May 9. Two CVE-worthy findings in load-bearing open-source projects (Firefox + curl) in three days, both through early-access partnerships with maintainers. These aren't toy findings. AI security auditing is producing real value in infrastructure code today.</p>
+<p>The harder question has moved downstream. Detection isn't the bottleneck anymore. Validation, prioritization, and patching at scale are. There's an open product gap for triage tooling that sits between AI scanners and human engineers.</p>
+<hr />
+<h2>What Builders Should Know</h2>
+<p><strong>The AI coding backlash now has a framework.</strong> &quot;I'm going back to writing code by hand&quot; pulled <a href="https://blog.k10s.dev/im-going-back-to-writing-code-by-hand/">465 points on HN</a>. James Shore's framing (207 points) is sharper: an agent that doubles output without halving maintenance is velocity traded for forever-debt. The corollary is simple. You have to be able to read what the agent wrote.</p>
+<p><strong>Chrome DevTools MCP closes the browser agent loop.</strong> Network requests, console errors, and performance traces are now exposed to coding agents via MCP. Agents can execute and inspect in the browser. If you build anything browser-facing, wire this in now.</p>
+<p><strong>adamsreview ships multi-agent PR reviews.</strong> A <a href="https://github.com/adamjgmiller/adamsreview">Claude Code plugin</a> that runs parallel sub-agents, validation passes, and optional Codex CLI ensemble review. First public implementation of one agent environment calling another for code review.</p>
+<p><strong>Gemini CLI had a CVSS-10 RCE.</strong> Google <a href="https://x.com/GeorgeBevis/status/2053809973696897381">patched</a> a remote code execution flaw in Gemini CLI's CI integration. Related Cursor flaws also enable code execution. If you run either tool in CI, update immediately.</p>
+<p><strong>levelsio's VPS + Claude Code pattern is worth stealing.</strong> Hetzner VPS, Claude Code installed server-side, SSH via Termius, Mosh/Tmux for persistence. Claude Code <a href="https://x.com/levelsio/status/2053769493604597938">survives laptop sleep</a>, battery recovers because compute runs on the server, and you pick up sessions from your phone. 1,307 likes. Skip the &quot;edit production directly&quot; part. Take the architecture.</p>
+<p><strong>The prompt is the work spec, not magic.</strong> A useful five-question checklist circulating in builder circles: What should exist when done? What source material matters? What should be checked? Where should the model be uncertain? What needs human judgment? The people getting results from stronger models aren't writing clever prompts. They're being clearer about the work.</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li>
+<p><strong>rulesync</strong> syncs rules across .cursorrules, CLAUDE.md, AGENTS.md, and .windsurfrules. One CLI, one config layer for all your agent tools.</p>
+</li>
+<li>
+<p><strong>Codex CLI + Claude Code chain.</strong> A builder <a href="https://x.com/SASSAN99999/status/2053809793287307764">wired Codex CLI to auto-review Claude Code output</a>, creating a two-LLM review loop in one terminal.</p>
+</li>
+<li>
+<p><strong>NYT correction.</strong> The Times published an AI-generated summary of Pierre Poilievre's views <a href="https://simonwillison.net/2026/May/10/new-york-times-editors-note/#atom-everything">as a direct quote</a>. The &quot;LLMs corrupt your documents&quot; failure mode hit a tier-1 newsroom.</p>
+</li>
+<li>
+<p><strong>RPCS3 (PS3 emulator)</strong> codified anti-AI-slop contribution rules. AI can help with research, but humans must fully understand and own submitted code. Watch for this template spreading to other critical OSS projects.</p>
+</li>
+<li>
+<p><strong>Greg Isenberg's <a href="https://x.com/gregisenberg/status/2053201384200192125">agent business scorecard</a>.</strong> Agent trust layers, vertical memory vaults, buy dead SaaS and rebuild agent-first, franchise kits. Best reply: &quot;Does it survive contact with a real customer angry about a $99 invoice?&quot;</p>
+</li>
+<li>
+<p><strong>Volcano Engine (ByteDance)</strong> launched Agent Plan. &quot;Model + Harness&quot; package integrating ByteDance and third-party models behind one product layer.</p>
+</li>
+<li>
+<p><strong>DeepInfra</strong> (190+ open-source models) expanding to EU, APAC, and MEA. Open-weights inference as an enterprise procurement category is real now.</p>
+</li>
+<li>
+<p><strong>Akmon.</strong> Rust AI coding agent built for regulated engineering (medical device, industrial control, financial). Domain-specific agents are the natural next step after general-purpose sandboxes.</p>
+</li>
+<li>
+<p><strong>Code Bench.</strong> Local-first desktop AI coding agent, BYO model, MIT licensed. The local/BYOK agent pattern keeps shipping.</p>
+</li>
+<li>
+<p><strong>AI Skills collection</strong> for Claude Code, Cursor, and Codex covering web design, image generation, and knowledge retrieval. Skills as portable artifacts across agent tools.</p>
+</li>
+<li>
+<p><strong>7MB AI terminal</strong> (Rust/Tauri). Full AI terminal + code editor + agents in a binary smaller than most Electron splash screens.</p>
+</li>
+<li>
+<p><strong>&quot;Claude Code is a rapid prototyper, not a production controller.&quot;</strong> Best <a href="https://x.com/AnatoliKopadze/status/2053486075968987279">contrarian take</a> on the viral laser-drone story (1.3K likes). Demo works. Control loops still need deterministic code.</p>
+</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>The Secrets of Claude's Agent Platform From the Team Who Built It (@Every)</h3>
+<p><a href="https://www.youtube.com/watch?v=lLypHkIVLqc">Watch</a></p>
+<p>Anthropic's Claude Platform leaders explain why they built Claude Managed Agents and where the platform is heading. Their core thesis: the era of &quot;generic harness + hot-swap any model&quot; is ending — the next generation of agents performs dramatically better when the harness and model are <em>paired</em>, with opinionated primitives like file systems and skills baked in. The endpoint they're aiming for is a two-parameter world where you give Claude an <strong>outcome and a budget</strong> and it figures out everything else — model selection, sub-agents, architecture — on its own.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Generic harnesses are dying.</strong> A few months ago the standard pattern was &quot;build a generic harness, hot-swap models.&quot; That worked for the previous generation but not anymore — different labs are taking divergent approaches, and harness + model perform best when paired tightly. <strong>Mindset shift:</strong> Before: hot-swap models inside one generic harness. After: hot-swap <em>agents</em> (harness + model bundled), keep the harness Claude-native.</li>
+<li><strong>Infrastructure is the wall, not harness engineering.</strong> Most builders <em>think</em> harness engineering (prompt caching, context management) is the hard part. The actual wall is productionizing — keeping a server alive, sandboxing securely, storing transcripts, recovering when sandboxes die mid-run. This is why Anthropic shipped Managed Agents.</li>
+<li><strong>Path dependency is real and load-bearing.</strong> The &quot;small footnote&quot; decision of whether your model uses a file system or pure context, whether it leans on skills or generic tools — that decision compounds and ends up shaping which class of problems the model is great at. Anthropic chose to lean <em>hard</em> on file systems + skills for Claude.</li>
+<li><strong>The same harness engineering can move evals dramatically.</strong> When Anthropic was building memory for managed agents, they tested multiple harnesses on the same model and the eval scores varied &quot;drastically.&quot; Harness work is one of the highest-leverage hill-climbs available. <strong>Mindset shift:</strong> Before: model quality dominates outcomes. After: harness engineering can be a bigger lever than model upgrades.</li>
+<li><strong>Skills + MCP servers + form factor = agent.</strong> A &quot;legal-reviews-marketing-copy&quot; agent isn't just a skill — it needs MCP servers for external context, skills for the rules, AND a form factor on top so multiple humans can collaborate, with human-in-the-loop checkpoints. Skills alone can't do multi-session stitching.</li>
+</ul>
+<h3>Never write an update again - Notion's AI-powered engineering meetings (@howiai)</h3>
+<p><a href="https://www.youtube.com/watch?v=pUHA_jNwuYE">Watch</a></p>
+<p>Ryan Nestrom, an EM at Notion, walks through three AI-augmented engineering workflows: (1) a custom Notion AI agent (&quot;Hot Potato&quot;) that auto-generates rich standup pre-reads from Slack, PRs, tasks, and Honeycomb metrics so managers never prep for meetings again; (2) a background-agent system (&quot;Boxy&quot; / &quot;Software Factory&quot;) that lets engineers @mention Codex from Notion tasks to spin up VMs and ship full PRs with their own UI verification screenshots; (3) spec-driven development where the engineer yaps into Whisper, has Codex write a spec markdown doc checked into the repo, then has Codex implement from the spec — with the spec, not the code, as the source of truth.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Standup pre-reads kill dead-eyed status updates</strong>: A daily AI agent that ingests Slack + PRs + tasks + yesterday's transcript + metrics produces a pre-read so the meeting can focus on problems, decisions, wins — not &quot;I did this.&quot; Quiet/introverted engineers' work surfaces equally with loud ones.</li>
+<li><strong>Manager-as-coder is the new burnout protection</strong>: When the pre-read is automated, the manager can code up until the minute the meeting starts. Eliminates the &quot;if I'm not in a meeting I'm prepping for one&quot; trap. <strong>Mindset shift:</strong> Before: managers compile information and produce updates → After: managers code, AI compiles. Era of the hard skill for engineering leaders, including VPs/CTOs.</li>
+<li><strong>AI agents have zero meeting-prep guilt</strong>: &quot;Your agent is never going to complain when you ask it to do this 5 minutes before the meeting starts.&quot; This just-in-time delivery is itself a workflow shift.</li>
+<li><strong>Background agents need a VM strategy</strong>: @Mention Codex from a Notion task, it spins up a VM, ships a PR with preview URL plus its own UI verification screenshots in ~10 minutes from a 4-sentence description + screenshot. If your large eng org doesn't have a VM/background agent strategy, that's the gap.</li>
+<li><strong>Spec-driven development at scale</strong>: Specs live in the repo (<code>agent specs/</code> subfolder), are written by Codex from a Whisper yap session, and are the source of truth. Updates go to the spec, not the code. Spec history is the change log. <strong>Mindset shift:</strong> Before: write doc → review meeting → write code → review → ship. After: yap → spec → one-shot implementation → verify via agent-runnable CLI → ship. &quot;No more waiting for the meeting, no more waiting for review.&quot;</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
