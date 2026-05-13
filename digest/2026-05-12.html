@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 12, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 12, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-12.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 12, 2026 &middot; 11 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Briefing May 12, 2026</h1>
+<p>Three separate agent governance patterns converged today with the same conclusion: separate the actor from the authorization layer. A peer-reviewed paper found memory rewrites make agents perform worse than no memory at all. Shopify deployed a hard public-channels-only rule for its internal coding agent River. And the judge-layer pattern a dedicated validator component that runs before any side-effectful action is now shipping in Lindy, JP Morgan, and OpenAI's Agents SDK simultaneously.</p>
+<hr />
+<h2>The Judge Layer Is Table Stakes for Production Agents</h2>
+<p>The core failure mode isn't jailbreaks. It's emails sent because a thread &quot;implied&quot; approval, PRs opened because tests passed, CRM records updated because the old value looked stale. Lindy hit this wall in production and the fix was architectural: a separate validator LLM runs before any side-effectful action executes. The actor produces a structured proposal intended action, reason, supporting evidence, user authorization, rollback path and the judge evaluates claims against criteria, not prose confidence. JP Morgan's &quot;Ask David&quot; investment research system uses the same pattern as a reflection node before delivery; OpenAI's Agents SDK now ships tool-level guardrails at the same boundary.</p>
+<p>The judge needs four outcomes, not two: allow, block, revise, and escalate. Binary approval gates train users to click through everything; a judge that can revise and escalate becomes part of the workflow instead of a friction wall. Classify actions first: read-only (light judge), reversible writes (audit trail), external side effects (judge before execution), high-risk (judge plus human sign-off). Build the first version around one workflow, one action boundary, one judge prompt, one eval set. Track false allows, false blocks, escalation rate, and human override rate by action class a judge without its own eval suite is another model call.</p>
+<p>Watch for these production failure modes once the judge is live: correlated blindspots (actor and judge share the same model and miss the same things), specification gaming (actor learns to over-justify in prose rather than fixing the underlying authorization gap), escalation drift (too many edge cases routed to humans until the product feels manual again), and policy drift (judge prompt still encoding last quarter's rules). None of these are fixed by rewording they need versioning, dedicated evals, and a named owner.</p>
+<hr />
+<h2>Shopify River: The &quot;Agent in Org Slack&quot; Pattern Documented</h2>
+<p>Tobi Ltke published the details on River, Shopify's internal Slack coding agent: reads code, runs end-to-end test suites, writes code, opens PRs, queries data, looks up production traces. One hard constraint River does not respond to DMs. All work happens in public channels.</p>
+<p>That constraint is a governance choice, not a product limitation. &quot;Public-by-default&quot; means no off-the-record requests, full auditability, and a structural block against shadow instructions. The OPS team cannot ask River to do something privately. For any team scoping an internal coding agent, this is the implementation pattern to steal wholesale.</p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>Memory rewrites make agents worse than no memory.</strong> A peer-reviewed paper found agents with continuous memory rewrites perform worse than the same model with zero memory. The failure is specifically the rewrite step, not memory in general. Append-only is the correct design there's now an academic citation backing the choice.</p>
+<p><strong>AgentMemory hits #1 on persistent memory benchmarks, 655 stars in 24 hours.</strong> MIT-licensed, drop-in, and designed explicitly around append-only memory to avoid the rewrite failure mode. Evaluate this before building your own context-persistence layer.</p>
+<p><strong>Akamai and Anthropic signed a $1.8B, 7-year compute deal.</strong> Anthropic now has diversified compute across SpaceX/Colossus, Amazon, Google, Broadcom, Microsoft, and Akamai. The pattern is supply-side breadth rather than depth at any single vendor rate-limit ceilings on Claude Code are a solvable infrastructure problem, not a hard constraint.</p>
+<p><strong>13% automation across all sectors tips the economy into explosive growth 20% in chip design alone crosses the threshold.</strong> Economists at Forethought, Columbia, and UVA modeled recursive self-improvement dynamics and found hardware R&amp;D is the dominant lever: returns on chip design automation run 5x those in software, 10x those in general productivity. Full automation of software R&amp;D plus 5% automation elsewhere triggers singularity-level growth in roughly six years under their baseline calibration. Practical takeaway: track automation percentage in your own R&amp;D as an early warning signal, alongside traditional velocity metrics.</p>
+<p><strong>The agentic commerce protocol war has six layers and no single winner.</strong> The internet collapsed discovery, authorization, payment credential, settlement, merchant relationship, and governance into one human click. Agents pull those apart. ACP (OpenAI + Stripe) owns agent-surface checkout data exchange. UCP (Shopify + Google) owns merchant-system interoperability across the full commerce journey. AP2 (Google) owns delegated authorization and mandate records. Visa, Mastercard, and PayPal own network trust and tokenized credentials. Coinbase x402 and Stripe MPP own machine-to-machine payments below the checkout threshold. AWS AgentCore Payments is the enterprise governance layer. Builders need to know which layer they're operating in building to one protocol and ignoring the others produces incomplete architecture.</p>
+<p><strong>OpenAI's Instant Checkout retreated on the product hypothesis, not the protocol.</strong> In-chat checkout underperformed: Walmart reported 3x lower conversion inside ChatGPT versus click-out. ACP itself survived, now on revision 5, with PayPal and Salesforce added as participants. The lesson: the assistant owns intent formation; merchants own checkout completion in most categories.</p>
+<hr />
+<h2>One-Liners</h2>
+<p><strong>GitLab cut its workforce</strong> and framed it explicitly around structural decisions for &quot;the agentic era&quot; a tier-1 SCM vendor restructuring its organization around agents, not just shipping agent features. <a href="https://about.gitlab.com/blog/gitlab-act-2/">Act 2 post.</a></p>
+<p><strong>Gemini 3.1 Flash-Lite hits GA</strong> Google now has the full Flash-Lite / Flash / Pro / Ultra ladder shipped under 3.1. Compare against Haiku 4.7 on latency and cost before wiring any high-volume inference to Vertex.</p>
+<p><strong>AlphaSignalAI claims a single backend change cut Claude Code tokens from 10.4M to 3.7M (65% reduction) and dropped errors from 10 to 0.</strong> The specific backend wasn't named track the follow-up before treating this as a general prescription.</p>
+<p><strong>vu1nz:</strong> open-source AI security agent that scans, fuzzes, and exploits locally. No cloud, no API keys, no data exit. Full offensive pentesting pipeline on-device. Watch whether GitHub's anti-abuse team responds.</p>
+<p><strong>Google SkillOS:</strong> reinforcement learning framework that trains agents to curate reusable skills from past experience, compounding across long-horizon tasks. <a href="https://arxiv.org/abs/2605.06614">arXiv.</a></p>
+<p><strong>Allen AI EMO:</strong> mixture-of-experts model that learns modular expert organization from pretraining data rather than predefined domains. Tasks run on 12.5% of the experts. <a href="https://allenai.org/blog/emo">Blog post.</a></p>
+<p><strong>CyberSecQwen-4B:</strong> 4B defensive cybersecurity model that runs on consumer hardware and outperforms larger general-purpose models on security-specific tasks. Good reference point for &quot;small + specialized beats large + general&quot; in narrow domains. <a href="https://huggingface.co/blog/lablab-ai-amd-developer-hackathon/cybersecqwen-4b">HuggingFace.</a></p>
+<p><strong>Mistral at 20x ARR growth, targeting $1B ARR this year,</strong> positioning as the European-sovereignty option while DeepSeek fills the China-sovereignty slot. Three labs now have concrete revenue stories anchoring the &quot;lab as geopolitical infrastructure&quot; narrative.</p>
+<p><strong>TanStack NPM supply-chain compromise postmortem</strong> (927 HN points) walk-through of how a widely-used package got compromised and the detection and recovery process. Required reading for any team shipping software with popular JS dependencies. <a href="https://tanstack.com/blog/npm-supply-chain-compromise-postmortem">Read it.</a></p>
+<p><strong>Apple and Intel reached a preliminary chip manufacturing agreement</strong> if confirmed, TSMC diversification from Apple, consistent with the broader compute supply-chain decoupling pattern (DeepSeek on domestic chips, Zyphra on AMD, now Apple considering Intel).</p>
+<p><strong>NVIDIA's equity investments topped $40B this year</strong> the chip vendor now recycles GPU revenue into the AI startup ecosystem that buys more GPUs. A closed loop.</p>
+<p><strong>255 AI model releases in Q1 2026.</strong> Plan model swaps as a recurring engineering chore, not a one-time port.</p>
+<p><strong>Fedora and Ubuntu are both adding local AI developer tools</strong> in upcoming releases developer-focused, locally-run inference, no data sent to cloud. <a href="https://www.theregister.com/oses/2026/05/10/both-fedora-and-ubuntu-will-get-ai-support-soon/5237409">The Register.</a></p>
+<p><strong>&quot;AI is breaking two vulnerability cultures&quot;</strong> AI's ability to find and fix bugs is disrupting both responsible disclosure norms and patch-cycle assumptions at the same time. <a href="https://www.jefftk.com/p/ai-is-breaking-two-vulnerability-cultures">jefftk.com</a></p>
+<p><strong>&quot;Overfitting the Harness&quot;</strong> big labs are training their harness designs into the model, not just optimizing for benchmarks, which reduces generalizability. Read before picking a model for an off-benchmark production use case. <a href="https://www.dbreunig.com/2026/05/10/overfitting-the-harness.html">dbreunig.com</a></p>
+<p><strong>&quot;Interaction Models&quot;</strong> (268 HN points) the mode of human-AI interaction shapes product quality more than the model itself. <a href="https://thinkingmachines.ai/blog/interaction-models/">thinkingmachines.ai</a></p>
+<p><strong>LLM in the shebang line</strong> put <code>#!/usr/bin/env llm</code> at the top of an English-language script and run it directly. Useful if you want natural-language scripting without a wrapper layer.</p>
+<hr />
+<h2>Videos</h2>
+<h3>Inside Legora - Jude Law Generated $50M Pipeline (@20VC)</h3>
+<p><a href="https://www.youtube.com/watch?v=fmpxYoKTX-Y">Watch</a></p>
+<p>Patrick Forkqua, CRO of Legora (the fastest-growing enterprise SaaS ever to hit $100M ARR), breaks down the modern AI-era GTM playbook: forward-deploy engineers as the new enterprise sell, an 8-Mile preemption tactic against Harvey, a &quot;Stockholm immersion&quot; ramp that gets reps client-ready in 1 week, and why brand spend (a Jude Law campaign) generated $50M of qualified pipeline in a single month. A masterclass on what's still true vs. dead from the traditional SaaS playbook.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Brand spend converts when the rest of the funnel is built first</strong>: Legora generated $50M qualified pipe in one month off the Jude Law campaign — but only after a year of building lead scoring, data enrichment, lead routing, SLA infrastructure. <strong>Mindset shift:</strong> brand is not &quot;fluffy bullshit,&quot; it's a board-reported KPI with a scoring framework per market, and the lever you pull <em>after</em> the plumbing exists.</li>
+<li><strong>Forward Deploy Engineers (FDEs) are the new enterprise unit economics</strong>: For agentic products, you can't just ship software — you ship engineers + domain experts (Legora has FDEs AND forward-deploy <em>legal</em> engineers, who are big-law attorneys). Justified at six-figure ACVs. Without them, you &quot;sell software that doesn't get used.&quot;</li>
+<li><strong>The blank-page problem is the real adoption barrier</strong>: In SaaS, the product told users what to do next. In agentic tools, users see an empty prompt and don't know what to ask. <strong>Mindset shift:</strong> most businesses don't think in systems (goal → steps → tools/skills → who's in the loop at each decision). FDEs translate workflows into agentic form for the customer.</li>
+<li><strong>The &quot;8 Mile&quot; talk track</strong>: Preemptively tell prospects everything your competitor will say about you — like Eminem at the end of 8 Mile, who roasts himself first so his opponent has nothing left. Highest-leverage competitive sales move in the video.</li>
+<li><strong>78% pilot-to-close conversion — but the bottleneck is &quot;getting into the room&quot;</strong>: Funnel mechanics aren't the problem; brand awareness is. This is why Jude Law matters — it gets Legora into deals it otherwise wouldn't see.</li>
+</ul>
+<h3>Screensharing How to Start an AI Agent Business Today (@gregisenberg)</h3>
+<p><a href="https://www.youtube.com/watch?v=Ix43w_IssR8">Watch</a></p>
+<p>Greg Eisenberg walks through seven tiny AI-agent business ideas you can build today using GenSpark Claw (a cloud-hosted Claude variant with skills, Slack integration, and a &quot;vibe-coding&quot; UX). He demonstrates building a dead-domain flipper, a restaurant-liquidation broker, and a hiring-signal outreach agent live — each in roughly 5 minutes — and ends with a reusable framework for spotting these &quot;feed → asset → trigger → buyer → monetization&quot; arbitrage businesses.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The agent-business formula</strong>: Find a messy public feed → spot a mispriced asset → wait for a trigger event → identify an obvious buyer → choose a liquidity point (flip / broker / retainer / relaunch). Every idea in the video fits this pattern.</li>
+<li><strong>AI employees live in Slack, not browser tabs</strong>: Greg's setup treats GenSpark Claw as a Slack-resident teammate — you talk to it in a channel like a contractor (&quot;make the budget $2,500&quot;, &quot;fix the bug in those emails&quot;). <strong>Mindset shift</strong>: from &quot;open a tool, run a job&quot; to &quot;ping your AI employee in Slack and it handles the rest.&quot;</li>
+<li><strong>Agents are the new SaaS</strong>: The pricing model shifts from per-seat subscriptions to outcome-based fees. A competitive intel agent at $9.99/mo sells the outcome (a daily brief), not the software.</li>
+<li><strong>Talk to bugs, don't debug them</strong>: When AI-generated cold emails had HTML entity bugs in links, Greg simply messaged: &quot;fix this, no one will convert with broken links.&quot; The agent diagnosed and patched itself. The new debugging interface is conversation.</li>
+<li><strong>The arbitrage is always sloppy listings</strong>: Restaurant owners liquidating equipment write rushed, unoptimized Craigslist titles. App developers stop paying AWS for declining apps. Dead-traffic ProductHunt founders just want their bill to stop. The friction in human attention IS the spread.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<p><strong><a href="https://tanstack.com/blog/npm-supply-chain-compromise-postmortem">TanStack NPM Supply-Chain Compromise Postmortem</a></strong> 927 HN points. Detailed incident walk-through of how a widely-used open-source JS package got compromised, how it was detected, and how the team recovered. If you ship software using popular JS dependencies, this is the incident model to study and have a response plan for.</p>
+<p><strong><a href="https://www.nber.org/papers/w35155">When Does Automating AI Research Produce Explosive Growth?</a></strong> The RSI economics paper from Forethought, Columbia, and UVA. Specific thresholds (13% automation across sectors, 20% in chip design alone), quantified leverage ratios between hardware and software R&amp;D, and a framework for using automation percentage as a macroeconomic early warning signal. Worth the full read if you're making long-horizon infrastructure bets.</p>
+<p><strong><a href="https://www.dbreunig.com/2026/05/10/overfitting-the-harness.html">Overfitting the Harness</a></strong> Two-minute read with a pointed argument: frontier labs are training benchmark harness design into the model, not just optimizing for scores. The practical consequence is reduced generalizability on tasks that diverge from the harness's assumptions. Read before your next model-selection decision.</p>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
