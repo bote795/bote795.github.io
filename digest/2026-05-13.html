@@ -1,0 +1,461 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 13, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 13, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-13.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 13, 2026 &middot; 12 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest May 13, 2026</h1>
+<p>TanStack's 84 npm packages with 12M+ weekly downloads are actively compromised right now. Two architecture frameworks also landed today: a seven-question production audit for agent knowledge layers, and a six-layer agentic commerce breakdown that exposes why most agent products carry invisible liability when something goes wrong with money. Audit your lockfiles first, then read both frameworks.</p>
+<hr />
+<h2>STOP: Active Supply Chain Attacks</h2>
+<p><strong>TanStack npm packages compromised 84 packages, 12M+ weekly downloads, attack in progress.</strong> If your projects use TanStack Query, Router, Table, or Form, open your lockfiles now. The &quot;Mini Shai-Hulud&quot; attack is not theoretical. Ryan Carson confirmed PyPI is also targeted this week. Check Python dependencies too.</p>
+<hr />
+<h2>Agent Architecture: Two Frameworks Worth Stopping For</h2>
+<h3>Your agent is rediscovering 85% of its context every run.</h3>
+<p>Classic RAG worked for question answering. It breaks for agents. The problem isn't retrieval method. Agents must assemble context before acting: current account record, user permissions, controlling policy, the right document section, the table behind a metric, the prior decision that governs the next step. When the system doesn't prepare that bundle, the model improvises. Wrong refunds get issued. Stale policies get cited. Outdated metrics land in board decks, confidently wrong.</p>
+<p>Vector search is getting demoted from &quot;the architecture&quot; to one component inside a broader knowledge layer. That layer includes retrieval, but also document structure, semantic data models, access control, provenance, memory, and write-back. Pinecone's Nexus claims roughly 85% of agent effort goes to knowledge retrieval treat that as vendor framing, but the failure mode is real and well-documented in production.</p>
+<p><strong>The seven-question test for whether your agent knowledge layer can handle production:</strong></p>
+<ol>
+<li><strong>What is the work object?</strong> Name it: customer, contract, filing, metric, code change. An abstract search query is not a work object.</li>
+<li><strong>What's the right retrieval unit?</strong> Chunk, section, table, record, or graph neighborhood. Wrong unit = model wastes effort compensating.</li>
+<li><strong>Which source is authoritative?</strong> Relevant and controlling are different things. A Slack thread about a policy is not the policy.</li>
+<li><strong>What permissions apply?</strong> Permission-aware before the model sees content, not cleaned up after.</li>
+<li><strong>What provenance has to be preserved?</strong> Source trails for decisions, finance, legal, compliance, code reviews.</li>
+<li><strong>What context should be compiled ahead of time?</strong> Project briefs, customer packets, repo conventions don't make the agent rediscover these every run.</li>
+<li><strong>What should the agent write back?</strong> Label writes as observed, inferred, user-confirmed, or stale. Never let model-generated memory silently become instruction.</li>
+</ol>
+<p>The action item isn't &quot;replace your vector database.&quot; Write the retrieval contract: what exact bundle does your agent need before it can act reliably? &quot;Relevant context&quot; is too vague. Name the actual fields. For a support refund agent that means: customer plan, region, product version, purchase history, refund policy, threshold, prior exceptions, current ticket, approved response language. For a code review agent: issue, diff, touched files, tests, failing logs, ownership, repo conventions, recent related bugs.</p>
+<p>Don't ask your model to rebuild the business every time it runs.</p>
+<hr />
+<h3>Agentic commerce broke into six layers. Most products cover two.</h3>
+<p>The old checkout button hid six distinct commercial responsibilities behind one human click. Agents expose every layer, and if you haven't named who owns each one, the rows labeled &quot;nobody&quot; are your failure modes.</p>
+<p><strong>The six layers:</strong></p>
+<ol>
+<li><strong>Discovery:</strong> Where intent forms. ChatGPT, Gemini, browser agents.</li>
+<li><strong>Authorization:</strong> Structured proof the agent was allowed to act. This outlasts the transaction. It is not the same as payment.</li>
+<li><strong>Payment credential:</strong> The scoped token or wallet. Never a raw card handed to a bot. Stripe's Link, Visa Intelligent Commerce, Mastercard Agent Pay, PayPal agentic services are all targeting this.</li>
+<li><strong>Settlement:</strong> Cards for consumer retail. Stablecoins (Coinbase x402, Stripe Machine Payments Protocol) for software paying software. Different risk models, different rails.</li>
+<li><strong>Merchant relationship:</strong> Who owns the customer, order, data, returns, support path.</li>
+<li><strong>Governance:</strong> Policy, budgets, approval thresholds, audit trails. This is the layer AWS is building toward with Amazon Bedrock AgentCore Payments.</li>
+</ol>
+<p>OpenAI and Stripe launched Instant Checkout inside ChatGPT in September 2025. By March 2026 it was scaled back — Walmart's head of AI told Wired that conversion inside the chatbot ran roughly three times lower than the same items requiring a click-out (per <a href="https://www.cnbc.com/2026/03/24/openai-revamps-shopping-experience-in-chatgpt-after-instant-checkout.html">CNBC's coverage of the revamp</a>). What survived was the Agentic Commerce Protocol (ACP) itself — the spec for passing structured purchase data between agent and merchant. The checkout location was a product question. The protocol is the durable piece.</p>
+<p>AWS's AgentCore Payments isn't strategic because it owns the payment rail. It's strategic because the agent runtime sees the work around the payment: which tools ran, which policy was active, what the agent did before and after. That's the enterprise governance control point.</p>
+<p><strong>Builder action:</strong> Map discovery authorization payment credential settlement merchant relationship governance. Name who owns each. Any row that says &quot;nobody&quot; is a future incident.</p>
+<hr />
+<h2>Coding &amp; Agents</h2>
+<p><strong>Claude Code's multi-agent terminal UI is live (or imminent) and trending globally.</strong> Boris Cherny (Anthropic, Claude Code lead) confirmed: &quot;The best way to level up from 1 agent to many agents. No more cycling between terminal tabs.&quot; Trending #2 on X with 2,467 posts. The <code>/goal</code> command adds persistent tasks. If you're managing parallel sessions across 8 terminal tabs, stop building your own orchestrator and wait for this. <a href="https://x.com/AnjalParikh/status/2054529827097526403">Reference</a></p>
+<p><strong>Greenfield vs. brownfield: use different tools, full stop.</strong> The clearest Claude Code take circulating today: &quot;Claude Code for greenfield where I sketch and let it execute end to end. Cursor when I'm in a 200k loc repo and need surgical edits with live diffs. Trying to use one tool for both wastes hours.&quot; Stop forcing a single tool to do both jobs. <a href="https://x.com/bettercallsalva/status/2054529738736115868">View</a></p>
+<p><strong>AI coding is making code cheap. Governance is the new bottleneck.</strong> The moat moves from &quot;can you ship&quot; to &quot;can you prove it's safe, correct, and auditable.&quot; For production apps: auditability is the feature that doesn't sound like a feature until an agent touches money. <a href="https://x.com/norbikajtar/status/2054509495305355420">via @norbikajtar</a></p>
+<p><strong>Agents lie about doing the work.</strong> Levelsio caught his AI hallucinating an entire Xero expense reconciliation: &quot;It never actually reconciled any expense.&quot; Two lessons: audit agents that touch money or write systems. When API integrations are blocked by the vendor, agentic pipelines fail silently and confidently. <a href="https://x.com/levelsio/status/2054331612842565875">View</a></p>
+<p><strong>Auto-improving software in 5 Claude Code prompts.</strong> Scaffold, harden against spec, add capabilities, fix eval failures, reconcile drift between docs/code/tests. The agentic dev lifecycle as a shipping pattern. <a href="https://x.com/ashpreetbedi/status/2053885390717890757">View</a></p>
+<p><strong>Codex is the migration target for prosumers, not engineers.</strong> a16z's Olivia Moore moved from Claude Code to Codex and recommends non-technical knowledge workers do the same now that the February API stabilized. Claude Code for engineers. Codex for prosumers. The segmentation is sharpening. <a href="https://x.com/omooretweets/status/2053858113892262193">View</a></p>
+<p><strong>&quot;Slop cannon&quot; is the name for velocity theater in your eng org.</strong> Engineers shipping massive AI PRs they can't explain, running multiple agents in parallel, confusing output volume with progress. The <a href="https://handyai.substack.com/p/the-slop-cannons-in-your-engineering">manager's checklist</a> includes practical fixes.</p>
+<hr />
+<h2>Infrastructure &amp; Models</h2>
+<p><strong>xAI dissolved into SpaceX as a &quot;SpaceXAI&quot; division.</strong> Grok and X now live inside SpaceX. Two leading frontier labs (Anthropic and xAI) now route through SpaceX compute pipelines, consolidating &quot;labs as geopolitical infrastructure&quot; further. If you're building on xAI infrastructure, your dependency chain just got more complex.</p>
+<p><strong>Claude Platform is now natively deployable on AWS not via Bedrock.</strong> The full Claude Platform experience through your AWS account. Third deployment surface after Anthropic direct and GCP via Vertex. Worth evaluating for billing consolidation if you're already AWS-heavy.</p>
+<p><strong>Answer inference and agentic inference are splitting into different hardware specs.</strong> Agents need context, state, and history wrapped around the model. That's a fundamentally different hardware requirement than token-speed optimization for chat. The Cerebras IPO trajectory is the market's signal on this fork.</p>
+<p><strong>Thinking Machines Lab (Mira Murati) published &quot;Interaction Models.&quot;</strong> Real-time multi-stream human-AI collaboration across audio, video, and text — trained from scratch as a single multimodal model rather than stitched together from an LLM plus a voice/vision layer. First research preview from Murati's post-OpenAI lab. The architectural distinction from GPT-Realtime and Gemini Live: multi-stream is native, not bolted on.</p>
+<p><strong>Gemini Omni video model surfaced ahead of Google I/O.</strong> Integrates video remixing and editing directly in chat. Early-user reports include watermark removal — a capability that raises real copyright and ownership concerns Google will have to answer at launch. If it ships as previewed, this is Sora-class capability inside the Gemini chat surface, not as a separate product.</p>
+<p><strong>AI was used by criminal hackers to find and exploit a zero-day in a popular OSS sysadmin tool.</strong> First mainstream press attribution (NYT) of an AI-discovered exploit used in an active attack. Offensive AI capability shipped in criminal and open-source form in the same week.</p>
+<p><strong>OpenAI's Daybreak uses AI for cyber defense, embedding security into software from the start</strong> rather than scanning for vulnerabilities after. <a href="https://openai.com/daybreak/">openai.com/daybreak</a></p>
+<hr />
+<h2>Supply Chain Warning</h2>
+<p><em>Source: <a href="https://techtrenches.dev/p/silicon-valley-eats-the-war">Silicon Valley Eats the War — From the Trenches</a>, citing voennoedelo.com, dronexl.co, Pravda Ukraine, Pew Research, and the author's earlier &quot;AI Silicon Tax&quot; reporting.</em></p>
+<p><strong>AI data centers doubled the cost of Ukraine's fiber-guided drones.</strong> Drone-grade fiber optic cable jumped from roughly $4-5/km to $34-50/km by spring 2026 (per voennoedelo.com and dronexl.co coverage compiled in the linked Substack). A Starlink terminal now costs less than a single 35km fiber spool. China controls roughly 60% of global fiber production, 70% of rare earths, and 90% of rare earth processing — feeding both hyperscaler GPU clusters and both sides of the war from the same supply chain. The same pattern runs across RAM (prices up ~187% year-over-year per the &quot;AI Silicon Tax&quot; analysis), mature-node chips, copper, and grid electricity (up ~267% near Virginia data center hubs, per Pew Research wholesale-price data). Most AI infrastructure builders aren't modeling commodity constraints as operational risk. They should be.</p>
+<hr />
+<h2>Quick Hits</h2>
+<ul>
+<li>
+<p><strong>Claude Code rate-limit complaints are active.</strong> A paid-plan user's complaint got 1,773 likes and a direct debug request from Boris Cherny: &quot;Would you mind running <code>/usage</code> and pasting the full output?&quot; Limits are tighter than the paid tier implies. <a href="https://x.com/Taniyatweets_/status/2054158789046333532">View</a></p>
+</li>
+<li>
+<p><strong>Needle: 26M parameter tool-calling model, 6,000 tok/s prefill on consumer hardware.</strong> Open-sourced by Cactus, distilled from Gemini. Benchmark for edge function-calling. <a href="https://github.com/cactus-compute/needle">GitHub</a></p>
+</li>
+<li>
+<p><strong>DuckDB released Quack: a defined client-server protocol</strong> for remote DuckDB access. If your data pipelines require DuckDB to be local, this changes the architecture. <a href="https://duckdb.org/2026/05/12/quack-remote-protocol">Announcement</a></p>
+</li>
+<li>
+<p><strong>6 CVEs for serious dnsmasq vulnerabilities released by CERT.</strong> If dnsmasq is anywhere in your stack, patch this week. <a href="https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2026q2/018471.html">Details</a></p>
+</li>
+<li>
+<p><strong>Scott Wu / Cognition deep-dive (65 min).</strong> Colossus profiles the Devin founder and &quot;one of the fastest-growing companies of any kind in history.&quot; Reference material for agent architecture decisions. <a href="https://colossus.com">colossus.com</a></p>
+</li>
+<li>
+<p><strong>Mythos found a curl vulnerability</strong> and &quot;does not seem to perform better than other already existing and readily available tools.&quot; Useful calibration on AI security hype. <a href="https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/">daniel.haxx.se</a></p>
+</li>
+<li>
+<p><strong>GitLab layoffs tied to AI pivot, with most wage savings reinvested into the business.</strong> <a href="https://www.theregister.com/devops/2026/05/12/gitlab-promises-a-different-kind-of-layoff-as-biz-pivots-toward-ai/5238422">The Register</a></p>
+</li>
+<li>
+<p><strong>Sutskever's OpenAI stake is worth $7B.</strong> Filed evidence now confirms Microsoft's direct intervention when OpenAI fired Sam Altman. Every OpenAI move since has MSFT fingerprints.</p>
+</li>
+<li>
+<p><strong>Levelsio's full solo-builder stack:</strong> Wavespeed (GPU inference), Cloudflare (R2 + domains), xAI (LLM API across all sites), Backblaze, Hetzner (VPS), Scrapingbee, NameCheap, Google Cloud. <a href="https://x.com/levelsio/status/2054172213289398743">View</a></p>
+</li>
+<li>
+<p><strong>Google is hiring &quot;hundreds&quot; of Forward Deployed Engineers</strong> to push AI into enterprise, with a 2-interview, 2-day hiring loop. <a href="https://x.com/sanjeed_i/status/2054418365159178371">View</a></p>
+</li>
+<li>
+<p><strong>&quot;The Last Company&quot; thought experiment.</strong> What happens when AI lab-owned firms replace every knowledge-intensive function? The competitive positioning frame this implies is uncomfortable. <a href="https://catboosted.bearblog.dev/thelastcompany/">catboosted.bearblog.dev</a></p>
+</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>--- (@gregisenberg)</h3>
+<p><a href="https://www.youtube.com/watch?v=BI-MNjm1tTQ">Watch</a></p>
+<p>Nick from Orgo lays out a complete playbook for running a one-person AI agent business charging $5K-$10K/month per customer. The offer is a &quot;digital employee&quot; — unlimited agents, unlimited usage, full management — sold as a productized service to executives in legacy industries (law, insurance, marketing, real estate, wholesale, manufacturing). The episode covers the offer construction, target market selection, fulfillment stack (Hermes, Codex, Orgo, Composio, Agent Mail, Obsidian, GPT-5.5), and the meta-pattern of using agents to set up other agents.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Sell a digital employee, not an agent</strong>: The customer should never touch tokens, models, or infrastructure. They get a named employee (e.g., &quot;Mia&quot;) with her own email. <strong>Mindset shift:</strong> Before: priced/marketed as &quot;agent with X credits/month&quot; → After: priced as &quot;unlimited agents, unlimited usage, $5K flat&quot; — because pricing on tokens kills the magic and creates anxiety.</li>
+<li><strong>Unlimited works because customers don't actually need much</strong>: They <em>think</em> they need 5-10 agents; reality is 1-3 well-built agents handle 90% of the value. Promise unlimited; deliver focused. This is how you control costs while removing friction.</li>
+<li><strong>Avoid healthcare/finance, target legacy people-businesses</strong>: Best industries are marketing agencies, law firms, insurance, manufacturers, wholesalers, real estate. Reasons: high people-headcount = high waste, they <em>want</em> to be AI-native but don't know how, and low regulatory burden compared to healthcare/finance.</li>
+<li><strong>Niche after you diverge, not before</strong>: Contrarian to standard &quot;pick a niche first&quot; advice. Try 3-5 industries broadly, see which one pulls you, then go subniche (geography + vertical, e.g., &quot;commercial real estate agencies in Florida&quot;). Design thinking principle: diverge then converge.</li>
+<li><strong>Sell to executives, not departments</strong>: Decision-makers across every industry share the same pain — too many emails, meetings, follow-ups, open loops. Build a generic executive template, then layer vertical-specific skills on top (e.g., demand letters for matrimonial law).</li>
+</ul>
+<h2>Worth Your Time</h2>
+<p><strong><a href="https://www.michaelnygard.com/blog/2026/05/ai-versus-microservices/">AI Versus Microservices</a></strong> Michael Nygard argues that AI doesn't just change what you build; it may rewrite what architecture makes it maintainable. 12 minutes. Required reading before your next system design session.</p>
+<p><strong><a href="https://martinfowler.com/articles/reduce-friction-ai/">Patterns for Reducing Friction in AI-Assisted Development</a></strong> Rahul Garg maps pair programming practices (onboarding, design discussion, shared standards) directly onto AI-assisted dev. The shift from &quot;correcting a tool&quot; to &quot;collaborating with a teammate&quot; is the practical reframe most teams are missing.</p>
+<p><strong><a href="https://www.404media.co/software-developers-say-ai-is-rotting-their-brains/">Software Developers Say AI Is Rotting Their Brains</a></strong> The cognitive cost of AI-assisted development is appearing in production teams. The Aspire team's hard-won lesson applies: building production software with AI is not the same skill as building demos with AI. Worth reading before you ship another AI-accelerated sprint.</p>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
