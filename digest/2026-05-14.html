@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">May 14, 2026 &middot; 13 min read</div>
+				<div class="meta">May 14, 2026 &middot; 12 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -255,12 +255,12 @@
 <h3>The database deletion is the guardrails heuristic you needed</h3>
 <p>A Claude-powered coding agent deleted a company's production database in nine seconds. The most useful output from the story was the HN top comment: &quot;If you wouldn't give it to an enthusiastic junior dev, don't give it to AI, period.&quot; Apply that before your next agent gets bash or file-write access. Kontext CLI (covered below) is one concrete tool for credential scoping so agents never see raw keys.</p>
 <hr />
-<h2>Frameworks Worth Keeping</h2>
+<h2>Frameworks &amp; Analysis</h2>
 <p><strong>The orchestration layer is the moat, not the model.</strong> Greg Isenberg (1.8K likes, 247K views, 4.1K bookmarks): &quot;We spent 2025-2026 arguing about which model is best while the entire value was in the orchestration layer. The model is the CPU. Nobody buys a computer based on the CPU anymore.&quot; His adjacent point: &quot;The only moat is distribution plus memory. The company that has your audience AND your agent's accumulated context is impossible to leave.&quot; Build user-specific agent memory in from day one. The switching cost compounds. <a href="https://x.com/gregisenberg/status/2054584280848769413">View thread</a></p>
 <p><strong>Greg's managed-agent stack.</strong> From his 47-min public playbook: Hermes Agent (harness) + Codex/Claude Code (build) + Orgo (cloud VM per agent) + Composio (1-click app auth) + Agent Mail (each agent gets an email inbox) + Obsidian (knowledge base). Offer: $5K/month per client, unlimited agents and usage, client never thinks about tokens. Model picks: GPT-5.5 for tool-heavy tasks (&quot;efficient with tool calls, doesn't eat tokens like Opus 4.7&quot;), GLM 5.1 from ZAI for cheaper tasks. <a href="https://x.com/gregisenberg/status/2054261832718889216">View</a></p>
-<p><strong>Agents need continuity, not just action.</strong> Nate Jones: &quot;Acting is obviously useful. But continuity is what lets the work get better over time: what was tried, what failed, what changed, what the user cares about, what should not be repeated.&quot; Three independent teams shipped persistent-memory primitives for agents in the last 30 days. The pattern is converging. Agents without durable context are disposable tools. Agents with it compound. <a href="https://x.com/natebjones/status/2053174913750417780">View</a></p>
+<p><strong>Agents need continuity, not just action.</strong> Acting is useful; continuity is what lets the work get better over time — what was tried, what failed, what changed, what the user cares about, what should not be repeated. Three independent teams shipped persistent-memory primitives for agents in the last 30 days. The pattern is converging. Agents without durable context are disposable tools. Agents with it compound.</p>
 <p><strong>Karpathy's output tip: ask for HTML, open it in a browser.</strong> Append &quot;structure your response as HTML&quot; to any prompt, then view the result in a browser. Rendered HTML is dramatically more readable than markdown because roughly a third of the brain processes visual information. His progression call: raw text, then markdown (current default), then HTML (forming new default), then eventually interactive neural simulations. Try it today on any output where you're fighting markdown rendering. <a href="https://x.com/karpathy/status/2053872850101285137">View</a> (17K likes, 2.7M views, 19.5K bookmarks)</p>
-<p><strong>Onboarding is the test for productized agent work.</strong> Nate Jones: &quot;When setup, repos, permissions, docs, and review paths are legible enough for an agent to move through them, you get this world where the agent just sets your workspace up for you and it really does feel magical.&quot; Write your onboarding such that an agent can read it and bootstrap a new dev environment unattended. That's the bar. <a href="https://x.com/natebjones/status/2054697221980127306">View</a></p>
+<p><strong>Onboarding is the bar for productized agent work.</strong> When setup, repos, permissions, docs, and review paths are legible enough for an agent to move through them unattended, the agent sets your workspace up for you and it feels magical. Write your onboarding such that an agent can read it and bootstrap a new dev environment without help. That's the bar.</p>
 <hr />
 <h2>Coding &amp; Agents</h2>
 <p><strong>OpenAI Codex: &quot;Building Self-Repairing Agent Loops&quot; (39-min read).</strong> Reference implementation for agents that iteratively review, repair, and validate their own outputs via structured feedback loops. If you're building any agent that has to recover from its own mistakes, this is the playbook. <a href="https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex">Read</a></p>
@@ -272,7 +272,7 @@
 <li><strong>VS Code ships an Agents window</strong> multi-agent, multi-project in VS Code stable. Includes remote dev support, browser/mobile at vscode.dev/agents, and Claude agent integration via Copilot. <a href="https://x.com/pierceboggan/status/2054775908586934440">View</a></li>
 <li><strong>Notion Developer Platform launches</strong> Notion CLI (<code>ntn</code>), Workers (code runs on Notion's infra), External Agents API, Notion Agents SDK. Tagline: &quot;Soon, you won't need to be a developer to build on Notion. Your agent will be one for you.&quot; <a href="https://x.com/NotionHQ/status/2054625030970220834">View</a></li>
 <li><strong>Ryan Carson reversed his &quot;build your own code factory&quot; advice</strong> now uses Devin exclusively. Devin's &quot;Test App&quot; feature screen-records itself clicking through the app, finds bugs, fixes them. <code>!land</code> merges to main. &quot;If you're coding on your local machine instead of in the cloud, you're falling behind.&quot; <a href="https://x.com/ryancarson/status/2054018726370963568">View</a></li>
-<li><strong>Wes Bos spent $91.34 with <code>claude code /goal</code> in 3.5 hours</strong> to reverse-engineer a BLE mesh protocol. Sometimes throwing cash at Claude Code pays.</li>
+<li><strong>Wes Bos used <code>claude code /goal</code> for a 3.5-hour run</strong> to reverse-engineer a BLE mesh protocol. Use case for letting Claude Code grind on a hard reverse-engineering task end-to-end.</li>
 <li><strong>Omnara Cloud Sandboxing</strong> close your laptop, your agent session keeps running. <a href="https://x.com/ishaansehgal/status/2054602570866598208">View</a></li>
 <li><strong>DrCatHicks/learning-opportunities</strong> a Claude Code + Codex skill for learning a topic, not just executing tasks. Interesting primitive for any tool that wants a &quot;teach me this&quot; mode. <a href="https://github.com/DrCatHicks/learning-opportunities">GitHub</a></li>
 </ul>
@@ -282,9 +282,9 @@
 <ul>
 <li><strong>Meta Muse Spark</strong> foundational multimodal model now powering Meta AI across Voice Mode and Meta Glasses. Faster voice responses, real-time visual recognition. Two labs (Meta and Thinking Machines) executed the &quot;train multimodal from scratch&quot; pivot in the same week.</li>
 <li><strong>White House considers pre-release vetting of frontier AI models</strong> NYT, 101 HN points. First mainstream confirmation of a possible government review gate. If it ships: expect a two-tier distribution pattern, vetted-public vs. everything else.</li>
-<li><strong>Five major open model releases out of Beijing, Shanghai, and Hangzhou in one week</strong> Matthew D. White, after 8 days in Chinese labs. The Chinese open-source cadence is now multiple MoE multimodal releases per week.</li>
+<li><strong>Five major open model releases out of Beijing, Shanghai, and Hangzhou in one week.</strong> The Chinese open-source cadence is now multiple MoE multimodal releases per week (e.g., AIDC-AI Ovis2.6-80B-A3B trending on HuggingFace this week).</li>
 <li><strong>Claude for Small Business launches</strong> 324 HN points, 265 comments. Anthropic's third new deployment surface this week, after AWS-native Claude Platform and Fast Mode.</li>
-<li><strong>Googlebooks: Android-powered laptops with Gemini front-and-center, shipping this year</strong> wiggling the cursor triggers full-screen Gemini with screen-content awareness. Apple's iOS 27 Siri overhaul is the same bet. Screen-aware ambient AI is converging across Apple, Google, and Meta simultaneously.</li>
+<li><strong>Googlebooks — Android-powered laptops with Gemini front-and-center, shipping this year.</strong> Wiggling the cursor triggers full-screen Gemini with screen-content awareness. Apple's iOS 27 Siri overhaul is the same bet. Screen-aware ambient AI is converging across Apple, Google, and Meta simultaneously. <a href="https://arstechnica.com/gadgets/2026/05/googles-android-powered-laptops-are-called-googlebooks-and-theyre-coming-this-year/">Ars Technica</a></li>
 <li><strong>Google + SpaceX in active talks to put data centers in orbit (Project Suncatcher)</strong> WSJ. Compute is becoming a launch-vehicle problem. Long-horizon only.</li>
 </ul>
 <hr />
@@ -341,18 +341,6 @@
 <li><strong>Regulated industries already have a path</strong>: Anthropic, OpenAI, Google all have HIPAA/SOC2-style compliance certs. The violation only happens on free tiers — enterprise BAAs cover the rest.</li>
 <li><strong>Hallucinations are dropping, but verification is still the rule</strong>: Treat AI output like Wikipedia or a coworker — verify it. Businesses burned by hallucinations treated drafts as final answers.</li>
 </ul>
-<h2>Worth Your Time</h2>
-<ol>
-<li>
-<p><strong>OpenAI's self-repairing agent cookbook</strong> reference implementation for agents that fix their own mistakes. 39 minutes for a working mental model of iterative repair loops. <a href="https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex">Read</a></p>
-</li>
-<li>
-<p><strong>Greg Isenberg's 30+ AI agent observations</strong> the orchestration moat thesis plus frameworks on agent pricing, burnout, Slack archives as product, and the zombie-agent cleanup opportunity. Dense. <a href="https://x.com/gregisenberg/status/2054584280848769413">View thread</a></p>
-</li>
-<li>
-<p><strong>The Alberta $54M story</strong> a government team built a software project in-house with AI instead of paying a consulting firm's quote. Useful framing for any pitch where you're competing against an enterprise vendor. <a href="https://nateglubish.substack.com/p/they-said-it-would-cost-54-million">Read</a></p>
-</li>
-</ol>
 			</article>
 
 			<footer class="footer">
