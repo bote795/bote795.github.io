@@ -1,0 +1,443 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 14, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 14, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-14.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 14, 2026 &middot; 12 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest May 14, 2026</h1>
+<p>Fast Mode for Claude Opus 4.7 shipped across six IDEs this morning, and a Claude-powered agent deleted a company's production database in nine seconds this week. The speed problem and the trust problem are on the same timeline. Lock down your agent permissions before you flip on Fast Mode.</p>
+<hr />
+<h2>The Big Stories</h2>
+<h3>Claude Fast Mode: opt-in today, default later</h3>
+<p>Available now in research preview across the API, Claude Code, Cursor, Emergent, Factory, v0, Warp, and Windsurf. Currently opt-in; Anthropic flips it on by default once the preview wraps. This is the supply-side fix for Claude Code rate-limit pain on long-running builds. Measure latency vs. quality on your real workloads before treating it as a transparent upgrade.</p>
+<h3>The database deletion is the guardrails heuristic you needed</h3>
+<p>A Claude-powered coding agent deleted a company's production database in nine seconds. The most useful output from the story was the HN top comment: &quot;If you wouldn't give it to an enthusiastic junior dev, don't give it to AI, period.&quot; Apply that before your next agent gets bash or file-write access. Kontext CLI (covered below) is one concrete tool for credential scoping so agents never see raw keys.</p>
+<hr />
+<h2>Frameworks &amp; Analysis</h2>
+<p><strong>The orchestration layer is the moat, not the model.</strong> Greg Isenberg (1.8K likes, 247K views, 4.1K bookmarks): &quot;We spent 2025-2026 arguing about which model is best while the entire value was in the orchestration layer. The model is the CPU. Nobody buys a computer based on the CPU anymore.&quot; His adjacent point: &quot;The only moat is distribution plus memory. The company that has your audience AND your agent's accumulated context is impossible to leave.&quot; Build user-specific agent memory in from day one. The switching cost compounds. <a href="https://x.com/gregisenberg/status/2054584280848769413">View thread</a></p>
+<p><strong>Greg's managed-agent stack.</strong> From his 47-min public playbook: Hermes Agent (harness) + Codex/Claude Code (build) + Orgo (cloud VM per agent) + Composio (1-click app auth) + Agent Mail (each agent gets an email inbox) + Obsidian (knowledge base). Offer: $5K/month per client, unlimited agents and usage, client never thinks about tokens. Model picks: GPT-5.5 for tool-heavy tasks (&quot;efficient with tool calls, doesn't eat tokens like Opus 4.7&quot;), GLM 5.1 from ZAI for cheaper tasks. <a href="https://x.com/gregisenberg/status/2054261832718889216">View</a></p>
+<p><strong>Agents need continuity, not just action.</strong> Acting is useful; continuity is what lets the work get better over time — what was tried, what failed, what changed, what the user cares about, what should not be repeated. Three independent teams shipped persistent-memory primitives for agents in the last 30 days. The pattern is converging. Agents without durable context are disposable tools. Agents with it compound.</p>
+<p><strong>Karpathy's output tip: ask for HTML, open it in a browser.</strong> Append &quot;structure your response as HTML&quot; to any prompt, then view the result in a browser. Rendered HTML is dramatically more readable than markdown because roughly a third of the brain processes visual information. His progression call: raw text, then markdown (current default), then HTML (forming new default), then eventually interactive neural simulations. Try it today on any output where you're fighting markdown rendering. <a href="https://x.com/karpathy/status/2053872850101285137">View</a> (17K likes, 2.7M views, 19.5K bookmarks)</p>
+<p><strong>Onboarding is the bar for productized agent work.</strong> When setup, repos, permissions, docs, and review paths are legible enough for an agent to move through them unattended, the agent sets your workspace up for you and it feels magical. Write your onboarding such that an agent can read it and bootstrap a new dev environment without help. That's the bar.</p>
+<hr />
+<h2>Coding &amp; Agents</h2>
+<p><strong>OpenAI Codex: &quot;Building Self-Repairing Agent Loops&quot; (39-min read).</strong> Reference implementation for agents that iteratively review, repair, and validate their own outputs via structured feedback loops. If you're building any agent that has to recover from its own mistakes, this is the playbook. <a href="https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex">Read</a></p>
+<p><strong>EPAM published the first AI coding-agent benchmark on a real legacy codebase.</strong> 15 agents stress-tested against actual technical debt, not greenfield repos. Most public benchmarks test on toy code. This one tests the work that actually matters. Review it before standardizing on an agent stack. [Source: @arnaudmercier]</p>
+<p><strong>June 15: Claude paid-plan programmatic-usage credits change.</strong> Starting June 15, paid Claude plans get a dedicated monthly credit covering Claude Agent SDK, <code>claude -p</code>, Claude Code GitHub Actions, and third-party Agent SDK apps. Developer reaction: mixed to frustrated. Claire Vo made a video explaining it and admitted the video only partially succeeded. Sam Altman dropped &quot;2 months free Codex for companies switching over&quot; within the same window. <a href="https://x.com/clairevo/status/2054746343269376200">View</a></p>
+<p><strong>Aide-memory: persistent memory primitive for AI coding agents.</strong> Show HN. Targets the &quot;agents forget the <em>why</em> by tomorrow&quot; problem. Third independent memory project in 30 days hitting the same gap. Build with this from the start. Retrofitting memory is painful.</p>
+<ul>
+<li><strong>Kontext CLI</strong> credential broker for AI coding agents in Go. Task-scoped credential injection so agents never see raw keys. <a href="https://news.ycombinator.com/item?id=47765374">HN thread</a></li>
+<li><strong>VS Code ships an Agents window</strong> multi-agent, multi-project in VS Code stable. Includes remote dev support, browser/mobile at vscode.dev/agents, and Claude agent integration via Copilot. <a href="https://x.com/pierceboggan/status/2054775908586934440">View</a></li>
+<li><strong>Notion Developer Platform launches</strong> Notion CLI (<code>ntn</code>), Workers (code runs on Notion's infra), External Agents API, Notion Agents SDK. Tagline: &quot;Soon, you won't need to be a developer to build on Notion. Your agent will be one for you.&quot; <a href="https://x.com/NotionHQ/status/2054625030970220834">View</a></li>
+<li><strong>Ryan Carson reversed his &quot;build your own code factory&quot; advice</strong> now uses Devin exclusively. Devin's &quot;Test App&quot; feature screen-records itself clicking through the app, finds bugs, fixes them. <code>!land</code> merges to main. &quot;If you're coding on your local machine instead of in the cloud, you're falling behind.&quot; <a href="https://x.com/ryancarson/status/2054018726370963568">View</a></li>
+<li><strong>Wes Bos used <code>claude code /goal</code> for a 3.5-hour run</strong> to reverse-engineer a BLE mesh protocol. Use case for letting Claude Code grind on a hard reverse-engineering task end-to-end.</li>
+<li><strong>Omnara Cloud Sandboxing</strong> close your laptop, your agent session keeps running. <a href="https://x.com/ishaansehgal/status/2054602570866598208">View</a></li>
+<li><strong>DrCatHicks/learning-opportunities</strong> a Claude Code + Codex skill for learning a topic, not just executing tasks. Interesting primitive for any tool that wants a &quot;teach me this&quot; mode. <a href="https://github.com/DrCatHicks/learning-opportunities">GitHub</a></li>
+</ul>
+<hr />
+<h2>Models &amp; Infrastructure</h2>
+<p><strong>Cactus Needle: 26M param model distilled from Gemini 3.1, runs at 6,000 t/s prefill and 1,200 t/s decode on a Mac or PC.</strong> Local-finetune-capable. Frontier knowledge in a package small enough to embed in any app, at zero API cost. Benchmark against your use case before committing to an API-heavy architecture. <a href="https://github.com/cactus-compute/needle">GitHub</a></p>
+<ul>
+<li><strong>Meta Muse Spark</strong> foundational multimodal model now powering Meta AI across Voice Mode and Meta Glasses. Faster voice responses, real-time visual recognition. Two labs (Meta and Thinking Machines) executed the &quot;train multimodal from scratch&quot; pivot in the same week.</li>
+<li><strong>White House considers pre-release vetting of frontier AI models</strong> NYT, 101 HN points. First mainstream confirmation of a possible government review gate. If it ships: expect a two-tier distribution pattern, vetted-public vs. everything else.</li>
+<li><strong>Five major open model releases out of Beijing, Shanghai, and Hangzhou in one week.</strong> The Chinese open-source cadence is now multiple MoE multimodal releases per week (e.g., AIDC-AI Ovis2.6-80B-A3B trending on HuggingFace this week).</li>
+<li><strong>Claude for Small Business launches</strong> 324 HN points, 265 comments. Anthropic's third new deployment surface this week, after AWS-native Claude Platform and Fast Mode.</li>
+<li><strong>Googlebooks — Android-powered laptops with Gemini front-and-center, shipping this year.</strong> Wiggling the cursor triggers full-screen Gemini with screen-content awareness. Apple's iOS 27 Siri overhaul is the same bet. Screen-aware ambient AI is converging across Apple, Google, and Meta simultaneously. <a href="https://arstechnica.com/gadgets/2026/05/googles-android-powered-laptops-are-called-googlebooks-and-theyre-coming-this-year/">Ars Technica</a></li>
+<li><strong>Google + SpaceX in active talks to put data centers in orbit (Project Suncatcher)</strong> WSJ. Compute is becoming a launch-vehicle problem. Long-horizon only.</li>
+</ul>
+<hr />
+<h2>Open Source</h2>
+<ul>
+<li><strong>Dograh</strong> open-source replacement for Vapi, drops the per-minute pricing model. If any product touches voice AI at scale, the proprietary alternative now has an OSS answer. [Better Stack, May 14]</li>
+<li><strong>Nibble</strong> single-pass LLVM frontend in ~3,000 lines of C, no malloc, no AST. A compiler frontend in a dependency-free codebase. The philosophy matters: every dependency is a future maintenance cost. <a href="https://github.com/glouw/nibble">GitHub</a></li>
+<li><strong>Alberta government built a software project for ~1/100th of the $54M a consulting firm quoted</strong> by building in-house with AI. The pattern is now showing up at the government-procurement level. <a href="https://nateglubish.substack.com/p/they-said-it-would-cost-54-million">Read</a></li>
+<li><strong>KubeAstra</strong> open-source AI agent that debugs and recovers Kubernetes pods automatically. The &quot;agents as SRE&quot; pattern is hitting production infrastructure.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>Paperclip Heartbeats Are Out. Routines Are In. Before June 15th — Do It. (@AronPrins)</h3>
+<p><a href="https://www.youtube.com/watch?v=wNvZgB34Rqs">Watch</a></p>
+<p>Aron walks through three Paperclip ecosystem updates and one urgent operational change: (1) Paperclip Desktop app is live and free, (2) docs.paperclip.ing and paperclip.community are launched with a Companies marketplace coming, (3) Anthropic is splitting Claude Code's programmatic/agent-SDK usage into its own metered bucket starting June 15th, and (4) the migration path away from &quot;heartbeats&quot; (periodic agent timers) toward &quot;routines&quot; (event-driven repeat issues) — which is now critical to avoid burning your Claude budget.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Anthropic is metering agentic / programmatic Claude Code usage separately starting June 15th</strong>: $200/mo plan = $200 of agent-SDK credits/month. Once drained, you pay overage or switch models. Paperclip wraps Claude Code, so this hits Paperclip users directly.</li>
+<li><strong>Mindset shift:</strong> Before: agents run on heartbeats (timer-driven polls every 30/60 min). → After: agents run on routines (event/schedule-triggered issues) — far more granular and cheaper.</li>
+<li><strong>Heartbeats are now OFF by default for new agents</strong>: Old companies still have them on; you must turn them off in each agent's configuration → run policy.</li>
+<li><strong>Routines replace heartbeats with event-triggered issues on repeat</strong>: A routine is &quot;an issue that's on repeat&quot; — but with control over cadence, model selection (coming), and ownership.</li>
+<li><strong>Agents can only work on routines they own</strong>: CEO agent can't manage other agents' routines. Each agent must be instructed individually.</li>
+</ul>
+<h3>Pax Silica — Inside the Trump Administration's Tech Strategy with Jacob Helberg (@NoPriorsPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=xjlYpGaxIPA">Watch</a></p>
+<p>Jacob Helberg outlines Pax Silica — a 14-country economic security coalition designed to secure the AI supply chain (chips, rare earths, precision reducers, robotics components, server motors) for the US and allies. The flagship project is a 4,000-acre &quot;forward-deployed industrial base&quot; in the Philippines (1/3 the size of Manhattan) granted as diplomatic property, then transitioning to a multi-decade investor framework. Strategy is explicitly anti-Belt-and-Road: private-sector-led, product-centric, positive-sum partnerships rather than state-owned enterprise debt traps.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Pax Silica is a 14-country AI supply chain coalition</strong> — not just chips, but thousands of inputs: precision reducers, server motors, rare earth magnets, actuators, etc.</li>
+<li><strong>&quot;Forward-deployed industrial base&quot; is a novel legal instrument</strong> — State Department took 4,000 acres in the Philippines into custody as diplomatic property (same legal status as embassies). 2-year window to negotiate long-term investor protections / tax regime / decade-scale framework.</li>
+<li><strong>Robotics supply chain is the explicit strategic target</strong>: Currently China-dominated; explicitly called out as the area Pax Silica wants to make a &quot;bet on.&quot;</li>
+<li><strong>Mindset shift:</strong> Before: US economic statecraft = sanctions + tariffs (reactive). → After: build commercially viable platforms that companies operate on (product-centric foreign policy).</li>
+<li><strong>Anti-Belt-and-Road by design</strong>: Chinese model = state-owned enterprises + IOUs that become debt traps + equity conversion on default. US model = private-sector-led, positive-sum joint ventures.</li>
+</ul>
+<h3>How the 1% Will Own Compute (and What It Means for You) (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=QEu9_0R4eAU">Watch</a></p>
+<p>A roundtable on the May 2026 state of AI: US vs China model gap, photonic interconnects, orbital data centers, and Mira Murati's new &quot;interaction model&quot; from Thinking Machines. The panel argues we're entering a &quot;compute polarization&quot; era where the 1% won't just own jets and mansions — they'll own personal $10M data centers that make them functionally superhuman. Layoffs (Cloudflare cut 1,100 / 20% while posting record revenue) are happening simultaneously with super-intelligence, and the panel debates the path to abundance, UBI, and what humans do when labor is decoupled from value creation.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The China gap is constant, not closing</strong>: Chinese open-source models track ~2 quarters (6 months) behind top US proprietary models — the rate of closure has slowed in the last 6 months. Proprietary US labs may even be pulling ahead on the first derivative.</li>
+<li><strong>The big-lab moat depends on &quot;next model = users churn&quot;</strong>: If model quality plateaus and users say &quot;good enough,&quot; then the 6-month catch-up window kills the moat. This is the existential risk Anthropic/OpenAI are training $10B+ models to outrun.</li>
+<li><strong>Photonic interconnect is the next perf frontier</strong>: Lightmatter's optical links are &quot;as fast as the cables connecting North America to Europe&quot; — single chip = 200,000 houses worth of bandwidth. Broad availability ~2028.</li>
+<li><strong>Space data centers solve the energy bottleneck</strong>: Dawn-dusk sun-synchronous orbit = ~1000x less battery than terrestrial solar. No clouds, no seasonality, no land permits, no NIMBY. StarCloud 2 launches in 7 months with Blackwell chips.</li>
+<li><strong>Mindset shift:</strong> Before: AI is a tool you call from a chat box. → After: AI is a continuous interaction model (audio/video/text streaming in real time) — Thinking Machines' new architecture using two models simultaneously.</li>
+</ul>
+<h3>How to Use AI Safely in Your Business (5 Real Risks, Solved) (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=RhNmDYFGnvs">Watch</a></p>
+<p>The host walks through the five most common reasons business owners say AI is &quot;unsafe&quot; — data training, employee leaks, regulated industries, hallucinations, breaches — and gives a practical mitigation for each. Core thesis: the fears are real but rooted in misuse of consumer-tier products; enterprise/API tiers + a simple AI use policy solve 90% of them.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Free tier ≠ Enterprise tier on data training</strong>: Free ChatGPT/Claude/Gemini may train on your chats; API and enterprise plans explicitly do not. A toggle or plan upgrade is usually the whole fix.</li>
+<li><strong>Banning AI drives it underground</strong>: Employees will use personal accounts on their phones if blocked at work. An open policy beats a ban every time.</li>
+<li><strong>Shadow AI is now 35% sensitive data</strong>: Employees are pasting 35% sensitive info into AI tools, up from ~10% a few years ago — IT usually has zero visibility.</li>
+<li><strong>Regulated industries already have a path</strong>: Anthropic, OpenAI, Google all have HIPAA/SOC2-style compliance certs. The violation only happens on free tiers — enterprise BAAs cover the rest.</li>
+<li><strong>Hallucinations are dropping, but verification is still the rule</strong>: Treat AI output like Wikipedia or a coworker — verify it. Businesses burned by hallucinations treated drafts as final answers.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
