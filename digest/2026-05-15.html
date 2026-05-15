@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 15, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 15, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-15.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 15, 2026 &middot; 10 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>Builder's Daily May 15, 2026</h1>
+<p>Two labs launched competing billion-dollar enterprise deployment ventures the same week Claude Code rate limits doubled — driven by a SpaceX compute deal that brought roughly 220,000 new Nvidia GPUs online overnight. Both data points say the same thing: model access is the commodity now, and deployment is where the value gets captured.</p>
+<hr />
+<h2>The Real AI War: Who Owns the Deployment Layer</h2>
+<p>On May 4, per industry reporting, Anthropic and OpenAI each announced PE-backed enterprise deployment companies. Anthropic's: a reported $1.5B vehicle backed by Blackstone, Hellman &amp; Friedman, and Goldman Sachs, targeting mid-market companies with enough process complexity to need Claude but not enough internal AI engineering to deploy it. OpenAI's: a reported $10B vehicle anchored by TPG, with OpenAI guaranteeing PE backers a fixed annual return over 5 years. That fixed-yield instrument converts equity upside into a bond-like product which tells you how badly OpenAI wants this distribution channel. (OpenAI also acquired consulting firm Tomoro a week later, bringing ~150 engineers directly into the deployment vehicle.)</p>
+<p>The diagnosis behind both moves: model access is fully commoditized. The implementation layer is the new moat. It has six specific components: workflow design, data access, authority (what actions the model can take and against which systems), evaluation, audit trails, and recovery/ownership. Most companies have built two. The companies that have built all six are starting to pull away from everyone else.</p>
+<p>What the gap looks like in practice: a customer support AI that saves some writing time is not a deployment. A real deployment specifies which tickets get auto-classified, which customer records the model reads, which policy rules govern refunds, when a manager must approve, and which metrics prove it worked. The distance between those two things is where the enterprise value sits, still uncaptured.</p>
+<p>For startups: generic &quot;AI for enterprise productivity&quot; now faces pressure from four directions at once. Labs moving down-stack with vertical templates and forward-deployed teams. Consultancies (McKinsey, BCG, Accenture, Capgemini) moving up with agentic build practices. Systems of record (Salesforce, SAP, Workday, ServiceNow) exposing agent APIs with native permissions and native audit trails. PE becoming a distribution channel that can push one deployment partner across an entire portfolio. Win condition: own a specific workflow, a vertical, or a control layer or build the infrastructure that lets companies evaluate agent output against real business outcomes.</p>
+<hr />
+<h2>Claude Code Rate Limits Just Doubled</h2>
+<p>Per @tomasgarritano: Anthropic's SpaceX deal brought roughly 300 MW of new infrastructure online. That is about 220,000 Nvidia GPUs that came live in roughly one month. Claude Code rate limits doubled because the compute bottleneck broke, not because Anthropic changed a policy. If you have been rationing sessions or hitting walls mid-task, the constraint just moved.</p>
+<hr />
+<h2>In Brief</h2>
+<p><strong>Cline open-source agent runtime SDK</strong> Cline released <code>@cline/sdk</code>, an open-source framework for building agentic applications with a plugin architecture. This is a drop-in runtime layer for any coding agent workflow, not just Cline's own interface. The builder use case: customize agent behavior at the infrastructure level without forking someone else's entire codebase. (<a href="https://www.testingcatalog.com/cline-releases-open-source-agent-runtime-sdk-for-coding-agents/">source</a>)</p>
+<p><strong>Vercel AI Gateway: Anthropic leads spend, Google leads volume</strong> Seven months of production data across 200,000+ teams. Anthropic wins on dollars despite higher unit prices; Google wins on request volume. No lab loyalty: teams route to the cheapest capable model per task. Agentic workloads are the fastest-growing traffic category in the dataset. (<a href="https://vercel.com/blog/ai-gateway-production-index">source</a>)</p>
+<p><strong>Cerebras IPO: $5.5B raised, $40B valuation</strong> The largest IPO of 2026, 20x oversubscribed. Cerebras builds AI inference chips optimized for throughput speed, not training scale. If they succeed, it creates real competition for Nvidia in the inference layer which eventually means lower API pricing across the board.</p>
+<p><strong>Simon Willison shipped a production plugin with Codex (GPT-5.5)</strong> His datasette.io site was getting hammered by crawlers, so he had Codex build <code>datasette-ip-rate-limit 0.1a0</code>, a configurable IP rate-limiting plugin. Cleanest real-world &quot;agent shipped production code I actually use&quot; example of the week. (<a href="https://simonwillison.net/2026/May/14/datasette-ip-rate-limit/">source</a>)</p>
+<p><strong>The &quot;empty rooms&quot; thesis for where to build</strong> Greg Isenberg: each year's hot theme acts as a talent and capital vacuum, clearing out every adjacent room. The most valuable companies get built in those emptied rooms. Practical application: when agents/RAG/evals feel saturated, ask which adjacent problem lost all its builders when AI sucked them away. (<a href="https://x.com/gregisenberg/status/2054920513642787219">view</a>)</p>
+<p><strong>AEO is replacing SEO; evals are the moat</strong> Synthesis from workshops at Stripe, AWS, Vercel, Convex, and Arize: your product needs to show up in AI responses, not just Google. Without an eval harness, switching models costs weeks of manual testing. Design the eval harness before the first prompt, not after. (<a href="https://x.com/Dondyu/status/2055257622492893593">view</a>)</p>
+<hr />
+<h2>One-Liners</h2>
+<p><strong>Claude for Small Business</strong> Anthropic launched prebuilt connectors embedding Claude into QuickBooks, PayPal, HubSpot, Google Workspace, and Microsoft 365. SMBs get workflow automation without API setup. (<a href="https://www.anthropic.com/news/claude-for-small-business">source</a>)</p>
+<p><strong>Recursive Superintelligence raised $650M at $4B</strong> Building AI that improves itself with little or no human developer input. Seven co-founders. Largest early-stage AI bet of the week.</p>
+<p><strong>OpenAI published the full engineering breakdown of Codex's Windows sandbox</strong> How they constrained local commands, file access, and networking while keeping agent workflows functional. Useful reference if you are building sandboxed agent environments.</p>
+<p><strong>Apple is exploring AI agents on the App Store</strong> Nothing shipped. Privacy and security constraints are the friction. Worth tracking as a potential distribution channel once those constraints get resolved.</p>
+<p><strong>Amazon killed Rufus, launched Alexa Shopping</strong> Alexa for Shopping uses purchase history and live inventory data to take actions, not just answer questions. Chatbots that only talk are getting replaced by agents that act.</p>
+<p><strong>Notion Developer Platform</strong> Developers can now write code to sync any data and build agent tools inside Notion, with triggers and custom workflows. (<a href="https://threadreaderapp.com/thread/2054625030970220834.html">source</a>)</p>
+<p><strong>whichllm</strong> Open-source tool that ranks local LLMs by benchmark performance against your specific hardware. Useful before committing to a local model setup. (<a href="https://github.com/Andyyyy64/whichllm">source</a>)</p>
+<p><strong>Managing agents = managing people</strong> @zenok__: &quot;context. clear scope. check-ins. feedback. we just forget that and treat agents like vending machines.&quot; Explains most Claude Code drift complaints before you even look at the model. (<a href="https://x.com/zenok__/status/2055262992590422057">view</a>)</p>
+<p><strong>Agent-readiness beats AI features</strong> The pattern emerging from agent-ops practitioners: the companies getting the most out of agents have clear process, clean source material, explicit rules, and real owners — not the flashiest AI features.</p>
+<p><strong>Don't fire your glue people yet</strong> The people who hold cross-functional context together are doing work AI cannot replicate from a prompt. AI accelerates boilerplate; complex business logic and cross-team coordination still need humans who know where the bodies are buried.</p>
+<p><strong>Anthropic gave a court a $5B valuation, told the public $19B</strong> Valuation methodology differences across legal vs. fundraising contexts. Worth knowing before you benchmark any raise against &quot;Anthropic's valuation.&quot; (<a href="https://www.flyingpenguin.com/wheres-ed-anthropic-told-court-5-billion-but-public-19-billion/">source</a>)</p>
+<p><strong>Programming languages are no longer lock-in</strong> Mitchell Hashimoto on Bun's Zig-to-Rust rewrite: languages have become fungible. Simon Willison extends the point: real lock-in is now data architecture and workflow design. (<a href="https://simonwillison.net/2026/May/14/not-so-locked-in/">source</a>)</p>
+<hr />
+<h2>Videos</h2>
+<h3>Anthropic Buys Compute From Elon &amp; Commits $200BN to Google (@20VC)</h3>
+<p><a href="https://www.youtube.com/watch?v=LsqnQqhbSrU">Watch</a></p>
+<p>Weekly market roundtable covering Anthropic's $200B Google compute commitment, its compute deal with Elon's xAI/SpaceX, the Cerebras IPO, and the public-market reckoning happening across SaaS (HubSpot, Cloudflare, Zoom Info, Monday). The throughline: capital is consolidating into a Google/Anthropic/OpenAI oligopoly; legacy SaaS gets either an AI-acceleration story or a terminal-decay valuation; intensity, not effort, separates billion-dollar founders; and any growth-at-1% public SaaS company is now PE bait.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Anthropic locked down secondary sales — but it's a nothing-burger</strong>: New rule requires board approval for all secondaries/SPVs. Standard practice for 5+ years per Jason; Anthropic told Menlo last year to stop running SPVs and people kept going anyway. They named specific bad-actor hedge funds. <strong>Mindset shift:</strong> Before: secondary markets were a free-for-all. After: tighter cap-table control as IPOs approach.</li>
+<li><strong>Anthropic-xAI/SpaceX compute deal signals consolidation, not friendship</strong>: Grok had an 11%-utilized data center. xAI is effectively switching from net-buyer of compute to net-seller. The deal pulls xAI from &quot;$250B competitor&quot; to &quot;$25B notionally profitable supplier.&quot; Lesson: have lunch with competitors twice a year; you never know when the enemy becomes the customer.</li>
+<li><strong>Google's $200B Anthropic commit = ~40% of Google's total future backlog</strong>: The hyperscalers are deeply dependent on two private AI labs. Google is happy to lose at the model layer if they capture margin via TPUs + GCP. Microsoft is in a worse spot — same dependency on OpenAI but without a competitive model of their own.</li>
+<li><strong>Goldman's 24x token-consumption forecast by 2030 is too low</strong>: Jason argues parallel agents push the number to 250x+. <strong>Mindset shift:</strong> Before: sequential LLM use, one task at a time. After: 10 parallel agents producing 10 versions of a feature, LLM judge picks the best 2-3, human approves.</li>
+<li><strong>Token waste is real — only S-tier engineers should get $20K/mo budgets</strong>: A growing CTO backlash: mediocre &quot;web devs&quot; burn massive tokens to produce 100K-line blogs. Goodhart's Law warning — once you measure token usage, employees distort. The 100x engineers earn the budget; the rest are token-trashers.</li>
+</ul>
+<h3>Hermes Agent Just Made OpenClaw Look Old (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=bWFnjGLint8">Watch</a></p>
+<p>A walkthrough of Hermes Agent, a local-first open-source autonomous AI agent from &quot;New Research&quot; that the host argues has dethroned Open Claw. Key advantages: 87 built-in skills, 80+ tool integrations, a polished dashboard with analytics/logs/secrets management, multi-agent profiles with per-agent <code>soul.md</code> system prompts, and an auto-triaged Kanban board driven by a cron job.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Local-first agents are the new ceiling</strong>: Hermes runs on the laptop, uses the user's API keys, and stores everything locally — talking via terminal, Slack, or Telegram. <strong>Mindset shift:</strong> Before: agents are cloud services you log into. After: the agent lives on your machine and the dashboard is for inspection/config, not execution.</li>
+<li><strong>Auto-generated skills from conversation</strong>: Hermes captures memory and auto-generates new skills based on what you do with it — meaning the agent's capability set grows organically rather than requiring manual skill authoring.</li>
+<li><strong><code>soul.md</code> per-profile system prompts</strong>: Each multi-agent profile has its own personality file (<code>soul.md</code>) defining role, voice, examples, and rules. The host has 7 profiles: default workhorse, designer, researcher, reviewer, runner (Haiku for cost), and a domain-specific &quot;This Week in AI X writer&quot; with voice samples and post format examples baked in.</li>
+<li><strong>Model-per-task assignment</strong>: Different profiles use different models — Kimi K2.6 as default workhorse, Opus 4.7 for design, Haiku for cheap runner tasks. The right model for the job rather than one model for everything.</li>
+<li><strong>Lead with planning questions, not commands</strong>: Both for Hermes and Open Claw, the host recommends opening with &quot;if I were to do this, how would we set it up?&quot; to let the agent plan and think deeply before executing.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start">How Claude Code Works in Large Codebases</a></strong> Anthropic's own best-practices guide. 193 HN upvotes, 132 comments. If you run Claude Code daily, read this before anything else on this list.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
