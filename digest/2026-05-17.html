@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 17, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 17, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-17.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 17, 2026 &middot; 12 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest May 17, 2026</h1>
+<p>Eight SaaS vendors are now billing for agent work separately from seats Salesforce alone booked $800M in agent revenue last quarter, up from $540M the quarter before. A 131-upvote post argues AI accelerates tasks but shifts bottlenecks to review and coordination, leaving end-to-end process time flat. Both signals converge on the same place: model access is cheap, and the fight now is over cost, coordination, and who controls what agents can do inside systems you already pay for.</p>
+<hr />
+<h2>The Deep Cuts</h2>
+<h3>Your next SaaS renewal has two bills, not one</h3>
+<p>Seat pricing isn't going away. Agent pricing is stacking on top. Salesforce meters agent actions (record updates, triggered workflows, decisions) via Flex Credits. Microsoft runs three layers: a $30/user Copilot seat, a separate $15/user Agent 365 governance license, and Copilot Credits underneath that measure what agents actually do. ServiceNow gates operational actions through its Action Fabric with identity, audit, and consumption metering attached. SAP wrote hard contractual limits on which agents can call its APIs at all, and under whose architecture. HubSpot and Zendesk moved to outcome pricing resolved conversations, completed prospecting tasks which is buyer-friendlier but only if the vendor defines &quot;resolved&quot; honestly.</p>
+<p>The pattern across all eight vendors is the same: establish a commercial control point around non-human work. The unit shifts from &quot;who logs in&quot; to &quot;what work gets delegated.&quot;</p>
+<p>Three questions worth running before you sign any 2026 renewal: (1) Are agents acting on behalf of licensed users covered under current seats, or do they need their own entitlement? (2) Do failed agent actions bill the same as completed ones, and can you cap by workflow? (3) If the agent replaces human work, can you reduce seats? Vendors will dodge the third that's the negotiation.</p>
+<p>For builders specifically: design agents to be cost-aware from day one. Map every system the agent touches, classify operations (read vs. write vs. execute), surface costs, and let customers cap usage. The prototype works because you have access. The first customer pilot works because nobody has audited the contract yet. Then procurement asks whether the agent is a user. That's when the architecture either holds or doesn't.</p>
+<hr />
+<h3>The agentic control layer is the actual moat</h3>
+<p>One of the clearest frameworks surfaced today came from <a href="https://x.com/natebjones/status/2055453182818484624">@natebJones</a>: four questions that define whether your agent infrastructure is defensible. Which systems know what <em>should</em> happen? Which systems know whether it <em>did</em> happen correctly? Which systems remember what <em>changed</em>? Which systems can <em>stop</em> the agent before confidence turns into damage? Model access is commoditized. The policy, observability, and halt plane around agents is not.</p>
+<p>The companion thesis: &quot;AI-native&quot; doesn't mean a chatbot bolted on. It means the business itself becomes software-readable. Before dropping an agent into any workflow, audit which decisions, files, Slack history, exceptions, and private judgments exist as inspectable artifacts versus tribal knowledge. Most orgs have org charts, SaaS dashboards, and SOP docs but no clean map of how work actually happens. Agents can only leverage what's been made legible. (<a href="https://x.com/natebjones/status/2054996991663370680">View thread</a>)</p>
+<p>The operational proof: Peter Steinberger is running ~100 parallel Codex agents simultaneously, treating tokens as a non-constraint, to answer &quot;How would we build software if tokens didn't matter?&quot; The insight isn't the spend it's the workflow redesign. Review, triage, repros, security, benchmarks, and cleanup running always-on in parallel, without the coordination overhead of queuing tasks through a single chat session. Design for parallel always-on agents, not interactive single-chat. (<a href="https://x.com/natebjones/status/2055425170056352093">View thread</a>)</p>
+<hr />
+<h2>Worth Knowing</h2>
+<p><strong>AI doesn't speed up your process it moves the bottleneck.</strong> <a href="https://frederickvanbrabant.com/blog/2026-05-15-i-dont-think-ai-will-make-your-processes-go-faster/">Frederick van Brabant's post</a> (131 pts, 69 comments on HN): AI shrinks individual task time, but the slowest step review, integration, decision-making expands to fill the gap. Total cycle time stays flat. The implication for teams using AI coding tools: shipping faster at the task layer doesn't ship faster at the product layer unless you also redesign the review and sign-off chain.</p>
+<p><strong>Gruber: the winners absorb AI as a feature, not a product.</strong> <a href="https://daringfireball.net/2026/05/ai_is_technology_not_a_product">Daring Fireball</a> argues the products that win are the ones that quietly bake AI into the parts that need it, not the ones leading with &quot;powered by AI.&quot; Sharp counter to the current YC-cohort pattern. Claire Vo reinforces this from a different angle: large companies that standardized on one coding model + chat tool + harness in late 2025 are now stuck after a model-capability leap landed post-commitment. <a href="https://x.com/clairevo/status/2054922108308992337">Build optionality into harness layers</a> org-wide standardization isn't worth the coherence gain while leap cadence is still this fast.</p>
+<p><strong>Running local LLMs on Apple Silicon costs more than OpenRouter, with numbers.</strong> <a href="https://www.williamangel.net/blog/2026/05/17/offline-llm-energy-use.html">William Angel's breakdown</a> (113 pts on HN) accounts for electricity and amortized M-series hardware: OpenRouter API economics beat local inference on pure cost. Local still wins on privacy and latency. Now you have a counter-source to weigh against both.</p>
+<p><strong>Hermes agents that write to their own memory after every task compound over time.</strong> <a href="https://x.com/gregisenberg/status/2055354334737543217">Greg Isenberg</a>: the moat isn't the agent it's the accumulated context. &quot;We're maybe 12 months from an agent that can watch you work.&quot; Ship agents with persistent self-writable memory now, even crude ones. Six months of context accumulation before competitors start is a structural advantage.</p>
+<p><strong>OpenAI Codex is now in the ChatGPT mobile app.</strong> Start tasks, review outputs, and steer execution from mobile while Codex keeps running on a background machine. <a href="https://x.com/altryne/status/2055028319805161686">@altryne</a> reports connecting a laptop and Mac mini separately and remote-controlling each. Claude paid plans get programmatic-usage credits starting June 15 covers Claude Agent SDK, <code>claude -p</code>, Claude Code GitHub Actions, and third-party Agent SDK apps. (<a href="https://x.com/natebjones/status/2055065012046270491">View</a>)</p>
+<p><strong>Patch React Server Components now.</strong> <a href="https://x.com/ryancarson/status/2055280044306563304">Ryan Carson flags a critical security vuln in React2Shell</a> affecting Next.js App Router / RSC. Better: automate a daily CI check that blocks ship if the patch is missing.</p>
+<hr />
+<h2>Quick Hits</h2>
+<p><strong>NVIDIA SANA-WM</strong> 2.6B-parameter open-source world model that generates physics-rich controllable worlds on demand. <a href="https://x.com/sergeykarayev/status/2055783307657515133">Sergey Karayev flags disbelief at the parameter count for the quality shown.</a> Worth a look if you're touching sim or world-model work.</p>
+<p><strong>AG-UI protocol</strong> lightweight event-streaming standard for user-facing AI agents: real-time updates, tool orchestration, shared mutable state, security boundaries. <a href="https://x.com/svpino/status/2055759187825893461">Gaining traction as the fastest-growing post-MCP agentic protocol.</a> Track alongside MCP.</p>
+<p><strong>FlowDeck</strong> Claude with eyes on the iOS simulator. Taps, scrolls, finds bugs, fixes them no Xcode, no manual steps. <a href="https://x.com/afterxleep/status/2055908889862828446">Demo</a>. Copy the pattern for any platform-specific test harness.</p>
+<p><strong>OpenWA</strong> <a href="https://x.com/heygurisingh/status/2055911135774474240">open-source WhatsApp API gateway</a> that runs on your own server. No per-message vendor fees, no lock-in. Relevant if WhatsApp Business API pricing has priced you out.</p>
+<p><strong>X algorithm update punishes AI slop.</strong> Alex Finn's thread on the post-Musk algorithm changes is going viral (3,509 likes) but Community Notes disputes the claimed line count. Treat specific claims skeptically; treat the algorithm shift as real. Sub-thread observation: the new algo <a href="https://x.com/AlexFinn/status/2055312478469591441">explicitly penalizes AI slop content</a> direct relevance to any distribution strategy on X.</p>
+<p><strong>Native-first until you need text.</strong> <a href="https://justsitandgrin.im/posts/native-all-the-way-until-you-need-text/">HN discussion</a> (174 pts, 112 comments): native UI wins until you hit text-heavy surfaces streaming model output, rich documents where webviews still hold up better. Useful data point for any agent UI.</p>
+<p><strong>The new triple threat is leader + maker + storyteller.</strong> <a href="https://x.com/clairevo/status/2055311143166750797">Claire Vo riffing on Scott Belsky</a>: AI collapses the talent stack so small teams of makers-who-lead-who-narrate outperform larger orgs built on role specialization.</p>
+<p><strong>Microsoft Bitlocker backdoor exploit released.</strong> A security researcher claims Microsoft built a Bitlocker backdoor and <a href="https://www.techspot.com/news/112410-security-researcher-microsoft-secretly-built-backdoor-bitlocker-releases.html">dropped the exploit publicly</a>. Add to threat models for any app touching Windows machines.</p>
+<p><strong>Mozilla defending VPN access to UK regulators.</strong> <a href="https://blog.mozilla.org/netpolicy/2026/05/15/mozilla-to-uk-regulators-vpns-are-essential-privacy-and-security-tools-and-should-not-be-undermined/">Mozilla's filing</a> pushes back on UK proposals that would weaken VPN access. Track if you ship to UK users VPN availability affects geo-dependent flows.</p>
+<hr />
+<h2>Videos</h2>
+<h3>--- (@20VC)</h3>
+<p><a href="https://www.youtube.com/watch?v=byZkrYBF-N0">Watch</a></p>
+<p>Shiv Rao walks through what it took to ride a 5-year wilderness from 2018 founding to category-defining vertical AI company. Themes: an unshakeable thesis (&quot;the conversation is the most human signal in healthcare&quot;), patient pivots on everything BUT the thesis, hard-won GTM lessons on selling into US healthcare's fragmented enterprise, how to compete around foundation models rather than against them, the trust-building moat in regulated industries, and a strong opinion that AI's real job in healthcare is to change the business model, not deploy science-fiction features.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Have a thesis you'd die for; pivot everything else</strong> — Shiv pivoted product order, GTM, business model. The thesis (&quot;healthcare is people having conversations; that spoken signal is the wedge&quot;) was untouchable. If it had broken, he'd have killed the company and started a new one rather than compromise it.</li>
+<li><strong>Vertical AI vintage matters — re-vintage fast</strong> — Three eras: post-transformer/pre-LLM, post-LLM/pre-agent, post-agent. Whatever your starting vintage, you must aggressively re-platform product AND org structure into the latest variant. Late = dead; &quot;early is also wrong&quot; but survivable with resilience.</li>
+<li><strong>Don't fight the foundation models — coexist or die</strong> — &quot;If you are fighting against them, you've already lost.&quot; In a $5.3T healthcare market (18-19% of GDP) you can go millions of miles deep on proprietary data + workflow integration. The &quot;last mile&quot; is most of the mile.</li>
+<li><strong>Latency is the product, not the feature</strong> — Abridge runs ~40% of model outputs in-house (sometimes 60%) because frontier models can't hit the latency required for in-workflow doctor experience. <strong>Mindset shift:</strong> Before: &quot;in-house models = NIH syndrome&quot; → After: &quot;in-house models = the only way to deliver good-air-conditioning UX in regulated workflows.&quot;</li>
+<li><strong>Don't sell data; trust is the moat in regulated industries</strong> — &quot;The industry moves at the speed of trust.&quot; They did in 4 years what others take 15-20 because they refused obvious revenue. Roadmap is blessed by health-system partners in advance, papered into contracts.</li>
+</ul>
+<h3>Why we're at the beginning of the AI hardware boom (@LennysPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=G5WTgB87rYQ">Watch</a></p>
+<p>Caitlyn Kalinowski walks through why hardware suddenly matters: AI's keyboard-frontier is saturating, the next frontier is physical — robots, drones, manufacturing, and re-industrialization. She covers the brutal reality of hardware development (you only &quot;compile&quot; 4-5 times total), the supply chain stack (magnets → actuators → robots, mostly outsourced to Asia), an incoming memory price shock, why humanoids are mostly the wrong shape for most jobs, and how to hire and build for genuinely new categories. Heavy throughline: war, drones, and national security drive the next 2 years more than consumer electronics.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The keyboard frontier is saturating</strong> — Labs (especially Anthropic, OpenAI, big tech) are converging on the realization that what AI can do &quot;behind a keyboard&quot; is approaching a ceiling. The next frontier is robotics, manufacturing, industrialization. <strong>Mindset shift:</strong> Before: AI = software races to AGI → After: AI saturates digitally and the physical world becomes the bottleneck.</li>
+<li><strong>Hardware &quot;compiles&quot; 4-5 times, total</strong> — Software compiles daily. Hardware gets that many full build/release cycles per program. After the final compile (mass production), you can't ship OTA. Drives conservative engineering, in-line reliability testing, and solving for ±3 sigma part variance.</li>
+<li><strong>The new bottleneck for robots is supply chain, not models</strong> — Magnets → actuators → subassemblies → robots, every layer outsourced over 25 years to China/Japan/Korea. Losing one tier triggers a &quot;catastrophic redesign.&quot; If you can't get the magnets, you can't get the motors, so you can't get robots.</li>
+<li><strong>Memory prices are the meteor</strong> — AI/data-center demand has eaten supply. Some sources say RAM is already 6x; Caitlyn expects another doubling. She advises startups to PRE-BUY memory in stock to ride out spikes. Data centers are price-insensitive and will outbid you.</li>
+<li><strong>War changes faster than consumer electronics will in the next 2 years</strong> — Drones use the same base tech as robot actuators. Ukraine 3D-prints new designs daily. Counter-missile math is losing. The right investment is drones, not aircraft carriers.</li>
+</ul>
+<h3>Inside How Anthropic Is Building the Next Claude (@PeterYangYT)</h3>
+<p><a href="https://www.youtube.com/watch?v=T4ieZPIEmd8">Watch</a></p>
+<p>Peter Yang interviews Alex Albert about what it actually looks like to be a Product Manager on Anthropic's research team — how Claude is shaped through training, how the team picks what to improve, and how Anthropic is using its own product to compress the product-development loop. Big themes: Claude is &quot;grown&quot; as much as built, adaptive thinking depends on user context, the new concept of agent &quot;dreaming&quot; for memory consolidation, the planning bottleneck has shifted from code to coordination, and Claude's character is becoming a first-class research problem as agents take on more autonomous, long-running work.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Models as products</strong> — The research PM team attaches to a model from ideation through training to launch, specking out what it should be good at (coding, knowledge work, Excel/spreadsheet use). Intuitions come from architecture/training choices, but actual capabilities only emerge during training.</li>
+<li><strong>Adaptive thinking needs user context</strong> — Whether Claude chooses to &quot;think&quot; on a question is gated by how much it knows about the user. <strong>Mindset shift:</strong> Before: thinking budget is a model setting → After: thinking depth is a function of relationship/context. Without rich memory, the model can't tell a hard question from an easy one for <em>you</em>.</li>
+<li><strong>Agent &quot;dreaming&quot;</strong> — When a managed agent is idle, it reviews its own memories, finds contradictions, prunes, and reconsolidates — modeled loosely on what biological dreaming may do. This now ships in Claude.ai and managed agents.</li>
+<li><strong>One-way doors are the only thing worth heavy planning</strong> — Reversible decisions are effectively free now that prototyping costs are near zero. Put 90% of strategic thought into the irreversible choices (model architecture, pre-training setup, physical purchases, user-experience commitments).</li>
+<li><strong>The new bottleneck is coordination, not building</strong> — Code shipping went from 2-3 weeks to 1 day. The remaining bottleneck is getting the right people in the room, deciding strategy, and communicating to users. Claude hasn't delivered 100x speedup there yet.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><a href="https://frederickvanbrabant.com/blog/2026-05-15-i-dont-think-ai-will-make-your-processes-go-faster/">I don't think AI will make your processes go faster</a> The contrarian take on AI productivity that HN's 131-point vote says is worth your disagreement or agreement.</li>
+<li><a href="https://www.williamangel.net/blog/2026/05/17/offline-llm-energy-use.html">Apple Silicon costs more than OpenRouter</a> Actual cost math on local vs. API inference with real hardware numbers. A must-read before committing to a local-first inference strategy.</li>
+<li><a href="https://daringfireball.net/2026/05/ai_is_technology_not_a_product">AI is a technology, not a product</a> Gruber's strategic framing on why leading with &quot;AI-powered&quot; is the wrong product bet, and who actually captures the value.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
