@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">May 18, 2026 &middot; 8 min read</div>
+				<div class="meta">May 18, 2026 &middot; 7 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -257,16 +257,16 @@
 <hr />
 <h2>Worth Knowing</h2>
 <p><strong>Vercel shipped Symphony agents that own Linear tickets end-to-end.</strong> Hand the agent a 2,000-line spec, it pulls tickets, spins isolated workspaces, does the work, and pings a human only for review. &quot;Agent as the bottom of your ticket queue&quot; moved from demo to product. <a href="https://x.com/BetterStackHQ/status/2056347519769018791">View</a></p>
-<p><strong>The durable AI skill is spec writing, not prompting.</strong> <a href="https://x.com/natebjones/status/2056082321762030063">@natebjones</a>: the skill is describing work clearly enough another system can inherit it what should exist at the end, what should be trusted, what needs checking, what is out of bounds. Prompting is the wrong abstraction to optimize.</p>
-<p><strong>Cursor: $2B revenue, 50 employees, zero PMs.</strong> Revenue per employee beats Goldman Sachs, Google, and Apple combined; engineers earn $808K$1.1M/yr. <a href="https://x.com/natebjones/status/2056031099600433230">@natebjones's read</a>: the job title is now far less informative than whether product thinking is actually happening and at Cursor, engineers are doing it.</p>
+<p><strong>The durable AI skill is spec writing, not prompting.</strong> The skill is describing work clearly enough another system can inherit it what should exist at the end, what should be trusted, what needs checking, what is out of bounds. Prompting is the wrong abstraction to optimize.</p>
+<p><strong>Cursor: $2B revenue, 50 employees, zero PMs.</strong> Revenue per employee beats Goldman Sachs, Google, and Apple combined; engineers earn $808K$1.1M/yr. The job title is now far less informative than whether product thinking is actually happening and at Cursor, engineers are doing it.</p>
 <p><strong>MCP endpoints are being built for agents, not humans.</strong> Three SaaS founders this month shipped MCP because AI agents need to read APIs and trigger workflows without a dashboard in between. In 12 months, an agent-facing MCP surface becomes a product requirement, not a differentiator. <a href="https://x.com/georgeorch/status/2056347566837502419">View</a></p>
 <p><strong>Frontend AI workflow: pay for Mobbin, set up the Mobbin MCP server.</strong> The model pulls real shipped screen references directly into context unlimited Figma-quality design references after the subscription cost. <a href="https://x.com/0xSero/status/2056253989721952336">@0xSero's setup</a> is concrete enough to ship today.</p>
 <p><strong>AI infra economics is the new startup filter.</strong> Two startups with the same product survive at different rates when one understands routing, inference efficiency, context optimization, fallback models, and caching. Cost-per-request is becoming the moat not model quality.</p>
 <hr />
 <h2>Quick Hits</h2>
 <ul>
-<li><strong>The next-gen AI UX is specialized work surfaces passing state, not one smart assistant.</strong> Writing, files, code, memory, execution each need their own surface. The single-generalist model breaks at scale. <a href="https://x.com/natebjones/status/2056175938224718085">View</a></li>
-<li><strong>Teams now spend more time reviewing AI code than writing it.</strong> AI accelerated generation and massively increased the need for engineering judgment. Review tooling and diff quality now matter more than raw generation speed.</li>
+<li><strong>Writing, files, code, memory, execution each need their own surface — the single-generalist AI model breaks at scale.</strong> The next-gen AI UX is specialized work surfaces passing state, not one smart assistant.</li>
+<li><strong>Emerging pattern: teams may now spend more time reviewing AI-generated code than writing it.</strong> AI accelerated generation and appears to be shifting load onto engineering judgment. Review tooling and diff quality become more important than raw generation speed.</li>
 <li><strong>RuleSync unifies config across Claude Code, Cursor, Copilot, Codex CLI, and Gemini CLI on the same repo.</strong> If you run multiple coding tools on one codebase, this is the missing layer. <a href="https://x.com/SneyderCante/status/2056344692904673413">View</a></li>
 <li><strong>H100s vanished from every major cloud platform simultaneously.</strong> Track this before planning any training runs in the next month. <a href="https://x.com/jino_rohit/status/2055949367723635134">View</a></li>
 <li><strong>AMD Ryzen AI Max ships with 128GB unified memory.</strong> Local large-model inference without a datacenter is becoming a real option.</li>
@@ -274,8 +274,6 @@
 <li><strong>The X algorithm now weights content quality and engagement velocity over follower count.</strong> Small accounts can outperform large ones. The &quot;build audience first&quot; playbook broke. <a href="https://x.com/AlexFinn/status/2056139488607588863">View</a></li>
 <li><strong>&quot;Where are the vibecoded Photoshops?&quot;</strong> top HN post today (145pts, 158 comments) argues the gap between &quot;AI can write code&quot; and &quot;AI can ship a coherent product&quot; is wider than the discourse admits. The missing layer is taste, scope, and finishing. <a href="https://indiepixel.de/blog/posts/where-are-the-vibecoded-photoshops/">Read</a></li>
 <li><strong>The NHS closed its open-source repositories</strong> despite earlier government mandates requiring openness. Institutional reversals on OSS happen even after policy wins lock-in compounds. <a href="https://simonwillison.net/2026/May/17/gds-weighs-in/#atom-everything">View</a></li>
-<li><strong>NASA keeps Voyager alive with a 1970s language almost nobody fully understands.</strong> A small team of aging engineers is the only barrier between the spacecraft and silence. The knowledge custodianship problem is 50 years old and unsolved.</li>
-<li><strong>Eric Schmidt was booed during a graduation speech about AI.</strong> &quot;AI inevitabilism from billionaires&quot; is hitting resistance at elite institutions. If you ship anything AI-adjacent to general audiences, lead with usefulness not &quot;the future is AI.&quot;</li>
 </ul>
 <hr />
 <h2>Videos</h2>
@@ -289,12 +287,6 @@
 <li><strong>Brainstorm in HTML, not text</strong>: Thoric's go-to prompt is literally &quot;brainstorm some ideas in an HTML file.&quot; Claude produces a visual menu of ideas with mockups, web search context, and risk callouts. Rule of thumb: he won't read brainstorm output longer than one terminal screen — HTML side-steps that limit.</li>
 <li><strong>The &quot;interview me&quot; loop replaces upfront spec writing</strong>: After picking an idea, ask Claude to interview you about it. This surfaces unknown unknowns before generating the plan. Then ask for an HTML plan that &quot;includes excerpts, mockups, code — whatever is needed to give me maximum context.&quot;</li>
 <li><strong>Build throwaway micro-apps to edit individual sections of a plan</strong>: When a piece of the HTML plan feels wrong (e.g., an arbitrary rules table), don't go back to the terminal — ask Claude to build a custom HTML UI for editing that specific section, with fields, copy-out-to-markdown, and the ideal interaction model for that problem. It's &quot;micro software on top of micro software.&quot;</li>
-</ul>
-<h2>Worth Your Time</h2>
-<ul>
-<li><a href="https://indiepixel.de/blog/posts/where-are-the-vibecoded-photoshops/">Where Are the Vibecoded Photoshops?</a> The most honest post this week about the gap between AI-assisted code and a shipped product. Read the 158-comment thread for counter-examples.</li>
-<li><a href="https://x.com/natebjones/status/2056082321762030063">@natebjones on spec writing as the durable skill</a> The clearest reframe of what skilled AI usage actually looks like in 2026.</li>
-<li><a href="https://x.com/AlexFinn/status/2056139488607588863">@AlexFinn's X algorithm breakdown</a> 22K lines of open-sourced algorithm, read 8 times. If you distribute on X, read this before your next post.</li>
 </ul>
 			</article>
 
