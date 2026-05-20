@@ -1,0 +1,424 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 20, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 20, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-20.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 20, 2026 &middot; 11 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Briefing May 20, 2026</h1>
+<p>Karpathy joined Anthropic, Google I/O shipped Gemini 3.5 Flash straight to GA with a new coding CLI, and a poisoned VS Code extension turned GitHub's internal repos into an open door all on the same day. Talent concentrating at model labs, shipping accelerating, and your editor extensions are now a live attack vector.</p>
+<hr />
+<h2>Act Now: Your VS Code Extensions Are a Supply Chain Attack</h2>
+<p>This is the item to act on before anything else today. A hijacked Nx Console extension (~2.2M installs) was used to harvest GitHub, npm, AWS, Kubernetes, and 1Password tokens from a GitHub employee's machine via an orphan commit which then gave attackers access to GitHub's own internal repos. The attack vector wasn't a zero-day; it was a trusted dev tool with millions of installs. Three concrete actions: (1) <strong>Rotate every secret in private repos, not just public ones</strong> attackers treat private repos as soft targets. (2) <strong>Audit and pin versions for every VS Code or Cursor extension you use.</strong> (3) <strong>Move secrets out of <code>.env</code> files into a dedicated secret manager.</strong> If you're running Cursor with extensions you installed months ago and never thought about again, today is the day to check.</p>
+<p>Sources: <a href="https://x.com/github/status/2056949168208552080">GitHub statement</a> <a href="https://x.com/Star_Knight12/status/2056977944334266428">@Star_Knight12 breakdown</a> <a href="https://x.com/ryancarson/status/2056911965193130071">@ryancarson</a></p>
+<hr />
+<h2>Vendor Benchmarks Are Built to Win</h2>
+<p>The bias that shapes model behavior isn't in the prompt it's frozen into the weights at training time and can't be patched post-deployment. Researchers have documented this pattern by putting GPT-4o, Gemini, and Claude on downstream decisions: rating job candidates, security tools, medical chatbots. Each model rated options tied to its own company higher. When researchers relabeled the models through the API assigning each a competitor's identity, preferences flipped. Same weights, different label, different winner. The reflex to favor a side is trained in; the label just picks which side wins. This result sits underneath every major LLM-as-judge leaderboard built since 2023 AlpacaEval, MT-Bench, Arena-Hard. When Vendor A builds the evaluator and tests Vendor A's model, Vendor A wins because the evaluator recognizes its own family.</p>
+<p>It also drifts without notice. Users have reported behavior changes across major model versions refusal patterns shifting around politically charged queries, DeepSeek's Taiwan answers updating, vendor sessions auto-migrating between model versions mid-run typically without accompanying changelogs. And switching to open-weight models doesn't fix it: DeepSeek R1 still refuses Tiananmen, Xinjiang, and Taiwan-as-country questions when self-hosted; the CCP-aligned priorities ride along in the base weights. Running the model on your own hardware moves the request off Chinese servers. The training doesn't move.</p>
+<p>The working defense: cross-vendor any question that drives a real decision. Chase the primary source before trusting the summary. A benchmark published by the model's own lab is marketing with error bars.</p>
+<hr />
+<h2>Google I/O: What Builders Actually Got</h2>
+<p><strong>Gemini 3.5 Flash went straight to GA no preview, Google's new default everywhere.</strong> It skipped the <code>-preview</code> suffix and rolled into Search, Workspace, and the API as the standard model for the next cycle. More expensive than earlier Flash versions, so if your stack runs Gemini-backed flows, model your token bill now. Simon Willison shipped <code>llm-gemini 0.32</code> the same day with streaming reasoning token support via <code>0.32a0</code> worth testing specifically for agent telemetry. <a href="https://simonwillison.net/2026/May/19/gemini-35-flash/">simonwillison.net</a></p>
+<p><strong>Antigravity CLI is Google's answer to Claude Code and Codex.</strong> Exposed at I/O alongside Gemini in Copilot, a 24/7 background agent called Spark, and Google Omni. Practitioners' early read: &quot;cheaper Ultra, and a faster coding model that's less capable than competitors.&quot; Try it on a real PR before deciding anything.</p>
+<p><strong>Google Omni shipped world understanding, multimodality, and editing in one model.</strong> The multimodal video model that was rumored pre-I/O is real. Whether the demo holds up in production is the open question.</p>
+<hr />
+<h2>Cursor Composer 2.5</h2>
+<p>Trained with reinforcement learning, synthetic data, and a new distributed training stack the same RL + synthetic-data combo Anthropic and OpenAI have been using, now exposed at the Cursor product layer. Priced at $0.50/M input, $2.50/M output with doubled included usage at launch. The freelancer math is now explicit: AI coding tools cost less per-task than a $30/hr Upwork developer, which reshapes what you'd outsource. Run it on a real PR to see whether the RL tuning changes edit-loop behavior versus Claude Code. <a href="https://cursor.com/blog/composer-2-5">cursor.com/blog/composer-2-5</a></p>
+<hr />
+<h2>Anthropic Acquired Stainless</h2>
+<p>Stainless's SDK auto-generation platform was already powering official client libraries for OpenAI, Google, and Cloudflare. Anthropic now owns the pipeline that generates SDKs for its biggest competitors. Watch whether OpenAI and Google migrate off. If you're shipping a public API for any app, auto-generated SDKs with tight type fidelity are table stakes this acquisition signals where that bar is moving. <a href="https://www.anthropic.com/news/anthropic-acquires-stainless">anthropic.com</a></p>
+<hr />
+<h2>Qwen3.7 Max: The Real Agent Benchmark Is Hours, Not Tasks</h2>
+<p>Ranks 13th overall in Text Arena, 16th in Vision Arena. Alibaba's actual claim is a 35-hour continuous tool-calling test with 1,000+ tool calls without breakdown. The agent stability benchmark has moved from &quot;can it call a tool&quot; to &quot;can it run tools for a day and a half without losing the thread.&quot; The second question is the one your own agents fail on. <a href="https://qwen.ai/blog?id=qwen3.7">qwen.ai</a> <a href="https://news.ycombinator.com/item?id=48205626">HN thread</a></p>
+<hr />
+<h2>Spec-First Development: The Convergence Is Real</h2>
+<p>A developer shipped 100K lines of production Rust using Claude Code + Codex + formal contracts + spec-driven development and documented the methodology. The URL path encodes the approach: <code>/rust/claude%20code/codex/contracts/spec-driven%20development</code>. This is the longest concrete case study of spec-first agent coding to surface on HN this month, and it lands alongside multiple independent signals pointing the same direction. Write the spec before the code. The agent needs it more than you do. <a href="https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html">Read it</a> <a href="https://news.ycombinator.com/item?id=48205415">HN</a></p>
+<hr />
+<h2>Shorter Takes</h2>
+<p><strong>Karpathy joined Anthropic</strong> to focus on frontier LLM R&amp;D. Called the next few years &quot;especially formative.&quot; Education work is paused, not abandoned. <a href="https://x.com/karpathy/status/2056753169888334312">Source</a> (137K likes, 21.9M views)</p>
+<p><strong>Mythos / Project Glasswing gave Cloudflare access to the &quot;too dangerous to release&quot; model.</strong> Cloudflare pointed it at 50+ of their own repos and wrote up what it found. First substantive public writeup of what Mythos actually does in production. <a href="https://blog.cloudflare.com/cyber-frontier-models/">blog.cloudflare.com</a></p>
+<p><strong>browse.sh gives agents low-level browser primitives via CLI.</strong> Cleaner than a MITM proxy full visibility into what the agent is doing. Reach for this when an agent needs to operate a site with no API. <a href="https://browse.sh/">browse.sh</a></p>
+<p><strong>Harness reliability, not model quality, is the bottleneck in long-running agent pipelines.</strong> Multiple builders running Claude Code content pipelines for months are reporting the same pattern on X: harness reliability and state across long runs are the bottleneck, not model quality. One-task framing per session plus explicit risk-listing before edits is the practical anti-context-rot pattern that's actually working.</p>
+<p><strong>Agent evaluation is moving from benchmark scores to realistic long-horizon harnesses.</strong> Cameron Wolfe's 53-minute guide argues the real test for an agent is whether it holds up in complex environments over time. Worth reading before designing your next round of eval gates. <a href="https://cameronrwolfe.substack.com/p/agent-evals">cameronrwolfe.substack.com</a></p>
+<p><strong>GLiNER released an open-source model purpose-built for LLM guardrails.</strong> Runs input/output safety checks without a hosted service. Worth a look if you're enforcing safety on apps for non-engineers. <a href="https://news.ycombinator.com/item?id=48112544">HN</a></p>
+<p><strong><code>design.md</code> put your brand in a format agents can actually read.</strong> One markdown file (colors, tone, component patterns) that any coding agent can consume and output on-brand from. Your brand is currently in a format agents can't see. <a href="https://x.com/ericosiu/status/2056805084080787830">@ericosiu</a></p>
+<p><strong>Infomaniak (Swiss cloud) is building explicit data-sovereignty AI infrastructure.</strong> Moving to a foundation model + sovereign cloud structure as a privacy play. Concrete precedent if you pitch privacy-sensitive AI workflows to European customers. <a href="https://news.infomaniak.com/en/infomaniak-foundation-sovereign-cloud/">news.infomaniak.com</a></p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>HRM-Text</strong> 1B model <em>claims</em> 130-600x less compute and 150-900x less data than standard foundation models aggressive, unverified, lab-internal numbers. Check the <a href="https://github.com/sapientinc/HRM-Text">GitHub repo</a> before treating them as comparable to anything else.</li>
+<li><strong>Smallcode</strong> coding agent built for small/local LLMs that don't have Sonnet-class context headroom. Reference architecture for lean agent design. <a href="https://news.ycombinator.com/item?id=48182033">HN</a></li>
+<li><strong>CodeBurn</strong> open-source repo for diagnosing why AI coding agents fail silently. Observability for agents, applied the same way you'd apply it to a service.</li>
+<li><strong>Decart AI closed $300M</strong> (Amazon, Adobe, Toyota, Nvidia) for their DOS 2.0/Lucy/Oasis models. Total raise: $450M.</li>
+<li><strong>ClockBench</strong>: Gemini 2.5 Pro reads analog clocks correctly 13.3% of the time. Humans: 89.1%. GPT-5: 8.4%. IMO-gold-medal reasoning, broken on clocks.</li>
+<li><strong>NVIDIA Cosmos Predict 2.5</strong> now supports LoRA/DoRA fine-tuning for task-specific video generation. More practical than full fine-tunes for domain-specific video work. <a href="https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation">Hugging Face</a></li>
+<li><strong>Meta is reassigning 7,000 employees</strong> to four new AI-focused orgs AI-native structures, fewer managers per employee. <a href="https://www.nytimes.com/2026/05/18/technology/meta-reassigns-7000-employees-ai.html">NYT</a></li>
+<li><strong>Railway was blocked by Google Cloud on May 19</strong> (resolved). If services run on Railway, check the <a href="https://blog.railway.com/p/incident-report-may-19-2026-gcp-account-outage">incident report</a>.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>Was anything good released at Google I/O 2026? (@howiai)</h3>
+<p><a href="https://www.youtube.com/watch?v=S-T12Z-8Tbo">Watch</a></p>
+<p>Same-day recap of Google I/O 2026 announcements, focused on the developer and designer surfaces. The host walks through Gemini 3.5 (especially Flash for agentic coding), Anti-Gravity 2.0 (Google's IDE + CLI), Google AI Studio's new Workspace integration, Gemini Omni (video gen), Flow (cinematic editing), Stitch (in-browser Figma), and Pomelli (brand/marketing generation). Verdict: Google is playing visible catch-up to Anthropic/OpenAI on agentic coding, but the speed of Flash plus the multimodal/video creative tools are the differentiated bets — though many features either didn't ship on time or didn't work on the day.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Gemini 3.5 Flash is the speed-for-intelligence bet</strong>: Per Google's benchmarks it rivals Claude Opus 4.7 / Sonnet 4.6 intelligence but runs ~4x faster than those models — closer to prior-gen Flash speed. The pitch is &quot;smart enough to do agentic work, fast enough that you don't have to wait.&quot;</li>
+<li><strong>Google is going fullbore on agents, even if it's catch-up</strong>: Anti-Gravity 2.0 ships sub-agents, hooks, scheduled tasks, git worktrees, and slash commands — all features Claude Code and Codex already have. The bet is speed + multimodal + creative surfaces are where they actually differentiate.</li>
+<li><strong>&quot;Grill me&quot; slash command is a hardcore PRD interrogator</strong>: An aggressive variant of Claude Code's clarifying-questions tool. Instead of polite clarification, the agent grills you on requirements until it has what it needs. Worth testing as a spec-tightening pattern. <strong>Mindset shift:</strong> Before: clarifying questions are friction. After: aggressive clarifying questions are a feature — they front-load the cost of vague specs.</li>
+<li><strong>Google AI Studio is going for the Workspace MCP turf</strong>: Native built-in Workspace integration (Sheets, Gmail, Drive, Calendar) inside the no-code app builder. The play is to own the personal-assistant / internal-tools use case before MCP connectors commoditize it — though as of taping, the host couldn't actually access the connectors.</li>
+<li><strong>Omni = Nano Banana for video</strong>: A reasoning model + video creation model that supports conversational edits, image-to-video, character consistency across scenes, and ~10s clips (longer than Sora's 6-7s). Production-grade editing is the explicit target, not novelty clips.</li>
+</ul>
+<h3>How to Use GPT Image 2 - 4 Real Workflows That Actually Work (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=1e6zsTWn4dg">Watch</a></p>
+<p>A hands-on walkthrough of OpenAI's GPT Image 2, framed as &quot;the first image model that thinks before it generates.&quot; The host demos four real workflows: brand kit generation with multi-turn iteration, photo relighting without reshooting, background object removal, and infographic generation from scratch. Core thesis: GPT Image 2 is unified into the GPT-4o architecture (not a bolted-on diffusion model), which is why text rendering, layout, and instruction-following finally work well enough to use in production.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>GPT Image 2 is not a diffusion model — it's part of GPT-4o</strong>: Image understanding and generation share the same system. Before any pixel is drawn, the model plans composition and resolves ambiguity in your prompt. <strong>Mindset shift:</strong> Before: AI image models are bolted-on diffusion components that need careful prompts. After: image generation is just another modality of a reasoning model — write the prompt the way you'd brief a designer.</li>
+<li><strong>Text rendering is finally production-grade</strong>: Earlier models produced &quot;text slop&quot; with misspellings and garbled words. GPT Image 2 spells correctly and sizes text appropriately. This unlocks logos, infographics, banners, slides — anything text-bearing.</li>
+<li><strong>Multi-turn editing actually preserves brand state</strong>: You can generate a brand kit, then in a follow-up turn say &quot;now make the Instagram post version with this tagline&quot; and it holds the brand colors + logo while applying them to a new format. No re-prompting from scratch.</li>
+<li><strong>Relighting is the most underrated use case</strong>: Instead of reshooting a bad product photo or hiring a retoucher, prompt the model to relight the existing shot (&quot;soft directional key light from upper left, warm rim light on the right edge, lift shadows&quot;). Same image, new lighting, no studio cost.</li>
+<li><strong>Object removal is now one-shot good</strong>: &quot;Remove all the people from the background, keep everything else the same&quot; works cleanly. Some background hallucinations remain but the output looks real and crisp at first glance.</li>
+</ul>
+<hr />
+<p><em>Sources: TLDR AI, TLDR Tech, Simon Willison's blog, Hacker News frontpage, X/Twitter. May 20, 2026.</em></p>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
