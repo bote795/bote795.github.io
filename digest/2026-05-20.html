@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">May 20, 2026 &middot; 12 min read</div>
+				<div class="meta">May 20, 2026 &middot; 11 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -254,8 +254,8 @@
 <p>Sources: <a href="https://x.com/github/status/2056949168208552080">GitHub statement</a> <a href="https://x.com/Star_Knight12/status/2056977944334266428">@Star_Knight12 breakdown</a> <a href="https://x.com/ryancarson/status/2056911965193130071">@ryancarson</a></p>
 <hr />
 <h2>Vendor Benchmarks Are Built to Win</h2>
-<p>The bias that shapes model behavior isn't in the prompt it's frozen into the weights at training time and can't be patched post-deployment. A controlled experiment published last year put GPT-4o, Gemini, and Claude on downstream decisions: rating job candidates, security tools, medical chatbots. Each model rated options tied to its own company higher. Researchers then relabeled the models through the API, assigning each a competitor's identity. Preferences flipped. Same weights, different label, different winner. The reflex to favor a side is trained in; the label just picks which side wins. This result sits underneath every major LLM-as-judge leaderboard built since 2023 AlpacaEval, MT-Bench, Arena-Hard. When Vendor A builds the evaluator and tests Vendor A's model, Vendor A wins because the evaluator recognizes its own family.</p>
-<p>It also drifts without notice. GPT-4.1 started refusing Israel-related queries in August 2025. GPT-5 refused medication-abortion queries from September 2025. DeepSeek's Taiwan answers rewrote themselves February through April 2025. None had changelogs. On April 16, 2026, Claude Code started auto-migrating live sessions from Opus 4.6 to 4.7 mid-run without user consent; quota burn jumped 4x and context windows expanded from 250K to 650K tokens for the same conversation. &quot;Silent change&quot; is now official vocabulary in Anthropic's release notes. And switching to open-weight models doesn't fix it: DeepSeek R1 still refuses Tiananmen, Xinjiang, and Taiwan-as-country questions when self-hosted the CCP-aligned priorities rode along in the base weights. Running the model on your own hardware moves the request off Chinese servers. The training doesn't move.</p>
+<p>The bias that shapes model behavior isn't in the prompt it's frozen into the weights at training time and can't be patched post-deployment. Researchers have documented this pattern by putting GPT-4o, Gemini, and Claude on downstream decisions: rating job candidates, security tools, medical chatbots. Each model rated options tied to its own company higher. When researchers relabeled the models through the API assigning each a competitor's identity, preferences flipped. Same weights, different label, different winner. The reflex to favor a side is trained in; the label just picks which side wins. This result sits underneath every major LLM-as-judge leaderboard built since 2023 AlpacaEval, MT-Bench, Arena-Hard. When Vendor A builds the evaluator and tests Vendor A's model, Vendor A wins because the evaluator recognizes its own family.</p>
+<p>It also drifts without notice. Users have reported behavior changes across major model versions refusal patterns shifting around politically charged queries, DeepSeek's Taiwan answers updating, vendor sessions auto-migrating between model versions mid-run typically without accompanying changelogs. And switching to open-weight models doesn't fix it: DeepSeek R1 still refuses Tiananmen, Xinjiang, and Taiwan-as-country questions when self-hosted; the CCP-aligned priorities ride along in the base weights. Running the model on your own hardware moves the request off Chinese servers. The training doesn't move.</p>
 <p>The working defense: cross-vendor any question that drives a real decision. Chase the primary source before trusting the summary. A benchmark published by the model's own lab is marketing with error bars.</p>
 <hr />
 <h2>Google I/O: What Builders Actually Got</h2>
@@ -279,7 +279,7 @@
 <p><strong>Karpathy joined Anthropic</strong> to focus on frontier LLM R&amp;D. Called the next few years &quot;especially formative.&quot; Education work is paused, not abandoned. <a href="https://x.com/karpathy/status/2056753169888334312">Source</a> (137K likes, 21.9M views)</p>
 <p><strong>Mythos / Project Glasswing gave Cloudflare access to the &quot;too dangerous to release&quot; model.</strong> Cloudflare pointed it at 50+ of their own repos and wrote up what it found. First substantive public writeup of what Mythos actually does in production. <a href="https://blog.cloudflare.com/cyber-frontier-models/">blog.cloudflare.com</a></p>
 <p><strong>browse.sh gives agents low-level browser primitives via CLI.</strong> Cleaner than a MITM proxy full visibility into what the agent is doing. Reach for this when an agent needs to operate a site with no API. <a href="https://browse.sh/">browse.sh</a></p>
-<p><strong>Harness reliability, not model quality, is the bottleneck in long-running agent pipelines.</strong> From builders running Claude Code content pipelines for months: &quot;The bottleneck is never the model, it's harness reliability and state across long runs.&quot; One-task framing per session plus explicit risk-listing before edits is the practical anti-context-rot pattern that's actually working.</p>
+<p><strong>Harness reliability, not model quality, is the bottleneck in long-running agent pipelines.</strong> Multiple builders running Claude Code content pipelines for months are reporting the same pattern on X: harness reliability and state across long runs are the bottleneck, not model quality. One-task framing per session plus explicit risk-listing before edits is the practical anti-context-rot pattern that's actually working.</p>
 <p><strong>Agent evaluation is moving from benchmark scores to realistic long-horizon harnesses.</strong> Cameron Wolfe's 53-minute guide argues the real test for an agent is whether it holds up in complex environments over time. Worth reading before designing your next round of eval gates. <a href="https://cameronrwolfe.substack.com/p/agent-evals">cameronrwolfe.substack.com</a></p>
 <p><strong>GLiNER released an open-source model purpose-built for LLM guardrails.</strong> Runs input/output safety checks without a hosted service. Worth a look if you're enforcing safety on apps for non-engineers. <a href="https://news.ycombinator.com/item?id=48112544">HN</a></p>
 <p><strong><code>design.md</code> put your brand in a format agents can actually read.</strong> One markdown file (colors, tone, component patterns) that any coding agent can consume and output on-brand from. Your brand is currently in a format agents can't see. <a href="https://x.com/ericosiu/status/2056805084080787830">@ericosiu</a></p>
@@ -287,7 +287,7 @@
 <hr />
 <h2>One-Liners</h2>
 <ul>
-<li><strong>HRM-Text</strong> 1B model claiming 130-600x less compute and 150-900x less data than standard foundation models. Aggressive claims; verify against the <a href="https://github.com/sapientinc/HRM-Text">GitHub repo</a> before trusting them.</li>
+<li><strong>HRM-Text</strong> 1B model <em>claims</em> 130-600x less compute and 150-900x less data than standard foundation models aggressive, unverified, lab-internal numbers. Check the <a href="https://github.com/sapientinc/HRM-Text">GitHub repo</a> before treating them as comparable to anything else.</li>
 <li><strong>Smallcode</strong> coding agent built for small/local LLMs that don't have Sonnet-class context headroom. Reference architecture for lean agent design. <a href="https://news.ycombinator.com/item?id=48182033">HN</a></li>
 <li><strong>CodeBurn</strong> open-source repo for diagnosing why AI coding agents fail silently. Observability for agents, applied the same way you'd apply it to a service.</li>
 <li><strong>Decart AI closed $300M</strong> (Amazon, Adobe, Toyota, Nvidia) for their DOS 2.0/Lucy/Oasis models. Total raise: $450M.</li>
@@ -319,18 +319,6 @@
 <li><strong>Multi-turn editing actually preserves brand state</strong>: You can generate a brand kit, then in a follow-up turn say &quot;now make the Instagram post version with this tagline&quot; and it holds the brand colors + logo while applying them to a new format. No re-prompting from scratch.</li>
 <li><strong>Relighting is the most underrated use case</strong>: Instead of reshooting a bad product photo or hiring a retoucher, prompt the model to relight the existing shot (&quot;soft directional key light from upper left, warm rim light on the right edge, lift shadows&quot;). Same image, new lighting, no studio cost.</li>
 <li><strong>Object removal is now one-shot good</strong>: &quot;Remove all the people from the background, keep everything else the same&quot; works cleanly. Some background hallucinations remain but the output looks real and crisp at first glance.</li>
-</ul>
-<h2>Worth Your Time</h2>
-<ul>
-<li>
-<p><strong><a href="https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html">Learnings from 100K lines of Rust with AI</a></strong> The most concrete long-form case study of spec-first agent coding this month. Read for the methodology; the Rust specifics are secondary.</p>
-</li>
-<li>
-<p><strong><a href="https://blog.cloudflare.com/cyber-frontier-models/">Project Glasswing: What Mythos Showed Us</a></strong> First substantive public writeup of what a frontier model finds when pointed at 50+ production repos. The reference for anyone thinking about agent-driven codebase analysis.</p>
-</li>
-<li>
-<p><strong><a href="https://cameronrwolfe.substack.com/p/agent-evals">Agent Evaluation: A Detailed Guide</a></strong> 53 minutes, but the clearest current framing of what good evals mean for agents running over long time horizons. Read before designing your next eval pass.</p>
-</li>
 </ul>
 <hr />
 <p><em>Sources: TLDR AI, TLDR Tech, Simon Willison's blog, Hacker News frontpage, X/Twitter. May 20, 2026.</em></p>
