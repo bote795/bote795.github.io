@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 27, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 27, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-27.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 27, 2026 &middot; 12 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Briefing May 27, 2026</h1>
+<p>Three OSS supply-chain stories landed in 24 hours — curl's maintainer burnout, the SymJack attack, and a critical package CVE — while three of the strongest AI builders on X publicly defected from Claude Code to Codex on the same day. The agent ecosystem is showing structural cracks on the security side and a real shift in builder preference on the tooling side. Both stories matter more than another model release.</p>
+<hr />
+<h2>Act Now: The Agent Supply Chain Is Cracking</h2>
+<p>This is the item to absorb before anything else today. Three independent OSS-security stories converged inside 24 hours, and they describe the same systemic failure from different angles.</p>
+<p><strong>Curl is buckling under AI-assisted vulnerability reports.</strong> Daniel Stenberg, writing on simonwillison.net, says the volume of credible AI-generated vuln reports hitting curl has reached &quot;an unprecedented level of pressure.&quot; Agents are generating the bugs <em>and</em> generating the bug reports, and the humans in the middle are drowning. This is the single most actionable warning for anyone maintaining open source right now.</p>
+<p><strong>The SymJack attack</strong> (@Bug_X_hunter via SecurityWeek) is a new attack class purpose-built for AI coding agents. Poisoned repos use symlink tricks to get an agent to silently pull attacker-controlled code into your project. Pair it with Bumblebee from yesterday: agent security is now its own beat, not a footnote in dev security. Mitigation: run agents in Docker or Cplt-style sandboxes by default, never in your host filesystem.</p>
+<p><strong>A critical CVE in a widely-used OSS package &quot;imperils millions of AI agents&quot;</strong> (Ars Technica via @SourceCodeContr). Broader than SymJack — it sits in a dependency the agents themselves rely on. Combined with curl and SymJack, the agent supply chain is structurally exposed, not just incidentally.</p>
+<p>Three concrete actions: (1) <strong>Audit your lockfiles this week.</strong> Yesterday's Bumblebee release is the free tool for this. (2) <strong>Move every agent execution into a sandbox.</strong> Docker, Cplt, or a disposable VM — host filesystem access should be opt-in, not default. (3) <strong>Pin and audit every VS Code or Cursor extension</strong> you have installed; the May 20 Nx Console attack proved this is the real threat surface, not the model.</p>
+<p>Sources: <a href="https://simonwillison.net">Stenberg on curl</a> · <a href="https://www.securityweek.com">SymJack writeup</a> · <a href="https://arstechnica.com">Ars Technica package CVE</a></p>
+<hr />
+<h2>Codex Is Eating Claude Code's Lunch</h2>
+<p>Three of the most-followed AI builders on X publicly converged on Codex over Claude Code in a single cycle, and they're citing the same concrete reason: the self-testing browser loop closes the bug feedback loop in a way Claude Code still doesn't.</p>
+<p><strong>Alex Finn</strong> (1.4K likes, 92K views) ran both side-by-side for two months and reports first-attempt bug rate dropped from ~40% to ~3% on Codex, because every change is self-tested in its own browser before it comes back to him. His mandate: &quot;Don't have loyalty to any company. Use every tool. Use whatever is the best at the moment.&quot;</p>
+<p><strong>Claire Vo</strong> — 20+ years engineering, currently building chatprd — described Codex <code>/goal</code> planning and executing a full refactor of her 225K-LOC codebase autonomously while she just types &quot;ok what's next.&quot; Every loop runs a browser smoke test, catches visual and functional regressions, and maintains lints and tests. Meanwhile a <em>second</em> Codex <code>/goal</code> is 45 minutes into cleaning a 4,000-email inbox. The workflow has fundamentally inverted: humans approve, models drive.</p>
+<p><strong>Ryan Carson</strong>: &quot;/goal is so freaking good on codex. wow.&quot;</p>
+<p>Two workflow upgrades worth adopting this week. <strong>First, Alex Finn's ask-me-100-questions prompt</strong> (his exact wording): <em>&quot;I want to build out [feature]. Ask as many questions you need of me to fully understand every detail of what I want to build out. Then take everything you learn, and create super focused and detailed Linear issues. Then begin work.&quot;</em> This routinely produces 100+ questions and 20+ Linear tasks. Put it in your rules file.</p>
+<p><strong>Second, <code>/goal</code> itself</strong> — the @howiai 6-hour Codex run crystallized the framework into six properties: outcome, verification, constraints, boundaries, iteration policy, stop condition. The &quot;Error Zero&quot; pattern — point at observability logs and drive the count to zero — generalizes well beyond coding. The honest contrarian take from that video: &quot;manager mode&quot; trades hands-on flow for hours-back, and that tradeoff isn't pure upside.</p>
+<p>Sources: <a href="https://x.com/AlexFinn/status/2059323243090366615">AlexFinn bug-rate thread</a> · <a href="https://x.com/clairevo/status/2058967608708501848">clairevo on /goal</a> · <a href="https://x.com/ryancarson/status/2059030057239142907">ryancarson</a> · See Videos section below for the @howiai 6-hour Codex breakdown.</p>
+<hr />
+<h2>MCP Is the New SEO</h2>
+<p>Greg Isenberg's 5-takeaway thread from SF (5K likes, 428K views — the single highest-signal post in the digest today) reframes how to think about distribution for any AI-era product.</p>
+<p>The five points: (1) <strong>Billionaires are buying SaaS companies to rebuild them agent-first</strong> — Bending Spoons / Ryan Cohen / eBay model: buy, cut headcount, rebuild on agents, add features, raise prices. (2) <strong>Usage intelligence is the new alpha</strong> — frontier model companies see API calls and tokens, not workflows, so deep domain expertise the model companies haven't seen is valuable. (3) <strong>Consumer AI is massively underbuilt</strong> — SF is optimized for enterprise, but Cal AI did $50M ARR in 18 months as a consumer wrapper. (4) <strong>MCP is the new SEO</strong> — companies exposing their product as MCP endpoints are getting pulled into deals they never pitched for. The ones that aren't <em>are becoming invisible to agents</em>. &quot;If agents can't find you, you don't exist.&quot; (5) <strong>Hot seed rounds are now commonly $25–50M.</strong></p>
+<p>Action: audit every shipping product for MCP endpoint exposure. Every wrapper, every internal tool, every productized workflow. The cost of an MCP server is hours; the cost of invisibility is everything.</p>
+<p>Source: <a href="https://x.com/gregisenberg/status/2059274608759480367">@gregisenberg</a></p>
+<hr />
+<h2>The Benchmark Era Is Dying</h2>
+<p>A new contrarian thesis with real teeth, from @nova_agent945 on X: 2026 OSS model releases are increasingly shipping without eval methodology, no SWE-bench, no MMLU. The reason: once you publish a number, you become rankable. Labs increasingly ship &quot;production-ready&quot; and &quot;fast&quot; instead, on purpose.</p>
+<p>@kamilkwapiszpl pairs it: &quot;The AI industry is bored with new LLM releases — that's the healthiest sign I've seen all year.&quot;</p>
+<p>This is the new framing — watch for it. It also explains why <strong>Meta Muse Spark</strong> launched in the Meta AI app this cycle with a CNBC explainer but no comparable benchmark sheet. CNBC's framing was &quot;Why Meta's New AI Model Is Such a Big Deal,&quot; not &quot;Here are the benchmarks.&quot; Watch whether this is the first frontier launch that gets evaluated purely on user behavior rather than scores.</p>
+<p>The corollary for builders: stop optimizing your own eval gates against industry benchmarks that the industry itself is abandoning. Eval against the user behavior you care about — agent stability over hours, decision quality, error-zero rate.</p>
+<p>Sources: <a href="https://x.com/nova_agent945">@nova_agent945</a> · Meta Muse Spark coverage on CNBC (81K views, May 2026)</p>
+<hr />
+<h2>Garry Tan's Pricing Mandate</h2>
+<p>YC's president, direct quote: <em>&quot;Don't try to rebuild Foursquare or Yelp. Don't try to recreate Basecamp with $10/mo SaaS pricing. Don't underprice! If it works it's worth a lot more. Don't be tempted to become 'Tech enabled PE' with revenue tricks. The rules of tech changed with AI. Play the new game.&quot;</em> (1.9K likes, 101K views)</p>
+<p>The 2010-era SaaS pricing anchor — &quot;$10/mo, $20/mo, freemium&quot; — was set during a low-marginal-cost era where seats scaled cheaply. AI inference doesn't scale that way. The marginal cost of an agent run is meaningfully non-zero, and the <em>value</em> of one is meaningfully higher than a software seat ever was. Underpricing is just leaving the entire delta on the table.</p>
+<p>The matching frame from Nate B. Jones: the SaaS selloff has a structural explanation — software sells seats around workflows, AI absorbs the workflow itself. Once that flip happens, margins, talent needs, infrastructure, and valuation all decouple from SaaS comps.</p>
+<p>Source: <a href="https://x.com/garrytan/status/2059521656532721964">@garrytan</a> · <a href="https://x.com/natebjones/status/2059049390015451574">Nate B. Jones thread</a></p>
+<hr />
+<h2>ClickHouse's Year of Coding With AI Agents</h2>
+<p>Alexey Milovidov via @mccricardo on X — ClickHouse, a serious DB-engineering team, just published a year-in-review of using AI agents on a production codebase. This is the empirical counterpart to Nolan Lawson's &quot;better code more slowly&quot; essay and the geohot &quot;Eternal Sloptember&quot; doom thesis from yesterday.</p>
+<p>Read it before designing any new agent workflow into a production app. ClickHouse aren't builders chasing the latest model — they're maintaining a database, and they've now done it with agents in the loop for 12 months. The writeup is the rare data-grounded counterweight to both the &quot;AI is solving coding&quot; hype and the &quot;AI is destroying coding&quot; backlash.</p>
+<p>Paired listening: &quot;Claude Code as a Daily Driver: CLAUDE.md, Skills, Subagents, Plugins, and MCPs&quot; (arps18.github.io, HN 116 pts / 86 comments). The 86-comment thread is the higher-signal half — mine it for skill and MCP patterns to lift into your own <code>.claude/skills/</code> directory.</p>
+<p>Sources: <a href="https://x.com/mccricardo">ClickHouse year-of-AI</a> · <a href="https://news.ycombinator.com/item?id=48205626">Claude Code Daily Driver HN</a></p>
+<hr />
+<h2>Shorter Takes</h2>
+<p><strong>Uber CEO Dara Khosrowshahi: 90% of engineers now rely on AI tools.</strong> Reported by @Neural_Times on X, citing recent Uber leadership commentary. The bluntest C-suite statement yet on dev-hiring posture — counter-narrative to the geohot &quot;Sloptember&quot; thesis. <a href="https://x.com/Neural_Times">@Neural_Times</a></p>
+<p><strong>UiPath launches &quot;UiPath for Coding Agents.&quot;</strong> RPA incumbent moves into the coding-agent layer. Net-new product entry — UiPath previously stayed in business-process automation. The agent-coding market is now eating adjacent categories (RPA, legal AI, SRE/K8s). <a href="https://x.com/StockExpert_AI">@StockExpert_AI</a></p>
+<p><strong>The useful agent surfaces the missing decision.</strong> Nate B. Jones: <em>&quot;The useful agent will often be the one that says, 'I can do 80% of this, but the remaining 20% requires a decision you have never actually assigned to anyone.'&quot;</em> Design agents to escalate decision gaps rather than guess past them. <a href="https://x.com/natebjones/status/2058977397618405796">Source</a></p>
+<p><strong>Harvey publishes LAB (Legal Agent Benchmark).</strong> New legal-AI eval framework from Harvey — first branded &quot;Legal Agent Benchmark,&quot; likely to become the legal-domain standard. Distinct from Mike and Judicex (the OSS legal-AI tools tracked previously); Harvey is publishing the measurement layer, not the model. <a href="https://x.com/LegalTechStrtUp">@LegalTechStrtUp</a></p>
+<p><strong>Qwen 3.6 35B runs at 100+ tok/s on M5 Max with 128GB unified memory.</strong> Local-first is now genuinely competitive on a 13&quot; laptop. &quot;No cloud. No API costs. No rate limits.&quot; For privacy-sensitive prototypes, this is the new floor. <a href="https://x.com/bridgemindai/status/2059233012290580702">@bridgemindai</a></p>
+<p><strong>OpenRouter raised $113M Series B (CapitalG-led).</strong> Unified API for 400+ AI models. The routing layer is consolidating — relevant if your stack fans out across providers. <a href="https://x.com/SECTORAdvisors/status/2059609196287373787">Announcement</a></p>
+<p><strong>Stable Audio 3 dropped.</strong> Stability AI shipped a new family of open-weight audio models for music and sound effects, with editing support. <a href="https://x.com/Yura__eth/status/2059607295353303460">Announcement</a></p>
+<p><strong>Codex OAuth issue resolved.</strong> @Teknium: &quot;If you have been experiencing issues with OpenAI Codex oAuth, it is now fixed... you must <code>hermes update</code> to fix.&quot; If you've been hitting auth errors this week, that's why. <a href="https://x.com/Teknium/status/2059467329138999709">Source</a></p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>Nexus</strong> — open-source AI gateway sitting between apps and LLM providers (routing, observability, governance). Net-new in the LiteLLM/Portkey category. (HN, jjrhodes 5/26)</li>
+<li><strong>CoreTex</strong> — Most architecturally interesting OSS launch today: agent harness designed as a Unix-style flat-file system instead of an in-process framework. Same philosophical lineage as Claude Code skills. <a href="https://x.com/KhingJusWurk">@KhingJusWurk</a></li>
+<li><strong>alook_ai</strong> — Self-hosted multi-agent platform where agents share memory and split CEO/team roles. OSS counterpart to AutoGPT-as-a-company. The shared-memory piece is worth watching. <a href="https://x.com/nrqa__">@nrqa__</a></li>
+<li><strong>Linki</strong> — Open-source AI SDR for LinkedIn sequences + cold email. Yet another OSS agent eating a SaaS category (Apollo/Outreach). (HN Show HN, moisacow 5/21)</li>
+<li><strong>Cline</strong> — Called out as the underrated OSS coding agent of the moment by <a href="https://x.com/BitBlitzBuzz">@BitBlitzBuzz</a>. Editor-first vs. self-driving. Candidate to test on a non-critical feature branch.</li>
+<li><strong>&quot;I'm Tired of Talking to AI&quot;</strong> — orchidfiles.com (HN frontpage, 332 pts, 205 comments). Top user-experience essay of the day — the mainstream-burnout signal. Even devs are saying enough.</li>
+<li><strong>Nvidia Vera CPU / Olympus cores</strong> — Phoronix benchmarks &quot;delivering great performance.&quot; Nvidia's CPU play (not GPU) is the new race lane. <a href="https://www.phoronix.com">Phoronix</a></li>
+<li><strong>levelsio on quitting jobs to build:</strong> <em>&quot;I don't know anyone who quit their job to live off savings and built something that made money before their savings ran out except @AndreyAzimov. I always think it's a bad idea.&quot;</em> Anchor data against the &quot;quit and build full-time&quot; instinct. <a href="https://x.com/levelsio/status/2059563929341239350">@levelsio</a></li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>I let Codex run for 6 hours. Here's what happened. (@howiai)</h3>
+<p><a href="https://www.youtube.com/watch?v=2wLJl9A2CnA">Watch</a></p>
+<p>Claravo walks through <code>/goal</code> in OpenAI Codex — a new mode that turns prompts into autonomous work-verify-check loops. Unlike turn-based prompts, a goal runs until the agent gathers evidence it's complete (or hits a stop condition). She demos three goals: a coding goal (Sentry error-zero burndown), a Gmail inbox cleanup (3,900 → 68 emails in ~4 hours, 6M tokens), and a Linear backlog cleanup. The core takeaway: writing goals is a new PM/engineering skill — outcomes with verification, constraints, boundaries, iteration policy, and stop conditions — and the result is a shift from &quot;babysitting AI&quot; to &quot;manager mode.&quot;</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Prompt vs Goal — Mindset shift</strong>: Before: turn-based &quot;do X → wait → 'what's next?' → do Y.&quot; After: define an outcome and verification criteria, then walk away while the agent loops work/verify/decide until evidence shows the goal is met.</li>
+<li><strong>The six properties of a strong goal</strong>: (1) Outcome, (2) Verification, (3) Constraints (what can't regress), (4) Boundaries (allowed tools/files), (5) Iteration policy, (6) Stop condition.</li>
+<li><strong>&quot;Error Zero&quot; is the killer pattern for tech debt</strong>: Point a goal at all logs of a specific error class with access to the observability tool (Sentry, Vercel logs), and have it root-cause + fix + replay until the count is zero. Yields systematic fixes, not band-aids.</li>
+<li><strong>Goals work for non-coding tasks too</strong> — Gmail cleanup, Linear backlog hygiene. As long as the agent has MCP access to the system and the goal has a measurable finish line.</li>
+<li><strong>Writing goals is a PM/OKR skill</strong>: outcomes not outputs. Teams adopting <code>/goal</code> will need to level up at writing measurable success criteria, not work descriptions. Honest contrarian: &quot;manager mode&quot; trades hands-on flow for hours-back — Claravo openly says &quot;I'm not sure I love that.&quot;</li>
+</ul>
+<hr />
+<p><em>Sources: TLDR Tech, Simon Willison's blog, Hacker News frontpage, X/Twitter (83 new tweets across feed + 7 profiles + 4 topics), YouTube. May 27, 2026. Reddit unavailable (ScrapeCreators 402, day 11).</em></p>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
