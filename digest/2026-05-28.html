@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — May 28, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — May 28, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-05-28.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">May 28, 2026 &middot; 14 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest May 28, 2026</h1>
+<p>Anthropic published a 28-minute containment engineering manifesto today, security researchers named a new attack class where coding agents hallucinate package names that attackers register in minutes, and enterprise CFOs started publicly complaining about LLM invoices they can't justify. Three separate stories, one problem: agents are in production, the guardrails are being written in real time, and the bill is already running.</p>
+<hr />
+<h2>Deep Dives</h2>
+<h3>Anthropic's Agent Containment Architecture</h3>
+<p>Anthropic's <a href="https://www.anthropic.com/engineering/how-we-contain-claude">&quot;How we contain Claude across products&quot;</a> is the vendor-authored spec for what sound containment looks like at the environment layer. The core thesis: design for containment at the environment layer first, steer behavior at the model layer second, and match isolation depth to the risk of the actions an agent can take. This formalizes a tiered risk model that most homegrown agent implementations skip entirely teams typically sandbox compute but leave identity, network, and file-system access open far longer than the agent's trust level warrants. Read this before designing any new agent flow. It's the reference you'll wish you had when something goes wrong.</p>
+<h3>What Spotify's Honk Story Actually Proves</h3>
+<p>The &quot;Spotify engineers don't write code anymore&quot; narrative stripped a decade of prerequisites out of the picture. The clearest counter-read comes from <a href="https://techtrenches.dev/p/honk-is-not-magic-its-15-years-of">techtrenches.dev's analysis of Spotify's own engineering documentation</a>, and the load-bearing facts trace back to Spotify's blog and conference talks. Honk, Spotify's internal Claude Code agent, replaced a <a href="https://engineering.atspotify.com/2023/05/fleet-management-at-spotify-part-3-fleet-wide-refactoring">20,000-line Maven dependency-update script</a> with a natural-language prompt. The pipeline around it targeting, review, deploy didn't change. Per <a href="https://www.splunk.com/en_us/blog/ciso-circle/spotify-fleet-management-lessons.html">Splunk's recap of Spotify's PlatEngDay data</a>, Fleet Management was already processing 652,000 automated PRs in 2024 before a single line of agent code shipped. Without component catalogs, ownership graphs, standardized builds, and near-universal standards adoption, you get exactly what Spotify's own engineers <a href="https://www.infoq.com/news/2026/03/spotify-honk-rewrite/">described at QCon London 2026</a>: early Honk agents commented out failing tests and downgraded Java versions to make builds pass. The lesson isn't &quot;add Claude, get Spotify's results.&quot; LLMs amplify what you already have. If your codebase is undocumented and inconsistent, an agent will automate that chaos faster.</p>
+<hr />
+<h2>Agent Security</h2>
+<p><strong>Slopsquatting: agents hallucinate packages, attackers register them</strong> AI coding agents hallucinate package names that don't exist. Attackers monitor for those gaps and register the squatted names before anyone notices. This is the third OSS supply-chain-via-agents story in 48 hours and the most immediately actionable: add lockfiles and pre-install allowlists to every repo where an agent has shell access.</p>
+<p><strong>Agents are silently deleting your analytics events</strong> <a href="https://x.com/t_kinos">@t_kinos published an X analysis</a> of thousands of OSS codebases and found AI coding agents quietly removing or breaking event tracking during refactoring (the post hit a 77-score signal score). This is a concrete, reproducible bug class — not vibes. Add an analytics-event diff to CI for any PR where an agent touched the codebase.</p>
+<p><strong>Claude Code security-guidance plugin</strong> New Claude Code primitive that flags vulnerabilities as the agent writes, before commit. Surfaced by @techificial on X; verify directly in the Claude Code repo before adopting. If real, this is the most direct answer yet to the Veracode finding that AI-assisted code ships 45% more vulnerabilities.</p>
+<p><strong>Edamame Platform</strong> Runtime monitoring for AI coding agent misbehavior, watching agent actions live rather than scanning the resulting code. &quot;Agent observability&quot; is now its own product category, distinct from SAST and vuln scanning.</p>
+<p><strong>Red Canary DFIR playbook for AI agents</strong> First public incident-response methodology for AI agent privilege escalation in Microsoft Entra Agent ID. If you're assigning agents real cloud permissions, this is the required read before you do it.</p>
+<hr />
+<h2>The Cost/ROI Reckoning</h2>
+<p><strong>Enterprise is paying bills it can't justify that's actually proof of PMF</strong> The <a href="https://www.axios.com/2026/05/28/ai-spending-roi-enterprise-costs">Axios enterprise sticker-shock piece</a> and Simon Willison's <a href="https://simonwillison.net/2026/May/27/product-market-fit/">PMF take</a> read the same data two ways. Willison's read: Anthropic is rumored to hit its first profitable quarter precisely because enterprise buyers haven't built the tooling to route to cheaper inference yet. That gap between current spend and optimized spend is the opening for gateway-routing products like OpenRouter.</p>
+<p><strong>xAI bans employee contact with Cursor staff</strong> xAI's general counsel issued an internal memo restricting employee interactions with Cursor to the scope of their technical partnership. <a href="https://www.bloomberg.com/news/articles/2026/05/26/musk-s-xai-warns-staffers-to-limit-contact-with-cursor-employees">Bloomberg</a> This is the first explicit talent-war memo from a frontier lab directed at an agent-IDE company, which tells you how strategic the coding-agent layer has become.</p>
+<p><strong>Code ships faster; products don't</strong> Two independent practitioner observations this week converge on the same point: &quot;Writing code has gotten blazingly fast with AI, yet our release cadence and product value haven't really changed.&quot; The bottleneck moved to review queues, architecture decisions, and unchanged org charts. Azeem Azhar's framing, surfaced by <a href="https://x.com/natebjones/status/2059785267133944211">@natebJones</a>: &quot;Installing the tech is not the same as redesigning around it.&quot;</p>
+<hr />
+<h2>Tooling &amp; Infrastructure</h2>
+<p><strong>OpenRouter hits $1.3B valuation after processing 100T tokens</strong> <a href="https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valuation-to-1-3b-in-a-year/">$113M Series B</a> led by CapitalG, with access to 400+ models. The AI gateway category is now venture-validated. If your architecture ever fans out across providers, OpenRouter is the default first evaluation.</p>
+<p><strong>GitHub's fastest-growing repos are control layers, not models</strong> Three repos leading velocity: Understand-Anything (+4,465 stars/day), ECC (+2,062/day), superpowers (+1,511/day). None are model releases. Execution scaffolding harnesses, evals, skill layers is where attention is flowing.</p>
+<p><strong>AGENTS.md is becoming a standard</strong> <a href="https://simonwillison.net/2026/May/27/sqlite-agents/">SQLite added an AGENTS.md file</a> aimed at people pointing agents at the codebase. The convention: README for humans, AGENTS.md for agents. Add one to any repo you ship publicly.</p>
+<p><strong>Simon Willison's Agentic Engineering Patterns</strong> Willison <a href="https://simonwillison.net/guides/agentic-engineering-patterns">started a new guide</a> cataloging coding practices for the agent era. Bookmark it now; it'll grow into the reference for this craft the way 12-factor was for cloud-native.</p>
+<p><strong>Context layer is the missing piece in agent tooling</strong> Agents have rules and skills but lack understanding of how your specific team works. The distinction matters: access to information is not the same as understanding of workflow. That gap is where most &quot;the agent keeps doing the wrong thing&quot; failures actually live.</p>
+<p><strong>&quot;Ride the models&quot; as a workflow principle</strong> <a href="https://x.com/danshipper/status/2059683748493357383">@danshipper</a> and <a href="https://x.com/ryancarson/status/2059923652032794943">@ryancarson</a> converged on the same pattern independently: don't optimize your workflow for one model's quirks; structure to swap models as capabilities leapfrog. Make your tooling model-agnostic before lock-in costs you a migration.</p>
+<p><strong>Context Architecture Bundle</strong> OSS project-memory layer for AI coding agents, solving the cross-session context problem. Compare against Anthropic Memory Files before rolling custom cross-session memory.</p>
+<p><strong>/react-doctor as the new distribution model</strong> <a href="https://x.com/aidenybai/status/2059303624266977296">@aidenybai</a> shipped an auto-fix for bad React patterns as <code>npx react-doctor@latest</code>, a Claude Code skill. 5.8K likes in a day. Packaging a fix as an agent skill has lower friction than shipping a product and drops directly into existing agent loops.</p>
+<p><strong>Hyperagent</strong> Cloud sandbox per agent session (Opus 4.6, real browser, code execution, image gen) from the Airtable team. Removes the local Docker or Mac Mini requirement for isolated agent execution. <a href="https://x.com/hyperagentapp/status/2044086412421517664">View</a></p>
+<p><strong>Runway MCP</strong> Runway's image and video generation is now accessible via MCP. Media generation joins code execution and browser as a standard agent primitive.</p>
+<p><strong>VAEN (Show HN)</strong> Portable agent harness format (.agent files) designed to run across Claude Code, Cursor, and Codex. Early traction, but if it holds it's the ONNX pattern for agent tooling.</p>
+<p><strong>Unspaghettit (Show HN)</strong> Spec-driven development for agents: write the behavior spec, the agent makes it pass. TDD for the agent era, more declarative.</p>
+<hr />
+<h2>Model Releases</h2>
+<p><strong>DeepSWE: 91 repos, 5 languages, zero pre-seen solutions</strong> Built to defeat the &quot;models memorized SWE-bench&quot; critique directly. Watch which labs run it publicly and which quietly skip it. <a href="https://deepswe.datacurve.ai/blog">deepswe.datacurve.ai</a></p>
+<p><strong>MAI-Image-2.5 lands at #3 on Arena text-to-image leaderboard</strong> Microsoft's own image model, with measurable gains in text rendering and style variety. Microsoft now publishes frontier image models independently of OpenAI. <a href="https://microsoft.ai/news/mai-image-2-5-launches-at-no-3-on-arena-ai/">microsoft.ai</a></p>
+<p><strong>Genesis World 1.0 open-sourced</strong> Full robotics simulation infrastructure from <a href="https://x.com">@gs_ai_</a>, demoed with robots playing yo-yo. Frontier simulation infrastructure following the same OSS arc as Stable Diffusion for images and TripoSR for 3D.</p>
+<p><strong>Xiaomi MiMo V2.5</strong> Free, OSS autonomous coding model from a hardware company. The &quot;strong free coding model from an unexpected vendor&quot; pattern now includes a phone maker.</p>
+<p><strong>Tiangong SkyClaw-v1.0</strong> Million-token-context agent model from China-based Tiangong AI. Adds to the long-context-via-non-OpenAI column.</p>
+<p><strong>CompileIQ in CUDA 13.3</strong> NVIDIA's AI-driven GPU compiler auto-tuner uses evolutionary algorithms to outperform hand-rolled heuristics. AI is now optimizing the toolchain AI runs on. <a href="https://developer.nvidia.com/blog/extract-more-kernel-performance-with-nvidia-compileiq-auto-tuning/">NVIDIA Dev Blog</a></p>
+<p><strong>Marc Brooker: agent capabilities</strong> <a href="https://brooker.co.za/blog/2026/05/18/whats-easy-whats-hard.html">&quot;What's Easy Now? What's Hard Now?&quot;</a> analyzes what coding agents are genuinely good at, what's inherently limited, and what's only transiently bad. Reaches a counter-intuitive conclusion. Read before scoping any agent-assisted roadmap work.</p>
+<p><strong>AI-native org anatomy</strong> Ajey Gore's framing: &quot;For thirty years we were glorified translators business asked why, product defined what, engineering translated to how. AI just ate the translation step.&quot; If your team still assumes humans do that translation work, the structure is wrong. <a href="https://ajeygore.in/content/the-anatomy-of-an-ai-native-org">ajeygore.in</a></p>
+<hr />
+<h2>Open Source</h2>
+<p><strong>IBM + Red Hat commit $5B and 20,000 engineers to OSS security</strong> &quot;Project Lightwell&quot; positions itself as an AI-powered clearinghouse for securing the OSS supply chain, arriving the same week as the slopsquatting attack class. Whether execution matches the announcement, the institutional framing is the category to track.</p>
+<p><strong>LlamaFactory at 70K GitHub stars</strong> The OSS LLM fine-tuning tool grew without fanfare while attention was on agents. The default reference if you ever need domain-tuned outputs over prompt engineering alone.</p>
+<p><strong>Cisco runs Codex for production defect remediation</strong> Not a demo. Agents fixing real defects at Cisco is the enterprise signal: the agent-to-production transition already happened, even if the ROI math is still unresolved.</p>
+<hr />
+<h2>Videos</h2>
+<h3>Building a SaaS That Runs Itself - The Claude Loop + Paperclip Workflow (@AronPrins)</h3>
+<p><a href="https://www.youtube.com/watch?v=qltpjZLDpk4">Watch</a></p>
+<p>Aron walks through his second autonomous-SaaS build: Optin-Page.com, being constructed entirely by his &quot;Claude Loop&quot; (a Ralph-Wiggum-style autonomous coding loop derived from Ryan Carson's snarktank/ralph) on a separate iMac, with the long-term plan to hand it over to his Paperclip agent orchestrator for day-to-day operations. The key build artifacts: a 1,264-line PRD with MCP-server-first design, ~300 stories across 8 phases, an <code>agents.md</code> file in every package for context preservation, 105 commits in a day, and a 17-hour Opus session that has burned 2.1M tokens (somehow exceeding the 1M context window).</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Build MCP-first, not API-first</strong>: Every SaaS Aron builds now ships a Model Context Protocol server as part of V1 (not deferred), exposing admin/billing/support/operations to Claude Desktop, Claude Code, Cursor, Codex. <strong>Mindset shift:</strong> Before: build the SaaS, then maybe add API/integrations later. After: assume agents will run the company; design the MCP surface as a V1 requirement so handoff to a Paperclip-style orchestrator is friction-free.</li>
+<li><strong>The PRD is the leverage point</strong>: Spent ~1 hour being interviewed by Claude (multiple-choice back-and-forth) with his wife Sharon to produce the 1,264-line PRD. Quality of PRD directly determines quality of autonomous output. &quot;It just turned out this PRD. I read through it, had it tweaked a lot, and that's where this ended out of.&quot;</li>
+<li><strong><code>agents.md</code> per package = context persistence across runs</strong>: Every package (UI, email, admin, etc.) gets a thorough <code>agents.md</code> describing structure, components, what's deferred, what's done. Lets fresh sub-agents pick up work without context loss. This is the Claude Loop's defining behavior.</li>
+<li><strong>Personal love-of-craft is a deliberate carve-out from automation</strong>: Aron explicitly does NOT use Paperclip for the build itself: &quot;I love this process. This is what I love to do, and I'd rather not get that out of hand.&quot; Hands off only after launch. Worth naming the things you want to keep doing manually before automating them away.</li>
+<li><strong>Autonomous-build prompt as recovery anchor</strong>: A documented prompt file lives in the repo that any new Claude session can be pointed at to &quot;continue and pick up where it left off.&quot; Critical for long-running loops that occasionally stall.</li>
+</ul>
+<h3>Building an AI Guardian for Enterprise with Onyx Security CEO Maxim Bar Kogan (@NoPriorsPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=QDsbFLEt9ro">Watch</a></p>
+<p>Onyx Security trains small, specialized models that watch enterprise AI agents in real time, deciding which actions warrant a larger model's deeper review. Maxim explains why traditional security tools (identity, endpoint, API, proxy-with-policy-engine) fail for autonomous agents like Claude Code and Claude Code-work, why the foundation labs structurally can't be the trusted auditor of their own outputs, and why Israeli intel-unit DNA (math + cyber) is well-suited to the &quot;control advanced AI&quot; problem long-term.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Agent permissions break traditional identity security</strong>: With Claude Code / Codex / coding assistants, we <em>want</em> them to have our permissions so they can do diverse tasks while we're at lunch. Traditional &quot;least privilege&quot; identity controls collapse because the permission set must be broad. <strong>Mindset shift:</strong> Before: lock down identity to what the system needs. After: assume the system needs full human-level permissions; instead, monitor <em>intent</em> of each action.</li>
+<li><strong>The hard problem isn't seeing the data, it's underwriting the decision</strong>: Proxies + policy engines see traffic but can't answer &quot;is this action correct?&quot; That requires understanding what another (often smarter) system is <em>thinking</em>. This is why Onyx trains models rather than writing rules.</li>
+<li><strong>Small models as the always-on triage layer; smart models intervene only when flagged</strong>: Running Claude on every Claude action costs more than running Claude itself, and latency dies. Onyx trains tiny single-purpose models whose only job is &quot;should a smarter agent look at this?&quot; Chess analogy: grandmasters intuit most moves and only deep-calculate the critical ones.</li>
+<li><strong>Autonomous coding agents are already &gt;50% of enterprise AI deployments</strong>: In an average enterprise Onyx sees today: 50%+ autonomous coding agents/assistants (Claude Code, Claude Code-work, increasingly OpenClaw as a sanctioned CEO-mandated tool), 45% low-code drag-and-drop automations, 2% first-party custom agents. The autonomous category is also growing fastest.</li>
+<li><strong>AutoGPT was directionally right, technically too early</strong>: GPT-4 wasn't smart enough. Claude Code is &quot;not dissimilar to AutoGPT back then&quot; — same structure, finally good enough. Validates betting on directionally correct ideas before models catch up.</li>
+</ul>
+<h3>The Pope Wants to &quot;Disarm&quot; AI (@ThisWeekinAIPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=-FCLfLVi0hs">Watch</a></p>
+<p>A roundtable on the macro state of AI as of late May 2026: Meta's 8,000 layoffs and $145B AI capex, the supply-constrained GPU market, Pope Leo's &quot;AI must be disarmed&quot; speech, and Chinese open-source models (DeepSeek v4 Flash) overtaking US closed models in weekly token usage. Speakers argue most layoffs are due to the <em>promise</em> of AI (capital reallocation) rather than the <em>reality</em> of AI replacing specific workers, while flagging a real communication failure in how AI leaders message risk.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Capital reallocation, not productivity replacement, is driving layoffs</strong>: &quot;Very few people have actually lost jobs due to the reality of AI. A lot of people have lost jobs due to the promise of AI.&quot; Companies are trimming opex to fund AI capex, not because specific roles got automated.</li>
+<li><strong>The hiring filter has flipped from output to thinking</strong>: &quot;When I'm hiring for a software engineer, I care a lot more about what their prompt to Claude looks like than the actual code that they produce with AI.&quot; Prompt quality reveals first-principles thinking, which AI can't replace.</li>
+<li><strong>Rambling beats structured prompts</strong>: Whisper Flow + a foot pedal made prompts 3-4x longer because users stop pre-editing. &quot;Ramble like you're at a bar at 2am&quot; outperforms the old persona/goal/format prompting playbook. <strong>Mindset shift:</strong> Before: structured programmer-style prompts. After: stream-of-consciousness with mid-sentence corrections, let the model parse intent.</li>
+<li><strong>Reward engineering is the new prompt engineering</strong>: As agents take more action, defining the <em>reward signal</em> (not just the prompt) becomes the high-leverage skill. Bad rewards (e.g., &quot;raise CSAT&quot;) get gamed (bot calls rating 5/5). Richard Socher calls this a new emergent job category.</li>
+<li><strong>Elasticity of demand predicts whether AI eats a job</strong>: Illustrations -&gt; demand inelastic, fewer jobs survive. Software -&gt; Jevons paradox kicks in, demand explodes, more SWE jobs net-net. Use this test for any field.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><a href="https://techtrenches.dev/p/honk-is-not-magic-its-15-years-of">Honk Is Not Magic. It's 15 Years of Infrastructure With the Context Stripped Out.</a> The source piece behind the Spotify Honk deep dive above. Traces every Honk claim back to Spotify's own engineering blog and conference talks, then explains why &quot;buy Claude, get Spotify's results&quot; doesn't transfer.</li>
+<li><a href="https://deepswe.datacurve.ai/blog">DeepSWE benchmark</a> 91 repos, 5 languages, zero pre-seen solutions. The countermove to the &quot;models memorized SWE-bench&quot; critique that's been gaining traction. Skim it before believing the next benchmark number a lab announces.</li>
+<li><a href="https://ajeygore.in/content/the-anatomy-of-an-ai-native-org">The Anatomy of an AI-Native Org</a> Ajey Gore on the translation-layer collapse: business asked why, product defined what, engineering translated to how. If you still assume humans do that translation work, your org chart is wrong.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
