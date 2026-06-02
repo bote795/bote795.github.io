@@ -236,7 +236,7 @@
 
 			<header class="header">
 				<h1>AI Builder Digest</h1>
-				<div class="meta">June 2, 2026 &middot; 3 min read</div>
+				<div class="meta">June 2, 2026 &middot; 12 min read</div>
 				<div class="tts-controls" id="tts-controls">
 					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
 						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
@@ -246,18 +246,90 @@
 			</header>
 
 			<article class="content">
-				<p>No user memory found. Reading the source material and applying house style rules for a digest format, I'll now delegate to the Writer.The source material is embedded in your message. I have the AI Briefing, Feed Digest, and X/Twitter Digest. Now I'll delegate the digest creation to the Writer with full context.Digest complete. Saved to outputs.</p>
+				<h1>AI Builder Digest June 2, 2026</h1>
+<p>A Chinese lab dropped what may be the first frontier-class open-weights model with a 1M context window, Michael Burry went publicly short on Anthropic and SpaceX the same week Steve Yegge announced the end of the technical interview, and a Mercor CEO said his company now spends more on tokens than on salaries. Four separate stories converging on one bet: the AI-spend curve has to break somewhere, and the open-weights side is the obvious release valve.</p>
+<hr />
+<h2>The Open-Weights Counterattack</h2>
+<h3>MiniMax M3 — frontier-class open weights with 1M context</h3>
+<p><a href="https://minimax.io">MiniMax M3</a> lands with self-reported numbers that put it within striking distance of closed frontier models: 59% on SWE-Bench Pro (beating GPT-5.5 and Gemini 3.1 Pro, approaching Claude Opus 4.7), 66% on Terminal-Bench 2.1, 34.8% on SWE-fficiency, 83.5 on BrowseComp. Architecture-wise, MSA (Sparse Attention) drops per-token compute at 1M context to 1/20 of the previous generation, with 9x faster prefill and 15x faster decoding. Weights and tech report due on HuggingFace within ten days under Apache-style licensing.</p>
+<p>The benchmark caveat is real: M3's numbers were run on MiniMax's own infrastructure with custom agent scaffolding, and the third-party re-runs haven't happened yet. But the open-weights timing matters more than the absolute scores. Last week's <a href="https://www.lesswrong.com">LessWrong analysis of the open-vs-closed gap</a> put open models 4-6 months behind on public benchmarks and 8-10 months behind on private ones, with the gap <em>growing</em> since DeepSeek R1. M3 is the first credible empirical counter-data to that thesis. If the third-party SWE-Bench Pro re-runs confirm the numbers, the gap just compressed from months to weeks — and the &quot;switch to open and save&quot; path for Shelfkeeper, TTS, CalmRide-class apps becomes a serious option instead of a thought experiment.</p>
+<hr />
+<h2>The Contrarian Convergence</h2>
+<p>Four different voices, four different angles, one direction: the AI-spend curve is now meeting real-world skepticism.</p>
+<p><strong>Michael Burry publicly short on Anthropic and SpaceX.</strong> The &quot;Big Short&quot; investor went on record saying neither company is worth $1T. <a href="https://www.businessinsider.com">Business Insider via HN</a> (55 pts). Burry being publicly short specific AI names — not generic &quot;AI bubble&quot; commentary — is a new escalation in the contrarian timeline.</p>
+<p><strong>The Economist asks if the stockmarket can swallow Anthropic, SpaceX, and OpenAI.</strong> Top of Hacker News today (419 pts, 735 comments). Capacity, not enthusiasm, is the framing. Even if you believe the technology, the market structure that has to absorb the valuations is a separate question.</p>
+<p><strong>Steve Yegge declares the end of the technical interview.</strong> <a href="https://steve-yegge.medium.com">&quot;The Last Technical Interview&quot;</a> argues Silicon Valley is replacing whiteboards with paid 1-week tryouts because agent-assisted candidates ace any traditional screen. The cheap signal (LeetCode-equivalent) is dead. The expensive signal (a paid tryout building real features against a real codebase) is the new bar. Pair-read with last week's &quot;Judgment is the skill&quot; essay as the practitioner thesis underneath the new hiring shape.</p>
+<p><strong>Mercor CEO: token spend exceeds salary spend.</strong> From the <a href="https://www.youtube.com/watch?v=CkAmq2gYtA4">20VC interview</a> with Brandon Foody (Co-founder and CEO of Mercor, the AI data/talent company doing $1B+ in revenue): Mercor's bill for internal-agent inference (AI project manager, interview agents, fraud detection, accounting) now exceeds total employee compensation. Foody predicts the average Fortune 500 enterprise hits the same crossover within five years.</p>
+<p>The three skeptic voices fit Foody's data point. The crossover is happening at one company that lives inside the AI economy, and three independent observers are flagging that the demand side of the curve is starting to creak.</p>
+<hr />
+<h2>Coding &amp; Agent Architecture</h2>
+<p><strong>Anthropic's dynamic workflows pattern is already portable.</strong> Last week Anthropic shipped <a href="https://claude.com">dynamic workflows in Claude Code</a> — Claude writes a JavaScript orchestration script that fans out to up to 1,000 subagents (16 concurrent), with the plan living in script variables instead of conversation context. This week, two independent re-implementations landed:</p>
+<ul>
+<li>
+<p><strong><a href="https://strandsagents.com">Strands Agents TypeScript SDK 1.0</a></strong> from AWS open-sources a model-driven agent harness with Swarm, Graph, and Workflow patterns. Python SDK shipped May 2025 and hit 14M+ downloads; TypeScript 1.0 is the cross-runtime expansion. AgentCore deploys autonomous agents in three API calls, each session in a dedicated microVM. MIT-style OSS, no AWS lock-in for the SDK itself.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/Michaelliv/pi-dynamic-workflows">pi-dynamic-workflows</a></strong> is a Pi extension that copies the Claude Code pattern verbatim: <code>agent()</code>, <code>parallel()</code>, <code>pipeline()</code> primitives with subagents in isolated in-memory sessions.</p>
+</li>
+</ul>
+<p>The JavaScript-as-plan plus LLM-as-executor architecture is now available in three flavors — Anthropic native, AWS Strands, Pi OSS — within a week of each other. The pattern is no longer vendor-locked.</p>
+<p><strong>Agentic RL: Token-In, Token-Out Done Right.</strong> A <a href="https://qgallouedec-tito.hf.space">practitioner essay</a> on re-tokenization drift in RL fine-tuning of agent LLMs. The fix is simple — never re-tokenize between sampling and training; pass the exact sampled tokens straight through — but the bug silently corrupts 30-40% of RL runs without anyone noticing. Required reading before any fine-tune project; pair with <a href="https://github.com/JudgmentLabs/judgeval">judgeval</a> (from last week's briefing) for the eval layer.</p>
+<p><strong>Zvi's 40-minute Opus 4.8 system card analysis.</strong> The <a href="https://thezvi.wordpress.com">companion read</a> to last week's &quot;modest but tangible&quot; framing from Simon Willison. Zvi extracts: persistent capability gains over 4.7 that aren't marketing, continued alignment progress, a new &quot;agentic refusal&quot; failure-mode category. Single highest-density read on what actually changed 4.7 to 4.8 — and worth saving as the template for how to read future system cards.</p>
+<p><strong>Greg Isenberg's 14 pendulum-shifts.</strong> <a href="https://x.com/gregisenberg/status/2061484999153488082">Twitter thread, 1,128 likes</a>. Highlights worth internalizing:</p>
+<ul>
+<li>Model loyalty is dead — best founders swap weekly based on task</li>
+<li>Workflow engineering replaced prompt engineering as a job title in ~18 months</li>
+<li>A well-structured Obsidian vault with good markdown beats fine-tuning for most use cases and costs nothing</li>
+<li>&quot;The hard part isn't building, it's choosing what to build&quot; — building takes a weekend; choosing the right thing takes taste, domain knowledge, and customer conversations</li>
+<li>Codex is becoming a super-app: coding, docs, browser, computer use, automations in one surface. Claude Code and Codex both shipped desktop GUI versions in the same month — the &quot;terminal is the future&quot; thesis is over</li>
+<li>&quot;AI design generic look&quot; is a taste problem, not a tech problem: founders feeding agents references from Japanese packaging, brutalist architecture, and 1960s print get beautiful output</li>
+</ul>
+<hr />
+<h2>On-Device and Edge</h2>
+<p><strong><a href="https://prismml.com/news/bonsai-image-4b">Bonsai Image 4B from PrismML</a></strong> is the first sub-1GB diffusion model that runs on an iPhone, Apache 2.0. The 1-bit variant compresses a 4B-class diffusion transformer to 0.93GB (an 8.3x reduction) while retaining ~95% of full-precision quality. iPhone 17 Pro Max generates a 512x512 image in 9.4 seconds; Mac M4 Pro does it in 6. First image-gen model in its parameter class to ship on iOS without cloud round-trips. Pair-read with Liquid AI LFM2.5-8B-A1B from last week as the two device-AI primitives to evaluate together if any app ever needs on-device generation.</p>
+<p><strong>NVIDIA N1X laptop chip leak.</strong> Twenty ARM cores, RTX 5070-equivalent GPU, designed for Windows-on-Arm PCs running local AI agents. <a href="https://www.thurrott.com">Thurrott via TLDR Tech</a> — Computex 2026 will be the formal reveal. Combined with Bonsai Image 4B above and last week's Microsoft Project Polaris + Windows Agent Framework, the local-AI-hardware plus local-AI-model plus local-AI-runtime stack is forming all at once. By Q4 2026, &quot;deploy this as a desktop app that runs entirely locally&quot; becomes a real product option for TTS/Shelfkeeper-class apps.</p>
+<hr />
+<h2>Personal Agent Infrastructure</h2>
+<p><strong><a href="https://x.com/AlexFinn/status/2061599649551782260">Alex Finn's Hermes Agent setup playbook</a>.</strong> Concrete blueprint for personal agent infra:</p>
+<ol>
+<li>Run local, not on a VPS. Mac Mini or an old laptop. Install from the Hermes site.</li>
+<li>Pick models: Opus 4.8 for quality, GPT 5.5 if budget-conscious. Use Telegram for messaging.</li>
+<li>Customize before automating. Brain-dump goals, ambitions, interests, career into the agent. Spend a day writing down every task you do, no matter how small.</li>
+<li>Reverse-prompt the agent. Instead of telling the AI what to do, ask: &quot;based on what you know about me and my tasks, how could you help?&quot; Let it propose tasks.</li>
+<li>Three example automations he runs: morning brief at 8am (AI news + trending YouTube + app ideas), proactive overnight app builder (Hermes vibe-codes a new prototype every night), and a LoRA fine-tuned on his video scripts so the local model writes in his voice.</li>
+</ol>
+<p>The reverse-prompt step is the unlock most agent setups skip.</p>
+<p><strong><a href="https://x.com/mronge/status/2061551895739826493">The MacBook-as-headless-server trick</a>.</strong> Close the lid, plug in power, leave on the desk, remote in from iPad or iPhone anywhere. Old hardware becomes infrastructure. Pairs perfectly with the Hermes local-agent thesis — no need to buy a Mac Mini if you already have a retired MacBook Pro.</p>
+<p><strong>Codex keeps running after the Mac locks.</strong> <a href="https://x.com/natebjones/status/2061508828718375116">Nate Jones</a> on what the small detail actually means: &quot;The computer is no longer the place you sit. It's a work surface that keeps running, waits for approval, and hands you the decision point on another device.&quot; The form-factor implication — laptop becomes the async work surface, decision-making becomes mobile — is more important than the feature itself.</p>
+<p><strong><a href="https://x.com/natebjones/status/2061615028122407026">Workspace agents need governance interfaces, not features.</a></strong> Also Nate Jones. The product slot for workspace agents is the admin console: Agent ID, recent activity, connected apps, memory files, schedules, runs over time. Once agents run repeatable work, the governance interface <em>is</em> the product.</p>
+<hr />
+<h2>Security and Operations</h2>
+<p><strong>AI agent traffic grew 7,851% year-over-year.</strong> From the <a href="https://www.humansecurity.com">HumanSecurity 2026 State of AI Traffic report</a>. HumanSecurity sells bot mitigation so discount accordingly, but the order of magnitude is consistent with the OpenRouter 100T-tokens / 400-model number from last week. If any of your apps or the property platform expose forms or APIs, the planning horizon for &quot;agent traffic dominates human traffic&quot; is 12-24 months. Captcha-class defenses are dead; agent-aware allowlist and auth is the only durable answer.</p>
+<p><strong>Meta AI Instagram exploit.</strong> <a href="https://simonwillison.net">Hackers asked Meta AI politely</a> for access to high-profile Instagram accounts, and it worked. The end-user-exposed-AI-with-permissions social-engineering pattern, in the wild, on a platform with hundreds of millions of users. If any app ever exposes an LLM with privileges to a paying user (account recovery, support chat, data access), assume the same exploit pattern works against you unless you've explicitly designed against it. Pair with the Microsoft Agent Governance Toolkit from last week as the OSS guardrail layer.</p>
+<p><strong>The ChatGPT data-leak instinct gap.</strong> A corporate data-protection lead noted people freely upload confidential info into ChatGPT. <a href="https://x.com/JoePostingg/status/2061494159593078906">The viral reply</a> (20.6K likes) nailed it: &quot;the same people would never email confidential data to a random address. The chat interface bypassed every instinct.&quot; For any product surfacing an AI input box, the UX pattern matters more than the policy.</p>
+<p><strong>Crossmint shipped card-network-compatible AI agent payments.</strong> <a href="https://x.com/crossmint/status/2061782581260193962">Announcement</a>. &quot;Until today, devs building AI agents lacked widely adopted, card-network-compatible patterns for enabling payments with appropriate security controls.&quot; Infra-grade if you're building agents that transact.</p>
+<hr />
+<h2>The Labor Story</h2>
+<p><strong>&quot;AI is killing the summer internship.&quot;</strong> Tech internship openings down 30% since 2023, entry-level pipeline collapsing. <a href="https://thenextweb.com">The Next Web via TLDR Tech</a>. The structural argument behind the Uber-90%-engineers stat from last week — &quot;AI tools&quot; isn't a productivity bump, it's a hiring layer that gets cut. Pair with Yegge's &quot;Last Technical Interview&quot; essay above and last week's &quot;Judgment is the skill&quot; piece for the full picture: the interview is dead, the internship is dead, and the survivors are the people who can direct agents and exercise taste.</p>
+<hr />
 <h2>Videos</h2>
-<h3>--- (@20VC)</h3>
+<h3>Mercor CEO on Why Application Layer Companies Have No Defensibility and Token Spend Exceeds Salaries (@20VC)</h3>
 <p><a href="https://www.youtube.com/watch?v=CkAmq2gYtA4">Watch</a></p>
-<p>Brandon Foody, CEO of Mercor (a &gt;$10B AI data/talent company doing $1B+ in revenue), argues that the application layer is structurally undefensible because &quot;the model is the product&quot; — Claude can clone Slack end-to-end within 12 months, gutting SaaS moats. He claims Mercor now spends more on tokens for internal agents than on employee salaries and predicts every Fortune 500 will look the same within 5 years. He also addressed the recent security incident, denied losing OpenAI as a customer, and made a strong call that at least one frontier lab (OpenAI or Anthropic) becomes a $10T+ company.</p>
+<p>Harry Stebbings interviews Brandon Foody (Co-founder and CEO of Mercor, the AI data/talent company doing $1B+ in revenue) on why the application layer has no durable defensibility, why Mercor's internal token bill now exceeds payroll, and why he thinks at least one frontier lab becomes a $10T+ company within five years. Also touches on the recent security incident, denies losing OpenAI as a customer, and lays out the eval-driven model hot-swapping workflow Mercor uses internally.</p>
 <p><strong>Key takeaways:</strong></p>
 <ul>
-<li><strong>The Application Layer Has No Defensibility (Unless You Have Network Effects)</strong>: Software wrappers on foundation models are dying because Claude Code can already replicate vertical SaaS features (medical, legal, finance) trivially. The only durable moats at the app layer are network effects (Salesforce ecosystem, Slack Connect, Cart). Without them, the company becomes worthless. <strong>Mindset shift:</strong> Before: &quot;deep workflow product = moat.&quot; After: &quot;deep workflow product = 12-month head start before the model swallows it.&quot;</li>
-<li><strong>Token Spend &gt; Salary Spend Is the New Normal</strong>: Mercor now spends more on tokens for internal agents (AI project manager, interview agents, fraud detection, accounting) than on employee headcount. Foody predicts the average Fortune 500 enterprise will spend more on compute than on headcount within 5 years.</li>
-<li><strong>Jevons Paradox Is Eating Token Cost Reductions</strong>: Per-token costs are falling but total token consumption is rising faster — token costs are net rising for everyone. Don't bet on inference cost collapse to save you.</li>
-<li><strong>Forward Deployed &gt; Go-to-Market</strong>: Pure sales motion gets eaten because savvy customers will just tell Claude to copy your SaaS. The durable wedge is post-sales forward deployed engineering — going deep with customers, training agents on their tacit knowledge, going the last mile. &quot;Services are the new software&quot; (Sequoia thesis) resonates.</li>
-<li><strong>Tacit Knowledge Is the Real Bottleneck, Not Data Cleanliness</strong>: Models can clean data themselves as reasoning improves (read 6 months of Slack, structure into CRM tables). The genuinely human contribution is the undocumented context that lives in employees' heads — that's the job of the next decade: codifying tacit knowledge and training agents on it.</li>
+<li><strong>The application layer has no defensibility unless you have network effects.</strong> Software wrappers on foundation models are dying because Claude Code can already replicate vertical SaaS features (medical, legal, finance) trivially. The only durable moats at the app layer are network effects — Salesforce's ecosystem and Slack Connect are the examples Foody cited. Without them, the company becomes worthless. <strong>Mindset shift:</strong> &quot;deep workflow product equals moat&quot; is now &quot;deep workflow product equals 12-month head start before the model swallows it.&quot;</li>
+<li><strong>Token spend greater than salary spend is the new normal.</strong> Mercor's bill for internal-agent inference (AI project manager, interview agents, fraud detection, accounting) already exceeds total employee compensation. Foody predicts the average Fortune 500 enterprise hits the same crossover within five years.</li>
+<li><strong>Jevons Paradox is eating token cost reductions.</strong> Per-token costs are falling but total token consumption is rising faster — token costs are net rising for everyone. Don't bet on inference cost collapse to save your unit economics.</li>
+<li><strong>Forward Deployed beats Go-to-Market.</strong> Pure sales motion gets eaten because savvy customers will just tell Claude to copy your SaaS. The durable wedge is post-sale forward-deployed engineering: going deep with customers, training agents on their tacit knowledge, going the last mile. &quot;Services are the new software&quot; (the Sequoia thesis) resonates here.</li>
+<li><strong>Tacit knowledge is the real bottleneck, not data cleanliness.</strong> Models can clean data themselves as reasoning improves (read 6 months of Slack, structure into CRM tables). The genuinely human contribution is the undocumented context that lives in employees' heads. The job of the next decade is codifying that tacit knowledge and training agents on it.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li><a href="https://minimax.io">MiniMax M3 — open-weights frontier-class model</a> — first credible empirical counter to last week's &quot;open models are falling behind&quot; thesis. Watch the third-party SWE-Bench Pro re-runs over the next ten days.</li>
+<li><a href="https://steve-yegge.medium.com">Steve Yegge — The Last Technical Interview</a> — 18-minute essay on why Silicon Valley is replacing whiteboards with paid tryouts. The hiring-practice flip that fits Burry, Yegge, and Mercor's CEO into one story.</li>
+<li><a href="https://thezvi.wordpress.com">Zvi's 40-minute Claude Opus 4.8 system-card analysis</a> — the template for how to read future Anthropic system cards. Modest-but-tangible confirmed with structural detail.</li>
 </ul>
 			</article>
 
