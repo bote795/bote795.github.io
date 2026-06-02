@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — June 2, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — June 2, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-06-02.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">June 2, 2026 &middot; 12 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI Builder Digest June 2, 2026</h1>
+<p>A Chinese lab dropped what may be the first frontier-class open-weights model with a 1M context window, Michael Burry went publicly short on Anthropic and SpaceX the same week Steve Yegge announced the end of the technical interview, and a Mercor CEO said his company now spends more on tokens than on salaries. Four separate stories converging on one bet: the AI-spend curve has to break somewhere, and the open-weights side is the obvious release valve.</p>
+<hr />
+<h2>The Open-Weights Counterattack</h2>
+<h3>MiniMax M3 — frontier-class open weights with 1M context</h3>
+<p><a href="https://minimax.io">MiniMax M3</a> lands with self-reported numbers that put it within striking distance of closed frontier models: 59% on SWE-Bench Pro (beating GPT-5.5 and Gemini 3.1 Pro, approaching Claude Opus 4.7), 66% on Terminal-Bench 2.1, 34.8% on SWE-fficiency, 83.5 on BrowseComp. Architecture-wise, MSA (Sparse Attention) drops per-token compute at 1M context to 1/20 of the previous generation, with 9x faster prefill and 15x faster decoding. Weights and tech report due on HuggingFace within ten days under Apache-style licensing.</p>
+<p>The benchmark caveat is real: M3's numbers were run on MiniMax's own infrastructure with custom agent scaffolding, and the third-party re-runs haven't happened yet. But the open-weights timing matters more than the absolute scores. Last week's <a href="https://www.lesswrong.com">LessWrong analysis of the open-vs-closed gap</a> put open models 4-6 months behind on public benchmarks and 8-10 months behind on private ones, with the gap <em>growing</em> since DeepSeek R1. M3 is the first credible empirical counter-data to that thesis. If the third-party SWE-Bench Pro re-runs confirm the numbers, the gap just compressed from months to weeks — and the &quot;switch to open and save&quot; path for Shelfkeeper, TTS, CalmRide-class apps becomes a serious option instead of a thought experiment.</p>
+<hr />
+<h2>The Contrarian Convergence</h2>
+<p>Four different voices, four different angles, one direction: the AI-spend curve is now meeting real-world skepticism.</p>
+<p><strong>Michael Burry publicly short on Anthropic and SpaceX.</strong> The &quot;Big Short&quot; investor went on record saying neither company is worth $1T. <a href="https://www.businessinsider.com">Business Insider via HN</a> (55 pts). Burry being publicly short specific AI names — not generic &quot;AI bubble&quot; commentary — is a new escalation in the contrarian timeline.</p>
+<p><strong>The Economist asks if the stockmarket can swallow Anthropic, SpaceX, and OpenAI.</strong> Top of Hacker News today (419 pts, 735 comments). Capacity, not enthusiasm, is the framing. Even if you believe the technology, the market structure that has to absorb the valuations is a separate question.</p>
+<p><strong>Steve Yegge declares the end of the technical interview.</strong> <a href="https://steve-yegge.medium.com">&quot;The Last Technical Interview&quot;</a> argues Silicon Valley is replacing whiteboards with paid 1-week tryouts because agent-assisted candidates ace any traditional screen. The cheap signal (LeetCode-equivalent) is dead. The expensive signal (a paid tryout building real features against a real codebase) is the new bar. Pair-read with last week's &quot;Judgment is the skill&quot; essay as the practitioner thesis underneath the new hiring shape.</p>
+<p><strong>Mercor CEO: token spend exceeds salary spend.</strong> From the <a href="https://www.youtube.com/watch?v=CkAmq2gYtA4">20VC interview</a> with Brandon Foody (Co-founder and CEO of Mercor, the AI data/talent company doing $1B+ in revenue): Mercor's bill for internal-agent inference (AI project manager, interview agents, fraud detection, accounting) now exceeds total employee compensation. Foody predicts the average Fortune 500 enterprise hits the same crossover within five years.</p>
+<p>The three skeptic voices fit Foody's data point. The crossover is happening at one company that lives inside the AI economy, and three independent observers are flagging that the demand side of the curve is starting to creak.</p>
+<hr />
+<h2>Coding &amp; Agent Architecture</h2>
+<p><strong>Anthropic's dynamic workflows pattern is already portable.</strong> Last week Anthropic shipped <a href="https://claude.com">dynamic workflows in Claude Code</a> — Claude writes a JavaScript orchestration script that fans out to up to 1,000 subagents (16 concurrent), with the plan living in script variables instead of conversation context. This week, two independent re-implementations landed:</p>
+<ul>
+<li>
+<p><strong><a href="https://strandsagents.com">Strands Agents TypeScript SDK 1.0</a></strong> from AWS open-sources a model-driven agent harness with Swarm, Graph, and Workflow patterns. Python SDK shipped May 2025 and hit 14M+ downloads; TypeScript 1.0 is the cross-runtime expansion. AgentCore deploys autonomous agents in three API calls, each session in a dedicated microVM. MIT-style OSS, no AWS lock-in for the SDK itself.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/Michaelliv/pi-dynamic-workflows">pi-dynamic-workflows</a></strong> is a Pi extension that copies the Claude Code pattern verbatim: <code>agent()</code>, <code>parallel()</code>, <code>pipeline()</code> primitives with subagents in isolated in-memory sessions.</p>
+</li>
+</ul>
+<p>The JavaScript-as-plan plus LLM-as-executor architecture is now available in three flavors — Anthropic native, AWS Strands, Pi OSS — within a week of each other. The pattern is no longer vendor-locked.</p>
+<p><strong>Agentic RL: Token-In, Token-Out Done Right.</strong> A <a href="https://qgallouedec-tito.hf.space">practitioner essay</a> on re-tokenization drift in RL fine-tuning of agent LLMs. The fix is simple — never re-tokenize between sampling and training; pass the exact sampled tokens straight through — but the bug silently corrupts 30-40% of RL runs without anyone noticing. Required reading before any fine-tune project; pair with <a href="https://github.com/JudgmentLabs/judgeval">judgeval</a> (from last week's briefing) for the eval layer.</p>
+<p><strong>Zvi's 40-minute Opus 4.8 system card analysis.</strong> The <a href="https://thezvi.wordpress.com">companion read</a> to last week's &quot;modest but tangible&quot; framing from Simon Willison. Zvi extracts: persistent capability gains over 4.7 that aren't marketing, continued alignment progress, a new &quot;agentic refusal&quot; failure-mode category. Single highest-density read on what actually changed 4.7 to 4.8 — and worth saving as the template for how to read future system cards.</p>
+<p><strong>Greg Isenberg's 14 pendulum-shifts.</strong> <a href="https://x.com/gregisenberg/status/2061484999153488082">Twitter thread, 1,128 likes</a>. Highlights worth internalizing:</p>
+<ul>
+<li>Model loyalty is dead — best founders swap weekly based on task</li>
+<li>Workflow engineering replaced prompt engineering as a job title in ~18 months</li>
+<li>A well-structured Obsidian vault with good markdown beats fine-tuning for most use cases and costs nothing</li>
+<li>&quot;The hard part isn't building, it's choosing what to build&quot; — building takes a weekend; choosing the right thing takes taste, domain knowledge, and customer conversations</li>
+<li>Codex is becoming a super-app: coding, docs, browser, computer use, automations in one surface. Claude Code and Codex both shipped desktop GUI versions in the same month — the &quot;terminal is the future&quot; thesis is over</li>
+<li>&quot;AI design generic look&quot; is a taste problem, not a tech problem: founders feeding agents references from Japanese packaging, brutalist architecture, and 1960s print get beautiful output</li>
+</ul>
+<hr />
+<h2>On-Device and Edge</h2>
+<p><strong><a href="https://prismml.com/news/bonsai-image-4b">Bonsai Image 4B from PrismML</a></strong> is the first sub-1GB diffusion model that runs on an iPhone, Apache 2.0. The 1-bit variant compresses a 4B-class diffusion transformer to 0.93GB (an 8.3x reduction) while retaining ~95% of full-precision quality. iPhone 17 Pro Max generates a 512x512 image in 9.4 seconds; Mac M4 Pro does it in 6. First image-gen model in its parameter class to ship on iOS without cloud round-trips. Pair-read with Liquid AI LFM2.5-8B-A1B from last week as the two device-AI primitives to evaluate together if any app ever needs on-device generation.</p>
+<p><strong>NVIDIA N1X laptop chip leak.</strong> Twenty ARM cores, RTX 5070-equivalent GPU, designed for Windows-on-Arm PCs running local AI agents. <a href="https://www.thurrott.com">Thurrott via TLDR Tech</a> — Computex 2026 will be the formal reveal. Combined with Bonsai Image 4B above and last week's Microsoft Project Polaris + Windows Agent Framework, the local-AI-hardware plus local-AI-model plus local-AI-runtime stack is forming all at once. By Q4 2026, &quot;deploy this as a desktop app that runs entirely locally&quot; becomes a real product option for TTS/Shelfkeeper-class apps.</p>
+<hr />
+<h2>Personal Agent Infrastructure</h2>
+<p><strong><a href="https://x.com/AlexFinn/status/2061599649551782260">Alex Finn's Hermes Agent setup playbook</a>.</strong> Concrete blueprint for personal agent infra:</p>
+<ol>
+<li>Run local, not on a VPS. Mac Mini or an old laptop. Install from the Hermes site.</li>
+<li>Pick models: Opus 4.8 for quality, GPT 5.5 if budget-conscious. Use Telegram for messaging.</li>
+<li>Customize before automating. Brain-dump goals, ambitions, interests, career into the agent. Spend a day writing down every task you do, no matter how small.</li>
+<li>Reverse-prompt the agent. Instead of telling the AI what to do, ask: &quot;based on what you know about me and my tasks, how could you help?&quot; Let it propose tasks.</li>
+<li>Three example automations he runs: morning brief at 8am (AI news + trending YouTube + app ideas), proactive overnight app builder (Hermes vibe-codes a new prototype every night), and a LoRA fine-tuned on his video scripts so the local model writes in his voice.</li>
+</ol>
+<p>The reverse-prompt step is the unlock most agent setups skip.</p>
+<p><strong><a href="https://x.com/mronge/status/2061551895739826493">The MacBook-as-headless-server trick</a>.</strong> Close the lid, plug in power, leave on the desk, remote in from iPad or iPhone anywhere. Old hardware becomes infrastructure. Pairs perfectly with the Hermes local-agent thesis — no need to buy a Mac Mini if you already have a retired MacBook Pro.</p>
+<p><strong>Codex keeps running after the Mac locks.</strong> <a href="https://x.com/natebjones/status/2061508828718375116">Nate Jones</a> on what the small detail actually means: &quot;The computer is no longer the place you sit. It's a work surface that keeps running, waits for approval, and hands you the decision point on another device.&quot; The form-factor implication — laptop becomes the async work surface, decision-making becomes mobile — is more important than the feature itself.</p>
+<p><strong><a href="https://x.com/natebjones/status/2061615028122407026">Workspace agents need governance interfaces, not features.</a></strong> Also Nate Jones. The product slot for workspace agents is the admin console: Agent ID, recent activity, connected apps, memory files, schedules, runs over time. Once agents run repeatable work, the governance interface <em>is</em> the product.</p>
+<hr />
+<h2>Security and Operations</h2>
+<p><strong>AI agent traffic grew 7,851% year-over-year.</strong> From the <a href="https://www.humansecurity.com">HumanSecurity 2026 State of AI Traffic report</a>. HumanSecurity sells bot mitigation so discount accordingly, but the order of magnitude is consistent with the OpenRouter 100T-tokens / 400-model number from last week. If any of your apps or the property platform expose forms or APIs, the planning horizon for &quot;agent traffic dominates human traffic&quot; is 12-24 months. Captcha-class defenses are dead; agent-aware allowlist and auth is the only durable answer.</p>
+<p><strong>Meta AI Instagram exploit.</strong> <a href="https://simonwillison.net">Hackers asked Meta AI politely</a> for access to high-profile Instagram accounts, and it worked. The end-user-exposed-AI-with-permissions social-engineering pattern, in the wild, on a platform with hundreds of millions of users. If any app ever exposes an LLM with privileges to a paying user (account recovery, support chat, data access), assume the same exploit pattern works against you unless you've explicitly designed against it. Pair with the Microsoft Agent Governance Toolkit from last week as the OSS guardrail layer.</p>
+<p><strong>The ChatGPT data-leak instinct gap.</strong> A corporate data-protection lead noted people freely upload confidential info into ChatGPT. <a href="https://x.com/JoePostingg/status/2061494159593078906">The viral reply</a> (20.6K likes) nailed it: &quot;the same people would never email confidential data to a random address. The chat interface bypassed every instinct.&quot; For any product surfacing an AI input box, the UX pattern matters more than the policy.</p>
+<p><strong>Crossmint shipped card-network-compatible AI agent payments.</strong> <a href="https://x.com/crossmint/status/2061782581260193962">Announcement</a>. &quot;Until today, devs building AI agents lacked widely adopted, card-network-compatible patterns for enabling payments with appropriate security controls.&quot; Infra-grade if you're building agents that transact.</p>
+<hr />
+<h2>The Labor Story</h2>
+<p><strong>&quot;AI is killing the summer internship.&quot;</strong> Tech internship openings down 30% since 2023, entry-level pipeline collapsing. <a href="https://thenextweb.com">The Next Web via TLDR Tech</a>. The structural argument behind the Uber-90%-engineers stat from last week — &quot;AI tools&quot; isn't a productivity bump, it's a hiring layer that gets cut. Pair with Yegge's &quot;Last Technical Interview&quot; essay above and last week's &quot;Judgment is the skill&quot; piece for the full picture: the interview is dead, the internship is dead, and the survivors are the people who can direct agents and exercise taste.</p>
+<hr />
+<h2>Videos</h2>
+<h3>Mercor CEO on Why Application Layer Companies Have No Defensibility and Token Spend Exceeds Salaries (@20VC)</h3>
+<p><a href="https://www.youtube.com/watch?v=CkAmq2gYtA4">Watch</a></p>
+<p>Harry Stebbings interviews Brandon Foody (Co-founder and CEO of Mercor, the AI data/talent company doing $1B+ in revenue) on why the application layer has no durable defensibility, why Mercor's internal token bill now exceeds payroll, and why he thinks at least one frontier lab becomes a $10T+ company within five years. Also touches on the recent security incident, denies losing OpenAI as a customer, and lays out the eval-driven model hot-swapping workflow Mercor uses internally.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The application layer has no defensibility unless you have network effects.</strong> Software wrappers on foundation models are dying because Claude Code can already replicate vertical SaaS features (medical, legal, finance) trivially. The only durable moats at the app layer are network effects — Salesforce's ecosystem and Slack Connect are the examples Foody cited. Without them, the company becomes worthless. <strong>Mindset shift:</strong> &quot;deep workflow product equals moat&quot; is now &quot;deep workflow product equals 12-month head start before the model swallows it.&quot;</li>
+<li><strong>Token spend greater than salary spend is the new normal.</strong> Mercor's bill for internal-agent inference (AI project manager, interview agents, fraud detection, accounting) already exceeds total employee compensation. Foody predicts the average Fortune 500 enterprise hits the same crossover within five years.</li>
+<li><strong>Jevons Paradox is eating token cost reductions.</strong> Per-token costs are falling but total token consumption is rising faster — token costs are net rising for everyone. Don't bet on inference cost collapse to save your unit economics.</li>
+<li><strong>Forward Deployed beats Go-to-Market.</strong> Pure sales motion gets eaten because savvy customers will just tell Claude to copy your SaaS. The durable wedge is post-sale forward-deployed engineering: going deep with customers, training agents on their tacit knowledge, going the last mile. &quot;Services are the new software&quot; (the Sequoia thesis) resonates here.</li>
+<li><strong>Tacit knowledge is the real bottleneck, not data cleanliness.</strong> Models can clean data themselves as reasoning improves (read 6 months of Slack, structure into CRM tables). The genuinely human contribution is the undocumented context that lives in employees' heads. The job of the next decade is codifying that tacit knowledge and training agents on it.</li>
+</ul>
+<hr />
+<h2>Worth Your Time</h2>
+<ul>
+<li><a href="https://minimax.io">MiniMax M3 — open-weights frontier-class model</a> — first credible empirical counter to last week's &quot;open models are falling behind&quot; thesis. Watch the third-party SWE-Bench Pro re-runs over the next ten days.</li>
+<li><a href="https://steve-yegge.medium.com">Steve Yegge — The Last Technical Interview</a> — 18-minute essay on why Silicon Valley is replacing whiteboards with paid tryouts. The hiring-practice flip that fits Burry, Yegge, and Mercor's CEO into one story.</li>
+<li><a href="https://thezvi.wordpress.com">Zvi's 40-minute Claude Opus 4.8 system-card analysis</a> — the template for how to read future Anthropic system cards. Modest-but-tangible confirmed with structural detail.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
