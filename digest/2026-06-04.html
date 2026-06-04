@@ -1,0 +1,419 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — June 4, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — June 4, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-06-04.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">June 4, 2026 &middot; 10 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>Builder's Briefing Thursday, June 4, 2026</h1>
+<p>Cognition scrapped its Windsurf brand and rebuilt Devin as a multi-agent hub the first serious UI design for &quot;supervise N agents at once.&quot; Microsoft's Frontier Tuning shipped a concrete result: an Excel-tuned MAI model that matches GPT-5.4 at roughly 10x lower cost. And a researcher spent $1,500 letting frontier LLMs attack a deliberately-vulnerable app and published what they found the empirical security data point builders have been missing.</p>
+<hr />
+<h2>The IDE Is Becoming an Agent Hub</h2>
+<p><strong>Cognition Devin Desktop + Agent Client Protocol (ACP)</strong></p>
+<p>Cognition retired the Windsurf brand and relaunched as Devin Desktop a Kanban board of every agent you're running (in-progress / blocked / ready for review), regardless of vendor. OpenAI agents, Anthropic agents, and others all land in the same interface. The accompanying Agent Client Protocol (ACP) is now backed by JetBrains, Google, GitHub, and 25+ agents, which means switching between providers stops requiring a new IDE. Devin Local, the on-device component, is a Rust rewrite of Cascade roughly 30% more token-efficient. The bottleneck in AI coding has changed from writing code to supervising parallel agents; Devin Desktop is the first product designed around that reality.</p>
+<p><a href="https://devin.ai">devin.ai</a></p>
+<hr />
+<h2>Tune a Small Model, Beat a Frontier One</h2>
+<p><strong>Microsoft MAI Full Lineup + Frontier Tuning</strong></p>
+<p>Microsoft shipped all seven MAI models MAI-Thinking-1, MAI-Code-1-Flash, MAI-Image-2.5, MAI-Image-2.5 Flash, MAI-Transcribe-1.5, MAI-Voice-2, and MAI-Voice-2-Flash all trained from scratch on commercially-licensed data with no distillation. The headline is Frontier Tuning: enterprises run RL on proprietary workflows, weights stay on-premises, and a Microsoft-demo Excel-tuned variant matched GPT-5.4 at roughly 10x lower cost. For any workflow with a measurable task (document parsing, transcription, SQL generation), fine-tuning a small model on your own data is now a concrete cost lever, not a research project. The full multimodal set (image, voice, transcription) also makes this a practical exit from managing three separate API vendors.</p>
+<p><a href="https://microsoft.ai">microsoft.ai</a> / <a href="https://thewincentral.com">thewincentral.com</a></p>
+<hr />
+<h2>Short Takes</h2>
+<p><strong>PostHog Karpathy Autoresearch found a 3-year-old ClickHouse bug overnight</strong> Setup: per-candidate sandboxes running <code>pi-autoresearch</code>, each iterating, committing, benchmarking, and journaling against a budget while the team slept. Result: 62% reduction in granule scans, 11% perf improvement, bug that had sat for three years. Directly reproducible for any app with a measurable benchmark. One hard caveat: always gate merges on an independent benchmark the autoresearch loop has known Goodhart failure modes and can game its own reported score. <em>(PostHog — see Worth Your Time below.)</em></p>
+<p><strong>$1,500 spent letting LLMs attack a deliberately-vulnerable app</strong> A practitioner built a vulnerable app, gave frontier models a real budget, and measured what they could actually exploit. This is the empirical offensive capability data you want before shipping any LLM-with-permissions to paying users. Pairs with the Vercel inference-theft item below as the two concrete production-security reads of this cycle. <em>(kasra.blog, HN 259 pts / 124 comments — linked in Worth Your Time.)</em></p>
+<p><strong>Google Gemma 4 12B</strong> Encoder-free unified architecture: native audio, video, and vision feed directly into the LLM backbone. Runs on a 16GB laptop, Apache 2.0, weights on HuggingFace and Kaggle. The leading open option for local agentic workflows that need on-device multimodal understanding without cloud round-trips. <a href="https://blog.google">blog.google</a></p>
+<p><strong>OpenAI Codex role plugins</strong> Six domain packs shipped: data analytics, creative production, sales, product design, equity investing, investment banking. Codex is moving from &quot;coding agent&quot; to &quot;role-shaped agent.&quot; <a href="https://openai.com">openai.com</a></p>
+<p><strong>Vercel: AI inference theft is a real attack class</strong> Attackers exploit exposed endpoints to resell stolen inference; traditional rate limits don't stop it. Read before your next deploy. <em>(Vercel — linked in Worth Your Time.)</em></p>
+<p><strong>Lindy switched 100% of production traffic from Anthropic to DeepSeek v4</strong> Both cost (millions in savings) and quality cited. The first notable public production defection of the cycle.</p>
+<hr />
+<h2>One-Liners</h2>
+<ul>
+<li><strong>Miso One</strong> Open-weights TTS model, 8B params, 110ms latency. Faster than human conversational latency (200250ms), small enough to self-host. Worth evaluating if you're building voice features and want off the cloud-API meter.</li>
+<li><strong>MiniMax M3 weights + tech report</strong> Confirmed within ~10 days post-launch; currently API-only.</li>
+<li><strong>Microsoft Scout</strong> Background daemon-style agent that autonomously chains tasks across Microsoft products. The leaked &quot;Copilot Super App&quot; is now shipping. <a href="https://bloomberg.com">bloomberg.com</a></li>
+<li><strong>Microsoft Project Solara</strong> Android-based device OS for running agents instead of apps; wearable employee badge with single-press agent wake and on-camera action; pilots with AccuWeather, Best Buy, CVS, Target. <a href="https://geekwire.com">geekwire.com</a></li>
+<li><strong>Wall Attention</strong> Open attention mechanism using persistent &quot;wall&quot; memory tokens for long-context reasoning. <a href="https://github.com/tilde-research/wall-attention-release">github.com/tilde-research/wall-attention-release</a></li>
+<li><strong>a16z: visual AI is moving from pixel output to code output</strong> Continuous iteration beats one-shot image generation because code artifacts are editable. <a href="https://a16z.com">a16z.com</a></li>
+<li><strong>Open vs. closed models: different exponentials</strong> Nathan Lambert argues open models still lag on out-of-distribution tasks even as benchmarks close, and that gap matters for production. <a href="https://interconnects.ai">interconnects.ai</a></li>
+</ul>
+<hr />
+<h2>Key Learnings for Builders</h2>
+<p><strong>New metric: $/Mt (dollars earned per million tokens).</strong> Track revenue per million tokens spent $2,000/mo on 10M tokens = $200/Mt. If your number is low, you're burning tokens without converting them to output. This is a fast gut-check on whether AI spend is working.</p>
+<p><strong>Token consumption is not a productivity metric.</strong> One team ranked members by token burn; adoption jumped from 32% to 84% and the bill exploded. Spec-driven prompts (define &quot;done&quot; before you prompt), task-attached runs, and humans in the loop keep bills flat and work shipping. Structure drives behavior before scale does.</p>
+<p><strong>The flat-fee era for agentic features is ending.</strong> GitHub moved agentic features to metered billing June 1. Anthropic follows June 15. If you're quoting customers a flat AI price, reprice now or build a token budget into every contract.</p>
+<p><strong>Route by failure mode, not benchmark rank.</strong> Opus 4.8 wins on dirty data and source-grounded synthesis. GPT-5.5 wins on visual and frontend work. On long-running Opus 4.8 tasks, &quot;high&quot; effort outperforms &quot;max&quot; max burns tokens, triggers compactions, and loses state continuity. Pick by what can break the specific job, not by average leaderboard position.</p>
+<p><strong>Metered AI billing rewards intentional use.</strong> Real productivity from AI is task-bounded: high token counts often signal a missing endpoint definition, not high output. Define &quot;done&quot; before every run, keep humans in review loops, and watch tokens-per-task trend down as your prompting matures.</p>
+<p><strong>Agent-native SaaS is a real product gap.</strong> Buying flow is inverting: agents read pricing pages, compare competitors, check for MCP and API layers, and transact without a human visiting a site. Every category of SaaS has an agent-native version waiting to be built communication, payments, memory, analytics.</p>
+<p><strong>Headcount cuts for AI don't pencil out.</strong> A majority of companies that cut staff for AI regret it. Roughly a third to half of those roles got rehired within months, often at higher cost than the savings. AI handles routine tasks that never needed a person. The judgment calls still do.</p>
+<p><strong>&quot;Token thief&quot; employees are a hiring signal, not just a cost leak.</strong> Employees using company API tokens for personal projects are likely the people who understand agents best. Treat it as a retention signal before a cost-control problem.</p>
+<hr />
+<h2>Videos</h2>
+<h3>The Rise of the Full-Stack Builder and Hyper-Leveraged Generalist with Microsoft CEO Satya Nadella (@NoPriorsPodcast)</h3>
+<p><a href="https://www.youtube.com/watch?v=RQE8OS392dU">Watch</a></p>
+<p>Satya Nadella reframes the AI era as an ecosystem play where the prize is letting every company &quot;operate at the frontier with their own frontier intelligence.&quot; His central, repeated thesis: a company's most defensible IP is no longer tenure or headcount but its <strong>private eval</strong> — and the acid test of being in control is whether you can swap model A for model B against that eval and still hill-climb. He argues for open, multi-model &quot;harnesses&quot; (models + data + tools in a loop), predicts SaaS gets unbundled and rebundled, and champions the hyper-leveraged generalist / full-stack builder as the role with the most upside.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Platform value lives ABOVE the platform</strong> — a real platform creates more value for others than it captures itself. Microsoft's &quot;third act&quot; is being the harness/eval/frontier-intelligence enabler (after OS → cloud).</li>
+<li><strong>Private eval is the new IP.</strong> Public benchmarks can all be &quot;maxed&quot; and are no longer critical; the durable moat is a company's private eval plus the traces it collects. <strong>Mindset shift:</strong> Before: IP = length of human experience / tenure → After: IP = the eval and the experience of applying agents to your company.</li>
+<li><strong>The model-portability acid test</strong> — &quot;You have a private eval, you're on model A. Can you switch to model B and still climb up? If you can, you're in control. If you can't, you're not.&quot; This is the single most actionable test in the interview.</li>
+<li><strong>Build with an open, multi-model harness</strong> — the harness defines models + data + tools in a loop. Don't lock yourself to one model. Existence proof: Microsoft's M-dash multi-model security harness found vulnerabilities a single-model approach missed.</li>
+<li><strong>Context prep is where the magic is</strong> — the hardest lesson of the last two years is how much work it takes to prep the context layer so a plan executes efficiently. Use progressive disclosure of tools to stay token-efficient.</li>
+</ul>
+<h3>The Only Claude Skills Tutorial You Need (Add Evals and Memory) (@PeterYangYT)</h3>
+<p><a href="https://www.youtube.com/watch?v=uT3EQPVIEb0">Watch</a></p>
+<p>Peter Yang builds an AI &quot;skill&quot; from scratch in Claude Code — an <code>edit-post</code> skill for editing long-form newsletter copy — and walks through five steps to make skills that improve themselves. The high-value ideas: separate the skill instructions from personal context/examples, write an explicit trigger description, build a pass/fail <code>evals.md</code> run by a <em>separate</em> agent in a loop until the output passes, and add a <code>memory.md</code> for lessons that can't be captured as pass/fail checks. Closing point: skills only get you 80-90% there; the last 10-20% is human review and taste.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>A skill is just a folder of instructions AI triggers for a task</strong> — the value is encoding your personal knowledge and taste into something reusable.</li>
+<li><strong>Separate skill.md from personal context/examples</strong> — three reasons: (a) AI doesn't reload all your examples every run, it loads only the relevant context based on the input; (b) you can share the skill without leaking personal/confidential material; (c) cleaner, shorter skill file.</li>
+<li><strong>Give at least a couple of different examples, never one</strong> — a single example causes the skill to overfit and produce output you don't actually want.</li>
+<li><strong>The description is the trigger, not the skill body</strong> — AI only reads the skill's name + description to decide whether to invoke it. Write &quot;use when [X]&quot; explicitly or the skill won't fire reliably.</li>
+<li><strong>Pass/fail evals beat score evals</strong> — AI can't meaningfully tell a 3 vs 4 vs 5 out of 5 (it makes it up). Up to 10 binary pass/fail checks across categories (intro, voice, substance, CTA) are far more useful.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong><a href="https://posthog.com">PostHog Autoresearch write-up</a></strong> The concrete &quot;agent grinds your benchmark overnight&quot; workflow. Read before setting up any agentic dev loop.</li>
+<li><strong><a href="https://vercel.com">Vercel: Preventing AI Inference Theft at Scale</a></strong> The attack class is new: your exposed endpoint becomes someone else's resold inference product. Read before your next deploy.</li>
+<li><strong><a href="https://kasra.blog">&quot;$1,500 Letting LLMs Hack a Vulnerable App&quot; kasra.blog</a></strong> 259 upvotes on HN. Empirical offensive capability data, not speculation. Required reading before any LLM-with-permissions ships to users.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
