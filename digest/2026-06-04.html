@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AI Builder Digest — June 4, 2026</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="Daily AI builder digest — signal over noise for developers shipping with AI tools." />
+		<meta property="og:title" content="AI Builder Digest — June 4, 2026" />
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content="https://nicolasbotello.com/digest/2026-06-04.html" />
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+			*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: #1a1a2e;
+				background: #f8f9fa;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.wrapper {
+				max-width: 680px;
+				margin: 0 auto;
+				padding: 2.5em 1.5em 4em;
+			}
+
+			/* Navigation */
+			.nav {
+				margin-bottom: 2em;
+			}
+
+			.nav a {
+				color: #6b7280;
+				font-size: 0.85em;
+				text-decoration: none;
+				letter-spacing: 0.02em;
+			}
+
+			.nav a:hover { color: #1a1a2e; }
+
+			/* Header */
+			.header {
+				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.header h1 {
+				font-size: 1.75em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-bottom: 0.25em;
+				line-height: 1.3;
+			}
+
+			.meta {
+				font-size: 0.875em;
+				color: #6b7280;
+			}
+
+			/* TTS Controls */
+			.tts-controls {
+				display: none;
+				margin-top: 0.75em;
+			}
+
+			.tts-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				padding: 0.4em 0.9em;
+				font-family: inherit;
+				font-size: 0.8em;
+				color: #6b7280;
+				background: #f3f4f6;
+				border: 1px solid #e5e7eb;
+				border-radius: 20px;
+				cursor: pointer;
+				transition: all 0.15s ease;
+			}
+
+			.tts-btn:hover {
+				color: #1a1a2e;
+				background: #e5e7eb;
+			}
+
+			.tts-btn.playing {
+				color: #2563eb;
+				background: #eff6ff;
+				border-color: #bfdbfe;
+			}
+
+			.tts-progress {
+				display: none;
+				margin-top: 0.4em;
+				font-size: 0.75em;
+				color: #9ca3af;
+			}
+
+			/* Article content */
+			.content {
+				color: #374151;
+			}
+
+			.content h1 {
+				display: none; /* Hide the markdown H1 since we have the header */
+			}
+
+			.content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				color: #1a1a2e;
+				margin-top: 2.25em;
+				margin-bottom: 0.6em;
+			}
+
+			.content h3 {
+				font-size: 1.1em;
+				font-weight: 500;
+				color: #1a1a2e;
+				margin-top: 1.75em;
+				margin-bottom: 0.5em;
+			}
+
+			.content p {
+				margin-bottom: 1em;
+			}
+
+			.content a {
+				color: #2563eb;
+				text-decoration: underline;
+				text-decoration-color: rgba(37, 99, 235, 0.3);
+				text-underline-offset: 2px;
+			}
+
+			.content a:hover {
+				text-decoration-color: #2563eb;
+			}
+
+			.content strong {
+				font-weight: 500;
+				color: #1a1a2e;
+			}
+
+			.content em {
+				font-style: italic;
+			}
+
+			.content ul, .content ol {
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+
+			.content ul { list-style: disc; }
+			.content ol { list-style: decimal; }
+
+			.content li {
+				margin-bottom: 0.4em;
+				line-height: 1.65;
+			}
+
+			.content hr {
+				border: none;
+				border-top: 1px solid #e5e7eb;
+				margin: 2em 0;
+			}
+
+			.content blockquote {
+				border-left: 3px solid #d1d5db;
+				padding-left: 1em;
+				margin: 1.25em 0;
+				color: #6b7280;
+				font-style: italic;
+			}
+
+			.content table {
+				width: 100%;
+				margin: 1.5em 0;
+				border-collapse: collapse;
+				font-size: 0.9em;
+			}
+
+			.content th, .content td {
+				text-align: left;
+				padding: 0.5em 0.75em;
+				border-bottom: 1px solid #e5e7eb;
+			}
+
+			.content th {
+				font-weight: 500;
+				color: #1a1a2e;
+				border-bottom: 2px solid #d1d5db;
+			}
+
+			.content code {
+				background: #f3f4f6;
+				padding: 0.15em 0.35em;
+				border-radius: 3px;
+				font-size: 0.88em;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+			}
+
+			/* Footer */
+			.footer {
+				margin-top: 3em;
+				padding-top: 1.5em;
+				border-top: 1px solid #e5e7eb;
+				font-size: 0.85em;
+				color: #9ca3af;
+			}
+
+			.footer a {
+				color: #9ca3af;
+				text-decoration: none;
+			}
+
+			.footer a:hover { color: #6b7280; }
+
+			@media (max-width: 480px) {
+				.wrapper { padding: 1.5em 1em; }
+				.header h1 { font-size: 1.4em; }
+				body { font-size: 15px; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="wrapper">
+			<nav class="nav">
+				<a href="index.html">&larr; All Digests</a>
+			</nav>
+
+			<header class="header">
+				<h1>AI Builder Digest</h1>
+				<div class="meta">June 4, 2026 &middot; 7 min read</div>
+				<div class="tts-controls" id="tts-controls">
+					<button class="tts-btn" id="tts-btn" onclick="toggleTTS()">
+						<span id="tts-icon">&#9654;</span> <span id="tts-label">Listen</span>
+					</button>
+					<div class="tts-progress" id="tts-progress"></div>
+				</div>
+			</header>
+
+			<article class="content">
+				<h1>AI &amp; Dev Daily Digest June 3, 2026</h1>
+<p>The question for AI coding tools has shifted. Every model can do it. The question is now: &quot;can it do this consistently, at predictable cost, 1,000 times in a row?&quot; Uber burning through its 2026 AI tool budget in four months, Codex rate limits getting nerfed mid-cycle, and Claude Code Workflows emerging as the next architectural primitive all point to the same inflection: repeatability and cost predictability beat raw capability now.</p>
+<hr />
+<h2>The Cost Ceiling Just Became Real</h2>
+<p>Uber capped AI tool spend at $1,500/month per employee per tool (Cursor, Claude Code) after the entire 2026 budget burned in four months — first reported by Bloomberg and surfaced in Simon Willison's notes. That's not a fringe case. Codex users on ChatGPT Pro burned 45% of their weekly limit in two days after the GPT-5.5 rollout (reported by @bridgemindai). The cost-per-useful-output curve is getting ugly at scale, especially for teams that are dabbling across six tools rather than deeply integrating two. Budget caps will force a consolidation: pick your stack, build workflows around it, and stop treating AI tools as open tabs.</p>
+<h2>Consistency Is the New Primitive</h2>
+<p>The sharpest framing this week: the problem is no longer getting one good answer — it's getting a consistent answer at scale. Claude Code Workflows are the current answer: deterministic process wrappers over agent behavior, more reliable than ad-hoc agent teams for repeatable tasks. Ryan Carson reports shipping 34 PRs in one day running parallel cloud dev agents (@ryancarson) — something he says hits a hard ceiling at 2-3 threads locally. The architectural takeaway: encode taste decisions in structures agents can act from (HTML, CSS, SVG, JSON schemas) rather than verbal prompts. Structured inputs produce consistent outputs; prompts don't.</p>
+<hr />
+<h2>Notable Releases</h2>
+<p><strong>Microsoft MAI-Code-1-Flash outperforms Haiku 4.5 at 5B parameters.</strong> Beats Claude Haiku 4.5 by 16 points on SWE-Bench Pro using ~60% fewer tokens, now live in Copilot (Microsoft, via CNBC). Its sibling, MAI-Thinking-1 (35B-active sparse MoE, 256K context), hits 97.0% on AIME 2025 (Microsoft) credible in-house reasoning at low active-parameter count.</p>
+<p><strong>NVIDIA Nemotron 3 Ultra ships June 4.</strong> 550B total / 55B-active hybrid Mamba-Transformer, best open-weights from a US lab. Full training recipe and 2.5T-token dataset on HuggingFace, ModelScope, and OpenRouter reproducibility included, not just weights.</p>
+<p><strong>Perplexity Search as Code cuts token cost 85%.</strong> Instead of feeding raw search results to the model, SaC has models write Python that calls the search stack directly. 85% token reduction on a 200-CVE research task (per Perplexity's own writeup). Now default in Perplexity's Computer agent concrete methodology worth adapting.</p>
+<p><strong>OpenAI Codex GA on AWS Bedrock.</strong> Full IAM, VPC, and encryption support — enterprise teams can now run Codex inside their existing AWS security boundary without cloud-agnostic workarounds. Separately, Gartner named Codex the Enterprise AI Coding Agents Leader the eval criteria were governance, RBAC, sandboxing, and audit trail, not benchmark scores.</p>
+<p><strong>Anthropic reportedly files confidential S-1.</strong> Per WSJ and TechCrunch reporting, Anthropic has confidentially filed a draft S-1 — post-money valuation around $965B, possible fall 2026 listing. If it lands, every enterprise AI procurement conversation gets reset.</p>
+<p><strong>AI engineering breaks your existing testing assumptions.</strong> From Pointer #721: non-deterministic outputs, natural-language inputs, and untestable quality mean unit tests and standard backend principles don't transfer. The same issue surfaces a harder truth: individual devs ship faster and PRs close quicker, but org-level deployment frequency and business value are flat. The productivity paradox is showing up in real data.</p>
+<hr />
+<h2>Quick Takes</h2>
+<ul>
+<li><strong>Devin Desktop launched</strong> (Cognition product announcement) compatible with Codex, Claude Agent, OpenCode, and ACP-compatible agents.</li>
+<li><strong>Qwen3.7-Plus multimodal GUI agent</strong> (Alibaba/Qwen) 79.0 on ScreenSpot Pro, 70.3 on Terminal-Bench, currently leading open-API computer-use scores per its model card.</li>
+<li><strong>NVIDIA Cosmos 3</strong> (NVIDIA, June 2026) fully open physical-AI omnimodel trained on 20T multimodal tokens.</li>
+<li><strong>Simon Willison</strong> shipped datasette-agent-micropython 0.1a0 with micropython-wasm: a WASM MicroPython sandbox for safe agent code execution.</li>
+<li><strong>Microsoft Scout</strong> described as &quot;first autopilot agent from Microsoft,&quot; announced at MS Build.</li>
+<li><strong>Steve Yegge</strong> calls technical interviews &quot;bordering on pseudoscience&quot; and proposes paid trial work (&quot;campfires&quot;) as the replacement.</li>
+</ul>
+<hr />
+<h2>Videos</h2>
+<h3>The Next $100B Market - Selling to AI Agents (@gregisenberg)</h3>
+<p><a href="https://www.youtube.com/watch?v=MlptIfpoLlw">Watch</a></p>
+<p>Greg argues the internet is bifurcating into a human web and an agent web: AI agents are becoming the <em>customer</em>, and over the next 10 years there will be billions of agent &quot;customers&quot; with millions of wallets buying services. Every SaaS category (payments, communication, memory, identity) will get rebuilt &quot;agent-native,&quot; and almost nobody is building for it yet. He maps the agent buying journey, the new infrastructure agents need, and a rapid-fire list of startup ideas for the machine-to-machine economy.</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>The agent is the new customer</strong>: For decades the end user of the internet was a human. Now AI agents discover, evaluate, transact, and recommend — your company has to be <em>machine usable</em>, not just human-persuasive.</li>
+<li><strong>Mindset shift:</strong> Before: humans search → read → compare → click → buy on your beautiful, persuasive website → After: agents discover → evaluate docs/APIs → check trust/limits → invoke tools → pay → recommend to other agents. Persuasion gives way to structured capability, permission, and trust.</li>
+<li><strong>Every SaaS category gets an agent-native rebuild</strong>: Take any tool you use (Notion, Slack, Stripe) and ask &quot;what's the version built purely for agents?&quot; — agent-native payments, communication, memory, identity. Each is a fresh category.</li>
+<li><strong>Agents need six things humans don't</strong>: Identity (who is it acting for), Tools (what actions it can safely invoke), Inbox (where OTPs/docs/threads land), Memory (preferences/rules), Wallet (spend + approvals), Receipts (audit trail of what it saw/decided/bought).</li>
+<li><strong>Trust scales like an employee</strong>: You grant an agent capability incrementally — like giving an employee a credit card, then raising the limit as trust grows. Permissions and spend caps are first-class design problems.</li>
+</ul>
+<h3>I cloned myself with Gemini Omni in 15 minutes (and it's terrifyingly good) (@howiai)</h3>
+<p><a href="https://www.youtube.com/watch?v=UNZczH0gpHc">Watch</a></p>
+<p>Claire uses Google Flow + the Gemini Omni video generation model to create an AI avatar of herself and produce a full ~1-minute podcast hype video in about 15 minutes, starting from zero knowledge of the tool. She scans her face via QR-code-driven phone capture, has Flow's built-in AI brainstorm a 7-scene storyboard, generates avatar-driven video clips, and stitches them in Flow's in-browser timeline editor. The result is ~50-90% convincing depending on the frame, with notable uncanny-valley failures on emotion (laughing) and consistency (hair, background, props).</p>
+<p><strong>Key takeaways:</strong></p>
+<ul>
+<li><strong>Avatar creation is now a phone-scan, not a shoot</strong>: Flow drives avatar capture via a QR code to your phone — take a few photos, turn your head left/right for side profiles, done in under a minute. No studio, no rig.</li>
+<li><strong>The video tool is a full creative suite, not just a generator</strong>: Flow brainstorms the storyboard, blocks the scenes, generates clips, AND has an in-browser timeline editor to stitch them. The whole pipeline lives in one product.</li>
+<li><strong>AI as &quot;producer&quot; unlocks work you literally couldn't do before</strong>: Claire frames the real value as not speed but capability — she could never solo-produce a hype video (no framing/blocking/editing skill); the AI fills the entire missing skill set.</li>
+<li><strong>Mindset shift:</strong> Before: generative AI for coding/PRDs/work product → After: multimodal image+video models unlock creative output that was previously inaccessible to non-creatives, expanding <em>what</em> you can make, not just how fast.</li>
+<li><strong>Character reference is the weak link</strong>: The @-mention &quot;me&quot; character couldn't be used during storyboard generation; the model only pulled facial likeness during the actual video-gen step, and consistency drifted across clips.</li>
+</ul>
+<h2>Worth Your Time</h2>
+<ul>
+<li><strong>Perplexity Search as Code writeup</strong> the 85% token reduction on CVE research is a concrete methodology, not a benchmark. Worth reading for the implementation pattern alone.</li>
+<li><strong>NVIDIA Nemotron 3 Ultra on HuggingFace (ships June 4)</strong> full training recipe plus 2.5T-token dataset. The most reproducible open-weights release in a while; useful baseline for fine-tuning work.</li>
+<li><strong>Pointer #721</strong> the org-level productivity paradox data (individual devs faster, team throughput flat) is the most honest thing published this week about what AI actually does to teams at scale.</li>
+</ul>
+			</article>
+
+			<footer class="footer">
+				<a href="index.html">&larr; All Digests</a> &middot; <a href="https://nicolasbotello.com">nicolasbotello.com</a>
+			</footer>
+		</div>
+
+		<script>
+		(function() {
+			if (!('speechSynthesis' in window)) return;
+			document.getElementById('tts-controls').style.display = 'block';
+		})();
+
+		var ttsState = 'stopped'; // stopped, playing, paused
+		var sections = [];
+		var currentSection = 0;
+
+		function getSections() {
+			if (sections.length > 0) return sections;
+			var article = document.querySelector('.content');
+			var children = article.children;
+			var current = '';
+
+			for (var i = 0; i < children.length; i++) {
+				var el = children[i];
+				var tag = el.tagName;
+				// Split on H2/HR — each becomes a new section
+				if ((tag === 'H2' || tag === 'HR') && current.trim()) {
+					sections.push(current.trim());
+					current = '';
+				}
+				if (tag !== 'HR') {
+					current += el.textContent + ' ';
+				}
+			}
+			if (current.trim()) sections.push(current.trim());
+			return sections;
+		}
+
+		function updateUI(state, sectionIdx) {
+			var btn = document.getElementById('tts-btn');
+			var icon = document.getElementById('tts-icon');
+			var label = document.getElementById('tts-label');
+			var progress = document.getElementById('tts-progress');
+
+			if (state === 'playing') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#10074;&#10074;';
+				label.textContent = 'Pause';
+				progress.style.display = 'block';
+				progress.textContent = 'Section ' + (sectionIdx + 1) + ' of ' + getSections().length;
+			} else if (state === 'paused') {
+				btn.classList.add('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Resume';
+			} else {
+				btn.classList.remove('playing');
+				icon.innerHTML = '&#9654;';
+				label.textContent = 'Listen';
+				progress.style.display = 'none';
+			}
+			ttsState = state;
+		}
+
+		function speakSection(idx) {
+			var sects = getSections();
+			if (idx >= sects.length) {
+				updateUI('stopped', 0);
+				currentSection = 0;
+				return;
+			}
+			currentSection = idx;
+			var utterance = new SpeechSynthesisUtterance(sects[idx]);
+			utterance.rate = 1.05;
+			utterance.onend = function() {
+				if (ttsState === 'playing') {
+					speakSection(idx + 1);
+				}
+			};
+			utterance.onstart = function() {
+				updateUI('playing', idx);
+			};
+			speechSynthesis.speak(utterance);
+		}
+
+		function toggleTTS() {
+			if (ttsState === 'stopped') {
+				speakSection(currentSection);
+			} else if (ttsState === 'playing') {
+				speechSynthesis.pause();
+				updateUI('paused', currentSection);
+			} else if (ttsState === 'paused') {
+				speechSynthesis.resume();
+				updateUI('playing', currentSection);
+			}
+		}
+		</script>
+
+	</body>
+</html>
